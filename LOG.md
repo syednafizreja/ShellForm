@@ -40,3 +40,4 @@
 - Lesson: in this model the seismic combination never governs thickness, so the strategies can only differ through steel and support zones
 - Tomorrow: Day 5, steel from tension, support-zone concrete, carbon with the ±25 % band
 - Later on 1 Nov (Claude Code): ν now read in place from ShellBench's `notes/gb50010_design_values.md` (the Problem line above was wrong; same value, 0.2); D4-5 records the plan-area load basis; the 85 against 90 mm strategy difference disappears under surface-area loading. Results regenerated: no thickness changed. pytest 39 passed
+- Later still on 1 Nov (Claude Code): ν_c = 0.2 confirmed in the Chinese GB 50010-2010 (2015) cl. 4.1.5, printed p. 20 (p. 19 in the English translation, so ShellBench's note is right on both). GB 50009-2012 Table 5.3.1, printed p. 18: ψq = 0.0, non-accessible roof; cl. 5.3.1 gives live load on the horizontal projection. ShellBench PR #87 merged

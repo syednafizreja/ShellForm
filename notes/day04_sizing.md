@@ -75,3 +75,4 @@ A second sizing code, written separately on 1 Nov (branch `day04-crosscheck`, co
 
 - Day 5: steel from tension (A_s = T / f_y, at least ρ_min), support-zone concrete, carbon with the ±25 % band.
 - Cross-check `fe.py` against ShellBench's CalculiX wrapper. v0.1.0 has only a cantilever smoke test (`calculix.cantilever_smoke`), so the shell cross-check waits for floor-r2.
+- ψq for the quasi-permanent deflection check: GB 50009-2012 Table 5.3.1 gives 0.0 for a non-accessible roof (printed p. 18). It needs a ShellBench row before ShellForm can read it; until then D4-3 stands.
