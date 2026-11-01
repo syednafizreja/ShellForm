@@ -2,6 +2,16 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 1 Nov 2026, Claude in the app (Day 4, sizing of the 10 m designs)
+
+**Done:** ShellBench v0.1.0 was tagged this morning, so the pin moved to it. New `inputs.py` (all values read from ShellBench), `sizing.py`, load cases and face stresses in `fe.py`, mesh check, and `scripts/day04_size_10m.py`, which sized all 84 10 m designs (`results/day04_sizing_10m.csv`, `notes/day04_sizing.md`). Tests 31 → 37 passed.
+
+**Decisions by the author today:** none; "finish all" under the standing delegation. Claude decided D4-1 to D4-4 and recorded them as a pre-registration amendment.
+
+**Open:** on the laptop, move the pinned clone to the new tag: `git -C C:\Users\ASUS\ShellBench-pin fetch --tags`, then `git -C C:\Users\ASUS\ShellBench-pin checkout v0.1.0`, then `pip install -e C:\Users\ASUS\ShellBench-pin --no-deps` in env `shellform`. Without this, `check_pin()` stops the scripts. Poisson's ratio is still a [?] placeholder.
+
+**Next:** 2 Nov, steel, support zones and carbon.
+
 ## 31 Oct 2026, Claude Code in VS Code (Day 3 sync)
 
 **Done:** pulled main (Day 3 work from the app); ShellBench-pin is at `v0.0.1`, matching `SHELLBENCH_TAG`; no new ShellBench tag on the remote; `pip install -e . --no-deps`; `ccx` found in env `shellform`; pytest 31 passed, 0 skipped, so both CalculiX tests ran on the laptop. Reran `scripts/day03_one_shell.py`: displacements, periods and reactions are identical; only area, weight and reaction ratio differ, in the last one or two digits (about 1e-15 relative, floating-point noise between machines). The committed `results/day03_one_shell.json` is kept unchanged.

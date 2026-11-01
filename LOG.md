@@ -27,3 +27,10 @@
 - Problem: ν and density are not in ShellBench v0.0.1 (placeholders [?]); CalculiX reactions omit load lumped on fixed nodes, so equilibrium is checked on corner shells only
 - Lesson: equal force densities let a corner-supported net's free edges collapse inward; the boundary force density is a design input and must be fixed before the runs
 - Tomorrow: Day 4, sizing loop (thickness search against λ ≥ 5 and L/300) on the 10 m cases; mesh check
+
+## Day 4 — 1 Nov 2026
+- Done (Claude, under the author's standing delegation): ShellBench v0.1.0 tagged, pin moved (pin now checks the clone's git tag, because v0.1.0 still reports version 0.0.1); `src/shellform/inputs.py` reads E, unit weight, roof loads, f_c, f_t, f_y and factors from ShellBench in place; `fe.py` load cases (buckling, static, SLS, modes) with face stresses; `src/shellform/sizing.py`; mesh check 21/41/61; `scripts/day04_size_10m.py` sized all 84 10 m designs; decisions D4-1 to D4-4
+- Result: pytest 37 passed. All 84 feasible. Corner shells 105/90/75 mm at rise 0.10/0.15/0.20, governed by buckling; edge shells at 50 mm. Thickness does not change with Sa. T1 at most 0.194 s (S5 holds)
+- Problem: Poisson's ratio still not in ShellBench (results provisional); stress at corner supports is singular, so a 0.2 L zone is left out of the check and must be thickened locally
+- Lesson: in this model the seismic combination never governs thickness, so the strategies can only differ through steel and support zones
+- Tomorrow: Day 5, steel from tension, support-zone concrete, carbon with the ±25 % band
