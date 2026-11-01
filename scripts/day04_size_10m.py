@@ -6,8 +6,8 @@ sized thickness for S5. Writes results/day04_sizing_10m.csv and a JSON file
 of every thickness tried.
 
 Steel and carbon columns stay empty until the tension and carbon step (Day 5).
-Poisson's ratio is a [?] placeholder (shellform.inputs), so these results are
-provisional and are not used in the paper; the paper's results come from one
+Steel and carbon are missing, so these results are provisional and are not
+used in the paper; the paper's results come from one
 run after the 10 Nov freeze (pre-registration section 9).
 
 Usage: python scripts/day04_size_10m.py [--workers 4]
@@ -95,7 +95,7 @@ def main():
         for row, _ in out:
             w.writerow(row)
     meta = {"shellbench_tag": SHELLBENCH_TAG, "grid_n": N_GRID, "inputs": load_inputs().as_dict(),
-            "status": "provisional: nu is a [?] placeholder; steel and carbon not yet computed",
+            "status": "provisional: steel and carbon not yet computed",
             "tried": [c for _, t in out for c in t]}
     (res / "day04_sizing_10m_tried.json").write_text(json.dumps(meta, indent=1) + "\n")
     print(f"wrote {len(out)} designs")

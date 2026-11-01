@@ -2,18 +2,13 @@
 
 Nothing here is a hard-coded ShellBench value (docs/data_contract.md). Code
 constants are imported from shellbench modules; the unit weight and roof
-loads are read from ShellBench's ``docs/baseline_spec.md`` in place, by row ID.
-
-The one value ShellBench does not yet give is Poisson's ratio of concrete.
-It stays a placeholder marked [?] until a ShellBench tag provides it; the
-linear-elastic shell results depend on it only weakly.
+loads are read from ShellBench's ``docs/baseline_spec.md`` in place, by row ID,
+and Poisson's ratio from ``notes/gb50010_design_values.md``.
 """
 
 import re
 from dataclasses import asdict, dataclass
 from pathlib import Path
-
-NU_PLACEHOLDER = 0.2  # [?] not in ShellBench v0.1.0; replace when a tag gives it
 
 
 @dataclass(frozen=True)
@@ -22,7 +17,7 @@ class DesignInputs:
 
     Attributes:
         e_pa: Concrete elastic modulus [Pa] (spec X4).
-        nu: Poisson's ratio [-] ([?] placeholder).
+        nu: Poisson's ratio [-] (GB 50010 cl. 4.1.5, ShellBench notes).
         unit_weight_n_m3: Reinforced concrete unit weight [N/m3] (spec X7).
         g_m_s2: Gravitational acceleration [m/s2] (shellbench.seismic).
         sdl_pa: Roof superimposed dead load per plan area [Pa]: spec L2 roof
@@ -82,6 +77,22 @@ def spec_value(spec_text, row_id):
     return float(m.group(1))
 
 
+def note_value(note_text, symbol):
+    """Return the number in the Value column of a ShellBench notes table row.
+
+    Args:
+        note_text: Text of a ShellBench notes file.
+        symbol: First column of the row, such as "ν_c".
+
+    Returns:
+        The number as a float, in the units printed in that row.
+    """
+    m = re.search(r"^\|\s*" + re.escape(symbol) + r"\s*\|\s*([-+]?\d+(?:\.\d+)?)", note_text, re.M)
+    if not m:
+        raise KeyError(f"row {symbol} not found in the ShellBench note")
+    return float(m.group(1))
+
+
 def shellbench_root():
     """Return the root folder of the installed (editable) ShellBench clone."""
     import shellbench
@@ -102,18 +113,19 @@ def load_inputs():
     import shellbench.seismic as sb_seis
 
     spec = (shellbench_root() / "docs" / "baseline_spec.md").read_text(encoding="utf-8")
+    design_values = (shellbench_root() / "notes" / "gb50010_design_values.md").read_text(encoding="utf-8")
     kn = 1.0e3
     unit_weight = spec_value(spec, "X7") * kn
     roof_dead = spec_value(spec, "L2") * kn
     sdl = roof_dead - unit_weight * sb_carbon.SLAB_T_M
     return DesignInputs(
-        e_pa=sb_frame.E_KN_M2 * kn, nu=NU_PLACEHOLDER, unit_weight_n_m3=unit_weight,
+        e_pa=sb_frame.E_KN_M2 * kn, nu=note_value(design_values, "ν_c"), unit_weight_n_m3=unit_weight,
         g_m_s2=sb_seis.G_ACCEL_M_S2, sdl_pa=sdl, live_pa=spec_value(spec, "L11") * kn,
         f_c_pa=sb_checks.FC_N_MM2 * 1e6, f_t_pa=sb_checks.FT_N_MM2 * 1e6, f_y_pa=sb_checks.FY_N_MM2 * 1e6,
         gamma_g=sb_comb.GAMMA_G, gamma_q=sb_comb.GAMMA_Q,
         gamma_eg=sb_comb.GAMMA_EG_CODE, gamma_eh=sb_comb.GAMMA_EH_CODE,
         psi_e_roof=sb_seis.LIVE_COMBINATION_COEFF_ROOF, tg_s=sb_seis.TG_ANCHOR_S,
-        sources={"e_pa": "anchor_frame.E_KN_M2 (spec X4)", "nu": "[?] placeholder, not in ShellBench",
+        sources={"e_pa": "anchor_frame.E_KN_M2 (spec X4)", "nu": "notes/gb50010_design_values.md row ν_c (cl. 4.1.5)",
                  "unit_weight_n_m3": "baseline_spec.md X7", "g_m_s2": "seismic.G_ACCEL_M_S2",
                  "sdl_pa": "baseline_spec.md L2 - X7 x carbon.SLAB_T_M (G10) [J]",
                  "live_pa": "baseline_spec.md L11", "f_c_pa": "checks.FC_N_MM2 (X2)",

@@ -8,7 +8,7 @@ ShellForm extends the seismic form-finding of Michiels & Adriaenssens (2017, 201
 
 ## Status
 
-Day 4 (1 Nov 2026): the 84 10 m designs sized (provisional); 37 tests. Pinned to ShellBench `v0.1.0`.
+Day 4 (1 Nov 2026): the 84 10 m designs sized (provisional); 39 tests. Pinned to ShellBench `v0.1.0`.
 
 | Item | Where | Status |
 |---|---|---|
