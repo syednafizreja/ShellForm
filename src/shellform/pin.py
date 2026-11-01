@@ -5,22 +5,29 @@ It imports ShellBench, installed in editable mode from a local clone that is
 checked out at the tag below. Every result names this tag.
 
 Move the pin only when a new ShellBench tag lands (floor-r1, floor-r2,
-floor-r3, v0.1, v0.3), and record the move in LOG.md.
+floor-r3, v0.3), and record the move in LOG.md.
+
+The check reads the installed distribution version (from ShellBench's
+pyproject.toml). It does not read shellbench.__version__, because that string
+still says 0.0.1 at tag v0.1.0 and cannot tell the two tags apart.
 """
 
-SHELLBENCH_TAG = "v0.0.1"
-SHELLBENCH_VERSION = "0.0.1"
+from importlib import metadata
+
+SHELLBENCH_TAG = "v0.1.0"
+SHELLBENCH_VERSION = "0.1.0"
 
 
 def installed_shellbench_version() -> str:
-    """Return the version string of the installed shellbench package.
+    """Return the distribution version of the installed shellbench package.
 
     Raises:
         ImportError: If shellbench is not installed in this environment.
     """
-    import shellbench
-
-    return shellbench.__version__
+    try:
+        return metadata.version("shellbench")
+    except metadata.PackageNotFoundError as err:
+        raise ImportError("shellbench is not installed") from err
 
 
 def check_pin() -> str:
@@ -37,6 +44,7 @@ def check_pin() -> str:
         raise RuntimeError(
             f"shellbench {found} is installed, but ShellForm is pinned to "
             f"{SHELLBENCH_TAG} ({SHELLBENCH_VERSION}). Run "
-            f"'git checkout {SHELLBENCH_TAG}' in the ShellBench clone."
+            f"'git checkout {SHELLBENCH_TAG}' in the ShellBench clone, then "
+            f"'pip install -e . --no-deps' there."
         )
     return SHELLBENCH_TAG
