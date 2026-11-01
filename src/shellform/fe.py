@@ -80,7 +80,7 @@ def surface_area(xyz, n):
 
 
 def write_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3,
-               g=9.81, n_modes=3, n_buckle=2):
+               g=9.81, n_modes=3, n_buckle=2, clamp=False):
     """Return the CalculiX input deck text for one shell.
 
     Args:
@@ -92,6 +92,7 @@ def write_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3,
         density_kg_m3: Mass density [kg/m3].
         g: Gravitational acceleration [m/s2].
         n_modes, n_buckle: Number of modes and buckling factors requested.
+        clamp: Fix rotations too (used only by tests); shells are pinned.
     """
     els = s8r_elements(n)
     used = np.unique(els)
@@ -104,7 +105,7 @@ def write_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3,
     lines += [",".join(str(v) for v in fixed_used[i:i + 16]) for i in range(0, len(fixed_used), 16)]
     lines.append("*NSET,NSET=NUSED")
     lines += [",".join(str(v) for v in used[i:i + 16]) for i in range(0, len(used), 16)]
-    lines += ["*BOUNDARY", "FIX,1,3",
+    lines += ["*BOUNDARY", "FIX,1,6" if clamp else "FIX,1,3",
               "*MATERIAL,NAME=CONC", "*ELASTIC", f"{e_pa:.6e},{nu}",
               "*DENSITY", f"{density_kg_m3}",
               "*SHELL SECTION,ELSET=EALL,MATERIAL=CONC", f"{thickness_m}",
@@ -168,3 +169,236 @@ def analyse(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3, g=9.81, workdir
     weight = density_kg_m3 * g * thickness_m * surface_area(xyz, n)
     periods = np.sort(1.0 / freq)[::-1] if len(freq) else np.array([])
     return FEResult(umax, reaction, weight, periods, buck)
+
+
+# ---------------------------------------------------------------------------
+# Load-case runs for sizing (Day 4)
+# ---------------------------------------------------------------------------
+
+#: Consistent nodal shares of a uniform load on an 8-node serendipity element:
+#: corners -1/12, mid-side nodes 1/3 of the element total (exact for a flat
+#: parallelogram; used here per projected plan area).
+S8R_LOAD_SHARES = np.array([-1.0, -1.0, -1.0, -1.0, 4.0, 4.0, 4.0, 4.0]) / 12.0
+
+
+@dataclass
+class CaseResult:
+    """Results of one load case (static plus linear buckling).
+
+    Attributes:
+        buckling_factor: First positive linear buckling factor under the case loads [-].
+        max_disp_m: Largest displacement magnitude [m].
+        max_uz_m: Largest vertical displacement magnitude [m].
+        compression_pa: Largest principal compressive stress on either face,
+            outside the corner support zones [Pa] (positive number).
+        compression_support_pa: The same, inside the corner support zones [Pa].
+        tension_pa: Largest principal tensile stress on either face, all elements [Pa].
+        sls_disp_m: Largest displacement magnitude under the SLS loads [m], or nan.
+        periods_s: Natural periods, longest first [s] (empty unless requested).
+    """
+
+    buckling_factor: float
+    max_disp_m: float
+    max_uz_m: float
+    compression_pa: float
+    compression_support_pa: float
+    tension_pa: float
+    sls_disp_m: float
+    periods_s: np.ndarray
+
+
+def plan_load_shares(xyz, n):
+    """Return consistent nodal weights for a unit load per plan area [m2 per node].
+
+    Args:
+        xyz: Grid nodes, shape (n*n, 3) [m].
+        n: Grid nodes per side (odd).
+
+    Returns:
+        Array of shape (n*n,): the nodal share of a load of 1 Pa on plan area.
+    """
+    els = s8r_elements(n)
+    w = np.zeros(n * n)
+    for row in els:
+        c = xyz[row[:4] - 1, :2]
+        x, y = c[:, 0], c[:, 1]
+        area = 0.5 * abs(np.dot(x, np.roll(y, -1)) - np.dot(y, np.roll(x, -1)))
+        w[row - 1] += area * S8R_LOAD_SHARES
+    return w
+
+
+def corner_zone(xyz, n, radius_m):
+    """Return a boolean mask of S8R elements in the plan-corner support zones.
+
+    Stresses near a point support (or where two pinned edges meet) are
+    singular in a linear-elastic model and grow with mesh refinement. The
+    sizing check leaves out elements whose plan centroid lies within radius_m
+    of a plan corner node, and reports their stress separately (decision D4-2
+    [J]); in practice these zones are thickened locally. The four corner
+    elements are always in the zone.
+
+    Args:
+        xyz: Grid nodes, shape (n*n, 3) [m].
+        n: Grid nodes per side (odd).
+        radius_m: Zone radius in plan [m].
+    """
+    els = s8r_elements(n)
+    corners = np.array([0, n - 1, n * (n - 1), n * n - 1])
+    cen = xyz[els[:, :4] - 1, :2].mean(axis=1)
+    dist = np.linalg.norm(cen[:, None, :] - xyz[corners, :2][None], axis=2).min(axis=1)
+    touch = np.array([bool(set((corners + 1).tolist()) & set(row.tolist())) for row in els])
+    return touch | (dist <= radius_m)
+
+
+def _grav_line(accel):
+    """Return a *DLOAD GRAV line for an acceleration vector [m/s2]."""
+    a = np.asarray(accel, float)
+    mag = np.linalg.norm(a)
+    d = a / mag
+    return f"EALL,GRAV,{mag:.9e},{d[0]:.9e},{d[1]:.9e},{d[2]:.9e}"
+
+
+def _cload_lines(shares, used, w_pa):
+    """Return *CLOAD lines for a load per plan area w_pa = (wx, wy, wz) [Pa]."""
+    lines = []
+    for k in used:
+        for dof, w in enumerate(w_pa, start=1):
+            f = shares[k - 1] * w
+            if w != 0.0 and f != 0.0:
+                lines.append(f"{k},{dof},{f:.9e}")
+    return lines
+
+
+def write_case_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3,
+                    accel, w_pa, sls=None, n_modes=0, clamp=False):
+    """Return a CalculiX deck for one load case: buckling, static, optional SLS and modes.
+
+    Step order: BUCKLE first (so no earlier load acts as a preload), then
+    STATIC under the same loads, then an optional SLS STATIC with new loads,
+    then an optional FREQUENCY step (mass from density only).
+
+    Args:
+        xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3: As for write_deck.
+        accel: Factored acceleration on the self-weight, (ax, ay, az) [m/s2].
+        w_pa: Factored load per plan area on the nodes, (wx, wy, wz) [Pa].
+        sls: Optional (accel, w_pa) pair for the serviceability case.
+        n_modes: Number of natural modes to compute (0 for none).
+        clamp: Fix rotations at the fixed nodes (tests only).
+    """
+    els = s8r_elements(n)
+    used = np.unique(els)
+    shares = plan_load_shares(xyz, n)
+    base = write_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3, clamp=clamp)
+    head = base.split("*STEP", 1)[0].splitlines()
+
+    def loads(acc, w, new):
+        op = ",OP=NEW" if new else ""
+        out = [f"*DLOAD{op}", _grav_line(acc)]
+        cl = _cload_lines(shares, used, w)
+        out += [f"*CLOAD{op}"] + cl if cl else ([f"*CLOAD{op}"] if new else [])
+        return out
+
+    lines = head + ["*STEP", "*BUCKLE", "1"] + loads(accel, w_pa, False) + ["*END STEP"]
+    lines += ["*STEP", "*STATIC"] + loads(accel, w_pa, True)
+    lines += ["*NODE PRINT,NSET=NUSED", "U", "*EL PRINT,ELSET=EALL", "S", "*END STEP"]
+    if sls is not None:
+        lines += ["*STEP", "*STATIC"] + loads(sls[0], sls[1], True)
+        lines += ["*NODE PRINT,NSET=NUSED", "U", "*END STEP"]
+    if n_modes:
+        lines += ["*STEP", "*FREQUENCY", f"{n_modes}", "*END STEP"]
+    return "\n".join(lines) + "\n"
+
+
+def _blocks(text, header):
+    """Return the numeric rows that follow each occurrence of a .dat block header."""
+    out = []
+    for m in re.finditer(re.escape(header) + r"[^\n]*\n", text):
+        rows = []
+        for line in text[m.end():].splitlines():
+            s = line.strip()
+            if not s:
+                if rows:
+                    break
+                continue
+            if not re.match(r"^\d", s):
+                break
+            vals = []
+            for v in s.split():
+                try:
+                    vals.append(float(v.replace("D", "E")))
+                except ValueError:
+                    break  # trailing element-set name, e.g. _shell_0000000001
+            rows.append(vals)
+        out.append(np.array(rows))
+    return out
+
+
+def surface_principal_stresses(stress_rows):
+    """Return per-element principal stresses on both shell faces.
+
+    CalculiX expands S8R into C3D20R with 2 x 2 x 2 integration points: the
+    first four lie on one Gauss plane through the thickness, the last four on
+    the other, at +-1/sqrt(3) of the half-thickness. Stresses are averaged in
+    plane and extrapolated linearly to the faces (factor sqrt(3)).
+
+    Args:
+        stress_rows: Rows (elem, ip, sxx, syy, szz, sxy, sxz, syz) [Pa].
+
+    Returns:
+        (element ids, principal stresses array of shape (n_el, 2 faces, 3)) [Pa].
+    """
+    elem = stress_rows[:, 0].astype(int)
+    ids = np.unique(elem)
+    s = stress_rows[:, 2:8].reshape(len(ids), 8, 6)
+    lo, hi = s[:, :4].mean(axis=1), s[:, 4:].mean(axis=1)
+    mid, half = 0.5 * (lo + hi), 0.5 * (hi - lo) * np.sqrt(3.0)
+    faces = np.stack([mid - half, mid + half], axis=1)
+    xx, yy, zz, xy, xz, yz = (faces[..., k] for k in range(6))
+    t = np.stack([np.stack([xx, xy, xz], -1), np.stack([xy, yy, yz], -1),
+                  np.stack([xz, yz, zz], -1)], -2)
+    return ids, np.linalg.eigvalsh(t)
+
+
+def run_case(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3, accel, w_pa,
+             sls=None, n_modes=0, workdir=None, ccx=None, clamp=False, zone_radius_m=0.0):
+    """Run one load case in CalculiX and return the sizing quantities.
+
+    Args:
+        As for write_case_deck; workdir and ccx as for analyse.
+        zone_radius_m: Radius of the corner support zones left out of the
+            compression check [m] (see corner_zone).
+
+    Returns:
+        CaseResult.
+    """
+    ccx = ccx or find_ccx()
+    if ccx is None:
+        raise RuntimeError("CalculiX (ccx) not found on PATH")
+    work = Path(workdir) if workdir else Path(tempfile.mkdtemp(prefix="shellform_"))
+    work.mkdir(parents=True, exist_ok=True)
+    deck = write_case_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3,
+                           accel, w_pa, sls, n_modes, clamp)
+    (work / "case.inp").write_text(deck)
+    run = subprocess.run([ccx, "case"], cwd=work, capture_output=True, text=True)
+    dat = work / "case.dat"
+    if not dat.exists() or "Job finished" not in run.stdout:
+        raise RuntimeError(f"CalculiX failed:\n{run.stdout[-2000:]}\n{run.stderr[-2000:]}")
+    text = dat.read_text()
+    _, _, freq, buck = parse_dat(text)
+    pos = buck[buck > 0]
+    disp = _blocks(text, "displacements (vx,vy,vz)")
+    stress = _blocks(text, "stresses (elem, integ.pnt.,sxx,syy,szz,sxy,sxz,syz)")
+    u = disp[0][:, 1:4]
+    ids, p = surface_principal_stresses(stress[0])
+    near = corner_zone(xyz, n, zone_radius_m)[ids - 1]
+    comp = -p[..., 0].min(axis=1)
+    sls_disp = float(np.linalg.norm(disp[1][:, 1:4], axis=1).max()) if sls is not None else float("nan")
+    periods = np.sort(1.0 / freq)[::-1] if len(freq) else np.array([])
+    return CaseResult(
+        buckling_factor=float(pos.min()) if len(pos) else float("inf"),
+        max_disp_m=float(np.linalg.norm(u, axis=1).max()),
+        max_uz_m=float(np.abs(u[:, 2]).max()),
+        compression_pa=float(max(comp[~near].max(initial=0.0), 0.0)),
+        compression_support_pa=float(max(comp[near].max(initial=0.0), 0.0)),
+        tension_pa=float(max(p[..., 2].max(), 0.0)),
+        sls_disp_m=sls_disp, periods_s=periods)

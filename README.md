@@ -8,7 +8,7 @@ ShellForm extends the seismic form-finding of Michiels & Adriaenssens (2017, 201
 
 ## Status
 
-Day 3 (31 Oct 2026): one shell analysed in CalculiX (static, modal, buckling); 31 tests. Pinned to ShellBench `v0.0.1` until `floor-r1` lands.
+Day 4 (1 Nov 2026): the 84 10 m designs sized (provisional); 37 tests. Pinned to ShellBench `v0.1.0`.
 
 | Item | Where | Status |
 |---|---|---|
