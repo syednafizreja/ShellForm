@@ -5,7 +5,7 @@ import pytest
 
 from shellform.fe import find_ccx, run_case
 from shellform.formfind import corner_network_for_inset
-from shellform.inputs import load_inputs, spec_value
+from shellform.inputs import load_inputs, note_value, shellbench_root, spec_value
 from shellform.sizing import THICKNESS_MIN_M, load_cases, thickness_grid
 from shellform.strategies import seismic_mid_surface
 
@@ -19,6 +19,18 @@ def test_spec_value_reads_a_row():
         spec_value(text, "L2")
 
 
+def test_note_value_reads_a_row():
+    text = "| ν_c | 0.25 | cl. 9.9, p. 1 |\n"  # test input, not a ShellBench value
+    assert note_value(text, "ν_c") == 0.25
+    with pytest.raises(KeyError):
+        note_value(text, "G_c")
+
+
+def test_poisson_ratio_comes_from_the_shellbench_note():
+    text = (shellbench_root() / "notes" / "gb50010_design_values.md").read_text(encoding="utf-8")
+    assert load_inputs().nu == note_value(text, "ν_c")
+
+
 def test_inputs_come_from_shellbench():
     import shellbench.checks as sb_checks
     import shellbench.combinations as sb_comb
@@ -27,7 +39,7 @@ def test_inputs_come_from_shellbench():
     assert inp.f_c_pa == pytest.approx(sb_checks.FC_N_MM2 * 1e6)
     assert inp.gamma_eh == sb_comb.GAMMA_EH_CODE
     assert inp.sdl_pa > 0.0
-    assert "[?]" in inp.sources["nu"]
+    assert "[?]" not in inp.sources["nu"]
 
 
 def test_thickness_grid_runs_from_tmin_to_span_over_50():
