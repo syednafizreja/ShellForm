@@ -1,6 +1,20 @@
-﻿# Handoff between Claude in the app and Claude Code in VS Code
+# Handoff between Claude in the app and Claude Code in VS Code
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
+
+## 1 Nov 2026, Claude Code in VS Code (Day 4 sync)
+
+**Done:** pulled main, which holds the app's Day 4; ShellBench-pin is at `v0.1.0`, matching `SHELLBENCH_TAG`; `pip install -e . --no-deps`; pytest 37 passed. Reran `scripts/day04_size_10m.py` on CalculiX 2.23 (the app ran 2.21): all 84 thicknesses, feasibility and governing checks are identical, and λ is exact to the digits written. The largest relative change is 2.3e-4 in deflection; periods and t_env differ by floating-point noise. The committed results files are kept unchanged.
+
+**Independent cross-check:** before seeing the app's push, this session sized the same 84 cases with its own code. That work conflicts with main (same file paths, and a second set of D4 labels in its amendment), so it is not merged and must not be. It is kept for reference on branch `day04-crosscheck`, commit `7d1134b`. Its amendment is not in force; main's D4-1 to D4-4 stand. Thicknesses agree on 78 of 84 rows. The 6 that differ are corners, r 0.15, seismic form, Sa 0.1 to 0.6: 90 mm there, 85 mm on main, where λ at 85 mm is 5.02 on main and at most 4.94 there. Largest T1 is 0.184 s against main's 0.194 s; largest deflection is 6.6 mm against 6.54 mm.
+
+The load models differ: main applies SDL and live load per plan area as nodal loads; the cross-check applies them per surface area, through density. This probably explains the 85 against 90 mm rows [J]; not tested by running one code under both load models.
+
+**Decisions by the author today:** none new; the standing delegation still applies.
+
+**Open:** (1) ν is in ShellBench after all: `notes/gb50010_design_values.md` in the pinned clone, row ν_c = 0.2, cl. 4.1.5. So main's `inputs.py` and `notes/day04_sizing.md` are wrong to say it is not in `v0.1.0`. The value equals the placeholder, so no result should change, but `inputs.py` should read it in place and the "provisional" label can then go. Not changed in this sync. The ShellBench file gives p. 19 in its table and p. 20 in its text: the author should confirm the page in their copy. (2) Plan or surface area for SDL is a modelling choice not recorded in main's amendment. It should be decided before the freeze. (3) ShellBench PR #87 carries the "What ShellForm needs" note (data contract section 6), due 2 Nov. It is open: the merge was refused without review, so the author merges it. Older open items stand.
+
+**Next:** 2 Nov, Day 5: steel, support zones and carbon.
 
 ## 1 Nov 2026, Claude in the app (Day 4, sizing of the 10 m designs)
 
