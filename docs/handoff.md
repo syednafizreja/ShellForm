@@ -2,6 +2,16 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 1 Nov 2026, Claude Code in VS Code (Day 4 code checks)
+
+**Done:** merged ShellBench PR #87, on the author's instruction. Read both code values at source. ν_c = 0.2: GB 50010-2010 (2015) cl. 4.1.5, printed p. 20 in the Chinese copy, p. 19 in the English translation; both ShellBench page references are right, no edit needed. ψq = 0.0 for a non-accessible roof: GB 50009-2012 Table 5.3.1, printed p. 18. Cl. 5.3.1 puts roof live load on the horizontal projection, which supports D4-5 for live load; SDL stays [J]. Dated amendment added.
+
+**Decisions by the author today:** do the merge and both checks without asking.
+
+**Open:** GB 50009 is not on the laptop. It was read from a scan on the Zhejiang Gongshang University site (`jjc.zjgsu.edu.cn`), not committed. ψq is not in ShellBench, so D4-3 stays; adding that row is ShellBench work. `day04-crosscheck` stays unmerged.
+
+**Next:** 2 Nov, Day 5: steel, support zones and carbon.
+
 ## 1 Nov 2026, Claude Code in VS Code (Day 4 fixes)
 
 **Done:** closed the two open items from the sync entry below. ν is read in place from ShellBench's `notes/gb50010_design_values.md` (`inputs.note_value`), value 0.2, so the placeholder is gone. Results regenerated on CalculiX 2.23: all 84 thicknesses and governing checks unchanged. New pre-registration amendment, dated 1 Nov and written after the results: it corrects the ν statement and adds D4-5 (SDL and live load per plan area, kept). Tested with main's code on the corner r 0.15 shell: under surface-area loading λ falls by about 2 % and the seismic form fails at 85 mm (4.947), so the 85 against 90 mm strategy difference is a load-basis artefact, not a strategy effect. pytest 39 passed.
