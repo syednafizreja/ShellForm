@@ -1,0 +1,132 @@
+{
+  "shellbench_tag": "v0.1.0",
+  "inputs": {
+    "span_m": 10.0,
+    "rise_ratio": 0.15,
+    "thickness_m": 0.08,
+    "sa_g_seismic_form": 0.3,
+    "note": "trial thickness, not a sized design"
+  },
+  "rows": [
+    {
+      "grid_n": 21,
+      "supports": "edges",
+      "strategy": "gravity",
+      "sa_g": 0.0,
+      "lambda_gravity": 269.4202,
+      "lambda_seismic": null,
+      "max_deflection_m": 9.102125e-05,
+      "period_1_s": 0.02857942264421963
+    },
+    {
+      "grid_n": 21,
+      "supports": "edges",
+      "strategy": "seismic",
+      "sa_g": 0.3,
+      "lambda_gravity": 288.9955,
+      "lambda_seismic": 322.6257,
+      "max_deflection_m": 9.645541e-05,
+      "period_1_s": 0.02812884925721554
+    },
+    {
+      "grid_n": 21,
+      "supports": "corners",
+      "strategy": "gravity",
+      "sa_g": 0.0,
+      "lambda_gravity": 4.66858,
+      "lambda_seismic": null,
+      "max_deflection_m": 0.003294716260150789,
+      "period_1_s": 0.17845017804866514
+    },
+    {
+      "grid_n": 21,
+      "supports": "corners",
+      "strategy": "seismic",
+      "sa_g": 0.3,
+      "lambda_gravity": 4.746812,
+      "lambda_seismic": 5.554934,
+      "max_deflection_m": 0.003429988936493236,
+      "period_1_s": 0.1774729344901256
+    },
+    {
+      "grid_n": 41,
+      "supports": "edges",
+      "strategy": "gravity",
+      "sa_g": 0.0,
+      "lambda_gravity": 258.0795,
+      "lambda_seismic": null,
+      "max_deflection_m": 9.109604e-05,
+      "period_1_s": 0.028960760486401765
+    },
+    {
+      "grid_n": 41,
+      "supports": "edges",
+      "strategy": "seismic",
+      "sa_g": 0.3,
+      "lambda_gravity": 281.4199,
+      "lambda_seismic": 311.4386,
+      "max_deflection_m": 9.888412114029237e-05,
+      "period_1_s": 0.028401207960176963
+    },
+    {
+      "grid_n": 41,
+      "supports": "corners",
+      "strategy": "gravity",
+      "sa_g": 0.0,
+      "lambda_gravity": 4.291101,
+      "lambda_seismic": null,
+      "max_deflection_m": 0.004251770883829236,
+      "period_1_s": 0.17350598335383596
+    },
+    {
+      "grid_n": 41,
+      "supports": "corners",
+      "strategy": "seismic",
+      "sa_g": 0.3,
+      "lambda_gravity": 4.360708,
+      "lambda_seismic": 5.080215,
+      "max_deflection_m": 0.00437742182484426,
+      "period_1_s": 0.17322601404343296
+    },
+    {
+      "grid_n": 61,
+      "supports": "edges",
+      "strategy": "gravity",
+      "sa_g": 0.0,
+      "lambda_gravity": 257.4484,
+      "lambda_seismic": null,
+      "max_deflection_m": 9.109275e-05,
+      "period_1_s": 0.02897707449774037
+    },
+    {
+      "grid_n": 61,
+      "supports": "edges",
+      "strategy": "seismic",
+      "sa_g": 0.3,
+      "lambda_gravity": 281.9083,
+      "lambda_seismic": 312.1063,
+      "max_deflection_m": 9.930945291677187e-05,
+      "period_1_s": 0.028426744563527236
+    },
+    {
+      "grid_n": 61,
+      "supports": "corners",
+      "strategy": "gravity",
+      "sa_g": 0.0,
+      "lambda_gravity": 4.246996,
+      "lambda_seismic": null,
+      "max_deflection_m": 0.004594142659861438,
+      "period_1_s": 0.17966507555275757
+    },
+    {
+      "grid_n": 61,
+      "supports": "corners",
+      "strategy": "seismic",
+      "sa_g": 0.3,
+      "lambda_gravity": 4.289144,
+      "lambda_seismic": 4.984519,
+      "max_deflection_m": 0.004670722387790168,
+      "period_1_s": 0.1759559997388813
+    }
+  ]
+}

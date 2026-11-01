@@ -2,6 +2,16 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 1 Nov 2026, Claude Code in VS Code (Day 4 and sync)
+
+**Done:** ShellBench tagged `v0.1.0` today, so the pin moved (documented checkout in `ShellBench-pin`, `pip install -e` in env `shellform`). Pre-registration amended before any design-space run (D4-1 to D4-7). Sizing against λ ≥ 5 and L/300 on all 84 10 m cases, mesh check at 21, 41 and 61 nodes. Results: `results/day04_mesh_check.json`, `results/day04_sizing_10m.csv`, `results/day04_sizing_10m_grid61.csv`; notes in `notes/day04_sizing.md`. Thickness lower bounds: corners 105, 90, 75 mm at r 0.10, 0.15, 0.20; edges 50 mm at every rise; the same at every Sa for both strategies. Compression and tension are not checked, so these are not sized designs, and no carbon is computed. `results/day03_one_shell.json` is not regenerated: it stays an honest Day 3 record on `v0.0.1`.
+
+**Decisions by the author today:** none new; the standing delegation still applies.
+
+**Open:** read ψq in GB 50009 Table 5.3.1 (D4-2; deflection uses ψq = 1 until then). Older [check] items and the Michiels full texts stand (S4 falls back on 4 Nov). `floor-r1` and `floor-r2` are not tagged, so S1b and the `fe.py` cross-check wait. The app environment must reinstall ShellBench at `v0.1.0`, or `check_pin` and the smoke test fail: `check_pin` now reads the installed version. Two old `git stash` entries remain (no content).
+
+**Next:** 2 Nov, Day 5. Compression and tension wait for the floor-r3 checks. The 20 m cases and the λ = 3 and λ = 8 sensitivities are not yet run.
+
 ## 31 Oct 2026, Claude Code in VS Code (Day 3 sync)
 
 **Done:** pulled main (Day 3 work from the app); ShellBench-pin is at `v0.0.1`, matching `SHELLBENCH_TAG`; no new ShellBench tag on the remote; `pip install -e . --no-deps`; `ccx` found in env `shellform`; pytest 31 passed, 0 skipped, so both CalculiX tests ran on the laptop. Reran `scripts/day03_one_shell.py`: displacements, periods and reactions are identical; only area, weight and reaction ratio differ, in the last one or two digits (about 1e-15 relative, floating-point noise between machines). The committed `results/day03_one_shell.json` is kept unchanged.

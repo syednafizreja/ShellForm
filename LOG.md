@@ -31,3 +31,11 @@
 - Problem: ν and density are not in ShellBench v0.0.1 (placeholders [?]); CalculiX reactions omit load lumped on fixed nodes, so equilibrium is checked on corner shells only
 - Lesson: equal force densities let a corner-supported net's free edges collapse inward; the boundary force density is a design input and must be fixed before the runs
 - Tomorrow: Day 4, sizing loop (thickness search against λ ≥ 5 and L/300) on the 10 m cases; mesh check
+
+## Day 4 — 1 Nov 2026
+
+- Done (Claude, under the author's standing delegation): moved the pin to ShellBench `v0.1.0`; `check_pin` now reads the installed distribution version, because `__version__` still says 0.0.1 at that tag; pre-registration amendment of 1 Nov (D4-1 to D4-7) before any design-space run; `src/shellform/sb_inputs.py`, `src/shellform/sizing.py`, `fe.py` takes a body acceleration per step; `scripts/day04_mesh_check.py`, `scripts/day04_sizing.py`; notes in `notes/day04_sizing.md`
+- Result: pytest 41 passed. Mesh: 41 nodes adequate for λ (1 to 2 % to 61). 84 cases at 41 x 41, none infeasible. Thickness lower bounds: corners 105, 90, 75 mm at r 0.10, 0.15, 0.20; edges 50 mm (the minimum) at every rise. 61 x 61 keeps 90 mm on the six cases checked
+- Problem: ψq is not in ShellBench, so deflection uses G + Q as an upper bound [?]; deflection at point supports does not converge, though it stays far below L/300
+- Lesson: under buckling and deflection alone, thickness ignores Sa and strategy, because 1.3G + 1.5Q governs. Any cost of resilience can only come from the compression and tension checks. These are lower bounds from two checks of four, not a finding of the study
+- Tomorrow: Day 5, see `docs/handoff.md` (compression and tension wait for the floor-r3 checks)
