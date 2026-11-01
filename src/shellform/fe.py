@@ -79,8 +79,16 @@ def surface_area(xyz, n):
     return float((t1 + t2).sum())
 
 
+def _grav_line(accel):
+    """Return a CalculiX GRAV load line for an acceleration vector [m/s2]."""
+    a = np.asarray(accel, dtype=float)
+    mag = float(np.linalg.norm(a))
+    d = a / mag
+    return f"EALL,GRAV,{mag:.9e},{d[0]:.9e},{d[1]:.9e},{d[2]:.9e}"
+
+
 def write_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3,
-               g=9.81, n_modes=3, n_buckle=2):
+               g=9.81, n_modes=3, n_buckle=2, static_accel=None, buckle_accel=None):
     """Return the CalculiX input deck text for one shell.
 
     Args:
@@ -92,7 +100,14 @@ def write_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3,
         density_kg_m3: Mass density [kg/m3].
         g: Gravitational acceleration [m/s2].
         n_modes, n_buckle: Number of modes and buckling factors requested.
+            A value of 0 leaves that step out.
+        static_accel, buckle_accel: Body acceleration vectors for the static
+            and buckling steps [m/s2]. Each defaults to g downwards.
+            ``static_accel=False`` leaves the static step out.
     """
+    down = (0.0, 0.0, -g)
+    static_accel = down if static_accel is None else static_accel
+    buckle_accel = down if buckle_accel is None else buckle_accel
     els = s8r_elements(n)
     used = np.unique(els)
     lines = ["*NODE"]
@@ -107,12 +122,15 @@ def write_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3,
     lines += ["*BOUNDARY", "FIX,1,3",
               "*MATERIAL,NAME=CONC", "*ELASTIC", f"{e_pa:.6e},{nu}",
               "*DENSITY", f"{density_kg_m3}",
-              "*SHELL SECTION,ELSET=EALL,MATERIAL=CONC", f"{thickness_m}",
-              "*STEP", "*STATIC", "*DLOAD", f"EALL,GRAV,{g},0,0,-1",
-              "*NODE PRINT,NSET=FIX,TOTALS=ONLY", "RF",
-              "*NODE PRINT,NSET=NUSED", "U", "*END STEP",
-              "*STEP", "*FREQUENCY", f"{n_modes}", "*END STEP",
-              "*STEP", "*BUCKLE", f"{n_buckle}", "*DLOAD", f"EALL,GRAV,{g},0,0,-1", "*END STEP"]
+              "*SHELL SECTION,ELSET=EALL,MATERIAL=CONC", f"{thickness_m}"]
+    if static_accel is not False:
+        lines += ["*STEP", "*STATIC", "*DLOAD", _grav_line(static_accel),
+                  "*NODE PRINT,NSET=FIX,TOTALS=ONLY", "RF",
+                  "*NODE PRINT,NSET=NUSED", "U", "*END STEP"]
+    if n_modes:
+        lines += ["*STEP", "*FREQUENCY", f"{n_modes}", "*END STEP"]
+    if n_buckle:
+        lines += ["*STEP", "*BUCKLE", f"{n_buckle}", "*DLOAD", _grav_line(buckle_accel), "*END STEP"]
     return "\n".join(lines) + "\n"
 
 
@@ -140,11 +158,13 @@ def parse_dat(text):
     return float(np.linalg.norm(u, axis=1).max()), reaction, np.array(freq), np.array(buck)
 
 
-def analyse(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3, g=9.81, workdir=None, ccx=None):
+def analyse(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3, g=9.81, workdir=None, ccx=None,
+            n_modes=3, n_buckle=2, static_accel=None, buckle_accel=None):
     """Run static, modal and buckling analyses of one shell in CalculiX.
 
     Args:
         xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3, g: As for :func:`write_deck`.
+        n_modes, n_buckle, static_accel, buckle_accel: As for :func:`write_deck`.
         workdir: Folder for the deck and outputs; a temporary folder if None.
         ccx: CalculiX executable; found on PATH if None.
 
@@ -159,7 +179,8 @@ def analyse(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3, g=9.81, workdir
         raise RuntimeError("CalculiX (ccx) not found on PATH")
     work = Path(workdir) if workdir else Path(tempfile.mkdtemp(prefix="shellform_"))
     work.mkdir(parents=True, exist_ok=True)
-    (work / "shell.inp").write_text(write_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3, g))
+    (work / "shell.inp").write_text(write_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3, g,
+                                               n_modes, n_buckle, static_accel, buckle_accel))
     run = subprocess.run([ccx, "shell"], cwd=work, capture_output=True, text=True)
     dat = work / "shell.dat"
     if not dat.exists() or "Job finished" not in run.stdout:
