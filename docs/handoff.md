@@ -2,6 +2,16 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 1 Nov 2026, Claude Code in VS Code (Day 4 fixes)
+
+**Done:** closed the two open items from the sync entry below. ν is read in place from ShellBench's `notes/gb50010_design_values.md` (`inputs.note_value`), value 0.2, so the placeholder is gone. Results regenerated on CalculiX 2.23: all 84 thicknesses and governing checks unchanged. New pre-registration amendment, dated 1 Nov and written after the results: it corrects the ν statement and adds D4-5 (SDL and live load per plan area, kept). Tested with main's code on the corner r 0.15 shell: under surface-area loading λ falls by about 2 % and the seismic form fails at 85 mm (4.947), so the 85 against 90 mm strategy difference is a load-basis artefact, not a strategy effect. pytest 39 passed.
+
+**Decisions by the author today:** "just fix and finish all"; D4-5 was decided by Claude under that.
+
+**Open:** ShellBench PR #87 (the "What ShellForm needs" note, due 2 Nov) is still unmerged: the merge was refused by the tool's permission check, twice, so the author merges it. ν_c page: the ShellBench file gives p. 19 in its table and p. 20 in its text; the author confirms it in their copy of GB 50010. Older open items stand. `day04-crosscheck` stays unmerged.
+
+**Next:** 2 Nov, Day 5: steel, support zones and carbon.
+
 ## 1 Nov 2026, Claude Code in VS Code (Day 4 sync)
 
 **Done:** pulled main, which holds the app's Day 4; ShellBench-pin is at `v0.1.0`, matching `SHELLBENCH_TAG`; `pip install -e . --no-deps`; pytest 37 passed. Reran `scripts/day04_size_10m.py` on CalculiX 2.23 (the app ran 2.21): all 84 thicknesses, feasibility and governing checks are identical, and λ is exact to the digits written. The largest relative change is 2.3e-4 in deflection; periods and t_env differ by floating-point noise. The committed results files are kept unchanged.

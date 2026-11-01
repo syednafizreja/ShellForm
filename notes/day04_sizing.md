@@ -1,8 +1,8 @@
 # Day 4: thickness sizing of the 10 m designs (1 Nov 2026)
 
-ShellBench tag: v0.1.0 (tagged 1 Nov; the pin moved from v0.0.1). Script: `scripts/day04_size_10m.py`. Results: `results/day04_sizing_10m.csv` (84 rows) and `results/day04_sizing_10m_tried.json` (every thickness tried). CalculiX 2.21, 41 x 41 grid, S8R.
+ShellBench tag: v0.1.0 (tagged 1 Nov; the pin moved from v0.0.1). Script: `scripts/day04_size_10m.py`. Results: `results/day04_sizing_10m.csv` (84 rows) and `results/day04_sizing_10m_tried.json` (every thickness tried). 41 x 41 grid, S8R. Results regenerated on CalculiX 2.23 after the ν fix of 1 Nov; the first run, on 2.21, gave the same thicknesses and governing checks. The mesh table below is from the 2.21 run.
 
-**Status: provisional.** Poisson's ratio is a placeholder (0.2) [?] until a ShellBench tag gives it. Steel and carbon are not computed yet (Day 5).
+**Status: provisional.** Steel and carbon are not computed yet (Day 5).
 
 ## Inputs (all from ShellBench v0.1.0, through `src/shellform/inputs.py`)
 
@@ -54,11 +54,14 @@ ShellBench tag: v0.1.0 (tagged 1 Nov; the pin moved from v0.0.1). Script: `scrip
 ## What this means [J]
 
 - Thickness does not respond to Sa at all. The seismic combination (1.3 G_E vertical) is lighter than ULS gravity (1.3 G + 1.5 Q) for buckling, and the horizontal part adds little. So the sized thickness cannot separate the strategies.
-- The one difference (85 against 90 mm at rise 0.15) comes from λ sitting just at the limit: 4.99 against 5.02 at 85 mm. That is a grid-step effect, well inside the 5 % "no meaningful difference" band.
+- The one difference (85 against 90 mm at rise 0.15) comes from λ sitting just at the limit: 4.99 against 5.02 at 85 mm. That is a grid-step effect. It also depends on the load basis: with SDL and live load per surface area instead of plan area, the seismic form fails at 85 mm too (λ 4.947 at Sa 0.3 g) and takes 90 mm like the gravity form. It is not evidence of a strategy effect (amendment D4-5).
 - Any difference in carbon between the strategies will therefore come from reinforcement (tension under the seismic case) and from the support zones. That is Day 5.
+
+## Independent cross-check
+
+A second sizing code, written separately on 1 Nov (branch `day04-crosscheck`, commit `7d1134b`, not merged), gave the same thickness on 78 of 84 rows. The other 6 are the 85 mm rows above, at 90 mm there. It loads per surface area, smears SDL into density, and checks buckling and deflection only. Largest T1 0.184 s against 0.194 s here; largest deflection 6.6 mm against 6.54 mm.
 
 ## Open
 
-- Poisson's ratio from a ShellBench tag.
 - Day 5: steel from tension (A_s = T / f_y, at least ρ_min), support-zone concrete, carbon with the ±25 % band.
 - Cross-check `fe.py` against ShellBench's CalculiX wrapper. v0.1.0 has only a cantilever smoke test (`calculix.cantilever_smoke`), so the shell cross-check waits for floor-r2.
