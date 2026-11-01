@@ -57,6 +57,16 @@ ShellBench tag: v0.1.0 (tagged 1 Nov; the pin moved from v0.0.1). Script: `scrip
 - The one difference (85 against 90 mm at rise 0.15) comes from λ sitting just at the limit: 4.99 against 5.02 at 85 mm. That is a grid-step effect. It also depends on the load basis: with SDL and live load per surface area instead of plan area, the seismic form fails at 85 mm too (λ 4.947 at Sa 0.3 g) and takes 90 mm like the gravity form. It is not evidence of a strategy effect (amendment D4-5).
 - Any difference in carbon between the strategies will therefore come from reinforcement (tension under the seismic case) and from the support zones. That is Day 5.
 
+λ at rise 0.15, corners, seismic form, 41 x 41 grid (limit 5.0). Sa 0.3 is one of six rows tested; all six fail at 85 mm and pass at 90 mm under surface loading.
+
+| Sa (g) | Plan, 85 mm | Plan, 90 mm | Surface, 85 mm | Surface, 90 mm |
+|---|---|---|---|---|
+| 0.1 | 5.023 | 5.653 | 4.909 | 5.528 |
+| 0.2 | 5.052 | 5.683 | 4.937 | 5.557 |
+| 0.3 | 5.061 | 5.693 | 4.947 | 5.569 |
+| 0.4 | 5.054 | 5.687 | 4.942 | 5.565 |
+| 0.5 | 5.037 | 5.671 | 4.927 | 5.551 |
+| 0.6 | 5.008 | 5.645 | 4.902 | 5.529 |
 ## Independent cross-check
 
 A second sizing code, written separately on 1 Nov (branch `day04-crosscheck`, commit `7d1134b`, not merged), gave the same thickness on 78 of 84 rows. The other 6 are the 85 mm rows above, at 90 mm there. It loads per surface area, smears SDL into density, and checks buckling and deflection only. Largest T1 0.184 s against 0.194 s here; largest deflection 6.6 mm against 6.54 mm.
