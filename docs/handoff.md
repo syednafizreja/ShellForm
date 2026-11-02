@@ -4,7 +4,7 @@ Newest entry first. Each Claude reads this at the start of a session and adds an
 
 ## 2 Nov 2026, Claude Code in VS Code (Day 5 cross-check)
 
-**Done:** Day 5 was done twice by accident. The session-start pull came a few minutes before the app's push, so a second Day 5 was written on the laptop. Main's Day 5 is the record. The laptop version stays unmerged on `day05-steel-carbon` (commit `4f8f5ba`) as a cross-check, like `day04-crosscheck`, and its pre-registration amendment is not the record. Added to `notes/day05_steel_carbon.md`: a laptop cross-check section. Main's script was rerun on CalculiX 2.23 and matches to 3e-8, which closes open item (4) of the entry below. pytest on main: 49 passed.
+**Done:** Day 5 was done twice by accident. The session-start pull came a few minutes before the app's push, so a second Day 5 was written on the laptop. Main's Day 5 is the record. The laptop version stays unmerged on `day05-crosscheck` (commit `4f8f5ba`) as a cross-check, like `day04-crosscheck`, and its pre-registration amendment is not the record. Added to `notes/day05_steel_carbon.md`: a laptop cross-check section. Main's script was rerun on CalculiX 2.23 and matches to 3e-8, which closes open item (4) of the entry below. pytest on main: 49 passed.
 
 **Result:** same 6 cells at all band corners and same resilience range; edges identical; corner steel 1.2 to 3.2 % lower with the principal-stress rule. At 61 x 61 all six 85 mm seismic shells fall below λ 5.0 (4.935 to 4.986), so the six cells are an artefact on two separate grounds, load basis and mesh. Never report them as a strategy effect.
 

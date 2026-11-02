@@ -53,7 +53,7 @@ For the 10 m shells, seismic resilience costs no carbon in this model. Thickness
 
 ## Laptop cross-check (2 Nov, Claude Code)
 
-A second Day 5 was written on the laptop at the same time, without sight of this one. It is kept unmerged on branch `day05-steel-carbon` (commit `4f8f5ba`, script `scripts/day05_carbon_10m.py`), like `day04-crosscheck`. Its pre-registration amendment is on that branch only and is not the record. Both use the Day 4 thicknesses and `fe.py`, so this checks the steel, zone and carbon steps, not the analysis.
+A second Day 5 was written on the laptop at the same time, without sight of this one. It is kept unmerged on branch `day05-crosscheck` (commit `4f8f5ba`, script `scripts/day05_carbon_10m.py`), like `day04-crosscheck`. Its pre-registration amendment is on that branch only and is not the record. Both use the Day 4 thicknesses and `fe.py`, so this checks the steel, zone and carbon steps, not the analysis.
 
 - **Rerun on CalculiX 2.23:** `scripts/day05_steel_carbon_10m.py` reproduces every number here to 3e-8 (relative) or better. The committed results stay as they are.
 - **Steel rule:** the branch uses tensile resultants from sorted in-plane principals, with no σ_nn + |τ_12| term. Edge shells match exactly. On corner shells its steel is 1.2 to 3.2 % lower and total carbon 0.2 to 0.6 % lower.
