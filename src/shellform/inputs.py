@@ -100,6 +100,45 @@ def shellbench_root():
     return Path(shellbench.__file__).resolve().parents[2]
 
 
+def rho_min_slab(f_t_pa, f_y_pa, concept_text=None):
+    """Return the minimum steel ratio read from ShellBench's floor concept.
+
+    The rule "the larger of a % and b f_t / f_y" is GB 50010 Table 8.5.1
+    note 2; applying it to a shell is ShellBench's and ShellForm's reading [J].
+
+    Args:
+        f_t_pa, f_y_pa: Design strengths [Pa].
+        concept_text: Text of docs/floor_concept.md; read in place if None.
+
+    Returns:
+        The ratio as a fraction [-].
+    """
+    if concept_text is None:
+        concept_text = (shellbench_root() / "docs" / "floor_concept.md").read_text(encoding="utf-8")
+    m = re.search(r"the larger of ([\d.]+) % and (\d+) f_t / f_y", concept_text)
+    if not m:
+        raise KeyError("minimum steel rule not found in floor_concept.md")
+    return max(float(m.group(1)), float(m.group(2)) * f_t_pa / f_y_pa) / 100.0
+
+
+def load_carbon_factors(factor_set="GBT51366", concrete="C40", steel="HRB400"):
+    """Read A1-A3 factors and steel density from ShellBench in place.
+
+    Returns:
+        Dict with concrete_kgco2e_m3, steel_kgco2e_kg, steel_density_kg_m3 and
+        the names of the set and materials.
+    """
+    import shellbench.carbon as sb_carbon
+
+    factors = sb_carbon.read_factors(shellbench_root() / "data" / "carbon_factors.csv")
+    con, con_unit = factors[(factor_set, concrete)]
+    bar, bar_unit = factors[(factor_set, steel)]
+    return {"factor_set": factor_set, "concrete": concrete, "steel": steel,
+            "concrete_kgco2e_m3": con * sb_carbon.CONVERSIONS[con_unit][1],
+            "steel_kgco2e_kg": bar * sb_carbon.CONVERSIONS[bar_unit][1],
+            "steel_density_kg_m3": sb_carbon.STEEL_DENSITY_KG_M3}
+
+
 def load_inputs():
     """Read the design inputs from the installed, pinned ShellBench.
 

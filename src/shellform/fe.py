@@ -195,6 +195,8 @@ class CaseResult:
         tension_pa: Largest principal tensile stress on either face, all elements [Pa].
         sls_disp_m: Largest displacement magnitude under the SLS loads [m], or nan.
         periods_s: Natural periods, longest first [s] (empty unless requested).
+        face_stress_pa: Stress components on both faces per element, shape
+            (n_el, 2, 6), order sxx, syy, szz, sxy, sxz, syz, in element order [Pa].
     """
 
     buckling_factor: float
@@ -205,6 +207,7 @@ class CaseResult:
     tension_pa: float
     sls_disp_m: float
     periods_s: np.ndarray
+    face_stress_pa: np.ndarray = None
 
 
 def plan_load_shares(xyz, n):
@@ -333,8 +336,8 @@ def _blocks(text, header):
     return out
 
 
-def surface_principal_stresses(stress_rows):
-    """Return per-element principal stresses on both shell faces.
+def surface_stress_components(stress_rows):
+    """Return per-element stress components on both shell faces.
 
     CalculiX expands S8R into C3D20R with 2 x 2 x 2 integration points: the
     first four lie on one Gauss plane through the thickness, the last four on
@@ -345,18 +348,36 @@ def surface_principal_stresses(stress_rows):
         stress_rows: Rows (elem, ip, sxx, syy, szz, sxy, sxz, syz) [Pa].
 
     Returns:
-        (element ids, principal stresses array of shape (n_el, 2 faces, 3)) [Pa].
+        (element ids, components array of shape (n_el, 2 faces, 6)) [Pa], in
+        the row order sxx, syy, szz, sxy, sxz, syz.
     """
     elem = stress_rows[:, 0].astype(int)
     ids = np.unique(elem)
     s = stress_rows[:, 2:8].reshape(len(ids), 8, 6)
     lo, hi = s[:, :4].mean(axis=1), s[:, 4:].mean(axis=1)
     mid, half = 0.5 * (lo + hi), 0.5 * (hi - lo) * np.sqrt(3.0)
-    faces = np.stack([mid - half, mid + half], axis=1)
+    return ids, np.stack([mid - half, mid + half], axis=1)
+
+
+def principal_stresses(faces):
+    """Return principal stresses, ascending, from stress components (..., 6) [Pa]."""
     xx, yy, zz, xy, xz, yz = (faces[..., k] for k in range(6))
     t = np.stack([np.stack([xx, xy, xz], -1), np.stack([xy, yy, yz], -1),
                   np.stack([xz, yz, zz], -1)], -2)
-    return ids, np.linalg.eigvalsh(t)
+    return np.linalg.eigvalsh(t)
+
+
+def surface_principal_stresses(stress_rows):
+    """Return per-element principal stresses on both shell faces.
+
+    Args:
+        stress_rows: Rows (elem, ip, sxx, syy, szz, sxy, sxz, syz) [Pa].
+
+    Returns:
+        (element ids, principal stresses array of shape (n_el, 2 faces, 3)) [Pa].
+    """
+    ids, faces = surface_stress_components(stress_rows)
+    return ids, principal_stresses(faces)
 
 
 def run_case(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3, accel, w_pa,
@@ -389,7 +410,8 @@ def run_case(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3, accel, w_pa,
     disp = _blocks(text, "displacements (vx,vy,vz)")
     stress = _blocks(text, "stresses (elem, integ.pnt.,sxx,syy,szz,sxy,sxz,syz)")
     u = disp[0][:, 1:4]
-    ids, p = surface_principal_stresses(stress[0])
+    ids, faces = surface_stress_components(stress[0])
+    p = principal_stresses(faces)
     near = corner_zone(xyz, n, zone_radius_m)[ids - 1]
     comp = -p[..., 0].min(axis=1)
     sls_disp = float(np.linalg.norm(disp[1][:, 1:4], axis=1).max()) if sls is not None else float("nan")
@@ -401,4 +423,4 @@ def run_case(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3, accel, w_pa,
         compression_pa=float(max(comp[~near].max(initial=0.0), 0.0)),
         compression_support_pa=float(max(comp[near].max(initial=0.0), 0.0)),
         tension_pa=float(max(p[..., 2].max(), 0.0)),
-        sls_disp_m=sls_disp, periods_s=periods)
+        sls_disp_m=sls_disp, periods_s=periods, face_stress_pa=faces)
