@@ -148,6 +148,7 @@ class Quantities:
         steel_zone_kg: Part of steel_kg inside the corner zones [kg].
         tension_governed_share: Share of area in which T / f_y exceeds
             rho_min t_e in the first direction [-].
+        tension_ratio_max: Largest T / f_y over rho_min t_e, any element [-].
         plan_area_m2: Covered plan area [m2].
     """
 
@@ -158,6 +159,7 @@ class Quantities:
     steel_kg_each_face: float
     steel_zone_kg: float
     tension_governed_share: float
+    tension_ratio_max: float
     plan_area_m2: float
 
     @property
@@ -212,6 +214,7 @@ def shell_quantities(xyz, n, t, gravity_faces, seismic_faces, f_c_pa, f_y_pa, rh
         steel_kg_each_face=mass(np.maximum(a_t, 2.0 * a_min)),
         steel_zone_kg=mass(a_s, np.zeros(len(area), bool) if zone is None else zone),
         tension_governed_share=float(area[a_t[:, 0] > a_min[:, 0]].sum() / area.sum()),
+        tension_ratio_max=float((a_t / a_min).max()) if rho_min > 0.0 else float("inf"),
         plan_area_m2=covered_plan_area(xyz, n))
 
 

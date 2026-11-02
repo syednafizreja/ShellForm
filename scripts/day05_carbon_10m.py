@@ -34,7 +34,10 @@ N_GRID = 41                     # pre-registration section 3
 N_MESH_CHECK = 61               # pre-registration section 7
 CORNER_EDGE_INSET_RATIO = 0.10  # decision D3-1 [J]
 MATCH_TOL = 1e-4                # largest relative difference from the Day 4 file
-MESH_CHECK_DESIGNS = (("corners", 0.15, "gravity", 0.3), ("corners", 0.15, "seismic", 0.3))
+MESH_CHECK_DESIGNS = (("corners", 0.15, "gravity", 0.3), ("corners", 0.15, "seismic", 0.1),
+                      ("corners", 0.15, "seismic", 0.2), ("corners", 0.15, "seismic", 0.3),
+                      ("corners", 0.15, "seismic", 0.4), ("corners", 0.15, "seismic", 0.5),
+                      ("corners", 0.15, "seismic", 0.6))  # the rows where the strategies differ
 
 
 def form(span, supports, rise_ratio, strategy, sa, n):
@@ -132,7 +135,8 @@ def mesh_row(job):
     return {"shellbench_tag": SHELLBENCH_TAG, "design_id": design_id(10.0, sup, rise, strat, sa), "n": n,
             "thickness_m": t, "lambda": lam, "concrete_added_m3": q.concrete_added_m3,
             "concrete_uniform_m3": q.concrete_uniform_m3, "steel_kg": q.steel_kg,
-            "steel_zone_kg": q.steel_zone_kg, "steel_kg_min_only": q.steel_kg_min_only}
+            "steel_zone_kg": q.steel_zone_kg, "steel_kg_min_only": q.steel_kg_min_only,
+            "tension_ratio_max": q.tension_ratio_max}
 
 
 def main():
