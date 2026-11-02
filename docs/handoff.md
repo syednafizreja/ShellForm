@@ -2,6 +2,18 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 2 Nov 2026, Claude in the app (Day 5, steel, support zones and carbon)
+
+**Done:** `src/shellform/steel.py` and `src/shellform/carbon.py`, `src/shellform/designs.py` (the form builder, moved out of the Day 4 script so both days build the same forms), `scripts/day05_steel_carbon_10m.py`. All 84 sized 10 m designs rerun at their Day 4 thickness on CalculiX 2.21; steel, support-zone concrete and carbon in `results/day05_steel_carbon_10m.csv`, the section 7 decision rules in `results/day05_comparison_10m.csv`, notes in `notes/day05_steel_carbon.md`. `fe.CaseResult` now also returns the face stresses (no change to any Day 4 number). pytest 39 → 49 passed.
+
+**Results (provisional):** minimum steel (0.214 %) governs almost everywhere; the seismic case adds at most 0.82 kg of steel to any shell. Support-zone thickening adds at most 0.6 % concrete. Carbon is 21.6-33.4 kgCO₂e/m², 81 % from concrete. Cost of resilience 1.000 for the gravity strategy, 0.942-1.014 for the seismic one. "No meaningful difference" in 36 of 42 cells; in the other 6 (corners, rise 0.15, Sa 0.1-0.6) the seismic form is 5.5-5.8 % cheaper at all band corners, but that is the 85 against 90 mm step that D4-5 shows to be a load-basis artefact. Headline claim not made.
+
+**Decisions by the author today:** none; "finish all" under the standing delegation. Claude decided D5-1 to D5-5 and recorded them as a pre-registration amendment, written before the 84-design run.
+
+**Open:** (1) the author confirms the four rows of ShellBench `data/carbon_factors.csv` in the official GB/T 51366-2019 (Table D.0.1, printed page). Claude wrote and changed no factor. (2) EN 1992-1-1 Annex F (F.2)/(F.3) and GB 50010 Table 8.5.1 note 2 are marked [check]. (3) ShellBench main has a CalculiX shell wrapper (Day 24) but no `floor-r2` tag, so the pin stays at v0.1.0. (4) On the laptop, `pip install -e . --no-deps` is not needed (no new dependencies), but CalculiX 2.23 there may differ from the cloud's 2.21 in the last digits; rerun the Day 5 script to check. Older open items stand.
+
+**Next:** 3 Nov, Day 6: move the pin if `floor-r2`/`floor-r3` are tagged and cross-check `fe.py`; otherwise start the 20 m sizing.
+
 ## 1 Nov 2026, Claude Code in VS Code (Day 4 code checks)
 
 **Done:** merged ShellBench PR #87, on the author's instruction. Read both code values at source. ν_c = 0.2: GB 50010-2010 (2015) cl. 4.1.5, printed p. 20 in the Chinese copy, p. 19 in the English translation; both ShellBench page references are right, no edit needed. ψq = 0.0 for a non-accessible roof: GB 50009-2012 Table 5.3.1, printed p. 18. Cl. 5.3.1 puts roof live load on the horizontal projection, which supports D4-5 for live load; SDL stays [J]. Dated amendment added.

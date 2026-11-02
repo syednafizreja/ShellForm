@@ -41,3 +41,11 @@
 - Tomorrow: Day 5, steel from tension, support-zone concrete, carbon with the ±25 % band
 - Later on 1 Nov (Claude Code): ν now read in place from ShellBench's `notes/gb50010_design_values.md` (the Problem line above was wrong; same value, 0.2); D4-5 records the plan-area load basis; the 85 against 90 mm strategy difference disappears under surface-area loading. Results regenerated: no thickness changed. pytest 39 passed
 - Later still on 1 Nov (Claude Code): ν_c = 0.2 confirmed in the Chinese GB 50010-2010 (2015) cl. 4.1.5, printed p. 20 (p. 19 in the English translation, so ShellBench's note is right on both). GB 50009-2012 Table 5.3.1, printed p. 18: ψq = 0.0, non-accessible roof; cl. 5.3.1 gives live load on the horizontal projection. ShellBench PR #87 merged
+
+## Day 5 — 2 Nov 2026
+
+- Done (Claude, under the author's standing delegation): `src/shellform/steel.py` (tension demand from face stresses, A_s = T / f_y with ρ_min, symmetry envelope for the four seismic directions, support-zone thickening), `src/shellform/carbon.py` (ShellBench factors read in place, ±25 % band), `src/shellform/designs.py` (form builder shared with the Day 4 script), `scripts/day05_steel_carbon_10m.py`; decisions D5-1 to D5-5; 10 new tests
+- Result: pytest 49 passed. Minimum steel (0.214 %) governs almost everywhere; the seismic case adds at most 0.82 kg of steel. Carbon 21.6-33.4 kgCO₂e/m², 81 % from concrete. Cost of resilience 1.000 (gravity), 0.942-1.014 (seismic). 36 of 42 cells "no meaningful difference"; the other 6 (corners, rise 0.15) are the 85 vs 90 mm load-basis artefact of D4-5. Headline claim not made
+- Problem: every carbon factor in ShellBench is still "author to confirm" (results provisional); floor-r2 not tagged (ShellBench main has a CalculiX shell wrapper since Day 24, but no tag), so the pin stays at v0.1.0
+- Lesson: for 10 m shells neither thickness nor steel responds to Sa; the 20 m run (6 Nov) is where steel may rise above the minimum
+- Tomorrow: Day 6, 3 Nov: move the pin if floor-r2/floor-r3 are tagged and cross-check fe.py; otherwise start the 20 m sizing

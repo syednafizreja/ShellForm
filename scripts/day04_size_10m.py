@@ -22,28 +22,14 @@ from pathlib import Path
 import numpy as np
 
 from shellform.design_space import RESULT_COLUMNS, design_space
+from shellform.designs import N_GRID, form
 from shellform.fe import run_case, surface_area
-from shellform.formfind import corner_network_for_inset, form_to_rise, square_network
 from shellform.inputs import load_inputs
 from shellform.pin import SHELLBENCH_TAG, check_pin
 from shellform.sizing import check_as_dict, load_cases, size_design
-from shellform.strategies import envelope_thickness, seismic_mid_surface
+from shellform.strategies import envelope_thickness
 
 ROOT = Path(__file__).resolve().parents[1]
-N_GRID = 41                    # pre-registration section 3 (41 x 41 network)
-CORNER_EDGE_INSET_RATIO = 0.10  # decision D3-1 [J]
-
-
-def form(case):
-    """Return (network, gravity form, mid-surface) for one design case."""
-    span, rise = case["span_m"], case["rise_ratio"] * case["span_m"]
-    if case["supports"] == "corners":
-        net, grav, _ = corner_network_for_inset(span, N_GRID, rise, CORNER_EDGE_INSET_RATIO)
-    else:
-        net = square_network(span, N_GRID, "edges")
-        grav = form_to_rise(net, rise)
-    mid = grav.copy() if case["strategy"] == "gravity" else seismic_mid_surface(grav, case["sa_g"], rise)
-    return net, grav, mid
 
 
 def run_one(case):
