@@ -2,6 +2,18 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 2 Nov 2026, Claude Code in VS Code (Day 5 cross-check)
+
+**Done:** Day 5 was done twice by accident. The session-start pull came a few minutes before the app's push, so a second Day 5 was written on the laptop. Main's Day 5 is the record. The laptop version stays unmerged on `day05-crosscheck` (commit `4f8f5ba`) as a cross-check, like `day04-crosscheck`, and its pre-registration amendment is not the record. Added to `notes/day05_steel_carbon.md`: a laptop cross-check section. Main's script was rerun on CalculiX 2.23 and matches to 3e-8, which closes open item (4) of the entry below. pytest on main: 49 passed.
+
+**Result:** same 6 cells at all band corners and same resilience range; edges identical; corner steel 1.2 to 3.2 % lower with the principal-stress rule. At 61 x 61 all six 85 mm seismic shells fall below λ 5.0 (4.935 to 4.986), so the six cells are an artefact on two separate grounds, load basis and mesh. Never report them as a strategy effect.
+
+**Decisions by the author today:** none on this; "finish all" under the standing delegation. Claude decided to keep main's Day 5 and not to merge the branch.
+
+**Open:** (1) Author's decision: main gives corner carbon per 100 m², but the corner shells cover 73.4 m², so the figures read about 1.36 times low. This changes corners against edges, not the strategy verdicts or resilience ratios. Changing it needs a dated amendment. (2) `scripts/day04_size_10m.py` line 52 uses `span ** 2` for corner-shell SDL mass in T1 (safe side, no result changes); fix before the 20 m run. (3) The author's checks in the entry below stand: the carbon factor rows, Annex F, GB 50010 Table 8.5.1 note 2. (4) The author approves ShellBench's Day 17 pre-registration on 3 Nov; ShellBench comes first. (5) ShellForm PRs #1 and #2 (Day 0, Day 1) are still open and stale. The GitHub MCP server fails to connect; `gh` works.
+
+**Next:** as in the entry below. Both Claudes: pull again just before starting a day's work, not only at session start.
+
 ## 2 Nov 2026, Claude in the app (Day 5, steel, support zones and carbon)
 
 **Done:** `src/shellform/steel.py` and `src/shellform/carbon.py`, `src/shellform/designs.py` (the form builder, moved out of the Day 4 script so both days build the same forms), `scripts/day05_steel_carbon_10m.py`. All 84 sized 10 m designs rerun at their Day 4 thickness on CalculiX 2.21; steel, support-zone concrete and carbon in `results/day05_steel_carbon_10m.csv`, the section 7 decision rules in `results/day05_comparison_10m.csv`, notes in `notes/day05_steel_carbon.md`. `fe.CaseResult` now also returns the face stresses (no change to any Day 4 number). pytest 39 → 49 passed.
