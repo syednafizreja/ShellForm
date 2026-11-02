@@ -50,3 +50,14 @@ For the 10 m shells, seismic resilience costs no carbon in this model. Thickness
 - **Carbon factors:** confirm the four rows of ShellBench `data/carbon_factors.csv` in your official copy of GB/T 51366-2019, Table D.0.1, and fill in the printed page. Claude did not write or change any factor. When you confirm them in ShellBench, rerun `python scripts/day05_steel_carbon_10m.py` in env `shellform` after the pin moves; nothing in ShellForm needs editing.
 - **Annex F rule:** confirm EN 1992-1-1:2004 Annex F, expressions (F.2) and (F.3), in a copy of the Eurocode. If you prefer a GB-only basis, the rule is also the plain membrane yield rule; the steel would not change here, because the minimum governs.
 - **ρ_min:** confirm GB 50010 Table 8.5.1 note 2 (ShellBench cites p. 101-102). ShellBench's `notes/gb50010_design_values.md` gives 0.20 % as the fixed term for flexural members, and `docs/floor_concept.md` gives 0.15 % for slabs; both give 0.214 % here, because 45 f_t / f_y governs.
+
+## Laptop cross-check (2 Nov, Claude Code)
+
+A second Day 5 was written on the laptop at the same time, without sight of this one. It is kept unmerged on branch `day05-steel-carbon` (commit `4f8f5ba`, script `scripts/day05_carbon_10m.py`), like `day04-crosscheck`. Its pre-registration amendment is on that branch only and is not the record. Both use the Day 4 thicknesses and `fe.py`, so this checks the steel, zone and carbon steps, not the analysis.
+
+- **Rerun on CalculiX 2.23:** `scripts/day05_steel_carbon_10m.py` reproduces every number here to 3e-8 (relative) or better. The committed results stay as they are.
+- **Steel rule:** the branch uses tensile resultants from sorted in-plane principals, with no σ_nn + |τ_12| term. Edge shells match exactly. On corner shells its steel is 1.2 to 3.2 % lower and total carbon 0.2 to 0.6 % lower.
+- **Verdicts:** the same 6 cells at all four band corners, and the same resilience range, 0.942 to 1.014. The verdicts do not depend on which steel rule is used.
+- **Mesh:** at 61 x 61 all six 85 mm seismic shells fall below the limit of 5.0: λ = 4.971, 4.986, 4.986, 4.973, 4.953, 4.935 at Sa 0.1 to 0.6, against 5.008 to 5.061 at 41 x 41 (branch file `results/day05_mesh_check.csv`). They would take 90 mm. So the six cells are an artefact on two separate grounds: the load basis (D4-5) and the mesh. The second does not depend on the first.
+- **Plan area of corner shells:** this note divides by 100 m², but the corner shells cover 73.4 m² (D3-1 insets the edges). Per covered m², corner carbon is about 1.36 times the figures above: 34 to 45 kgCO₂e/m², not 25 to 33. Strategy verdicts and resilience ratios do not change, because the denominator is the same within each support type. The comparison of corners with edges does change. Changing the basis needs a dated amendment, so it is the author's decision [J].
+
