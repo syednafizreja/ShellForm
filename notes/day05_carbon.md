@@ -2,7 +2,7 @@
 
 ShellBench tag: v0.1.0. Script: `scripts/day05_carbon_10m.py`. Code: `src/shellform/quantities.py`. Rules: `docs/preregistration.md`, amendment of 2 Nov 2026 (D5-1 to D5-6), committed before any run. Results: `results/day05_carbon_10m.csv` (84 rows), `results/day05_strategies_10m.csv`, `results/day05_mesh_check.csv`. 41 x 41 grid, S8R, CalculiX 2.23.
 
-**Status: provisional.** 10 m only. This note gives no headline verdict: the pre-registration needs the 20 m designs and the robustness checks first.
+**Status: cross-check, not the record.** Main's Day 5 (`dded36e`, `notes/day05_steel_carbon.md`) is the record; this branch stays unmerged, and its amendment does not apply. Provisional, 10 m only. This note gives no headline verdict: the pre-registration needs the 20 m designs and the robustness checks first.
 
 ## Inputs (all from ShellBench v0.1.0, read in place)
 
