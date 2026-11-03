@@ -2,6 +2,18 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 3 Nov 2026, Claude Code in VS Code (morning sync)
+
+**Done:** pulled main (no new commits since PR #9). The ShellBench-pin clone is at v0.1.0, matching `pin.py`. Bare `pytest` first gave 48 passed, 1 failed (`test_shellbench_matches_pin`). Cause: `shellform` was cloned from `research`, and the cloned `Scripts\pytest.exe` launcher still started `envs\research\python.exe`, so the tests ran in `research` against the live ShellBench clone (`__version__` 0.1.0). `python -m pytest` in `shellform` gave 49 passed. Fixed by reinstalling the same pytest version into `shellform` only (`python -m pip install --force-reinstall --no-deps pytest==<same>`); bare `pytest` now gives 49 passed. Nine other `.exe` launchers in `envs\shellform\Scripts` still point at `research`; always use `python -m <tool>` until they are rebuilt. Nothing was installed into `research`.
+
+**Reruns:** `scripts/day05_steel_carbon_10m.py` on CalculiX 2.23 differs from the committed CSVs only in the last digits (max relative difference 3.4e-8; `steel_governing_case` and every verdict identical). `scripts/day04_size_10m.py` reproduces its committed results byte for byte. The committed files are the record and were restored; `results/` is unchanged.
+
+**Decisions by the author today:** none; "finish all" under the standing delegation. Claude did not start Day 6, to avoid a second parallel day like 2 Nov; no `floor-*` tag exists in ShellBench after `git fetch --tags`, so Day 6 is the 20 m sizing.
+
+**Open:** all open items of the two entries below stand: (1) corner carbon per 100 m² against 73.4 m² (author's decision, needs a dated amendment); (2) `day04_size_10m.py` line 52 `span ** 2`, fix before the 20 m run; (3) the author's checks of the carbon factor rows, Annex F and GB 50010 Table 8.5.1 note 2; (4) the author approves ShellBench's Day 17 pre-registration today, and ShellBench comes first; (5) stale PRs #1 and #2.
+
+**Next:** Day 6 (3 Nov), 20 m sizing, done by one Claude only. Pull just before starting.
+
 ## 2 Nov 2026, Claude Code in VS Code (Day 5 cross-check)
 
 **Done:** Day 5 was done twice by accident. The session-start pull came a few minutes before the app's push, so a second Day 5 was written on the laptop. Main's Day 5 is the record. The laptop version stays unmerged on `day05-crosscheck` (commit `4f8f5ba`) as a cross-check, like `day04-crosscheck`, and its pre-registration amendment is not the record. Added to `notes/day05_steel_carbon.md`: a laptop cross-check section. Main's script was rerun on CalculiX 2.23 and matches to 3e-8, which closes open item (4) of the entry below. pytest on main: 49 passed.
