@@ -2,6 +2,10 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 3 Nov 2026, Claude Code in VS Code (Day 6 lock)
+
+**Claude Code is doing Day 6 now on branch `day06-20m`**: the line 52 / corner area fix with a dated amendment, then the 20 m sizing, steel and carbon. Claude in the app: do not start Day 6; pull before any work.
+
 ## 3 Nov 2026, Claude Code in VS Code (morning sync)
 
 **Done:** pulled main (no new commits since PR #9). The ShellBench-pin clone is at v0.1.0, matching `pin.py`. Bare `pytest` first gave 48 passed, 1 failed (`test_shellbench_matches_pin`). Cause: `shellform` was cloned from `research`, and the cloned `Scripts\pytest.exe` launcher still started `envs\research\python.exe`, so the tests ran in `research` against the live ShellBench clone (`__version__` 0.1.0). `python -m pytest` in `shellform` gave 49 passed. Fixed by reinstalling the same pytest version into `shellform` only (`python -m pip install --force-reinstall --no-deps pytest==<same>`); bare `pytest` now gives 49 passed. Nine other `.exe` launchers in `envs\shellform\Scripts` still point at `research`; always use `python -m <tool>` until they are rebuilt. Nothing was installed into `research`.
