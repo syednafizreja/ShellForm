@@ -50,3 +50,11 @@
 - Lesson: for 10 m shells neither thickness nor steel responds to Sa; the 20 m run (6 Nov) is where steel may rise above the minimum
 - Tomorrow: Day 6, 3 Nov: move the pin if floor-r2/floor-r3 are tagged and cross-check fe.py; otherwise start the 20 m sizing
 - Later on 2 Nov (Claude Code): a second Day 5 was written on the laptop in parallel and stays unmerged on `day05-crosscheck` as a cross-check; its amendment is not the record. Same verdicts, same 0.942-1.014, edges identical, corner steel 1-3 % lower. Main's script reruns on CalculiX 2.23 to 3e-8. All six 85 mm seismic shells fall below λ 5.0 at 61 x 61 (4.935 to 4.986), a second reason the six cells are an artefact. Corner carbon here is per 100 m², but the shells cover 73.4 m²: the author's decision. Lesson: pull again just before starting a day's work, not only at session start
+
+## Day 6 — 3 Nov 2026
+
+- Done (Claude Code, under the author's "approve everything just finish all"): morning sync (PR #10); rebuilt the `shellform` pytest launcher, which ran `research`'s Python; `fe.plan_area` and the plan-area fix in both scripts (pre-registration amendment of 3 Nov); `--span` option in both scripts; 10 m rerun; 20 m sizing, steel and carbon; 1 new test
+- Result: pytest 50 passed. 10 m after the fix: thicknesses, steel and verdicts unchanged; corner carbon 34.0-45.5 kgCO₂e/m² (was 24.9-33.4); corner T1 5-6 % lower. 20 m: all 84 feasible; edges 50 mm (t_min), corners 185-265 mm (buckling); seismic adds at most 57.9 kg of steel; carbon corners 84.7-117.3, edges 21.6-23.8 kgCO₂e/m²; 42 of 42 cells "no meaningful difference" at all band corners; cost of resilience 0.983-1.015. Headline claim not made
+- Problem: carbon factors and two code clauses still need the author's reading of the official copies; floor-r2/r3 still not tagged
+- Lesson: the per-m² basis was written in the pre-registration but not checked in code; check every denominator against section 6 before the freeze
+- Tomorrow: Day 7, 4 Nov: test S4 (data contract schedule, 4-5 Nov) on both spans; move the pin if floor-r2/r3 are tagged
