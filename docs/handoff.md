@@ -15,6 +15,7 @@ Newest entry first. Each Claude reads this at the start of a session and adds an
 **Open:** (1) carbon factor rows, Annex F and GB 50010 Table 8.5.1 note 2 still for the author to confirm. (2) `fe.py` cross-check waits for `floor-r2`. (3) The 20 m corner seismic form at rise 0.10 takes 260 mm at Sa 0.5-0.6 with λ just over 5.0; test it in the 61 x 61 sensitivity. (4) ShellBench comes first: its Day 17 pre-registration approval is the author's today. (5) PRs #1 and #2 still open and stale.
 
 **Next:** 4 Nov, Day 7: test S4.
+
 ## 3 Nov 2026, Claude Code in VS Code (Day 6 lock)
 
 **Claude Code is doing Day 6 now on branch `day06-20m`**: the line 52 / corner area fix with a dated amendment, then the 20 m sizing, steel and carbon. Claude in the app: do not start Day 6; pull before any work.
