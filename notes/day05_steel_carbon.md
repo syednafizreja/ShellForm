@@ -1,6 +1,6 @@
 # Day 5: steel, support zones and carbon of the 10 m designs (2 Nov 2026)
 
-ShellBench tag: v0.1.0. Script: `scripts/day05_steel_carbon_10m.py`. Results: `results/day05_steel_carbon_10m.csv` (84 rows), `results/day05_comparison_10m.csv` (42 rows, the decision rules of pre-registration section 7) and `results/day05_meta.json` (inputs, factors and their status). Code: `src/shellform/steel.py`, `src/shellform/carbon.py`. Run in the cloud on CalculiX 2.21; the thicknesses are Day 4's, read from `results/day04_sizing_10m.csv`.
+ShellBench tag: v0.1.0. Script: `scripts/day05_steel_carbon_10m.py`. Results: `results/day05_steel_carbon_10m.csv` (84 rows), `results/day05_comparison_10m.csv` (42 rows, the decision rules of pre-registration section 7) and `results/day05_meta.json` (inputs, factors and their status). Code: `src/shellform/steel.py`, `src/shellform/carbon.py`. Run in the cloud on CalculiX 2.21; on 3 Nov the result files were regenerated on the laptop (CalculiX 2.23) with the plan-area fix, see `notes/day06_20m.md`; the thicknesses are Day 4's, read from `results/day04_sizing_10m.csv`.
 
 **Status: provisional.** Every carbon factor row in ShellBench's `data/carbon_factors.csv` is marked "author to confirm" (see "For the author" below). The paper's results come from one run after the 10 Nov freeze.
 
