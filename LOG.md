@@ -50,3 +50,11 @@
 - Lesson: for 10 m shells neither thickness nor steel responds to Sa; the 20 m run (6 Nov) is where steel may rise above the minimum
 - Tomorrow: Day 6, 3 Nov: move the pin if floor-r2/floor-r3 are tagged and cross-check fe.py; otherwise start the 20 m sizing
 - Later on 2 Nov (Claude Code): a second Day 5 was written on the laptop in parallel and stays unmerged on `day05-crosscheck` as a cross-check; its amendment is not the record. Same verdicts, same 0.942-1.014, edges identical, corner steel 1-3 % lower. Main's script reruns on CalculiX 2.23 to 3e-8. All six 85 mm seismic shells fall below λ 5.0 at 61 x 61 (4.935 to 4.986), a second reason the six cells are an artefact. Corner carbon here is per 100 m², but the shells cover 73.4 m²: the author's decision. Lesson: pull again just before starting a day's work, not only at session start
+
+## Day 6 — 3 Nov 2026
+
+- Done (Claude, under the author's standing delegation): no `floor-r2`/`floor-r3` tag in ShellBench, so the pin stays at v0.1.0; `src/shellform/pipeline.py` and `scripts/day06_all_designs.py` size, take off and compare the whole design space in one command; `fe.plan_area`; decisions D6-1 (per m² of covered plan area) and D6-2 (T1 mass on the covered plan area), recorded before the run; 5 new tests
+- Result: pytest 54 passed. All 168 designs feasible. The 10 m rerun reproduces Day 4 thicknesses and Day 5 carbon exactly. 20 m corners 265/215/185 mm (buckling), edges 50 mm. T1 at most 0.308 s, so S5 holds. Cost of resilience 1.000-1.004 (gravity), 0.942-1.015 (seismic). 78 of 84 cells "no meaningful difference"; all 42 at 20 m. The 6 others are the known 10 m artefact. Headline claim not made
+- Problem: carbon factors still "author to confirm" (provisional); `fe.py` cross-check still waits for `floor-r2`
+- Lesson: the 20 m corner shells need steel above the minimum at the supports, but it is under 10 % of the steel and does not move carbon by 5 %
+- Tomorrow: Day 7, 4 Nov: test S4 (Michiels case, or the closed-form arch lean if the full text is still missing)

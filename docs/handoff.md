@@ -2,6 +2,19 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 3 Nov 2026, Claude in the app (Day 6 cross-check, all 168 designs)
+
+**Not the record.** This run started at 09:45 (+0800), before the laptop's Day 6 lock (10:18) reached main, and finished after it. So it is pushed to branch `day06-app-crosscheck`, not to main, like `day05-crosscheck`. Claude Code's Day 6 on `day06-20m` is the record. Its D6 labels and amendment take precedence; the amendment on this branch is not in force. Use this branch to compare numbers.
+
+**Done:** no `floor-r2`/`floor-r3` tag in ShellBench (only `v0.0.1`, `v0.1.0`), so the pin stays at v0.1.0. New `src/shellform/pipeline.py`, `fe.plan_area` and `scripts/day06_all_designs.py`: one command sizes, takes off and compares all 168 designs (both spans). Results in `results/day06_*.{csv,json}`, notes in `notes/day06_all_designs.md`. pytest 49 → 54 passed. CalculiX 2.21 in the cloud.
+
+**Results (provisional):** all 168 feasible. The 10 m rerun reproduces Day 4 thicknesses and Day 5 carbon exactly. 20 m corner shells 265/215/185 mm, buckling governs; edges 50 mm. T1 at most 0.308 s (S5 holds). 20 m corners need up to 9.6 % steel above the minimum, at the supports. 78 of 84 cells "no meaningful difference", all 42 at 20 m; the other 6 are the known 10 m artefact. Headline claim not made.
+
+**Decisions by the author today:** none; "finish all" under the standing delegation. Claude decided D6-1 (per m² of covered plan area, closing open item 1 of the entry below) and D6-2 (T1 mass on the covered plan area, closing open item 2), as a dated amendment written before the run.
+
+**Open:** (1) carbon factor rows, Annex F and GB 50010 Table 8.5.1 note 2 still for the author to confirm. (2) `fe.py` cross-check waits for `floor-r2`. (3) The 20 m corner seismic form at rise 0.10 takes 260 mm at Sa 0.5-0.6 with λ just over 5.0; test it in the 61 x 61 sensitivity. (4) ShellBench comes first: its Day 17 pre-registration approval is the author's today. (5) PRs #1 and #2 still open and stale.
+
+**Next:** 4 Nov, Day 7: test S4.
 ## 3 Nov 2026, Claude Code in VS Code (Day 6 lock)
 
 **Claude Code is doing Day 6 now on branch `day06-20m`**: the line 52 / corner area fix with a dated amendment, then the 20 m sizing, steel and carbon. Claude in the app: do not start Day 6; pull before any work.

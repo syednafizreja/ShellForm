@@ -231,6 +231,21 @@ def plan_load_shares(xyz, n):
     return w
 
 
+def plan_area(xyz, n):
+    """Return the plan area the shell covers [m2].
+
+    The sum of the projected areas of its elements. For an edge-supported
+    shell this is span squared; a corner-supported shell covers less, because
+    its free edges are inset (decision D3-1). Carbon and steel are reported
+    per m2 of this area (pre-registration section 6, decision D6-1).
+
+    Args:
+        xyz: Grid nodes, shape (n*n, 3) [m].
+        n: Grid nodes per side (odd).
+    """
+    return float(plan_load_shares(xyz, n).sum())
+
+
 def corner_zone(xyz, n, radius_m):
     """Return a boolean mask of S8R elements in the plan-corner support zones.
 

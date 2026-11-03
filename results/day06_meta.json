@@ -1,0 +1,87 @@
+{
+ "shellbench_tag": "v0.1.0",
+ "grid_n": 41,
+ "corner_edge_inset_ratio": 0.1,
+ "spans_m": [
+  10.0,
+  20.0
+ ],
+ "n_designs": 168,
+ "n_feasible": 168,
+ "inputs": {
+  "e_pa": 32500000000.0,
+  "nu": 0.2,
+  "unit_weight_n_m3": 25000.0,
+  "g_m_s2": 9.80665,
+  "sdl_pa": 1224.0,
+  "live_pa": 500.0,
+  "f_c_pa": 19100000.0,
+  "f_t_pa": 1710000.0,
+  "f_y_pa": 360000000.0,
+  "gamma_g": 1.3,
+  "gamma_q": 1.5,
+  "gamma_eg": 1.3,
+  "gamma_eh": 1.4,
+  "psi_e_roof": 0.0,
+  "tg_s": 0.35,
+  "sources": {
+   "e_pa": "anchor_frame.E_KN_M2 (spec X4)",
+   "nu": "notes/gb50010_design_values.md row \u03bd_c (cl. 4.1.5)",
+   "unit_weight_n_m3": "baseline_spec.md X7",
+   "g_m_s2": "seismic.G_ACCEL_M_S2",
+   "sdl_pa": "baseline_spec.md L2 - X7 x carbon.SLAB_T_M (G10) [J]",
+   "live_pa": "baseline_spec.md L11",
+   "f_c_pa": "checks.FC_N_MM2 (X2)",
+   "f_t_pa": "checks.FT_N_MM2 (X3)",
+   "f_y_pa": "checks.FY_N_MM2 (X5)",
+   "gamma_g": "combinations.GAMMA_G",
+   "gamma_q": "combinations.GAMMA_Q",
+   "gamma_eg": "combinations.GAMMA_EG_CODE (GB 55002-2021 cl. 4.3.2)",
+   "gamma_eh": "combinations.GAMMA_EH_CODE (GB 55002-2021 cl. 4.3.2)",
+   "psi_e_roof": "seismic.LIVE_COMBINATION_COEFF_ROOF",
+   "tg_s": "seismic.TG_ANCHOR_S"
+  },
+  "density_kg_m3": 2549.2905324448207
+ },
+ "rho_min": 0.0021375,
+ "factors": {
+  "set_name": "GBT51366",
+  "concrete_material": "C40",
+  "steel_material": "HRB400",
+  "concrete_kgco2e_m3": 340.0,
+  "steel_kgco2e_kg": 2.34,
+  "steel_density_kg_m3": 7850.0
+ },
+ "factor_file": "ShellBench data/carbon_factors.csv at v0.1.0",
+ "factor_band": 0.25,
+ "per_m2_basis": "plan area covered by the shell (D6-1)",
+ "headline_claim_holds": false,
+ "headline_cells_seismic_cheaper": [
+  [
+   10.0,
+   "corners",
+   0.2
+  ],
+  [
+   10.0,
+   "corners",
+   0.3
+  ],
+  [
+   10.0,
+   "corners",
+   0.4
+  ],
+  [
+   10.0,
+   "corners",
+   0.5
+  ],
+  [
+   10.0,
+   "corners",
+   0.6
+  ]
+ ],
+ "status": "provisional: every factor row in ShellBench's file is marked 'author to confirm'"
+}
