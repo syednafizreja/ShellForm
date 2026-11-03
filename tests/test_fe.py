@@ -25,6 +25,24 @@ def test_flat_grid_area():
     assert surface_area(net.xyz, 11) == pytest.approx(100.0)
 
 
+def test_plan_area_of_flat_grid_and_inset_corner_shell():
+    """plan_area is span ** 2 for an edge net and equals the plan load shares for a corner shell."""
+    from shellform.design_space import design_space
+    from shellform.designs import N_GRID, form
+    from shellform.fe import plan_area, plan_load_shares
+
+    net = square_network(10.0, 11, "edges")
+    assert plan_area(net.xyz, 11) == pytest.approx(100.0)
+    case = next(c for c in design_space(spans=(10.0,)) if c["supports"] == "corners")
+    _, _, mid = form(case)
+    a = plan_area(mid, N_GRID)
+    # The load shares use each S8R element's four corners; plan_area uses the finer
+    # grid triangles of surface_area, so the two agree only to the curved-edge error.
+    assert a == pytest.approx(plan_load_shares(mid, N_GRID).sum(), rel=2e-3)
+    assert a < 100.0 * (1 - 1e-3)
+    assert surface_area(mid, N_GRID) > a
+
+
 def test_parse_dat_reads_buckling_factors():
     text = " B U C K L I N G   F A C T O R   O U T P U T\n\n MODE NO       BUCKLING\n                FACTOR\n\n      1   0.7618208E+00\n      2   0.1336737E+01\n\n"
     assert np.allclose(parse_dat(text)[3], [0.7618208, 1.336737])

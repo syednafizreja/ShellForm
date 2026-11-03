@@ -2,9 +2,17 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
-## 3 Nov 2026, Claude Code in VS Code (Day 6 lock)
+## 3 Nov 2026, Claude Code in VS Code (Day 6, plan-area fix and 20 m designs)
 
-**Claude Code is doing Day 6 now on branch `day06-20m`**: the line 52 / corner area fix with a dated amendment, then the 20 m sizing, steel and carbon. Claude in the app: do not start Day 6; pull before any work.
+**Done:** Day 6 is finished; it was locked by PR #11 so only the laptop did it. `shellform.fe.plan_area` (projected area from the `surface_area` triangles) is now the per-m² denominator in `scripts/day05_steel_carbon_10m.py` and the SDL-mass area in the T1 scaling of `scripts/day04_size_10m.py`; this closes open items (1) and (2) below. Both scripts take `--span` (default 10; the 10 m file names are unchanged). Dated pre-registration amendment of 3 Nov records it as a code error against section 6, found after the 10 m results were seen. 10 m rerun, then the 20 m sizing, steel and carbon. Note: `notes/day06_20m.md`. pytest 50 passed (1 new test).
+
+**Results (provisional):** 10 m after the fix: no thickness, steel mass or verdict changes; corner carbon 34.0-45.5 kgCO₂e/m² (was 24.9-33.4); corner T1 5.3-6.2 % lower, S5 still holds (longest T1 0.184 s at 10 m, 0.308 s at 20 m). The 10 m result files on main are now the laptop CalculiX 2.23 run. 20 m: 84 of 84 feasible; edges 50 mm (t_min), corners 185-265 mm (buckling); minimum steel governs 38 of 84; seismic adds at most 57.9 kg of steel; zone concrete at most 1.8 %; carbon corners 84.7-117.3, edges 21.6-23.8 kgCO₂e/m²; all 42 cells "no meaningful difference" at all band corners; cost of resilience 1.000-1.004 (gravity), 0.983-1.015 (seismic). The only thickness difference (seismic 260 against 265 mm, rise 0.10, Sa 0.5-0.6) has λ 5.003-5.012, the grid-step effect of D4-5. Headline claim not made.
+
+**Decisions by the author today:** "approve everything just finish all". Under it Claude decided: the plan-area fix (amendment of 3 Nov); PRs #1 and #2 stay open, because PR #1's CI needs a ShellBench deploy-key secret and installs no numpy or CalculiX, so it would fail, and both branches conflict with main. ShellBench's Day 17 pre-registration was already recorded as approved on 3 Nov in ShellBench.
+
+**Open:** (1) Author only, needs the printed sources: the four carbon factor rows in GB/T 51366-2019 Table D.0.1, EN 1992-1-1 Annex F (F.2)/(F.3) and GB 50010 Table 8.5.1 note 2. "Approve everything" does not confirm them, so they stay "author to confirm" / [check]. (2) PR #1 infrastructure (CI, `environment.yml`) needs a deploy key in GitHub settings and a CI that installs the full environment. (3) Nine `.exe` launchers in `envs\shellform\Scripts` still point at `research`; use `python -m <tool>`. (4) floor-r2/r3 still not tagged.
+
+**Next:** 4 Nov, Day 7: test S4 (data contract schedule, 4-5 Nov) on both spans; move the pin if floor-r2/r3 are tagged. One Claude only; lock it on main first.
 
 ## 3 Nov 2026, Claude Code in VS Code (morning sync)
 
