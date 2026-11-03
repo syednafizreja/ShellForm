@@ -48,8 +48,8 @@ For the 10 m shells, seismic resilience costs no carbon in this model. Thickness
 ## For the author
 
 - **Carbon factors:** confirm the four rows of ShellBench `data/carbon_factors.csv` in your official copy of GB/T 51366-2019, Table D.0.1, and fill in the printed page. Claude did not write or change any factor. When you confirm them in ShellBench, rerun `python scripts/day05_steel_carbon_10m.py` in env `shellform` after the pin moves; nothing in ShellForm needs editing.
-- **Annex F rule:** confirm EN 1992-1-1:2004 Annex F, expressions (F.2) and (F.3), in a copy of the Eurocode. If you prefer a GB-only basis, the rule is also the plain membrane yield rule; the steel would not change here, because the minimum governs.
-- **ρ_min:** confirm GB 50010 Table 8.5.1 note 2 (ShellBench cites p. 101-102). ShellBench's `notes/gb50010_design_values.md` gives 0.20 % as the fixed term for flexural members, and `docs/floor_concept.md` gives 0.15 % for slabs; both give 0.214 % here, because 45 f_t / f_y governs.
+- **Annex F rule:** confirm EN 1992-1-1:2004 Annex F, expressions (F.2) and (F.3), in a copy of the Eurocode. If you prefer a GB-only basis, the rule is also the plain membrane yield rule; the steel would not change at 10 m, because the minimum governs; at 20 m it would matter (up to 283.5 kg above the minimum, `notes/day06_20m.md`).
+- **ρ_min:** GB 50010 Table 8.5.1 note 2 checked 3 Nov 2026 by Claude in the author's copy (`Downloads\GB50010-2010(2015版)  混凝土结构设计规范.pdf`, printed p. 109, PDF page 124): note 2 says slab-type flexural members (not cantilever slabs) with 400 or 500 MPa bars may use the larger of 0.15 and 45 f_t/f_y (%); notes 4-5 take the ratio on the gross section. ShellBench cites p. 101-102, which is a different printing. ShellBench's `notes/gb50010_design_values.md` gives 0.20 % as the fixed term for flexural members, and `docs/floor_concept.md` gives 0.15 % for slabs; both give 0.214 % here, because 45 f_t / f_y governs.
 
 ## Laptop cross-check (2 Nov, Claude Code)
 
