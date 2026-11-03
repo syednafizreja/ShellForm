@@ -79,6 +79,18 @@ def surface_area(xyz, n):
     return float((t1 + t2).sum())
 
 
+def plan_area(xyz, n):
+    """Return the area of the grid surface projected on the plan (x, y) [m2].
+
+    This is the area the per-plan-area loads act on (plan_load_shares) and the
+    area carbon and steel are reported per (pre-registration section 6). For a
+    corner-supported shell with inset edges (D3-1) it is less than span ** 2.
+    """
+    flat = np.array(xyz, dtype=float)
+    flat[:, 2] = 0.0
+    return surface_area(flat, n)
+
+
 def write_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3,
                g=9.81, n_modes=3, n_buckle=2, clamp=False):
     """Return the CalculiX input deck text for one shell.

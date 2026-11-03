@@ -48,7 +48,7 @@ ShellBench tag: v0.1.0 (tagged 1 Nov; the pin moved from v0.0.1). Script: `scrip
 | Edges, all rises | both | 50 | 50 | 50 | 50 | 50 | 50 | 50 |
 
 - All 84 designs are feasible. Corner shells are governed by buckling under ULS gravity; edge shells sit at the 50 mm minimum.
-- S5 holds: the longest T1 is 0.194 s, below Tg = 0.35 s.
+- S5 holds: the longest T1 is 0.194 s, below Tg = 0.35 s. (3 Nov: after the plan-area fix of the T1 mass, 0.184 s; `notes/day06_20m.md`.)
 - In the support zones of corner shells, compression reaches about 24-26 MPa, above f_c = 19.1 MPa. These zones need local thickening, and its concrete has to be counted.
 
 ## What this means [J]
