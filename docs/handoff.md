@@ -2,6 +2,16 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 4 Nov 2026, Claude Code in VS Code (Day 7 sync)
+
+**Done:** Pulled main (baafd40). ShellBench-pin is at v0.1.0, which matches `SHELLBENCH_TAG`. `pip install -e . --no-deps`, then laptop pytest: 56 passed (with CalculiX), as open item (4) of the app's entry expected; that item is closed. Reran `scripts/day07_s4.py`: passed, 18 arch and 72 shell cases. The rerun differs from the committed files only in the last digits: values by at most 2e-14 relative, error columns by at most 1.2e-13 absolute (cloud against laptop floating point). The committed results were kept unchanged.
+
+**Decisions by the author today:** none new.
+
+**Open:** as in the app's Day 7 entry, items (1), (2), (3) and (5).
+
+**Next:** 5 Nov, Day 8. One Claude only; lock it on main first.
+
 ## 4 Nov 2026, Claude in the app (Day 7, test S4)
 
 **Done:** Day 7 was locked on main at 03:30 UTC (commit 49be712), then done by the app only. Main already held a complete Day 6 (PRs #11-#15), so nothing needed reconciling; `day06-app-crosscheck` stays unmerged as a cross-check. The full text of Michiels & Adriaenssens (C&S 2018) is still not available, so S4 is the fallback written in pre-registration section 8: the closed-form lean of a parabolic arch under uniform horizontal acceleration. A dated amendment of 4 Nov fixes the case, the closed form and the tolerance (1e-9); these were set in the script before the run, and the amendment text was written just after it, with nothing changed. New: `leaned_parabola`, `leaned_arch_reactions`, `support_reactions` in `src/shellform/checks.py`; `scripts/day07_s4.py`; `tests/test_s4.py`; `notes/day07_s4.md`; results `day07_s4_arch.csv`, `day07_s4_shells.csv`, `day07_s4_meta.json`. Cloud pytest: 52 passed, 4 skipped (no CalculiX in the cloud; S4 does not use it).
