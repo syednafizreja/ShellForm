@@ -2,9 +2,17 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
-## 4 Nov 2026, Claude in the app (Day 7 lock)
+## 4 Nov 2026, Claude in the app (Day 7, test S4)
 
-**Lock:** Claude in the app is doing Day 7 (test S4, both spans) from 03:30 UTC. Laptop Claude: do not start Day 7. Pull main and read the next entry when it lands.
+**Done:** Day 7 was locked on main at 03:30 UTC (commit 49be712), then done by the app only. Main already held a complete Day 6 (PRs #11-#15), so nothing needed reconciling; `day06-app-crosscheck` stays unmerged as a cross-check. The full text of Michiels & Adriaenssens (C&S 2018) is still not available, so S4 is the fallback written in pre-registration section 8: the closed-form lean of a parabolic arch under uniform horizontal acceleration. A dated amendment of 4 Nov fixes the case, the closed form and the tolerance (1e-9), written before the run. New: `leaned_parabola`, `leaned_arch_reactions`, `support_reactions` in `src/shellform/checks.py`; `scripts/day07_s4.py`; `tests/test_s4.py`; `notes/day07_s4.md`; results `day07_s4_arch.csv`, `day07_s4_shells.csv`, `day07_s4_meta.json`. Cloud pytest: 52 passed, 4 skipped (no CalculiX in the cloud; S4 does not use it).
+
+**Results:** S4 passes on both spans. 18 arches (rise-to-span 1/2, 1/4, 1/8 at 0.15, 0.3, 0.45 g; the pre-registered one is 1/4 at 0.3 g): worst position error 3.5e-15 of span, reactions 8.4e-15 of the weight, S2 5.6e-13. Crown lean of the pre-registered case 0.75 m (10 m) and 1.50 m (20 m). S4b: all 72 design shell families with a lateral load equal the gravity form sheared by −Sa z to 6.2e-16 (S2 at most 2.1e-11). No design result changes.
+
+**Decisions by the author today:** none; "finish all" under the standing delegation. Claude decided: the fallback applies (no full text by 4 Nov); the extra eight arch cases and S4b [J]; if the full text arrives before 10 Nov, the published arch is run as an extra check beside S4, not instead of it [J].
+
+**Open:** (1) Author: the Michiels full texts (ResearchGate). (2) Author: carbon factor rows, Annex F, as in the Day 6 entry. (3) floor-r2/r3 still not tagged (checked 4 Nov); pin stays v0.1.0. (4) Laptop: pull and run `python -m pytest`; expect 56 passed with CalculiX. (5) The paper text must say S4 is the fallback, not a reproduction.
+
+**Next:** 5 Nov, Day 8. One Claude only; lock it on main first.
 
 ## 3 Nov 2026, Claude Code in VS Code (Day 6, plan-area fix and 20 m designs)
 

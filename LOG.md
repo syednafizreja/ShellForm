@@ -58,3 +58,11 @@
 - Problem: carbon factors and two code clauses still need the author's reading of the official copies; floor-r2/r3 still not tagged
 - Lesson: the per-m² basis was written in the pre-registration but not checked in code; check every denominator against section 6 before the freeze
 - Tomorrow: Day 7, 4 Nov: test S4 (data contract schedule, 4-5 Nov) on both spans; move the pin if floor-r2/r3 are tagged
+
+## Day 7 — 4 Nov 2026
+
+- Done (Claude in the app, under the author's standing delegation): Day 7 locked on main first; test S4 run as the pre-registered fallback (full text of Michiels & Adriaenssens 2018 still not available): `shellform.checks.leaned_parabola`, `leaned_arch_reactions`, `support_reactions`; `scripts/day07_s4.py`; `tests/test_s4.py`; amendment of 4 Nov (case, closed form, tolerance) written before the run; `notes/day07_s4.md`
+- Result: pytest 56 (52 passed, 4 CalculiX tests skipped in the cloud). S4 passes on both spans: 18 arches (rise-to-span 1/2, 1/4, 1/8 at 0.15, 0.3, 0.45 g) agree with the closed form to 3.5e-15 in position and 8.4e-15 in reactions; pre-registered case (1/4, 0.3 g) leans 0.75 m at 10 m and 1.50 m at 20 m. S4b: all 72 design shell families equal the sheared gravity form to 6.2e-16. S2 below 2.1e-11 everywhere
+- Problem: S4 is now a statics check, not a reproduction of the published case; the paper must say so. floor-r2/r3 still not tagged, so the pin stays at v0.1.0
+- Lesson: the windward thrust of a leaned arch vanishes at Sa ≈ L / 4f; the design rises keep it at 1.25 g or more
+- Tomorrow: Day 8, 5 Nov (6-9 Nov block starts 6 Nov): sensitivity runs of section 7 (λ_LBA 3 and 8, 61 × 61 network) if the plan says so; move the pin if floor-r2/r3 or v0.3 are tagged
