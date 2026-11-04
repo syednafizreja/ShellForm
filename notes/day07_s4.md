@@ -4,7 +4,7 @@ Written by Claude in the app, under the author's standing delegation. ShellBench
 
 ## Why the fallback
 
-Pre-registration section 8: S4 was to reproduce one Michiels & Adriaenssens arch (C&S 195 (2018) 85-98, rise-to-span 1/4, 0.3 g). If the full text was not available by 4 Nov, S4 becomes the closed-form lean of a parabolic arch under uniform horizontal acceleration. The full text is not in the repo or the project files, and the ResearchGate request is still open, so the fallback applies. The amendment of 4 Nov records the case, the closed form and the tolerance, written before the run.
+Pre-registration section 8: S4 was to reproduce one Michiels & Adriaenssens arch (C&S 195 (2018) 85-98, rise-to-span 1/4, 0.3 g). If the full text was not available by 4 Nov, S4 becomes the closed-form lean of a parabolic arch under uniform horizontal acceleration. The full text is not in the repo or the project files, and the ResearchGate request is still open, so the fallback applies. The amendment of 4 Nov records the case, the closed form and the tolerance. They were set in the script before the run; the amendment text was written just after it.
 
 ## The closed form
 
