@@ -1,4 +1,4 @@
-"""Solver-independent checks for the seismic-aware form-finding (tests S2, S3).
+"""Solver-independent checks for the seismic-aware form-finding (tests S2, S3, S4).
 
 These functions do not form-find. They check a form produced by any
 force density solver (ShellBench floor-r1, extended in ShellForm), so the
@@ -98,3 +98,80 @@ def rotation_error(solve, xyz_supports, loads, angle_rad):
     expected = rotate_z(base, angle_rad)
     size = np.ptp(base[:, :2], axis=0).max()
     return float(np.linalg.norm(turned - expected, axis=1).max() / size)
+
+
+def leaned_parabola(span_m, rise_m, sa_g, s_m):
+    """Return the closed-form thrust line of an arch under gravity plus Sa (test S4).
+
+    A funicular under a uniform load per unit length of its parameter s,
+    acting in one fixed direction, is a parabola whose axis is parallel to
+    that load (statics of a cable with parallel loads). Gravity alone gives
+    z(s) = 4 f s (L - s) / L^2 over the plan coordinate s. Adding a uniform
+    horizontal acceleration Sa (in g) on the same weight tilts the load by
+    atan(Sa), and the compression line leans into the load:
+    x(s) = s - Sa z(s), z unchanged. Supports stay at s = 0 and s = L.
+
+    Args:
+        span_m: Distance between the two supports, L [m].
+        rise_m: Rise of the gravity thrust line, f [m].
+        sa_g: Horizontal acceleration, positive in +x [g].
+        s_m: Plan coordinates of the gravity form, s in [0, L] [m].
+
+    Returns:
+        (x, z) of the leaned thrust line at each s [m].
+    """
+    s = np.asarray(s_m, dtype=float)
+    z = 4.0 * rise_m * s * (span_m - s) / span_m**2
+    return s - sa_g * z, z
+
+
+def leaned_arch_reactions(span_m, rise_m, sa_g, n_segments, w_node):
+    """Return the closed-form support reactions of a leaned nodal arch (test S4).
+
+    The arch has n_segments equal plan segments, h = L / n_segments, and a
+    weight w_node at each of the n_segments - 1 free nodes. The horizontal
+    thrust of the gravity form is H_g = w L^2 / (8 f h), the discrete form of
+    q L^2 / (8 f) with q = w / h. The lateral load Sa W (W = total free-node
+    weight) is shared equally by the two supports, in the direction that
+    resists it: the support on the far side of the load (+x for Sa > 0)
+    pushes back harder, so H_left = H_g - Sa W / 2 and H_right = H_g + Sa W / 2
+    (both as thrust magnitudes on the supports). The vertical reactions stay W / 2
+    each, because the moment of the lateral load about one support,
+    Sa w sum(z_i), is cancelled by the lean of the loads, w sum(Sa z_i).
+
+    Args:
+        span_m: Support distance L [m].
+        rise_m: Gravity rise f [m].
+        sa_g: Horizontal acceleration, positive in +x [g].
+        n_segments: Number of equal plan segments (even, so a node sits at the crown).
+        w_node: Weight per free node [N].
+
+    Returns:
+        Dict of h_left, h_right, v_left, v_right [N] (thrust and upward
+        reaction magnitudes).
+    """
+    h = span_m / n_segments
+    w_total = (n_segments - 1) * w_node
+    h_g = w_node * span_m**2 / (8.0 * rise_m * h)
+    return {"h_left": h_g - sa_g * w_total / 2.0, "h_right": h_g + sa_g * w_total / 2.0,
+            "v_left": w_total / 2.0, "v_right": w_total / 2.0}
+
+
+def support_reactions(xyz, edges, q, fixed):
+    """Return the force each support must supply to the network [N].
+
+    The reaction at a support balances the member forces meeting there,
+    R_k = -sum_j q_kj (x_j - x_k); the load lumped on the support node itself
+    is left out, so this is the reaction to the free-node loads only.
+
+    Args:
+        xyz: Nodal coordinates, shape (n, 3) [m].
+        edges: Node index pairs, shape (m, 2).
+        q: Force density per edge, shape (m,) [N/m].
+        fixed: Indices of the supported nodes.
+
+    Returns:
+        Reaction vectors at the supports, shape (len(fixed), 3) [N].
+    """
+    zero = np.zeros_like(np.asarray(xyz, dtype=float))
+    return -nodal_residuals(xyz, edges, q, zero, fixed)

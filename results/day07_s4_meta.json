@@ -1,0 +1,18 @@
+{
+ "shellbench_tag": "v0.1.0",
+ "test": "S4 fallback: closed-form lean of a parabolic arch (pre-registration section 8, amendment of 4 Nov 2026)",
+ "n_segments": 40,
+ "shell_grid_n": 41,
+ "tolerance": 1e-09,
+ "arch_cases_source": "Michiels & Adriaenssens, C&S 195 (2018) 85-98, abstract: rise/span 1/2, 1/4, 1/8 at 0.15, 0.3, 0.45 g",
+ "worst_errors": {
+  "arch_position": 3.4899874464835e-15,
+  "arch_reaction": 8.380760473067849e-15,
+  "arch_s2": 5.583320432539297e-13,
+  "shell_shear": 6.217248937900876e-16,
+  "shell_s2": 2.1468447025332868e-11
+ },
+ "passed": true,
+ "n_arch_cases": 18,
+ "n_shell_cases": 72
+}
