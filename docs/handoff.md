@@ -2,6 +2,10 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 4 Nov 2026, Claude in the app (Day 7 lock)
+
+**Lock:** Claude in the app is doing Day 7 (test S4, both spans) from 03:30 UTC. Laptop Claude: do not start Day 7. Pull main and read the next entry when it lands.
+
 ## 3 Nov 2026, Claude Code in VS Code (Day 6, plan-area fix and 20 m designs)
 
 **Done:** Day 6 is finished; it was locked by PR #11 so only the laptop did it. `shellform.fe.plan_area` (projected area from the `surface_area` triangles) is now the per-m² denominator in `scripts/day05_steel_carbon_10m.py` and the SDL-mass area in the T1 scaling of `scripts/day04_size_10m.py`; this closes open items (1) and (2) below. Both scripts take `--span` (default 10; the 10 m file names are unchanged). Dated pre-registration amendment of 3 Nov records it as a code error against section 6, found after the 10 m results were seen. 10 m rerun, then the 20 m sizing, steel and carbon. Note: `notes/day06_20m.md`. pytest 50 passed (1 new test).
