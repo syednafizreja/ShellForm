@@ -8,15 +8,31 @@ ShellForm extends the seismic form-finding of Michiels & Adriaenssens (2017, 201
 
 ## Status
 
-Day 4 (1 Nov 2026): the 84 10 m designs sized (provisional); 39 tests. Pinned to ShellBench `v0.1.0`.
+Day 8 (5 Nov 2026): all 168 designs sized with steel and carbon (provisional, Days 4-6); test S4 passes (fallback, Day 7); batch runner and first gallery (Day 8); 60 tests. Pinned to ShellBench `v0.1.0`.
 
 | Item | Where | Status |
 |---|---|---|
-| Pre-registration | [docs/preregistration.md](docs/preregistration.md) | Approved 30 Oct 2026 |
+| Pre-registration | [docs/preregistration.md](docs/preregistration.md) | Approved 30 Oct 2026, dated amendments since |
 | Seismic-aware form-finding | `src/shellform/formfind.py`, `strategies.py` | 3D solver and both strategies done, tested |
-| Tests S1-S5 | `tests/`, `src/shellform/checks.py` | S2 and S3 check helpers ready; S1, S4, S5 wait for ShellBench tags |
-| 168 sized designs | `src/shellform/design_space.py`, `results/` | Design space and columns defined; no runs |
+| Tests S1-S5 | `tests/`, `src/shellform/checks.py` | S1-S4 pass, except the S1b comparison with ShellBench `floor-r1`, which waits for that tag; S4 is the section 8 fallback; S5 holds on every design (T1 at most 0.308 s) |
+| 168 sized designs | `src/shellform/pipeline.py`, `batch.py`, `results/` | All feasible; provisional until the carbon factors are confirmed and the 10 Nov freeze run |
+| Figures | `src/shellform/gallery.py`, `figures/` | First gallery (10 m, 20 m) |
 | Design explorer | [explorer/index.html](explorer/index.html) | Skeleton, dummy data |
+
+## Run
+
+From the repo root, in env `shellform`:
+
+```powershell
+python -m shellform.batch                     # 8 designs (preset smoke8), results/batch_smoke8.csv
+python -m shellform.batch --preset all        # all 168 designs
+python -m shellform.batch --span 10 --supports corners --sa 0.0 0.6   # any subset
+python -m shellform.batch --compare-record    # also check against the committed results
+python -m shellform.gallery                   # figures/gallery_10m.png, gallery_20m.png
+python -m pytest
+```
+
+Every results row names the ShellBench tag it used.
 
 ## Design space
 
@@ -30,13 +46,13 @@ ShellForm uses its own conda environment, `shellform` (a clone of ShellBench's `
 $conda = "C:\Users\ASUS\miniconda3\Scripts\conda.exe"
 cd C:\Users\ASUS
 git clone https://github.com/syednafizreja/ShellBench.git ShellBench-pin
-cd ShellBench-pin; git checkout v0.0.1          # the tag in src/shellform/pin.py
+cd ShellBench-pin; git checkout v0.1.0          # the tag in src/shellform/pin.py
 & $conda create -n shellform --clone research -y
 & $conda run -n shellform pip install -e C:\Users\ASUS\ShellBench-pin --no-deps
 & $conda run -n shellform pip install meshio
 cd C:\Users\ASUS\ShellForm
 & $conda run -n shellform pip install -e . --no-deps
-& $conda run -n shellform pytest
+& $conda run -n shellform python -m pytest
 ```
 
 To move the pin: `cd C:\Users\ASUS\ShellBench-pin; git fetch --tags; git checkout <new tag>`, update `src/shellform/pin.py`, run `pytest`, note it in LOG.md.
