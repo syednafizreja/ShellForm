@@ -2,9 +2,17 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
-## 5 Nov 2026, Claude in the app (Day 8 lock)
+## 5 Nov 2026, Claude in the app (Day 8, batch runner and first gallery)
 
-**Lock:** Day 8 (batch runner and first gallery) is being done by the app today. Claude Code on the laptop: do not start Day 8; pull after the app's Day 8 entry lands, then run the sync checks.
+**Done:** Day 8 was locked on main at 03:12 UTC, then done by the app only. The Day 6 laptop run is complete on main (PRs #11-#15); nothing is pending from it. New `src/shellform/pipeline.py`: the per-design steps of `scripts/day04_size_10m.py` and `scripts/day05_steel_carbon_10m.py`, moved without changing the calculation; both scripts now import them. New `src/shellform/batch.py` (`python -m shellform.batch`, every row names the ShellBench tag, `--compare-record` checks against the committed results and exits 1 on a mismatch) and `src/shellform/gallery.py` (`python -m shellform.gallery`). New `tests/test_batch.py`. Notes: `notes/day08_batch_gallery.md`. Cloud pytest: 60 passed (CalculiX 2.21 installed in the cloud today).
+
+**Results:** done-when met: `smoke8` (8 designs) from one command, 0 mismatches. All 168 through the batch runner: 0 mismatches against the Day 4-6 record; worst deflection 2.3e-4 (CalculiX 2.21 against 2.23), everything else at or below 1.2e-9. The committed day04/day05 files are unchanged. New files: `results/batch_smoke8.*`, `results/batch_all.*`, `figures/gallery_10m.*`, `figures/gallery_20m.*`. Gallery: the seismic-aware form has no plan shift and rises near mid-edge by at most 0.72 % of span at 0.6 g.
+
+**Decisions by the author today:** none; "finish all" under the standing delegation. Claude decided D8-1 (preset smoke8 = rise 0.15, Sa 0.3 g, every span, support and strategy) and D8-2 (record check tolerance 1e-3 relative, text and thickness exact) [J]. No pre-registration amendment: no design, load, check or threshold changed.
+
+**Open:** (1) Laptop: pull, `pip install -e . --no-deps`, `python -m pytest` (expect 60 passed with CalculiX), then `python -m shellform.batch --compare-record` (expect 0 mismatches on 2.23). Optionally `python -m shellform.gallery` should rewrite the figures with no visible change. (2) Author: the Michiels full texts; carbon factor rows and Annex F, as before. (3) ShellBench v0.3, floor-r2, floor-r3 not tagged (checked 5 Nov); pin stays v0.1.0.
+
+**Next:** 6 Nov, Day 9: stop-loss check (not behind: all 168 already run), then the section 7 sensitivity runs with the batch runner. One Claude only; lock it on main first.
 
 ## 4 Nov 2026, Claude Code in VS Code (Day 7 sync)
 

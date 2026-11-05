@@ -66,3 +66,12 @@
 - Problem: S4 is now a statics check, not a reproduction of the published case; the paper must say so. floor-r2/r3 still not tagged, so the pin stays at v0.1.0
 - Lesson: the windward thrust of a leaned arch vanishes at Sa ≈ L / 4f; the design rises keep it at 1.25 g or more
 - Tomorrow: Day 8, 5 Nov (6-9 Nov block starts 6 Nov): sensitivity runs of section 7 (λ_LBA 3 and 8, 61 × 61 network) if the plan says so; move the pin if floor-r2/r3 or v0.3 are tagged
+
+## Day 8 — 5 Nov 2026
+
+- Done (Claude in the app, under the author's standing delegation): Day 8 locked on main first; `src/shellform/pipeline.py` (the Day 4 and Day 5 per-design steps, moved out of the two scripts unchanged; the scripts import them); `src/shellform/batch.py` (`python -m shellform.batch`: presets `smoke8` and `all`, filters, `--compare-record`); `src/shellform/gallery.py` (`figures/gallery_10m.png`, `gallery_20m.png`); `tests/test_batch.py`; decisions D8-1 (smoke8 = rise 0.15, Sa 0.3 g) and D8-2 (record check: text and thickness exact, numbers 1e-3) [J]; README status updated
+- Result: pytest 60 passed (cloud, CalculiX 2.21). Done-when met: 8 designs from one command in 68 s, 0 mismatches against the record. All 168 through the batch runner: 0 mismatches, worst deflection 2.3e-4 (CalculiX version), steel 1.4e-10, carbon 2.7e-11. Gallery: the seismic-aware form does not move in plan; it rises near mid-edge by at most 0.72 % of span at 0.6 g (72 mm at 10 m, 144 mm at 20 m)
+- Problem: ShellBench v0.3, floor-r2 and floor-r3 still not tagged, so the pin stays at v0.1.0
+- Lesson: one code path for scripts, batch and freeze removes a class of "the script and the run differ" errors before the freeze
+- Tomorrow: Day 9, 6 Nov: the stop-loss check passes (not behind; all 168 already run); start the section 7 sensitivity runs (λ threshold, factor band, 61 × 61 mesh) with the batch runner; move the pin if a ShellBench tag lands
+
