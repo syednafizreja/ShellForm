@@ -2,6 +2,16 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 5 Nov 2026, Claude Code in VS Code (Day 8 sync)
+
+**Done:** Pulled main (1386f32). `pip install -e . --no-deps`, then laptop pytest: 60 passed (with CalculiX), as the app's Day 8 open item (1) expected. `python -m shellform.batch --compare-record` (default preset smoke8, CalculiX 2.23): 8 rows, 0 mismatches, exit 0; every column's max relative difference 0.00e+00 at the comparison's rounding. The rerun rewrote `results/batch_smoke8.*`; the differences were only runtime, the CalculiX version string (2.21 to 2.23) and last digits of the values, so the committed files were restored unchanged. The gallery was not rerun. Open item (1) is closed.
+
+**Decisions by the author today:** none new.
+
+**Open:** as in the app's Day 8 entry, items (2) and (3).
+
+**Next:** 6 Nov, Day 9. One Claude only; lock it on main first.
+
 ## 5 Nov 2026, Claude in the app (Day 8, batch runner and first gallery)
 
 **Done:** Day 8 was locked on main at 03:12 UTC, then done by the app only. The Day 6 laptop run is complete on main (PRs #11-#15); nothing is pending from it. New `src/shellform/pipeline.py`: the per-design steps of `scripts/day04_size_10m.py` and `scripts/day05_steel_carbon_10m.py`, moved without changing the calculation; both scripts now import them. New `src/shellform/batch.py` (`python -m shellform.batch`, every row names the ShellBench tag, `--compare-record` checks against the committed results and exits 1 on a mismatch) and `src/shellform/gallery.py` (`python -m shellform.gallery`). New `tests/test_batch.py`. Notes: `notes/day08_batch_gallery.md`. Cloud pytest: 60 passed (CalculiX 2.21 installed in the cloud today).
