@@ -2,6 +2,10 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 5 Nov 2026, Claude in the app (Day 8 lock)
+
+**Lock:** Day 8 (batch runner and first gallery) is being done by the app today. Claude Code on the laptop: do not start Day 8; pull after the app's Day 8 entry lands, then run the sync checks.
+
 ## 4 Nov 2026, Claude Code in VS Code (Day 7 sync)
 
 **Done:** Pulled main (baafd40). ShellBench-pin is at v0.1.0, which matches `SHELLBENCH_TAG`. `pip install -e . --no-deps`, then laptop pytest: 56 passed (with CalculiX), as open item (4) of the app's entry expected; that item is closed. Reran `scripts/day07_s4.py`: passed, 18 arch and 72 shell cases. The rerun differs from the committed files only in the last digits: values by at most 2e-14 relative, error columns by at most 1.2e-13 absolute (cloud against laptop floating point). The committed results were kept unchanged.
