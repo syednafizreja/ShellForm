@@ -69,8 +69,11 @@ class Check:
     deflection_m: float
 
 
-def check_thickness(xyz, n, fixed, span_m, t, inp, sa_g, workdir=None):
+def check_thickness(xyz, n, fixed, span_m, t, inp, sa_g, workdir=None, lambda_min=LAMBDA_MIN):
     """Run every load case at thickness t and apply the checks.
+
+    lambda_min is the buckling threshold; the default is the pre-registered
+    LAMBDA_MIN, and only the sensitivity run of section 7 changes it (3, 8).
 
     Returns:
         Check, with governing naming the first failed check ("" if all pass).
@@ -86,7 +89,7 @@ def check_thickness(xyz, n, fixed, span_m, t, inp, sa_g, workdir=None):
     comp = max(r.compression_pa for r in res.values())
     defl = res["uls_gravity"].sls_disp_m
     fails = []
-    if lam < LAMBDA_MIN:
+    if lam < lambda_min:
         fails.append("buckling")
     if comp > inp.f_c_pa:
         fails.append("compression")
@@ -103,12 +106,12 @@ def thickness_grid(span_m):
     return THICKNESS_MIN_M + THICKNESS_STEP_M * np.arange(k_max + 1)
 
 
-def size_design(xyz, n, fixed, span_m, inp, sa_g, workdir=None):
+def size_design(xyz, n, fixed, span_m, inp, sa_g, workdir=None, lambda_min=LAMBDA_MIN):
     """Return the sized thickness of one design and the checks tried.
 
     The checks get easier as the thickness grows (buckling factor and stress
     margin rise), so the grid is searched by bisection [J]; the step below
-    the answer is always checked and fails.
+    the answer is always checked and fails. lambda_min as in check_thickness.
 
     Returns:
         (Check at the sized thickness, or None if infeasible; dict t -> Check tried).
@@ -119,7 +122,7 @@ def size_design(xyz, n, fixed, span_m, inp, sa_g, workdir=None):
     def ok(i):
         t = round(float(grid[i]), 4)
         if t not in tried:
-            tried[t] = check_thickness(xyz, n, fixed, span_m, t, inp, sa_g, workdir)
+            tried[t] = check_thickness(xyz, n, fixed, span_m, t, inp, sa_g, workdir, lambda_min)
         return tried[t].passed
 
     if not ok(len(grid) - 1):

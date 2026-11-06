@@ -75,3 +75,10 @@
 - Lesson: one code path for scripts, batch and freeze removes a class of "the script and the run differ" errors before the freeze
 - Tomorrow: Day 9, 6 Nov: the stop-loss check passes (not behind; all 168 already run); start the section 7 sensitivity runs (λ threshold, factor band, 61 × 61 mesh) with the batch runner; move the pin if a ShellBench tag lands
 
+## Day 9 — 6 Nov 2026
+
+- Done (Claude in the app, under the author's standing delegation): stop-loss check (not behind; 168 of 168 on main since Day 8). Merged the paper workspace PRs #18 and #20. `src/shellform/sensitivity.py` (`python -m shellform.sensitivity`), sensitivity settings passed through `designs.py`, `sizing.py`, `pipeline.py`; `carbon.FACTOR_SET`; 7 new tests. Ran all 168 designs at λ_LBA ≥ 3, ≥ 8 and on a 61 x 61 network. Paper: `paper/03_sensitivity_outline.md` (Methods 2.9 and Results ISCT outline), draft rows in `paper/numbers.md`, notes in `00_core.md` and `01_professor_test.md`
+- Result: pytest 67 passed (cloud, CalculiX 2.21). 168 of 168 feasible in every variant. Headline holds in 0 of 10 scope cells per span under every variant (baseline 5 of 10 at 10 m, all artefact cells). The six baseline "seismic cheaper" cells vanish under all three variants; λ 3 adds two "gravity cheaper" cells at 10 m rise 0.20 (one 5 mm step; λ 3.0015 against 2.938 and 2.848 at 55 mm). 20 m verdicts never change. Corner carbon 0.735-0.812 (λ 3) and 1.219-1.294 (λ 8) of baseline; gravity-form cost of resilience at most 1.036 (λ 8, 20 m, rise 0.10). 61 x 61: 20 of 168 thicknesses move one step, T1 max 0.321 s (S5 holds)
+- Problem: ShellBench v0.2.0 tagged today; its factor file holds a second set, so the set is now named in code. Pin stays v0.1.0 until the freeze run
+- Lesson: on 55-90 mm shells one 5 mm step is 6-9 %, larger than the 5 % band, so every verdict change in the runs is a grid step; the buckling threshold, not Sa, sets corner-shell carbon
+- Tomorrow: Day 10 (7 Nov): S5 table; pin to v0.2.0 with the record check; then figures (9 Nov) and freeze (10 Nov)

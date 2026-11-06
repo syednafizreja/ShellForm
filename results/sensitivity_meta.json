@@ -1,0 +1,33 @@
+{
+ "shellbench_tag": "v0.1.0",
+ "baseline": "results/batch_all.csv",
+ "baseline_settings": {
+  "lambda_min": 5.0,
+  "grid_n": 41
+ },
+ "variants": {
+  "baseline": {},
+  "lam3": {
+   "lambda_min": 3.0
+  },
+  "lam8": {
+   "lambda_min": 8.0
+  },
+  "mesh61": {
+   "grid_n": 61
+  }
+ },
+ "headline_rule": {
+  "rise_ratio": 0.15,
+  "sa_min_g": 0.2,
+  "band_corners": [
+   "c-s-",
+   "c-s+",
+   "c+s-",
+   "c+s+"
+  ],
+  "meaningful_difference": 0.05
+ },
+ "command": "python -m shellform.sensitivity --summarise",
+ "status": "provisional: carbon factors in ShellBench's file are marked 'author to confirm'"
+}

@@ -36,6 +36,8 @@ Reasons [J]:
 
 Checked again after the freeze run: if the 10 Nov run changes any verdict, this choice is revisited by a dated note here.
 
+**6 Nov 2026, Day 9 note [J]:** the section 7 sensitivity runs support this narrative (`03_sensitivity_outline.md`). At λ 3 and λ 8 the six baseline "seismic cheaper" cells vanish; no cell anywhere reaches "seismic cheaper"; the headline holds in 0 of 10 scope cells per span. The buckling threshold moves corner-shell carbon by about 20 to 30 %, the seismic level by at most 3.6 % (gravity form). A sharper mechanism line for Syed to consider: the carbon of these shells is set by the support condition and the buckling safety factor, not by the seismic level. On 61 × 61 every cell is "no meaningful difference" too (84 of 84).
+
 ## 5. Target journal and article type
 
 Computers & Structures, research article. Three recent C&S papers to model: [?] Author (opened, with DOIs, in `references.md`).

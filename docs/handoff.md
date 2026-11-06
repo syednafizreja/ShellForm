@@ -2,6 +2,18 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 6 Nov 2026, Claude in the app (Day 9, sensitivity runs)
+
+**Done:** Day 9 was locked on main at 13:15 UTC and done by the app only. Merged the paper workspace PRs #18 and #20 (clean, paper notes only). Stop-loss check: not behind. New `src/shellform/sensitivity.py` (`python -m shellform.sensitivity --run lam3 lam8 mesh61`, `--summarise`); `grid_n` and `lambda_min` pass through `designs.py`, `sizing.py` and `pipeline.py` with the pre-registered defaults, so Day 8's code path is unchanged; `carbon.FACTOR_SET = "GBT51366"`. New `tests/test_sensitivity.py` (7). Notes: `notes/day09_sensitivity.md`. Pre-registration: a dated Day 9 entry (D9-1 to D9-4); no rule changed. Paper: `paper/03_sensitivity_outline.md` (outline only, as the author's skills require), draft rows in `numbers.md`. Cloud pytest: 67 passed (CalculiX 2.21).
+
+**Results:** all 168 designs at λ ≥ 3, λ ≥ 8 and 61 x 61; 168 of 168 feasible each time. Headline not made under any variant (0 of 10 scope cells per span). The six baseline "seismic cheaper" cells vanish under all three variants; λ 3 adds two "gravity cheaper" cells (10 m corners, rise 0.20, Sa 0.5-0.6 g), one 5 mm step; 20 m verdicts never change; every verdict is the same at all four band corners. Corner carbon 0.735-0.812 (λ 3) and 1.219-1.294 (λ 8) of baseline, against a gravity-form cost of resilience of at most 1.036. 61 x 61: 20 of 168 thicknesses move one step, T1 max 0.321 s. New files: `results/sens_{lam3,lam8,mesh61}.*`, `results/sensitivity_{summary,cells,reference}.csv`, `results/sensitivity_meta.json`.
+
+**Decisions by the author today:** "finish all" under the standing delegation; the author asked that four skills be used for the manuscript (academic-manuscript-writing, -workflow, academic-humanizer, syed-academic-voice-dna). Claude decided D9-1 to D9-4 [J].
+
+**Open:** (1) Laptop: pull, `pip install -e . --no-deps`, `python -m pytest` (expect 67 passed with CalculiX); optionally `python -m shellform.sensitivity --summarise` (should leave the four tables unchanged). (2) ShellBench v0.2.0 is tagged: move the pin before the freeze run (Day 10). (3) Author: the Michiels full texts; the official-copy check of the carbon factor rows; Annex F.
+
+**Next:** 7 Nov, Day 10: S5 table, pin to v0.2.0 with `--compare-record`. One Claude only; lock it on main first.
+
 ## 6 Nov 2026, Claude in the app (Day 9 lock)
 
 **Lock:** Day 9 (sensitivity runs of pre-registration section 7: λ_LBA 3 and 8, 61 x 61 network, factor band) is done by the app only, from 13:15 UTC. The laptop should not start Day 9; pull when the app's Day 9 entry appears above this one.
