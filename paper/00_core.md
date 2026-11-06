@@ -24,9 +24,17 @@ Status: empty template, 6 Nov 2026. Results are provisional until the 10 Nov fre
 
 ## 4. Master narrative (pick one the data supports)
 
-[?] Author. Options from the skill: quantify costs and benefits; reveal a hidden phenomenon; explain a mechanism; resolve a dilemma; solve a puzzle; expose an unintended consequence.
+**Chosen 6 Nov 2026 by Claude under the author's standing delegation of 30 Oct ("do not ask me ever") [J]. The author may reverse this.** Narrative: *explain a mechanism*, reported as a pre-registered null result.
 
-[J] The record fits "explain a mechanism" best: thickness is set by linear buckling or the 50 mm minimum, steel by the minimum ratio, and none of these responds to Sa up to 0.6 g, so the form change has nothing to save. A pre-registered null result is reportable; the paper must say what would make it non-null (heavier mass, longer span, unreinforced shells, nonlinear buckling).
+Working line (a direction, not paper text; the author writes the sentence): in reinforced concrete shells of 10 and 20 m sized to code checks, carbon does not respond to seismic level up to 0.6 g, so a seismic-aware form has nothing to save and no meaningful carbon difference from the gravity form.
+
+Reasons [J]:
+1. The record supports it: no meaningful difference in 78 of 84 cells, with the other 6 shown to be artefacts. Cost of resilience is about 1.0 for both strategies.
+2. Pre-registration section 7 requires "no meaningful difference" to be reported as such, and it bars the headline claim. A mechanism narrative reports the null honestly and still gives the reader a reason: thickness is set by linear buckling or the 50 mm minimum, steel by the minimum ratio, and none of these responds to Sa.
+3. Wording to avoid: "seismic-aware form-finding gives resilience at no carbon cost". Both strategies pass the same seismic checks at the same carbon, so the seismic-aware form does not deliver the resilience; the governing checks do. That wording would overclaim strategy 2.
+4. The paper must say where the null should break, as testable limits: heavier mass, longer spans, unreinforced or masonry shells (Michiels' setting), nonlinear or imperfection-sensitive buckling, and response-spectrum or time-history analysis.
+
+Checked again after the freeze run: if the 10 Nov run changes any verdict, this choice is revisited by a dated note here.
 
 ## 5. Target journal and article type
 
