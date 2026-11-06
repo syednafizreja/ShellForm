@@ -2,6 +2,10 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 6 Nov 2026, Claude in the app (Day 9 lock)
+
+**Lock:** Day 9 (sensitivity runs of pre-registration section 7: λ_LBA 3 and 8, 61 x 61 network, factor band) is done by the app only, from 13:15 UTC. The laptop should not start Day 9; pull when the app's Day 9 entry appears above this one.
+
 ## 6 Nov 2026, Claude in the app (paper workspace only, not a build day)
 
 **Done:** On branch `paper-setup`, added the manuscript workspace from the academic-manuscript-writing skill: `paper/00_core.md` (gap, contribution, headline, narrative, journal, Reviewer 2: empty for the author, with [J] prompts), `paper/numbers.md` and `paper/references.md` (traceability tables), `paper/02_methods_outline.md` (bullet skeleton pointing to the pre-registration and notes). No code, result or pre-registration change. Day 9 was not locked or started.
