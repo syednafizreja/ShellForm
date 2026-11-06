@@ -2,6 +2,14 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 6 Nov 2026, Claude in the app (paper workspace only, not a build day)
+
+**Done:** On branch `paper-setup`, added the manuscript workspace from the academic-manuscript-writing skill: `paper/00_core.md` (gap, contribution, headline, narrative, journal, Reviewer 2: empty for the author, with [J] prompts), `paper/numbers.md` and `paper/references.md` (traceability tables), `paper/02_methods_outline.md` (bullet skeleton pointing to the pre-registration and notes). No code, result or pre-registration change. Day 9 was not locked or started.
+
+**Decisions by the author today:** none.
+
+**Open:** author fills `paper/00_core.md` before the Methods prose; numbers rows are filled from the 10 Nov freeze run.
+
 ## 5 Nov 2026, Claude Code in VS Code (Day 8 sync)
 
 **Done:** Pulled main (1386f32). `pip install -e . --no-deps`, then laptop pytest: 60 passed (with CalculiX), as the app's Day 8 open item (1) expected. `python -m shellform.batch --compare-record` (default preset smoke8, CalculiX 2.23): 8 rows, 0 mismatches, exit 0; every column's max relative difference 0.00e+00 at the comparison's rounding. The rerun rewrote `results/batch_smoke8.*`; the differences were only runtime, the CalculiX version string (2.21 to 2.23) and last digits of the values, so the committed files were restored unchanged. The gallery was not rerun. Open item (1) is closed.
