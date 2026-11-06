@@ -2,6 +2,16 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 6 Nov 2026, Claude Code in VS Code (Day 9 sync)
+
+**Done:** Pulled main (e6ca2aa). `pip install -e . --no-deps`, then laptop pytest: 67 passed (with CalculiX), as the app's Day 9 open item (1) expected. `python -m shellform.sensitivity --summarise`: the four tables (`sensitivity_summary`, `_cells`, `_reference`) came out unchanged; headline not made under any variant, as the app reported. The only change was `results/sensitivity_meta.json`, where `"baseline"` was written with a Windows path separator (`results\\batch_all.csv`), so the committed file was restored. Open item (1) is closed.
+
+**Decisions by the author today:** none new.
+
+**Open:** (a) Small portability fix for Day 10: write the baseline path in `sensitivity_meta.json` with `as_posix()` so a laptop rerun is byte-identical. (b) As in the app's Day 9 entry, items (2) and (3).
+
+**Next:** 7 Nov, Day 10. One Claude only; lock it on main first.
+
 ## 6 Nov 2026, Claude in the app (Day 9, sensitivity runs)
 
 **Done:** Day 9 was locked on main at 13:15 UTC and done by the app only. Merged the paper workspace PRs #18 and #20 (clean, paper notes only). Stop-loss check: not behind. New `src/shellform/sensitivity.py` (`python -m shellform.sensitivity --run lam3 lam8 mesh61`, `--summarise`); `grid_n` and `lambda_min` pass through `designs.py`, `sizing.py` and `pipeline.py` with the pre-registered defaults, so Day 8's code path is unchanged; `carbon.FACTOR_SET = "GBT51366"`. New `tests/test_sensitivity.py` (7). Notes: `notes/day09_sensitivity.md`. Pre-registration: a dated Day 9 entry (D9-1 to D9-4); no rule changed. Paper: `paper/03_sensitivity_outline.md` (outline only, as the author's skills require), draft rows in `numbers.md`. Cloud pytest: 67 passed (CalculiX 2.21).
