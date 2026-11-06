@@ -45,3 +45,5 @@ Computers & Structures, research article. Three recent C&S papers to model: [?] 
 [?] Author.
 
 [J] Candidates: (a) equivalent static Sa × G_E and linear buckling are too simple to show a seismic benefit; (b) a null result in one plan shape and two spans does not generalise; (c) the seismic-aware form is ShellForm's own definition (midrange of four thrust surfaces, P1), so the null may come from the definition, not from seismic form-finding as such.
+
+[J] A fuller Reviewer 2 table with draft answers (R2-1 to R2-7), plus the gap search, journal fit, limitations, frozen names and figure plan, is in `01_professor_test.md`.
