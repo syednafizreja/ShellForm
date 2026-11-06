@@ -79,6 +79,8 @@ Get the Michiels papers this week (ResearchGate request to the authors, or your 
 
 ## 5. Dates (aligned with ShellBench's schedule)
 
+Remaining days from 7 Nov, with done-when lines: `docs/plan.md`.
+
 | Date | ShellForm work | Depends on |
 |---|---|---|
 | 29–30 Oct | Repo set up; read Michiels 2017 (C&S) and 2018; write `docs/preregistration.md` (sections 3–4 of this file, with decision rules); explorer skeleton (three.js, dummy data) | Nothing from ShellBench |
