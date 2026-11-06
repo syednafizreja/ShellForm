@@ -29,6 +29,7 @@ The author writes the prose (skill ground rule 1). This skeleton gives the order
 
 ## 2.6 Carbon
 - A1-A3, GB/T 51366-2019 factors read from ShellBench; ±25 % band, four corners (P3); per m² of plan area (3 Nov amendment).
+- One factor set only (GB/T 51366) with the band. Say why ICE is not used (licence, P3). Never "both factor sets", even though the 28 Oct project goal says so.
 
 ## 2.7 Decision rules
 - Prereg section 7, quoted as written before results.
@@ -36,3 +37,6 @@ The author writes the prose (skill ground rule 1). This skeleton gives the order
 ## 2.8 Validation
 - S1-S5 table with tolerances set in advance; S4 fallback (4 Nov amendment) and what it does not show.
 - Mesh sensitivity at 61 × 61 and buckling factor 3 and 8 (Day 9 runs).
+
+## 2.9 Sensitivity
+- See `03_sensitivity_outline.md` (Methods bullets and the Results paragraphs, Day 9).

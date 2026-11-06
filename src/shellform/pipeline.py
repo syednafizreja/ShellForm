@@ -21,11 +21,11 @@ import numpy as np
 
 from shellform.carbon import band_corners, carbon_kgco2e, load_factors
 from shellform.design_space import RESULT_COLUMNS
-from shellform.designs import N_GRID, form
+from shellform.designs import form, grid_n
 from shellform.fe import plan_area, run_case, surface_area
 from shellform.inputs import load_inputs, shellbench_root
 from shellform.pin import SHELLBENCH_TAG
-from shellform.sizing import ZONE_RADIUS_SPAN_RATIO, check_as_dict, load_cases, size_design
+from shellform.sizing import LAMBDA_MIN, ZONE_RADIUS_SPAN_RATIO, check_as_dict, load_cases, size_design
 from shellform.steel import rho_min, take_off
 from shellform.strategies import envelope_thickness
 
@@ -40,29 +40,34 @@ def size_one(case):
     """Size one design and return (results row, list of tried checks).
 
     Args:
-        case: One dict of shellform.design_space.design_space().
+        case: One dict of shellform.design_space.design_space(). Two optional
+            keys exist only for the sensitivity runs of pre-registration
+            section 7: grid_n (network size, default 41) and lambda_min
+            (buckling threshold, default LAMBDA_MIN = 5).
 
     Returns:
         (row with the SIZING_COLUMNS keys, list of dicts, one per thickness tried).
     """
     inp = load_inputs()
     net, grav, mid = form(case)
+    n = grid_n(case)
     span, sa = case["span_m"], case["sa_g"]
-    best, tried = size_design(mid, N_GRID, net.fixed, span, inp, sa)
-    area = surface_area(mid, N_GRID)
+    best, tried = size_design(mid, n, net.fixed, span, inp, sa,
+                              lambda_min=float(case.get("lambda_min", LAMBDA_MIN)))
+    area = surface_area(mid, n)
     row = {k: "" for k in RESULT_COLUMNS}
     row.update(case)
     row.update(shellbench_tag=SHELLBENCH_TAG, feasible=best is not None,
                t_env_m=envelope_thickness(mid, grav, sa))
     if best is not None:
         _, sls = load_cases(inp, sa)
-        modal = run_case(mid, N_GRID, net.fixed, best.thickness_m, inp.e_pa, inp.nu,
+        modal = run_case(mid, n, net.fixed, best.thickness_m, inp.e_pa, inp.nu,
                          inp.density_kg_m3, sls[0], sls[1], n_modes=1)
         # FREQUENCY uses the concrete mass only; scale T1 for the SDL mass of G_E [J].
         m_self = inp.density_kg_m3 * best.thickness_m * area
         # SDL and live load act per plan area (D4-5), so their mass uses the plan
         # area of the shell, not span ** 2 (amendment of 3 Nov 2026).
-        m_sdl = (inp.sdl_pa + inp.psi_e_roof * inp.live_pa) / inp.g_m_s2 * plan_area(mid, N_GRID)
+        m_sdl = (inp.sdl_pa + inp.psi_e_roof * inp.live_pa) / inp.g_m_s2 * plan_area(mid, n)
         row.update(thickness_m=best.thickness_m, concrete_m3=best.thickness_m * area,
                    buckling_factor=best.buckling_factor,
                    period_1_s=float(modal.periods_s[0] * np.sqrt((m_self + m_sdl) / m_self)),
@@ -88,23 +93,25 @@ def takeoff_one(args):
     """Take off steel and carbon of one sized design; return its results row.
 
     Args:
-        args: (case dict, sized thickness [m]).
+        args: (case dict, sized thickness [m]). The case may carry grid_n
+            (see size_one).
     """
     case, t = args
     inp = load_inputs()
     rho = rho_min(inp, (shellbench_root() / "docs" / "floor_concept.md").read_text(encoding="utf-8"))
     fac = load_factors()
     net, _, mid = form(case)
+    n = grid_n(case)
     span = case["span_m"]
     zone = ZONE_RADIUS_SPAN_RATIO * span
     cases, _ = load_cases(inp, case["sa_g"])
-    res = {name: run_case(mid, N_GRID, net.fixed, t, inp.e_pa, inp.nu, inp.density_kg_m3, acc, w,
+    res = {name: run_case(mid, n, net.fixed, t, inp.e_pa, inp.nu, inp.density_kg_m3, acc, w,
                           zone_radius_m=zone) for name, acc, w in cases}
-    s = take_off(mid, N_GRID, t, res, inp, rho, fac.steel_density_kg_m3, zone)
-    area = surface_area(mid, N_GRID)
+    s = take_off(mid, n, t, res, inp, rho, fac.steel_density_kg_m3, zone)
+    area = surface_area(mid, n)
     # Per m2 of plan area (pre-registration section 6): the plan area the shell
     # covers, which is less than span ** 2 for inset corner shells (amendment of 3 Nov 2026).
-    plan = plan_area(mid, N_GRID)
+    plan = plan_area(mid, n)
     shell_m3 = t * area
     concrete = shell_m3 + s.zone_concrete_m3
     row = dict(case)

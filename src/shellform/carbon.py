@@ -22,6 +22,11 @@ from itertools import product
 
 #: Relative half-width of the factor band (pre-registration decision P3).
 FACTOR_BAND = 0.25
+#: The one factor set of pre-registration section 6 (GB/T 51366-2019), named as
+#: in ShellBench's file. Named explicitly since 6 Nov 2026 (Day 9): from tag
+#: v0.2.0 the file also holds a second set (OVAL2023), so "the only set in the
+#: file" no longer identifies it.
+FACTOR_SET = "GBT51366"
 
 
 @dataclass(frozen=True)
@@ -52,11 +57,12 @@ def factors_path():
     return shellbench_root() / "data" / "carbon_factors.csv"
 
 
-def load_factors(set_name=None):
+def load_factors(set_name=FACTOR_SET):
     """Read one factor set from ShellBench, in place.
 
     Args:
-        set_name: Factor set; if None, the file must hold exactly one set.
+        set_name: Factor set; default FACTOR_SET. If None, the file must hold
+            exactly one set.
 
     Returns:
         Factors.

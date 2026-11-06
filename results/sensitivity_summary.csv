@@ -1,0 +1,9 @@
+variant,span_m,shellbench_tag,designs,feasible,thickness_changed_vs_baseline,governing_counts,cells,verdict_counts_central,cells_same_verdict_all_corners,cells_flipped_vs_baseline,max_abs_rel_diff_central,cost_of_resilience_gravity_min,cost_of_resilience_gravity_max,cost_of_resilience_seismic_min,cost_of_resilience_seismic_max,headline_scope_cells,headline_cells_holding,headline_holds
+baseline,10.0,v0.1.0,84,84,0,buckling 42; t_min 42,42,no meaningful difference 36; seismic cheaper 6,42,0,0.05785013735895281,1.0,1.0000422059796372,0.9421498626410472,1.0144413387759557,10,5,False
+baseline,20.0,v0.1.0,84,84,0,buckling 42; t_min 42,42,no meaningful difference 42,42,0,0.01993240830324022,1.0,1.0039961069968681,0.9829701025390828,1.0145518443181771,10,0,False
+lam3,10.0,v0.1.0,84,84,42,buckling 42; t_min 42,42,gravity cheaper 2; no meaningful difference 40,42,8,0.08387149265624222,1.0,1.0,0.9972547996669257,1.0838714926562423,10,0,False
+lam3,20.0,v0.1.0,84,84,42,buckling 42; t_min 42,42,no meaningful difference 42,42,0,0.03632688894128943,1.0,1.0026234386500068,0.9636731110587106,1.0145518443181771,10,0,False
+lam8,10.0,v0.1.0,84,84,42,buckling 42; t_min 42,42,no meaningful difference 42,42,6,0.014441338775955555,1.0,1.000092452124144,0.9897492285132667,1.0144413387759557,10,0,False
+lam8,20.0,v0.1.0,84,84,42,buckling 42; t_min 42,42,no meaningful difference 42,42,0,0.02464075796024005,1.0,1.0356620842866786,0.9756263710908318,1.0185063535733285,10,0,False
+mesh61,10.0,v0.1.0,84,84,6,buckling 42; t_min 42,42,no meaningful difference 42,42,6,0.014564944902991823,1.0,1.0012583952016356,0.9929090107873219,1.0145649449029919,10,0,False
+mesh61,20.0,v0.1.0,84,84,14,buckling 42; t_min 42,42,no meaningful difference 42,42,0,0.025696052351937594,1.0,1.0074157267157953,0.9773346336754393,1.0244117467638827,10,0,False

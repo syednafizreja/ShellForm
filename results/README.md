@@ -8,3 +8,5 @@ Every file here is written by a script in the repo and names the ShellBench tag 
 - `day07_s4_arch.csv`, `day07_s4_shells.csv`, `day07_s4_meta.json`: Day 7, test S4 (fallback, closed-form lean of a parabolic arch) and S4b on the design shells. Passes.
 - `batch_smoke8.csv`, `batch_smoke8_meta.json`: Day 8, 8 designs run by `python -m shellform.batch --compare-record` (done-when check); 0 mismatches against the record.
 - `batch_all.csv`, `batch_all_meta.json`: Day 8, all 168 designs through the batch runner, checked against the Day 4-6 record.
+- `sens_lam3.*`, `sens_lam8.*`, `sens_mesh61.*`: Day 9, all 168 designs at λ_LBA ≥ 3, at λ_LBA ≥ 8 and on a 61 x 61 network (`python -m shellform.sensitivity --run ...`; pre-registration section 7).
+- `sensitivity_summary.csv`, `sensitivity_cells.csv`, `sensitivity_reference.csv`, `sensitivity_meta.json`: Day 9 tables against the baseline `batch_all.csv` (`python -m shellform.sensitivity --summarise`).

@@ -59,3 +59,7 @@ C&S publishes computational methods first. Risk: an editor reads ShellForm as an
 2. Methods skeleton (bullets, not prose) from the pre-registration and notes; Syed writes the prose.
 3. Results after the freeze run, ISCT per figure, numbers only from `numbers.md`.
 4. Discussion, Introduction (after the gap search), Conclusion, Abstract, Highlights, Title.
+
+## 8. Day 9 update (6 Nov 2026)
+
+R2-1 and R2-3 now have numbers from the sensitivity runs; see the last section of `03_sensitivity_outline.md`. New Reviewer 2 point [J]: R2-8 "Your 5 % band is smaller than one 5 mm thickness step on a 55 to 90 mm shell (6 to 9 %), so verdicts near a step are noise." Answer: report λ at the sized thickness and the step below for every corner design (in `results/*_meta.json`, "tried"), and show that every verdict change in the sensitivity runs is a step effect of this kind.
