@@ -12,6 +12,11 @@ Newest entry first. Each Claude reads this at the start of a session and adds an
 
 **Next:** 7 Nov, Day 10. One Claude only; lock it on main first.
 
+**Later on 6 Nov (author items closed):**
+- **Carbon factor rows:** the author states the GB/T 51366-2019 PDF was downloaded from mohurd.gov.cn, so the official-copy check is closed. ShellBench PR #130 (branch `carbon-official-copy`) updates the source text only; no value changed (checked: 295, 340, 2340 x3, 3030, 1990, 2.18, 534.5, 472.7). The author merges it.
+- **EN 1992-1-1:2004 Annex F:** checked by Claude from search-result excerpts of the code text (no full copy was read): F.1 (2) covers in-plane σEdx, σEdy, τEdxy; (F.2) f'tdx = |τEdxy| − σEdx and (F.3) f'tdy = |τEdxy| − σEdy, for σEdx ≤ |τEdxy|, compression positive. With tension positive this is σ + |τ|, the D5-2 rule. Where σEdx > |τEdxy| the annex gives f'tdx = 0 and f'tdy = τ²/σEdx − σEdy; D5-2 does not take that relief, so it is conservative [J]. Author to confirm in their own copy.
+- **Michiels full texts:** the J. IASS paper (Michiels, Adriaenssens, Jorquera-Lucerga 2017) is open as a submitted version, CC BY-NC-ND: http://hdl.handle.net/10317/25326. The C&S 2018, Eng. Struct. 2017 and Eng. Struct. 2018 papers have no open copy (Unpaywall, 6 Nov); they need library access or a request to the authors.
+
 ## 6 Nov 2026, Claude in the app (Day 9, sensitivity runs)
 
 **Done:** Day 9 was locked on main at 13:15 UTC and done by the app only. Merged the paper workspace PRs #18 and #20 (clean, paper notes only). Stop-loss check: not behind. New `src/shellform/sensitivity.py` (`python -m shellform.sensitivity --run lam3 lam8 mesh61`, `--summarise`); `grid_n` and `lambda_min` pass through `designs.py`, `sizing.py` and `pipeline.py` with the pre-registered defaults, so Day 8's code path is unchanged; `carbon.FACTOR_SET = "GBT51366"`. New `tests/test_sensitivity.py` (7). Notes: `notes/day09_sensitivity.md`. Pre-registration: a dated Day 9 entry (D9-1 to D9-4); no rule changed. Paper: `paper/03_sensitivity_outline.md` (outline only, as the author's skills require), draft rows in `numbers.md`. Cloud pytest: 67 passed (CalculiX 2.21).
