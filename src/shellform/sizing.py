@@ -27,6 +27,12 @@ from shellform.fe import run_case
 THICKNESS_MIN_M = 0.050      # pre-registration section 5 (t_min)
 THICKNESS_STEP_M = 0.005     # pre-registration section 5 (5 mm steps)
 LAMBDA_MIN = 5.0             # pre-registration section 5 (lambda_LBA)
+#: Buckling factors requested from CalculiX in every sizing run. With 1 (Days
+#: 4-9) the eigensolver returned the lowest factor up to 0.26 % high at
+#: lambda 5 and up to 3.6 % high at lambda 8; with 2 or more it is converged
+#: (7 Nov 2026, results/buckling_modes_check.csv). 4 leaves a margin [J].
+#: Pre-registration amendment of 7 Nov 2026 (D10-1).
+N_BUCKLE_SIZING = 4
 DEFLECTION_SPAN_RATIO = 300  # pre-registration section 5 (L/300)
 INFEASIBLE_SPAN_RATIO = 50   # pre-registration section 5 (span/50)
 ZONE_RADIUS_SPAN_RATIO = 0.20  # decision D4-2 [J]: corner support zone radius / span
@@ -69,11 +75,15 @@ class Check:
     deflection_m: float
 
 
-def check_thickness(xyz, n, fixed, span_m, t, inp, sa_g, workdir=None, lambda_min=LAMBDA_MIN):
+def check_thickness(xyz, n, fixed, span_m, t, inp, sa_g, workdir=None, lambda_min=LAMBDA_MIN,
+                    n_buckle=N_BUCKLE_SIZING):
     """Run every load case at thickness t and apply the checks.
 
     lambda_min is the buckling threshold; the default is the pre-registered
     LAMBDA_MIN, and only the sensitivity run of section 7 changes it (3, 8).
+    n_buckle is the number of buckling factors requested from CalculiX
+    (fe.write_case_deck); default N_BUCKLE_SIZING (D10-1). The record of
+    Days 4-9 used 1.
 
     Returns:
         Check, with governing naming the first failed check ("" if all pass).
@@ -83,7 +93,7 @@ def check_thickness(xyz, n, fixed, span_m, t, inp, sa_g, workdir=None, lambda_mi
     res = {}
     for k, (name, acc, w) in enumerate(cases):
         res[name] = run_case(xyz, n, fixed, t, inp.e_pa, inp.nu, inp.density_kg_m3, acc, w,
-                             sls=sls if k == 0 else None, zone_radius_m=zone,
+                             sls=sls if k == 0 else None, zone_radius_m=zone, n_buckle=n_buckle,
                              workdir=None if workdir is None else f"{workdir}/{name}_{t*1e3:.0f}")
     lam = min(r.buckling_factor for r in res.values())
     comp = max(r.compression_pa for r in res.values())

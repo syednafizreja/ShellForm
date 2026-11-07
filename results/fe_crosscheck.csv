@@ -1,0 +1,5 @@
+design_id,shellbench_tag,span_m,supports,rise_ratio,thickness_m,grid_n,elements,pinned_nodes,max_disp_shellform_m,max_disp_shellbench_m,disp_rel_diff,buckling_shellform,buckling_shellbench,buckling_rel_diff,within_tolerance
+L10-corners-r0.15-gravity-sa0.3,v0.2.0,10.0,corners,0.15,0.09,41,400,4,0.0021689872300619064,0.0021689872300619064,0.0,12.82882,12.82882,0.0,True
+L10-edges-r0.15-gravity-sa0.3,v0.2.0,10.0,edges,0.15,0.05,41,400,160,4.904145e-05,4.904145e-05,0.0,348.8767,347.9808,0.0025745673324506415,True
+L20-corners-r0.15-gravity-sa0.3,v0.2.0,20.0,corners,0.15,0.215,41,400,4,0.008119853666707672,0.008119853666707672,0.0,8.634326,8.634326,0.0,True
+L20-edges-r0.15-gravity-sa0.3,v0.2.0,20.0,edges,0.15,0.05,41,400,160,0.0001979189,0.0001979189,0.0,70.54439,70.54936,7.044713091636736e-05,True

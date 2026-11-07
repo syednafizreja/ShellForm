@@ -1,5 +1,5 @@
 {
- "shellbench_tag": "v0.1.0",
+ "shellbench_tag": "v0.2.0",
  "grid_n": 41,
  "inputs": {
   "e_pa": 32500000000.0,
@@ -46,7 +46,7 @@
   "steel_kgco2e_kg": 2.34,
   "steel_density_kg_m3": 7850.0
  },
- "factor_file": "ShellBench data/carbon_factors.csv at v0.1.0",
+ "factor_file": "ShellBench data/carbon_factors.csv at v0.2.0",
  "factor_band": 0.25,
  "status": "provisional: every factor row in ShellBench's file is marked 'author to confirm'"
 }

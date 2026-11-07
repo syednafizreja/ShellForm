@@ -5,7 +5,7 @@ Claude's judgement [J], written in a demanding professor's voice and adopted by 
 ## 1. Direction
 
 - Keep: pre-registration, reproducibility, traceable numbers, sensitivity runs.
-- The result is a null (no meaningful difference in 78 of 84 cells; the other 6 are artefacts). **The paper's lead is the mechanism:** thickness and steel are set by buckling, the support condition and code minimums, not by Sa. Title, abstract and main figure carry the mechanism; the null is the evidence.
+- The result is a null (no meaningful difference in 79 of 84 cells; the other 5 are artefacts (78 and 6 before the 7 Nov solver correction)). **The paper's lead is the mechanism:** thickness and steel are set by buckling, the support condition and code minimums, not by Sa. Title, abstract and main figure carry the mechanism; the null is the evidence.
 - Weakest point: S4 runs on the fallback (no Michiels full text). Fix it by contacting the authors (section 3).
 
 ## 2. Papers

@@ -286,7 +286,7 @@ def _cload_lines(shares, used, w_pa):
 
 
 def write_case_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3,
-                    accel, w_pa, sls=None, n_modes=0, clamp=False):
+                    accel, w_pa, sls=None, n_modes=0, clamp=False, n_buckle=1):
     """Return a CalculiX deck for one load case: buckling, static, optional SLS and modes.
 
     Step order: BUCKLE first (so no earlier load acts as a preload), then
@@ -300,6 +300,10 @@ def write_case_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3,
         sls: Optional (accel, w_pa) pair for the serviceability case.
         n_modes: Number of natural modes to compute (0 for none).
         clamp: Fix rotations at the fixed nodes (tests only).
+        n_buckle: Buckling factors requested. The record (Days 4-9) asks for 1;
+            CalculiX's eigensolver then returns the lowest factor up to 0.2 %
+            high for corner shells and up to 2.8 % high for edge shells, as
+            measured on 7 Nov 2026 (shellform.crosscheck, notes/day10_s5_pin.md).
     """
     els = s8r_elements(n)
     used = np.unique(els)
@@ -314,7 +318,7 @@ def write_case_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3,
         out += [f"*CLOAD{op}"] + cl if cl else ([f"*CLOAD{op}"] if new else [])
         return out
 
-    lines = head + ["*STEP", "*BUCKLE", "1"] + loads(accel, w_pa, False) + ["*END STEP"]
+    lines = head + ["*STEP", "*BUCKLE", f"{n_buckle}"] + loads(accel, w_pa, False) + ["*END STEP"]
     lines += ["*STEP", "*STATIC"] + loads(accel, w_pa, True)
     lines += ["*NODE PRINT,NSET=NUSED", "U", "*EL PRINT,ELSET=EALL", "S", "*END STEP"]
     if sls is not None:
@@ -390,13 +394,15 @@ def surface_principal_stresses(stress_rows):
 
 
 def run_case(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3, accel, w_pa,
-             sls=None, n_modes=0, workdir=None, ccx=None, clamp=False, zone_radius_m=0.0):
+             sls=None, n_modes=0, workdir=None, ccx=None, clamp=False, zone_radius_m=0.0,
+             n_buckle=1):
     """Run one load case in CalculiX and return the sizing quantities.
 
     Args:
         As for write_case_deck; workdir and ccx as for analyse.
         zone_radius_m: Radius of the corner support zones left out of the
             compression check [m] (see corner_zone).
+        n_buckle: Buckling factors requested (see write_case_deck).
 
     Returns:
         CaseResult.
@@ -407,7 +413,7 @@ def run_case(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3, accel, w_pa,
     work = Path(workdir) if workdir else Path(tempfile.mkdtemp(prefix="shellform_"))
     work.mkdir(parents=True, exist_ok=True)
     deck = write_case_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3,
-                           accel, w_pa, sls, n_modes, clamp)
+                           accel, w_pa, sls, n_modes, clamp, n_buckle)
     (work / "case.inp").write_text(deck)
     run = subprocess.run([ccx, "case"], cwd=work, capture_output=True, text=True)
     dat = work / "case.dat"

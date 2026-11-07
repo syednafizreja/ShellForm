@@ -8,7 +8,7 @@ ShellForm extends the seismic form-finding of Michiels & Adriaenssens (2017, 201
 
 ## Status
 
-Day 8 (5 Nov 2026): all 168 designs sized with steel and carbon (provisional, Days 4-6); test S4 passes (fallback, Day 7); batch runner and first gallery (Day 8); 60 tests. Pinned to ShellBench `v0.1.0`.
+Day 10 (7 Nov 2026): all 168 designs sized with steel and carbon (provisional); tests S4 (fallback) and S5 pass; sensitivity runs (Day 9) rerun after a solver correction (Day 10); 76 tests. Pinned to ShellBench `v0.2.0`.
 
 | Item | Where | Status |
 |---|---|---|
@@ -46,7 +46,7 @@ ShellForm uses its own conda environment, `shellform` (a clone of ShellBench's `
 $conda = "C:\Users\ASUS\miniconda3\Scripts\conda.exe"
 cd C:\Users\ASUS
 git clone https://github.com/syednafizreja/ShellBench.git ShellBench-pin
-cd ShellBench-pin; git checkout v0.1.0          # the tag in src/shellform/pin.py
+cd ShellBench-pin; git checkout v0.2.0          # the tag in src/shellform/pin.py
 & $conda create -n shellform --clone research -y
 & $conda run -n shellform pip install -e C:\Users\ASUS\ShellBench-pin --no-deps
 & $conda run -n shellform pip install meshio

@@ -2,6 +2,18 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 7 Nov 2026, Claude in the app (Day 10, S5 table, pin move, solver correction)
+
+**Done:** Day 10 was locked on main at 02:25 UTC and done by the app only. Pin moved to ShellBench v0.2.0 (`src/shellform/pin.py`). All 168 designs rerun with the Day 4-9 settings: 0 record mismatches (`results/batch_pinmove_v020.*`). New `src/shellform/s5.py` (S5 table, `results/s5_*`), `src/shellform/crosscheck.py` (`fe.py` against ShellBench's `shellfe`, as the 31 Oct amendment promised). `sensitivity_meta.json` baseline path now written with `as_posix()`; it also lists each input file's ShellBench tag. Notes: `notes/day10_s5_pin.md`. Cloud pytest: 76 passed (CalculiX 2.21).
+
+**Results:** S5 holds: 0 failures in the baseline and in all three sensitivity variants (longest T1 0.308 s baseline, 0.341 s at λ 3). 70 of 84 edge designs have T1 < 0.1 s, on the rising branch of the spectrum, where the plateau load is conservative; the paper's S5 row should say so. Cross-check: displacement identical, first buckling factor within 0.26 %, so `fe.py` stays. **The cross-check exposed a solver set-up error:** CalculiX returns a high lowest buckling factor when one factor is requested, as the sizing did on Days 4-9 (up to 0.26 % high at λ 5, 3.6 % at λ 8; converged at 2 or more). Decision D10-1 (pre-registration entry of 7 Nov): the sizing now requests 4 factors (`sizing.N_BUCKLE_SIZING`). Baseline, λ 3, λ 8 and 61 x 61 were rerun and the Day 4-6 record files regenerated. One baseline thickness moves (10 m corners, rise 0.15, seismic 0.6 g: 85 to 90 mm). Baseline is now 79 of 84 "no meaningful difference" and 5 artefact cells (was 78 and 6). Headline not made in any variant. Day 9 numbers in `paper/numbers.md` and `paper/03_sensitivity_outline.md` are refreshed.
+
+**Decisions by the author today:** none new (standing delegation). Claude decided D10-1 [J], and to keep the old v0.2.0 pin-move run as evidence (`batch_pinmove_v020.*`).
+
+**Open:** (1) Laptop: `git pull origin main`; in `C:\Users\ASUS\ShellBench-pin` run `git fetch --tags` and `git checkout v0.2.0`; `pip install -e C:\Users\ASUS\ShellBench-pin --no-deps` and `pip install -e . --no-deps` in the `shellform` environment; `python -m pytest` (expect 76 passed with CalculiX). (2) Author: the earlier items (Michiels full texts, Annex F in own copy, ShellBench PR #130 merge). (3) The author asked whether heavy runs can move to the laptop: from Day 11, say in the lock entry where a day runs. Remote Control from the app is untested; the fallback is a task written here. (4) The old Day 5-9 outline said "six artefact cells"; it now says five.
+
+**Next:** 8 Nov spare. 9 Nov, Day 11: figures from the pre-freeze record, including the mechanism figure. One Claude only; lock it on main first.
+
 ## 7 Nov 2026, Claude in the app (Day 10 lock)
 
 **Lock:** Day 10 (S5 plateau table; pin moved to ShellBench v0.2.0 with `python -m shellform.batch --preset all --compare-record`; `as_posix()` fix in `sensitivity_meta.json`) is done by the app only, from 02:25 UTC. The laptop should not start Day 10; pull when the app's Day 10 entry appears above this one.

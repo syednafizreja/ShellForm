@@ -7,16 +7,17 @@ checked out at the tag below. Every result names this tag.
 Move the pin only when a new ShellBench tag lands (floor-r1, floor-r2,
 floor-r3, v0.3), and record the move in LOG.md.
 
-ShellBench v0.1.0 did not bump its package version (``shellbench.__version__``
-is still "0.0.1"), so the pin is checked against the git tag of the clone
-when git can see it, and against the version string otherwise.
+The pin is checked against the git tag of the clone when git can see it, and
+against the version string otherwise. (ShellBench v0.1.0 still reported
+"0.0.1"; v0.2.0 reports "0.2.0". Pin moved v0.1.0 -> v0.2.0 on 7 Nov 2026,
+LOG.md Day 10.)
 """
 
 import subprocess
 from pathlib import Path
 
-SHELLBENCH_TAG = "v0.1.0"
-SHELLBENCH_VERSION = "0.0.1"  # as reported by shellbench.__version__ at v0.1.0
+SHELLBENCH_TAG = "v0.2.0"
+SHELLBENCH_VERSION = "0.2.0"  # as reported by shellbench.__version__ at v0.2.0
 
 
 def installed_shellbench_version() -> str:

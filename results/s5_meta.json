@@ -1,0 +1,16 @@
+{
+ "shellbench_tag": "v0.2.0",
+ "tg_s": 0.35,
+ "rising_branch_end_s": 0.1,
+ "tg_source": "shellbench.seismic.TG_ANCHOR_S (spec S4, B5; GB 50011-2010 Table 5.1.4-2)",
+ "spectrum_source": "shellbench.seismic.alpha_spectrum (GB 50011-2010 cl. 5.1.5, Fig. 5.1.5)",
+ "pass_rule": "T1 < Tg (pre-registration section 8, S5)",
+ "inputs": {
+  "baseline": "results/batch_all.csv",
+  "lam3": "results/sens_lam3.csv",
+  "lam8": "results/sens_lam8.csv",
+  "mesh61": "results/sens_mesh61.csv"
+ },
+ "failures": 0,
+ "command": "python -m shellform.s5"
+}

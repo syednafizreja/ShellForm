@@ -82,3 +82,12 @@
 - Problem: ShellBench v0.2.0 tagged today; its factor file holds a second set, so the set is now named in code. Pin stays v0.1.0 until the freeze run
 - Lesson: on 55-90 mm shells one 5 mm step is 6-9 %, larger than the 5 % band, so every verdict change in the runs is a grid step; the buckling threshold, not Sa, sets corner-shell carbon
 - Tomorrow: Day 10 (7 Nov): S5 table; pin to v0.2.0 with the record check; then figures (9 Nov) and freeze (10 Nov)
+
+## Day 10 — 7 Nov 2026
+
+- Done (Claude in the app, under the author's standing delegation): Day 10 locked on main first; pin moved to ShellBench v0.2.0 (`pin.py`), all 168 designs rerun with the Day 4-9 settings: 0 record mismatches; `src/shellform/s5.py` (S5 table: `results/s5_*`); `src/shellform/crosscheck.py` (`fe.py` against `shellbench.shellfe`, the 31 Oct amendment's promise); `as_posix()` and per-file tags in `sensitivity_meta.json`; decision D10-1 (pre-registration entry of 7 Nov): sizing requests 4 buckling factors (`sizing.N_BUCKLE_SIZING`); baseline, λ 3, λ 8 and 61 x 61 rerun; Day 4-6 record files regenerated; 9 new tests; notes `notes/day10_s5_pin.md`; paper rows refreshed
+- Result: pytest 76 passed (cloud, CalculiX 2.21). S5: 0 failures in the baseline and every variant; longest T1 0.308 s (baseline, 20 m corners), 0.341 s at λ 3. 70 of 84 edge designs sit on the rising branch of the spectrum (T1 < 0.1 s), where the plateau load is conservative. Cross-check: displacement identical, first buckling factor within 0.26 %. D10-1: one requested buckling factor reads high (0.26 % at λ 5, 3.6 % at λ 8); after the fix one baseline thickness moves (10 m corners, rise 0.15, seismic 0.6 g: 85 to 90 mm). Baseline now 79 of 84 cells "no meaningful difference" and 5 artefact cells (was 78 and 6); headline not made in any variant
+- Problem: the 31 Oct wrapper cross-check showed the sizing had under-converged buckling factors since Day 4; found only because the two programs asked for different numbers of factors. Also `scripts/day04_size_10m.py` had not run since the Day 8 refactor (missing `import csv`)
+- Lesson: compare two solvers with identical settings first, then with the settings the results used; test every script after a refactor, not only the library code
+- Tomorrow: Day 11 is 9 Nov (8 Nov spare): figures from the pre-freeze record, including the mechanism figure
+

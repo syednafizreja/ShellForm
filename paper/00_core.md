@@ -20,7 +20,7 @@ Status: empty template, 6 Nov 2026. Results are provisional until the 10 Nov fre
 
 [?] Author, after the freeze run.
 
-[J] What the pre-freeze record says (both spans, 168 designs, ShellBench v0.1.0): "no meaningful difference" (under 5 %) in 78 of 84 strategy cells; the other 6 (10 m corners, rise 0.15) are an artefact of the load basis and of the mesh (`notes/day05_steel_carbon.md`). Cost of resilience at 20 m: gravity 1.000-1.004, seismic 0.983-1.015 (`notes/day06_20m.md` section 4). The headline claim of pre-registration section 7 is not made. Every one of these numbers needs a row in `numbers.md` from the freeze run.
+[J] What the pre-freeze record says (both spans, 168 designs, ShellBench v0.2.0, corrected 7 Nov, D10-1): "no meaningful difference" (under 5 %) in 79 of 84 strategy cells; the other 5 (10 m corners, rise 0.15, Sa 0.1-0.5) are an artefact of the load basis and of the mesh (`notes/day05_steel_carbon.md`). Cost of resilience at 20 m: gravity 1.000-1.004, seismic 0.983-1.015 (`notes/day06_20m.md` section 4). The headline claim of pre-registration section 7 is not made. Every one of these numbers needs a row in `numbers.md` from the freeze run.
 
 ## 4. Master narrative (pick one the data supports)
 
@@ -29,14 +29,14 @@ Status: empty template, 6 Nov 2026. Results are provisional until the 10 Nov fre
 Working line (a direction, not paper text; the author writes the sentence): in reinforced concrete shells of 10 and 20 m sized to code checks, carbon does not respond to seismic level up to 0.6 g, so a seismic-aware form has nothing to save and no meaningful carbon difference from the gravity form.
 
 Reasons [J]:
-1. The record supports it: no meaningful difference in 78 of 84 cells, with the other 6 shown to be artefacts. Cost of resilience is about 1.0 for both strategies.
+1. The record supports it: no meaningful difference in 79 of 84 cells, with the other 5 shown to be artefacts. Cost of resilience is about 1.0 for both strategies.
 2. Pre-registration section 7 requires "no meaningful difference" to be reported as such, and it bars the headline claim. A mechanism narrative reports the null honestly and still gives the reader a reason: thickness is set by linear buckling or the 50 mm minimum, steel by the minimum ratio, and none of these responds to Sa.
 3. Wording to avoid: "seismic-aware form-finding gives resilience at no carbon cost". Both strategies pass the same seismic checks at the same carbon, so the seismic-aware form does not deliver the resilience; the governing checks do. That wording would overclaim strategy 2.
 4. The paper must say where the null should break, as testable limits: heavier mass, longer spans, unreinforced or masonry shells (Michiels' setting), nonlinear or imperfection-sensitive buckling, and response-spectrum or time-history analysis.
 
 Checked again after the freeze run: if the 10 Nov run changes any verdict, this choice is revisited by a dated note here.
 
-**6 Nov 2026, Day 9 note [J]:** the section 7 sensitivity runs support this narrative (`03_sensitivity_outline.md`). At λ 3 and λ 8 the six baseline "seismic cheaper" cells vanish; no cell anywhere reaches "seismic cheaper"; the headline holds in 0 of 10 scope cells per span. The buckling threshold moves corner-shell carbon by about 20 to 30 %, the seismic level by at most 3.6 % (gravity form). A sharper mechanism line for Syed to consider: the carbon of these shells is set by the support condition and the buckling safety factor, not by the seismic level. On 61 × 61 every cell is "no meaningful difference" too (84 of 84).
+**6 Nov 2026, Day 9 note [J]:** the section 7 sensitivity runs support this narrative (`03_sensitivity_outline.md`). At λ 3 and λ 8 the five baseline "seismic cheaper" cells vanish (six before the 7 Nov solver correction, D10-1); no cell anywhere reaches "seismic cheaper"; the headline holds in 0 of 10 scope cells per span. The buckling threshold moves corner-shell carbon by about 20 to 30 %, the seismic level by at most 3.6 % (gravity form). A sharper mechanism line for Syed to consider: the carbon of these shells is set by the support condition and the buckling safety factor, not by the seismic level. On 61 × 61 every cell is "no meaningful difference" too (84 of 84).
 
 ## 5. Target journal and article type
 
