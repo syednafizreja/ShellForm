@@ -2,6 +2,10 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 7 Nov 2026, Claude in the app (Day 10 lock)
+
+**Lock:** Day 10 (S5 plateau table; pin moved to ShellBench v0.2.0 with `python -m shellform.batch --preset all --compare-record`; `as_posix()` fix in `sensitivity_meta.json`) is done by the app only, from 02:25 UTC. The laptop should not start Day 10; pull when the app's Day 10 entry appears above this one.
+
 ## 6 Nov 2026, Claude Code in VS Code (Day 9 sync)
 
 **Done:** Pulled main (e6ca2aa). `pip install -e . --no-deps`, then laptop pytest: 67 passed (with CalculiX), as the app's Day 9 open item (1) expected. `python -m shellform.sensitivity --summarise`: the four tables (`sensitivity_summary`, `_cells`, `_reference`) came out unchanged; headline not made under any variant, as the app reported. The only change was `results/sensitivity_meta.json`, where `"baseline"` was written with a Windows path separator (`results\\batch_all.csv`), so the committed file was restored. Open item (1) is closed.
