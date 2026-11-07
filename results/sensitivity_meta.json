@@ -1,6 +1,20 @@
 {
- "shellbench_tag": "v0.1.0",
+ "shellbench_tag": "v0.2.0",
  "baseline": "results/batch_all.csv",
+ "input_file_tags": {
+  "baseline": [
+   "v0.2.0"
+  ],
+  "lam3": [
+   "v0.2.0"
+  ],
+  "lam8": [
+   "v0.2.0"
+  ],
+  "mesh61": [
+   "v0.2.0"
+  ]
+ },
  "baseline_settings": {
   "lambda_min": 5.0,
   "grid_n": 41

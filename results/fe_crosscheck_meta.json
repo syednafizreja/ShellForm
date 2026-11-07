@@ -1,0 +1,28 @@
+{
+ "shellbench_tag": "v0.2.0",
+ "tolerance": 0.02,
+ "rule": "pre-registration amendment of 31 Oct 2026: use ShellBench's wrapper if > 2 %",
+ "load": "self-weight only, GRAV (0, 0, -1)",
+ "max_rel_diff": {
+  "disp_rel_diff": 0.0,
+  "buckling_rel_diff": 0.0025745673324506415
+ },
+ "all_within_tolerance": true,
+ "command": "python -m shellform.crosscheck",
+ "modes_check": {
+  "file": "results/buckling_modes_check.csv",
+  "rechecked": 149,
+  "margin": 0.03,
+  "buckling_factors_requested": 4,
+  "max_rel_diff": 0.03551695630686949,
+  "would_fail_at_sized_thickness": [
+   "baseline:L10-corners-r0.15-seismic-sa0.6",
+   "lam8:L20-corners-r0.10-gravity-sa0.4",
+   "lam8:L20-corners-r0.10-seismic-sa0.5",
+   "lam8:L20-corners-r0.10-seismic-sa0.6",
+   "lam8:L20-corners-r0.15-seismic-sa0.3",
+   "lam8:L20-corners-r0.15-seismic-sa0.4",
+   "lam8:L20-corners-r0.15-seismic-sa0.5"
+  ]
+ }
+}

@@ -65,8 +65,9 @@ def test_baseline_summary_reproduces_the_record_verdicts():
     base_cells = cells(base)
     summary, _ = summarise_variant("baseline", base, base_cells, base)
     by_span = {s["span_m"]: s for s in summary}
-    # Days 5-6 record: 36 + 6 cells at 10 m, 42 at 20 m; headline not made.
-    assert by_span[10.0]["verdict_counts_central"] == "no meaningful difference 36; seismic cheaper 6"
+    # 7 Nov record (D10-1, 4 buckling factors): 37 + 5 cells at 10 m, 42 at 20 m;
+    # headline not made. (Days 5-9, 1 factor: 36 + 6.)
+    assert by_span[10.0]["verdict_counts_central"] == "no meaningful difference 37; seismic cheaper 5"
     assert by_span[20.0]["verdict_counts_central"] == "no meaningful difference 42"
     assert not by_span[10.0]["headline_holds"] and not by_span[20.0]["headline_holds"]
     assert all(s["cells_flipped_vs_baseline"] == 0 for s in summary)

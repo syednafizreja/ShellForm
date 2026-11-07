@@ -17,6 +17,7 @@ per-design step lives in shellform.pipeline.size_one (same code, moved).
 """
 
 import argparse
+import csv
 import json
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path

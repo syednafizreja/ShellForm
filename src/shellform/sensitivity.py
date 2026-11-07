@@ -203,7 +203,10 @@ def summarise_variant(name, rows, base_cells, base_rows):
         holds, n_scope, n_good = headline(cell_rows, span)
         cor_g, cor_s = rng("cost_of_resilience_gravity"), rng("cost_of_resilience_seismic")
         summary.append({
-            "variant": name, "span_m": span, "shellbench_tag": SHELLBENCH_TAG,
+            # The tag the rows were run at, not the current pin (they can differ
+            # after a pin move until the variant is rerun).
+            "variant": name, "span_m": span,
+            "shellbench_tag": ";".join(sorted({str(r.get("shellbench_tag", "")) for r in rs})),
             "designs": len(rs), "feasible": len(feas),
             "thickness_changed_vs_baseline": sum(
                 1 for r in rs if r["thickness_m"] != base_t[r["design_id"]]),
@@ -244,7 +247,7 @@ def reference_table(variant_rows):
             b = base[key(r)]
             ok = r["feasible"] and b["feasible"]
             out.append({"variant": name, "span_m": r["span_m"], "supports": r["supports"],
-                        "rise_ratio": r["rise_ratio"], "shellbench_tag": SHELLBENCH_TAG,
+                        "rise_ratio": r["rise_ratio"], "shellbench_tag": r.get("shellbench_tag", ""),
                         "feasible": r["feasible"], "thickness_m": r["thickness_m"],
                         "buckling_factor": r["buckling_factor"],
                         "governing_check": r["governing_check"],
@@ -279,7 +282,13 @@ def summarise(variants=tuple(VARIANTS)):
     cols = ["variant"] + [k for k in all_cells[0] if k != "variant"]
     write_csv([{k: c[k] for k in cols} for c in all_cells], res / "sensitivity_cells.csv")
     write_csv(reference_table(variant_rows), res / "sensitivity_reference.csv")
-    meta = {"shellbench_tag": SHELLBENCH_TAG, "baseline": str(BASELINE_FILE.relative_to(ROOT)),
+    # The tag each input file was run at, read from its rows (every row names
+    # its tag), so a summary across a pin move says which file came from where.
+    file_tags = {v: sorted({r.get("shellbench_tag", "") for r in rows})
+                 for v, rows in variant_rows.items()}
+    # as_posix: the same text on Windows and Linux, so a laptop rerun is byte-identical.
+    meta = {"shellbench_tag": SHELLBENCH_TAG, "baseline": BASELINE_FILE.relative_to(ROOT).as_posix(),
+            "input_file_tags": file_tags,
             "baseline_settings": BASELINE, "variants": {v: VARIANTS.get(v, {}) for v in used},
             "headline_rule": {"rise_ratio": HEADLINE_RISE, "sa_min_g": HEADLINE_SA_MIN,
                               "band_corners": list(LABELS[1:]),
