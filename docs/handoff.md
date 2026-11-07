@@ -10,7 +10,7 @@ Newest entry first. Each Claude reads this at the start of a session and adds an
 
 **Decisions by the author today:** none new.
 
-**Open:** the crosscheck item above. The author items are unchanged: Michiels full texts and Princeton thesis, Annex F in own copy, ShellBench PR #130 merge.
+**Open:** the crosscheck item above. ShellBench PR #130 is closed: already merged (checked 7 Nov). Michiels thesis: ResearchGate lists it as "PDF Available", DOI 10.13140/RG.2.2.18163.22562 (https://www.researchgate.net/publication/325324421). The download needs a logged-in browser. Annex F still needs checking in the author's own copy of the code.
 
 ## 7 Nov 2026, Claude in the app (Day 10, S5 table, pin move, solver correction)
 
