@@ -15,12 +15,15 @@ docs/preregistration.md.
 * Tension demand (D5-2): at each depth z through the thickness, the bar
   stress demand in direction 1 is sigma_11 + |tau_12| (tension positive),
   and the same for direction 2. This is the orthogonal reinforcement rule for
-  in-plane stress (EN 1992-1-1:2004 Annex F, expressions (F.2) and (F.3)
-  [check]), applied layer by layer with the linear stress profile between the
-  two faces. The tension force per unit width T is the integral of the
-  positive part of that demand over the thickness; A_s = T / f_y. The relief
-  that Annex F allows when both normal stresses are compressive is not taken
-  (conservative) [J].
+  in-plane stress (EN 1992-1-1:2004 informative Annex F, F.1, expressions
+  (F.2) and (F.3), valid for sigma_Edx <= |tau_Edxy| with compression
+  positive; read by Claude from excerpts, page TBD from the author's licensed
+  copy [check]), applied layer by layer with the linear stress profile
+  between the two faces. The tension force per unit width T is the integral
+  of the positive part of that demand over the thickness; A_s = T / f_y.
+  Where sigma_Edx > |tau_Edxy| (compression positive), Annex F gives
+  f'_tdx = 0 and f'_tdy = tau^2 / sigma_Edx - sigma_Edy, which is lower than
+  the demand used here. That relief is not taken (conservative) [J].
 * Minimum steel (D5-3): in both directions, everywhere, A_s >= rho_min t
   per unit width. rho_min = max(p, k f_t / f_y), with p and k read in place
   from ShellBench docs/floor_concept.md (GB 50010 Table 8.5.1 note 2, the

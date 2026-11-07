@@ -2,6 +2,16 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 7 Nov 2026, Claude in the app (Michiels sources and Annex F wording)
+
+**Done:** Checked the Michiels papers in Semantic Scholar and on publisher and repository pages (legal routes only). The three Elsevier papers are closed access: C&S 195 (2018) 85-98, doi:10.1016/j.compstruc.2017.10.001; Eng. Struct. 153 (2017) 411-420, "Identification of key design parameters for earthquake resistance of reinforced concrete shell structures", doi:10.1016/j.engstruct.2017.10.043; Eng. Struct. (2019) corrugated shells, doi:10.1016/j.engstruct.2018.12.043. Only the J. IASS 2017 paper has an open copy (hdl.handle.net/10317/25326). New `paper/06_michiels_sources.md`: links, the thesis chapter for each paper, what ShellForm needs from each, and a ready-to-send request note. `paper/references.md` now has one row per paper with its DOI, plus the thesis row. `notes/michiels2017.md` citations completed. `docs/data_contract.md` years corrected (C&S is 2018, the corrugated paper is 2019; DOIs unchanged).
+
+**Annex F:** wording fixed in `src/shellform/steel.py` (docstring only) and `notes/day05_steel_carbon.md`. The relief that D5-2 does not take applies where σEdx > |τEdxy| (compression positive), not "biaxial compression" as written before. The steel rule and every number are unchanged. The page number stays "page TBD from licensed copy": it can only come from the author's licensed EN 1992-1-1.
+
+**Decisions:** by Claude under the standing delegation [J]: the thesis chapters stay the working source; the paper cites the journal versions; S4 stays the fallback unless the C&S inputs are read before the 10 Nov freeze; Eng. Struct. 2017 (RC shells) is now a must-read for the Introduction.
+
+**Open (author):** (1) Get the three journal versions via library login, ResearchGate or the email, and note any change from the thesis chapters. (2) Annex F page number from your licensed copy.
+
 ## 7 Nov 2026, Claude Code in VS Code (Day 10 sync)
 
 **Done:** Pulled main. `C:\Users\ASUS\ShellBench-pin` is already at v0.2.0, which matches `pin.py`. Reinstalled ShellBench-pin and ShellForm (`--no-deps`). Laptop pytest: 76 passed (with CalculiX). That closes the app's open item (1). Reran `sensitivity --summarise`, `s5` and `crosscheck`. `s5_*`, `fe_crosscheck.csv` and the sensitivity tables are identical apart from line endings.

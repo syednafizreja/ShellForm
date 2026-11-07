@@ -112,9 +112,9 @@ Paste into the ShellBench Project chat, or into `docs/handoff.md` through Claude
 
 ## 7. Literature ShellForm builds on (DOIs checked)
 
-- Michiels & Adriaenssens 2017, Computers & Structures: 10.1016/j.compstruc.2017.10.001
-- Michiels & Adriaenssens 2017, Engineering Structures: 10.1016/j.engstruct.2017.10.043
-- Michiels, Adriaenssens & DeJong 2018, Engineering Structures: 10.1016/j.engstruct.2018.12.043
+- Michiels & Adriaenssens 2018 (online 2017), Computers & Structures 195: 10.1016/j.compstruc.2017.10.001
+- Michiels & Adriaenssens 2017, Engineering Structures 153: 10.1016/j.engstruct.2017.10.043
+- Michiels, Adriaenssens & DeJong 2019 (online 2018), Engineering Structures: 10.1016/j.engstruct.2018.12.043
 - Michiels, Adriaenssens & Jorquera-Lucerga 2017, J. IASS: 10.20898/j.iass.2017.194.892
 - Tomasello, Adriaenssens & Gabriele 2019, Engineering Structures: 10.1016/j.engstruct.2019.109521
 - Pérez Vega et al. 2026, Research on Engineering Structures and Materials: 10.17515/resm2026-1812st0804rs
