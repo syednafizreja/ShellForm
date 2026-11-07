@@ -5,7 +5,10 @@ Written by Claude on 29 Oct 2026 from what is openly readable: the abstract and 
 ## 1. Citations
 
 - **C&S:** Michiels T., Adriaenssens S. Form-finding algorithm for masonry arches subjected to in-plane earthquake loading. *Computers & Structures* 195 (2018) 85-98, online 12 Oct 2017. doi:10.1016/j.compstruc.2017.10.001.
-- **J. IASS:** Michiels T. (with Adriaenssens and Jorquera-Lucerga per the data contract [check]). Parametric study of masonry shells form-found for seismic loading. doi:10.20898/j.iass.2017.194.892. 9 pages.
+- **J. IASS:** Michiels T., Adriaenssens S., Jorquera-Lucerga J.J. Parametric study of masonry shells form-found for seismic loading. *J. IASS* 58(4) (2017) 267-275. doi:10.20898/j.iass.2017.194.892. Open submitted version (CC BY-NC-ND): http://hdl.handle.net/10317/25326.
+- **Eng. Struct. 2017:** Michiels T., Adriaenssens S. Identification of key design parameters for earthquake resistance of reinforced concrete shell structures. *Engineering Structures* 153 (2017) 411-420. doi:10.1016/j.engstruct.2017.10.043. Paywalled. Thesis Ch. 2.
+- **Eng. Struct. 2019:** Michiels T., Adriaenssens S., DeJong M. Form finding of corrugated shell structures for seismic design and validation using non-linear pushover analysis. *Engineering Structures* (2019; volume and pages [check]). doi:10.1016/j.engstruct.2018.12.043. Paywalled; ResearchGate entry 329609054 lists a PDF (log in to see). Thesis Ch. 4.
+- Metadata of all four checked on 7 Nov 2026 in Semantic Scholar: the three Elsevier papers are marked closed access; only the J. IASS paper has an open copy.
 
 ## 2. How the lateral load is applied
 
@@ -58,4 +61,4 @@ The C&S arch cases (rise/span 1/2, 1/4, 1/8 at 0.15, 0.3, 0.45 g) are the most r
 
 ## Still to get
 
-Full texts of both papers (ResearchGate request to Tim Michiels), plus Michiels, Adriaenssens & DeJong 2018 (Engineering Structures) and the 2017 Engineering Structures paper.
+Status 7 Nov 2026: the thesis (author's PDF) is the working source for all three Elsevier papers (Ch. 2-4); the J. IASS submitted version is open (link above). Still needed through a library login, ResearchGate request or `paper/05_email_michiels.md`: the journal versions of C&S 2018, Eng. Struct. 2017 and Eng. Struct. 2019, because they may differ from the thesis chapters. Full list and what S4 needs: `paper/06_michiels_sources.md`.
