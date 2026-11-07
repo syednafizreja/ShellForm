@@ -234,6 +234,13 @@ def main(argv=None):
                                "max_rel_diff": max(r["rel_diff"] for r in mrows),
                                "would_fail_at_sized_thickness": moved}
         print(f"modes check: {len(mrows)} rechecked, {len(moved)} would fail: {moved}")
+    else:
+        # Keep the last --modes record; a plain run must not erase it.
+        old = res / "fe_crosscheck_meta.json"
+        if old.exists():
+            prev = json.loads(old.read_text()).get("modes_check")
+            if prev is not None:
+                meta["modes_check"] = prev
     (res / "fe_crosscheck_meta.json").write_text(json.dumps(meta, indent=1) + "\n")
     for r in rows:
         print(f"{r['design_id']}: disp {r['disp_rel_diff']:.2e}, buckling {r['buckling_rel_diff']:.2e}")
