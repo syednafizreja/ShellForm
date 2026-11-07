@@ -2,6 +2,16 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 7 Nov 2026, Claude Code in VS Code (Day 10 sync)
+
+**Done:** Pulled main. `C:\Users\ASUS\ShellBench-pin` is already at v0.2.0, which matches `pin.py`. Reinstalled ShellBench-pin and ShellForm (`--no-deps`). Laptop pytest: 76 passed (with CalculiX). That closes the app's open item (1). Reran `sensitivity --summarise`, `s5` and `crosscheck`. `s5_*`, `fe_crosscheck.csv` and the sensitivity tables are identical apart from line endings.
+
+**Finding:** plain `python -m shellform.crosscheck` drops the `modes_check` block from `fe_crosscheck_meta.json`, and `--modes` overwrites `buckling_modes_check.csv`. Run on today's 4-factor records, `--modes` rechecks 173 designs and finds max diff 0.0, with 0 would-fail. That confirms D10-1 works. The committed file is the evidence from before the fix (149 rechecked, 7 would-fail), so I restored all of `results/` without change. Open for the app: keep the pre-fix check under a separate name (for example `buckling_modes_check_pre_d10.csv`) and stop the plain crosscheck run from dropping `modes_check`. As things stand, a rerun destroys the evidence.
+
+**Decisions by the author today:** none new.
+
+**Open:** the crosscheck item above. The author items are unchanged: Michiels full texts and Princeton thesis, Annex F in own copy, ShellBench PR #130 merge.
+
 ## 7 Nov 2026, Claude in the app (Day 10, S5 table, pin move, solver correction)
 
 **Done:** Day 10 was locked on main at 02:25 UTC and done by the app only. Pin moved to ShellBench v0.2.0 (`src/shellform/pin.py`). All 168 designs rerun with the Day 4-9 settings: 0 record mismatches (`results/batch_pinmove_v020.*`). New `src/shellform/s5.py` (S5 table, `results/s5_*`), `src/shellform/crosscheck.py` (`fe.py` against ShellBench's `shellfe`, as the 31 Oct amendment promised). `sensitivity_meta.json` baseline path now written with `as_posix()`; it also lists each input file's ShellBench tag. Notes: `notes/day10_s5_pin.md`. Cloud pytest: 76 passed (CalculiX 2.21).
