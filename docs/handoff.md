@@ -10,7 +10,7 @@ Newest entry first. Each Claude reads this at the start of a session and adds an
 
 **Decisions by the author today:** none new.
 
-**Open:** the crosscheck item above. ShellBench PR #130 is closed: already merged (checked 7 Nov). Michiels thesis: ResearchGate lists it as "PDF Available", DOI 10.13140/RG.2.2.18163.22562 (https://www.researchgate.net/publication/325324421). The download needs a logged-in browser. Annex F still needs checking in the author's own copy of the code.
+**Open:** the crosscheck item above. ShellBench PR #130 is closed: already merged (checked 7 Nov). Michiels thesis: closed. The author supplied the full PDF on 7 Nov (Princeton 2018, 105 pp.; © Michiels, all rights reserved, so it is not committed to the repo). For ShellForm, the relevant parts are: Ch. 3 (arch form finding, eqs 3.1-3.17, pp. 29-39), Ch. 4 (corrugated shells, eqs 4.1-4.7, Table 4.2 p. 61), Ch. 5 (3D dynamic-relaxation nets in 8 directions plus gravity, eqs 5.1-5.15, pp. 75-79). Note: the thesis (pp. 3, 25, 86) calls itself "the first" seismic form finding, but the ShellForm paper must not say this (CLAUDE.md rule 8). Annex F still needs checking in the author's own copy of the code.
 
 ## 7 Nov 2026, Claude in the app (Day 10, S5 table, pin move, solver correction)
 
