@@ -1,4 +1,4 @@
-"""tests/test_day10.py — Day 10: pin v0.2.0, S5 plateau table, fe.py cross-check."""
+"""tests/test_day10.py — Day 10: pin (now v0.3.0), S5 plateau table, fe.py cross-check."""
 
 import pytest
 
@@ -12,9 +12,10 @@ from shellform.s5 import alpha_shape, branch, plateau_rows, spectrum_constants
 needs_ccx = pytest.mark.skipif(find_ccx() is None, reason="CalculiX not on PATH")
 
 
-def test_pin_is_v020_and_matches_the_install():
-    assert SHELLBENCH_TAG == "v0.2.0"
-    assert check_pin() == "v0.2.0"
+def test_pin_matches_the_install():
+    # Pin moved to v0.3.0 on 8 Nov 2026 (LOG.md Day 11); v0.3.0 still reports 0.2.0.
+    assert SHELLBENCH_TAG == "v0.3.0"
+    assert check_pin() == "v0.3.0"
 
 
 def test_spectrum_constants_come_from_shellbench():

@@ -33,7 +33,6 @@ import numpy as np  # noqa: E402
 
 from shellform.design_space import SUPPORTS, design_id  # noqa: E402
 from shellform.designs import N_GRID, form  # noqa: E402
-from shellform.pin import SHELLBENCH_TAG  # noqa: E402
 from shellform.pipeline import ROOT  # noqa: E402
 
 GALLERY_RISE = 0.15          # middle pre-registered rise ratio [J]
@@ -58,6 +57,20 @@ def record(span):
     return rec
 
 
+def record_tag(rec):
+    """Return the one ShellBench tag the record rows name (Day 11: the gallery
+    names the record's tag, not the pin, so a pin move before a rerun of the
+    record cannot mislabel it).
+
+    Raises:
+        ValueError: If the rows name no tag or more than one.
+    """
+    tags = {r.get("shellbench_tag", "") for r in rec.values()}
+    if len(tags) != 1 or "" in tags:
+        raise ValueError(f"record names ShellBench tags {sorted(tags)}; expected one")
+    return tags.pop()
+
+
 def label(rec_row):
     """Return the short panel label (t, lambda, carbon) of one record row."""
     t = float(rec_row["thickness_m"]) * 1e3
@@ -78,8 +91,9 @@ def gallery(span):
         Dict of the plotted summary numbers (also written to the JSON file).
     """
     rec = record(span)
+    tag = record_tag(rec)
     fig = plt.figure(figsize=(16, 7.6))
-    summary = {"shellbench_tag": SHELLBENCH_TAG, "span_m": span, "rise_ratio": GALLERY_RISE,
+    summary = {"shellbench_tag": tag, "span_m": span, "rise_ratio": GALLERY_RISE,
                "grid_n": N_GRID, "record": [f"results/day04_sizing_{span:g}m.csv",
                                             f"results/day05_steel_carbon_{span:g}m.csv"],
                "rows": {}}
@@ -135,12 +149,12 @@ def gallery(span):
         axs.legend(fontsize=7, loc="lower center")
         summary["rows"][sup] = row
     fig.suptitle(f"ShellForm gallery, span {span:g} m, rise/span {GALLERY_RISE}", fontsize=12)
-    fig.text(0.01, 0.005, f"ShellBench {SHELLBENCH_TAG}. Numbers in titles from "
+    fig.text(0.01, 0.005, f"ShellBench {tag}. Numbers in titles from "
              f"{summary['record'][0]} and {summary['record'][1]} (provisional). "
              "Written by python -m shellform.gallery.", fontsize=7)
     fig.tight_layout(rect=(0, 0.02, 1, 0.97), h_pad=3.0)
     out = ROOT / "figures" / f"gallery_{span:g}m.png"
-    fig.savefig(out, dpi=150, metadata={"Description": f"ShellBench {SHELLBENCH_TAG}"})
+    fig.savefig(out, dpi=150, metadata={"Description": f"ShellBench {tag}"})
     plt.close(fig)
     (ROOT / "figures" / f"gallery_{span:g}m.json").write_text(json.dumps(summary, indent=1) + "\n")
     return summary

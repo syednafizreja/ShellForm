@@ -9,15 +9,15 @@ floor-r3, v0.3), and record the move in LOG.md.
 
 The pin is checked against the git tag of the clone when git can see it, and
 against the version string otherwise. (ShellBench v0.1.0 still reported
-"0.0.1"; v0.2.0 reports "0.2.0". Pin moved v0.1.0 -> v0.2.0 on 7 Nov 2026,
-LOG.md Day 10.)
+"0.0.1"; v0.2.0 and v0.3.0 both report "0.2.0". Pin moved v0.1.0 -> v0.2.0
+on 7 Nov 2026, LOG.md Day 10; v0.2.0 -> v0.3.0 on 8 Nov 2026, LOG.md Day 11.)
 """
 
 import subprocess
 from pathlib import Path
 
-SHELLBENCH_TAG = "v0.2.0"
-SHELLBENCH_VERSION = "0.2.0"  # as reported by shellbench.__version__ at v0.2.0
+SHELLBENCH_TAG = "v0.3.0"
+SHELLBENCH_VERSION = "0.2.0"  # as reported by shellbench.__version__ at v0.2.0 and v0.3.0
 
 
 def installed_shellbench_version() -> str:

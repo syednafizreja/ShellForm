@@ -5,7 +5,7 @@ The author writes the prose (skill ground rule 1). This skeleton gives the order
 ## 2.1 Overview and pre-registration
 - Research question: `docs/preregistration.md` section 1.
 - Pre-registered 30 Oct 2026, before any design-space run; amendments dated (list them in a table or appendix, with why).
-- Code: ShellForm repository, freeze commit (section 9), pinned to ShellBench tag (`src/shellform/pin.py`). Zenodo DOI [?].
+- Code: ShellForm repository, freeze commit (section 9), pinned to ShellBench tag (`src/shellform/pin.py`; v0.3.0 from 8 Nov 2026). Zenodo DOI [?]. One command per output: `python -m shellform.batch --preset all`, `python -m shellform.sensitivity`, `python -m shellform.s5`, `python scripts/day11_figures.py`.
 
 ## 2.2 Design space
 - 168 designs: table of prereg section 3 (`src/shellform/design_space.py`).
@@ -15,11 +15,12 @@ The author writes the prose (skill ground rule 1). This skeleton gives the order
 ## 2.3 Form-finding
 - Own 3D force density solver (`src/shellform/formfind.py`); 41 × 41 network.
 - Thrust surfaces under gravity + Sa: the shear result F1 (`notes/michiels2017.md`).
-- Strategy 1: gravity form. Strategy 2: midrange of four thrust surfaces at target rise (P1, midrange amendment). One figure from `figures/gallery_*`.
+- Strategy 1: gravity form. Strategy 2: midrange of four thrust surfaces at target rise (P1, midrange amendment). Fig. 1 = `figures/gallery_*` (list and questions: `07_results_outline.md`).
 - t_env reported, not used to size (prereg section 5).
 
 ## 2.4 Structural analysis
-- CalculiX S8R deck (`src/shellform/fe.py`), version 2.23 [check which version the freeze run uses].
+- CalculiX S8R deck (`src/shellform/fe.py`); name the CalculiX version the freeze run records in `results/batch_all_meta.json` ("calculix"); cloud runs use 2.21, the laptop 2.23, and the record check shows the two agree (largest difference: deflection 2.3e-4 relative, Day 8).
+- Cross-check against ShellBench's own CalculiX wrapper (`shellbench.shellfe`): displacement identical, first buckling factor within 0.26 % (`results/fe_crosscheck.csv`); four buckling factors requested in sizing (D10-1) and why.
 - Loads and combinations: prereg section 4, D4-5 (plan-area basis, GB 50009 cl. 5.3.1), D4-1 (+x stands for four directions).
 - Material values imported from ShellBench, with code clauses.
 
@@ -28,7 +29,7 @@ The author writes the prose (skill ground rule 1). This skeleton gives the order
 - Steel: D5-1 to D5-5 (`src/shellform/steel.py`).
 
 ## 2.6 Carbon
-- A1-A3, GB/T 51366-2019 factors read from ShellBench; ±25 % band, four corners (P3); per m² of plan area (3 Nov amendment).
+- A1-A3, GB/T 51366-2019 factors read from ShellBench; ±25 % band, four corners (P3); per m² of plan area (3 Nov amendment). Factor status read from ShellBench's file (`carbon.factor_status`): at v0.3.0 the official-copy check is recorded as closed (6 Nov 2026), so the carbon numbers are no longer provisional on that account.
 - One factor set only (GB/T 51366) with the band. Say why ICE is not used (licence, P3). Never "both factor sets", even though the 28 Oct project goal says so.
 
 ## 2.7 Decision rules
@@ -40,3 +41,7 @@ The author writes the prose (skill ground rule 1). This skeleton gives the order
 
 ## 2.9 Sensitivity
 - See `03_sensitivity_outline.md` (Methods bullets and the Results paragraphs, Day 9).
+
+## 2.10 Figures and reproducibility (Day 11)
+- Every figure is built by `scripts/day11_figures.py` from `results/`; each names the ShellBench tag of its record (`figures/README.md`).
+- Mechanism figure (Fig. 2): demand/limit ratio of each section 5 check at the sized thickness; define each ratio once (λ_min/λ, t_min/t, σ_c/f_c outside the D4-2 zones, δ/(L/300)).

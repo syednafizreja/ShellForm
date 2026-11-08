@@ -1,5 +1,5 @@
 {
- "shellbench_tag": "v0.1.0",
+ "shellbench_tag": "v0.2.0",
  "span_m": 10.0,
  "rise_ratio": 0.15,
  "grid_n": 41,
@@ -16,16 +16,16 @@
      "dz_min_mm": -2.086615432993766,
      "dz_max_mm": 16.857837269374286,
      "max_horizontal_shift_mm": 0.0,
-     "seismic_kgco2e_m2": 37.6495052882893,
-     "gravity_kgco2e_m2": 39.84961784567134
+     "seismic_kgco2e_m2": 37.64950528828931,
+     "gravity_kgco2e_m2": 39.84961784567137
     },
     "0.6": {
      "design_id": "L10-corners-r0.15-seismic-sa0.6",
      "dz_min_mm": -1.42283921285178,
      "dz_max_mm": 71.96557376083223,
      "max_horizontal_shift_mm": 0.0,
-     "seismic_kgco2e_m2": 37.5443119796191,
-     "gravity_kgco2e_m2": 39.84961784567134
+     "seismic_kgco2e_m2": 39.722347097626596,
+     "gravity_kgco2e_m2": 39.84961784567137
     }
    }
   },
@@ -37,16 +37,16 @@
      "dz_min_mm": -7.549516567451064e-12,
      "dz_max_mm": 14.618406487599822,
      "max_horizontal_shift_mm": 0.0,
-     "seismic_kgco2e_m2": 22.398795739639084,
-     "gravity_kgco2e_m2": 22.375161180135436
+     "seismic_kgco2e_m2": 22.39879573963908,
+     "gravity_kgco2e_m2": 22.375161180135425
     },
     "0.6": {
      "design_id": "L10-edges-r0.15-seismic-sa0.6",
      "dz_min_mm": -7.549516567451064e-12,
      "dz_max_mm": 62.57583637604558,
      "max_horizontal_shift_mm": 0.0,
-     "seismic_kgco2e_m2": 22.48485655980011,
-     "gravity_kgco2e_m2": 22.375161180135436
+     "seismic_kgco2e_m2": 22.4848565598001,
+     "gravity_kgco2e_m2": 22.375161180135425
     }
    }
   }

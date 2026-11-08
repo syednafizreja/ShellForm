@@ -25,3 +25,15 @@ Draft rows from the sensitivity runs, refreshed on 7 Nov 2026 (Day 10: ShellBenc
 | Methods, solver | one requested buckling factor reads high: up to 0.26 % (λ 5) and 3.6 % (λ 8) in the Day 4-9 sizing; 4 requested since 7 Nov (D10-1) | `results/buckling_modes_check.csv` | pre-freeze, v0.2.0 | |
 
 Rules: units always; state the comparison base; ShellBench values name the tag (`src/shellform/pin.py`); code values name the clause and say "confirm in your copy".
+
+Draft rows from the Day 11 figures (8 Nov 2026; record at ShellBench v0.2.0, pre-freeze). Outline: `07_results_outline.md`.
+
+| Manuscript location | Value | Source (file, function or table) | Commit or tag | Checked by Syed (date) |
+|---|---|---|---|---|
+| Results 3.2, Fig. 2 | governing check: buckling 84 of 84 corner designs, t_min 84 of 84 edge designs | `figures/fig02_mechanism.json`, panels.*.governing; `results/batch_all.csv`, governing_check | pre-freeze, v0.2.0 | |
+| Results 3.2, Fig. 2 | corner λ_min/λ 0.888-0.997 (10 m), 0.956-0.999 (20 m) | `figures/fig02_mechanism.json`, ratio_range.buckling | pre-freeze, v0.2.0 | |
+| Results 3.2, Fig. 2 | edge buckling ratio 0.020-0.074 (10 m), 0.095-0.357 (20 m); compression at most 0.51 f_c; deflection at most 0.28 of L/300 | `figures/fig02_mechanism.json`, ratio_range | pre-freeze, v0.2.0 | |
+| Results 3.2 | steel from the seismic case at most 0.82 kg (10 m corners), 0.95 kg (20 m edges), 57.9 kg (20 m corners; total 2028-2953 kg) | `results/batch_all.csv`, steel_from_seismic_kg, steel_kg | pre-freeze, v0.2.0 | |
+| Results 3.3, Fig. 3 | 79 of 84 cells no meaningful difference; 5 seismic cheaper (10 m corners, rise 0.15, Sa 0.1-0.5 g) | `results/sensitivity_cells.csv` (baseline), `figures/fig03_strategy_difference.json` | pre-freeze, v0.2.0 | |
+| Results 3.4, Fig. 4 | carbon ratio by driver (Sa, strategy, λ 3, λ 8, 61 x 61, band) | `figures/fig04_carbon_drivers.json`, ranges | pre-freeze, v0.2.0 | |
+| Results 3.5, Fig. 5 | T1 ranges per group; all at or below Tg 0.35 s | `figures/fig05_s5_periods.json`, groups | pre-freeze, v0.2.0 | |

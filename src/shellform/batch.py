@@ -26,7 +26,7 @@ with status 1 if any value is outside, so it can be used as a check.
 
 Writes results/batch_<name>.csv and results/batch_<name>_meta.json, with
 <name> the preset name or the value of --name. These results are
-provisional like the record (carbon factors still "author to confirm"); the
+marked with the factor status that ShellBench's file gives (carbon.factor_status); the
 paper's results come from one run after the 10 Nov freeze
 (pre-registration section 9).
 """
@@ -40,6 +40,7 @@ import time
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
+from shellform.carbon import factor_status
 from shellform.design_space import SA_LEVELS_G, design_space
 from shellform.designs import N_GRID
 from shellform.fe import find_ccx
@@ -230,7 +231,7 @@ def main(argv=None):
             "preset": a.preset, "designs": len(rows),
             "feasible": sum(1 for r in rows if r["feasible"]),
             "wall_time_s": time.perf_counter() - t0,
-            "status": "provisional: carbon factors in ShellBench's file are marked 'author to confirm'",
+            "status": factor_status(),
             "tried": [c for _, t in out for c in t]}
     status = 0
     if a.compare_record:

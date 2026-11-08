@@ -8,15 +8,15 @@ ShellForm extends the seismic form-finding of Michiels & Adriaenssens (2017, 201
 
 ## Status
 
-Day 10 (7 Nov 2026): all 168 designs sized with steel and carbon (provisional); tests S4 (fallback) and S5 pass; sensitivity runs (Day 9) rerun after a solver correction (Day 10); 76 tests. Pinned to ShellBench `v0.2.0`.
+Day 11 (8 Nov 2026): all 168 designs sized with steel and carbon; tests S4 (fallback) and S5 pass; sensitivity runs done; every paper figure built by one script, including the mechanism figure; 81 tests. Pinned to ShellBench `v0.3.0` (record files at `v0.2.0` until the 10 Nov freeze run; the pin move changed no number).
 
 | Item | Where | Status |
 |---|---|---|
 | Pre-registration | [docs/preregistration.md](docs/preregistration.md) | Approved 30 Oct 2026, dated amendments since |
 | Seismic-aware form-finding | `src/shellform/formfind.py`, `strategies.py` | 3D solver and both strategies done, tested |
 | Tests S1-S5 | `tests/`, `src/shellform/checks.py` | S1-S4 pass, except the S1b comparison with ShellBench `floor-r1`, which waits for that tag; S4 is the section 8 fallback; S5 holds on every design (T1 at most 0.308 s) |
-| 168 sized designs | `src/shellform/pipeline.py`, `batch.py`, `results/` | All feasible; provisional until the carbon factors are confirmed and the 10 Nov freeze run |
-| Figures | `src/shellform/gallery.py`, `figures/` | First gallery (10 m, 20 m) |
+| 168 sized designs | `src/shellform/pipeline.py`, `batch.py`, `results/` | All feasible; carbon factor check closed in ShellBench v0.3.0; final numbers come from the 10 Nov freeze run |
+| Figures | `src/shellform/figures.py`, `gallery.py`, `scripts/day11_figures.py`, [figures/](figures/README.md) | Figs. 1-5 from the record, incl. the mechanism figure (pre-freeze) |
 | Design explorer | [explorer/index.html](explorer/index.html) | Skeleton, dummy data |
 
 ## Run
@@ -29,6 +29,7 @@ python -m shellform.batch --preset all        # all 168 designs
 python -m shellform.batch --span 10 --supports corners --sa 0.0 0.6   # any subset
 python -m shellform.batch --compare-record    # also check against the committed results
 python -m shellform.gallery                   # figures/gallery_10m.png, gallery_20m.png
+python scripts/day11_figures.py               # every paper figure (Figs. 1-5)
 python -m pytest
 ```
 
