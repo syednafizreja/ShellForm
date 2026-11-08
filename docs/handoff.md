@@ -2,6 +2,16 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 8 Nov 2026, Claude in the app (Day 11, figures and pin v0.3.0)
+
+**Done:** Day 11 pulled forward to the spare day at the author's request, locked on main and done by the app only. New `src/shellform/figures.py` and `scripts/day11_figures.py`: Figs. 1-5 from `results/` (mechanism figure = Fig. 2: demand/limit ratio of each check against Sa, by support and span). Gallery rebuilt (it still showed pre-D10-1 numbers). Pin moved to ShellBench v0.3.0 (tagged 8 Nov; only the carbon factor source notes changed, no value): all 168 rerun, 0 mismatches, every difference 0.0 (`results/batch_pinmove_v030.*`). Record files stay at v0.2.0 until the freeze. `carbon.factor_status` now reads the factor check status from ShellBench (v0.3.0: closed). Paper: `paper/07_results_outline.md` (Results outline, figure list), Methods outline and `numbers.md` rows. Notes: `notes/day11_figures.md`. Cloud pytest: 81 passed (CalculiX 2.21).
+
+**Decisions by the author today:** new standing rule: at the start of each build day, state the expected finishing time (added to CLAUDE.md). Claude decided D11-1 to D11-4 [J] (notes/day11_figures.md).
+
+**Open:** (1) Laptop: `git pull origin main`; in `C:\Users\ASUS\ShellBench-pin` run `git fetch --tags` and `git checkout v0.3.0`; `pip install -e C:\Users\ASUS\ShellBench-pin --no-deps` and `pip install -e . --no-deps` in `shellform`; `python -m pytest` (expect 81 passed with CalculiX). Optional: `python scripts/day11_figures.py --no-gallery` should leave Figs. 2-5 unchanged. (2) Author: Michiels journal versions and Annex F page, as before.
+
+**Next:** 9 Nov spare. 10 Nov, Day 12: freeze at v0.3.0 (batch all, sensitivity, s5, figures), tag, fill `numbers.md`. One Claude only; lock it on main first, and say where the heavy runs go.
+
 ## 8 Nov 2026, Claude in the app (Day 11 lock, pulled forward from 9 Nov)
 
 **Lock:** Day 11 (every paper figure built by a script in `scripts/`, including the mechanism figure) is done by the app only, from 04:40 UTC on 8 Nov, the spare day. The author asked to pull it forward ("finish all"). The laptop should not start Day 11; pull when the app's Day 11 entry appears above this one.

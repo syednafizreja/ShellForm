@@ -1,0 +1,32 @@
+{
+ "shellbench_tag": "v0.2.0",
+ "record": "results/s5_plateau.csv",
+ "tg_s": 0.35,
+ "plateau_start_s": 0.1,
+ "groups": {
+  "10m_corners": {
+   "designs": 42,
+   "t1_min_s": 0.15928296377532516,
+   "t1_max_s": 0.1838196035334841,
+   "s5_pass": true
+  },
+  "10m_edges": {
+   "designs": 42,
+   "t1_min_s": 0.028543256220612344,
+   "t1_max_s": 0.045092327289986335,
+   "s5_pass": true
+  },
+  "20m_corners": {
+   "designs": 42,
+   "t1_min_s": 0.2529824198164158,
+   "t1_max_s": 0.3081183860268385,
+   "s5_pass": true
+  },
+  "20m_edges": {
+   "designs": 42,
+   "t1_min_s": 0.06929952785853177,
+   "t1_max_s": 0.11145166517523092,
+   "s5_pass": true
+  }
+ }
+}

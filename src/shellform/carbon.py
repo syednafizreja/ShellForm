@@ -6,9 +6,11 @@ The factors are ShellBench's, read in place from ``data/carbon_factors.csv``
 in the pinned clone with ShellBench's own reader
 (``shellbench.carbon.read_factors``). The concrete grade, bar steel and
 steel density are ShellBench's too (``shellbench.carbon``). ShellForm writes
-no factor (CLAUDE.md rule 2). Every factor row in that file is marked
-"author to confirm" in its source column; until the author confirms them,
-every carbon number here is provisional.
+no factor (CLAUDE.md rule 2). Up to ShellBench v0.2.0 the source column of
+the rows used here said the official-copy check was open, so every carbon
+number was provisional. From v0.3.0 it records the check as closed
+(6 Nov 2026). ``factor_status`` reads that column in place, so result files
+state the status the pinned file gives, not a typed-in one (Day 11).
 
 Pre-registration section 6 and decision P3: one factor set (GB/T 51366),
 and a band in which the concrete and steel factors move by +/-25 %
@@ -89,6 +91,40 @@ def load_factors(set_name=FACTOR_SET):
 
     return Factors(set_name, sb.CONCRETE_GRADE, sb.BAR_STEEL,
                    per(sb.CONCRETE_GRADE, "m3"), per(sb.BAR_STEEL, "kg"), sb.STEEL_DENSITY_KG_M3)
+
+
+#: Phrases in a source note that mark a factor as not yet checked against the
+#: official copy (as worded in ShellBench's file up to v0.2.0).
+OPEN_MARKERS = ("to confirm", "check open")
+
+
+def factor_status(set_name=FACTOR_SET):
+    """Return the check status of the two factors used, read from ShellBench's file.
+
+    Reads the "source [text]" column of the concrete and bar-steel rows of
+    set_name in ShellBench's ``data/carbon_factors.csv``, in place.
+
+    Returns:
+        "confirmed: ..." if neither source note contains an OPEN_MARKERS
+        phrase, else "provisional: ..."; the text names the rows.
+    """
+    import csv
+
+    import shellbench.carbon as sb
+
+    want = {sb.CONCRETE_GRADE, sb.BAR_STEEL}
+    with open(factors_path(), newline="", encoding="utf-8") as fh:
+        rows = [r for r in csv.DictReader(fh)
+                if r["set [text]"] == set_name and r["material [text]"] in want]
+    if {r["material [text]"] for r in rows} != want:
+        raise ValueError(f"{set_name}: rows for {sorted(want)} not found in {factors_path()}")
+    open_rows = [r["material [text]"] for r in rows
+                 if any(m in r["source [text]"].lower() for m in OPEN_MARKERS)]
+    names = " and ".join(sorted(want))
+    if open_rows:
+        return (f"provisional: ShellBench's source note for {', '.join(sorted(open_rows))} "
+                f"({set_name}) says the official-copy check is open")
+    return f"confirmed: ShellBench's source notes for {names} ({set_name}) record the official-copy check as closed"
 
 
 def carbon_kgco2e(concrete_m3, steel_kg, f, concrete_scale=1.0, steel_scale=1.0):

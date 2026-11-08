@@ -28,6 +28,7 @@ SI units everywhere; every function has a docstring; no hidden constants; every 
 Two Claudes work on this project: Claude in the Claude app (cloud, ShellForm project threads) and Claude Code in VS Code (this laptop). The repo carries the handover.
 
 - **At session start:** `git pull origin main`, then read `docs/handoff.md` (newest entry first) and the latest entry in `LOG.md`. Tell me in one line what the last handoff said.
+- **Finishing time (my rule, 8 Nov 2026):** when a build day starts, tell me the overall expected finishing time for that day, in my local time (UTC+8).
 - **At session end:** add a dated entry at the top of `docs/handoff.md`: what you did, decisions I made, what is open. Commit and push it with the work.
 - **ShellBench comes first** until 11 Nov: its GATE days are never displaced by ShellForm work.
 - **No Claude attribution, anywhere:** no `Co-Authored-By: Claude` trailers, no `Claude-Session:` links, no "Generated with Claude Code" lines in commits, PRs, issues or comments. Commit as me (Syed Nafiz Reja Hasib <syednafiz2811@gmail.com>). No branch names starting `claude/`.

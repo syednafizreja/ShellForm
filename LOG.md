@@ -91,3 +91,11 @@
 - Lesson: compare two solvers with identical settings first, then with the settings the results used; test every script after a refactor, not only the library code
 - Tomorrow: Day 11 is 9 Nov (8 Nov spare): figures from the pre-freeze record, including the mechanism figure
 
+
+## Day 11 — 8 Nov 2026 (pulled forward from 9 Nov)
+
+- Done (Claude in the app, under the author's standing delegation; the author asked to use the spare day): Day 11 locked on main first; `src/shellform/figures.py` and `scripts/day11_figures.py` build every paper figure from `results/` (Fig. 1 gallery, Fig. 2 mechanism, Fig. 3 strategy difference, Fig. 4 carbon drivers, Fig. 5 S5 periods; PNG 600 dpi + PDF + JSON); gallery rebuilt (it still showed pre-D10-1 numbers); pin moved to ShellBench v0.3.0 (tagged today) with the record check; `carbon.factor_status` reads the factor check status from ShellBench; figures name their record's tag; decisions D11-1 to D11-4; `paper/07_results_outline.md` (Results outline and figure list), Methods outline and `numbers.md` rows; notes `notes/day11_figures.md`; CLAUDE.md: the author's rule on stating the finishing time
+- Result: pytest 81 passed (cloud, CalculiX 2.21). Pin move: 168 of 168 rerun at v0.3.0, 0 mismatches, every max relative difference 0.0. Mechanism: corners sit on the buckling limit (84 of 84, λ_min/λ 0.888-0.999), edges on the 50 mm minimum (84 of 84); no check moves onto its limit as Sa rises. Carbon drivers: buckling threshold moves corner carbon to 0.73-0.83 (λ 3) and 1.22-1.30 (λ 8) of baseline; Sa moves the gravity form by at most 0.4 %
+- Problem: the Day 8 gallery had not been rebuilt after D10-1 (one panel showed an old carbon value); the batch meta status was typed text that no longer matched ShellBench
+- Lesson: a figure must read its tag and numbers from its record, never from the pin or a typed string, or a pin move or rerun mislabels it silently
+- Tomorrow: 9 Nov is now spare; 10 Nov Day 12, freeze: rerun everything at v0.3.0, then `python scripts/day11_figures.py`; fill `paper/numbers.md` from the freeze files
