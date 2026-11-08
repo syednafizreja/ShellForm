@@ -30,7 +30,7 @@ import json
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
-from shellform.carbon import FACTOR_BAND, load_factors
+from shellform.carbon import FACTOR_BAND, factor_status, load_factors
 from shellform.design_space import design_space
 from shellform.designs import N_GRID
 from shellform.inputs import load_inputs, shellbench_root
@@ -64,7 +64,7 @@ def main():
             "rho_min_source": "ShellBench docs/floor_concept.md, GB 50010 Table 8.5.1 note 2 (slab rule applied to the shell [J])",
             "factors": fac.__dict__, "factor_file": "ShellBench data/carbon_factors.csv at " + SHELLBENCH_TAG,
             "factor_band": FACTOR_BAND,
-            "status": "provisional: every factor row in ShellBench's file is marked 'author to confirm'"}
+            "status": factor_status()}
     meta_name = "day05_meta.json" if tag == "10m" else f"day05_meta_{tag}.json"
     (res / meta_name).write_text(json.dumps(meta, indent=1) + "\n")
     print(f"wrote {len(rows)} designs")
