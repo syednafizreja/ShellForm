@@ -2,6 +2,15 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 9 Nov 2026, Claude Code in VS Code (Day 12 laptop check, 03:45)
+
+**Done:** Pulled main (eb3459e, the app's Day 12 freeze). ShellBench-pin at v0.3.0, matches `pin.py`. `pip install -e . --no-deps`; `python -m pytest`: 81 passed (37 s). The handoff names no scripts to rerun; `git status` clean, `results/` identical to the freeze commit. The tag `freeze-2026-11-09` was missing on GitHub, so it was created on fd5cc85 (annotated) and pushed, as the app's handoff asked.
+
+**Decisions by the author today:** none new.
+
+**Open:** Author: check the `paper/numbers.md` rows (14-17 Nov); Michiels Eng. Struct. 2019 and dynamic-funicularity papers still wanted. Laptop shutdown was set for 04:30.
+
+**Next:** 10 Nov spare; 11 Nov Day 13 (final figures, explorer, README, v0.1 release, Zenodo DOI).
 ## 9 Nov 2026, Claude in the app (Day 12 done: freeze)
 
 **Done:** Day 12 pulled forward from 10 Nov to the spare day at the author's request. Code frozen at tag `freeze-2026-11-09` (commit fd5cc85); `python scripts/day12_freeze.py` reran all 168 designs (0 record mismatches), the Day 4-6 records, the lambda 3, lambda 8 and 61 x 61 checks, S5, the cross-check and every figure at ShellBench v0.3.0 (CalculiX 2.21, 6749 s). Result: identical to the 7 Nov values; only the tag column changed. Baseline 79 of 84 no meaningful difference; headline claim not made; S5 0 failures; modes check 0 would fail. `paper/numbers.md` rows and `paper/07_results_outline.md` now point at the freeze. Pre-registration entry of 9 Nov (D12-1 to D12-3); notes/day12_freeze.md; LOG; plan. Cloud pytest: 81 passed.
