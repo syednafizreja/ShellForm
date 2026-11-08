@@ -2,6 +2,18 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 8 Nov 2026, Claude Code on the laptop (Day 11 laptop check)
+
+**Done:** Open item (1) from the app's Day 11 entry. Pulled main (69b9abe). `C:\Users\ASUS\ShellBench-pin` fetched tags and checked out v0.3.0 (f8a77b4; `git describe` = v0.3.0). Reinstalled ShellBench (reports 0.2.0, as pin.py expects) and ShellForm editable, `--no-deps`. `python -m pytest`: 81 passed (75 s), same as cloud. `python scripts/day11_figures.py --no-gallery`: Figs. 2-5 JSON byte-identical to the committed ones; PNG/PDF bytes differ (rendering and metadata across machines), so the committed images were kept.
+
+Annex F closed from the full text already in `C:\Users\ASUS\Papers\EN_1992-1-1_2004.pdf` (BS EN 1992-1-1:2004): F.1(4), (F.2)-(F.7) on printed p. 211 (PDF p. 213), (F.8)-(F.10) on p. 212. The expressions and the relief condition (σEdx > |τEdxy|, compression positive) match `steel.py`; no code change. Updated `steel.py` docstring, `paper/references.md`, `docs/plan.md` (checked by Claude; author to confirm). `docs/preregistration.md`: dated 8 Nov amendment added at the end (citation detail only) closing the D5-2 [check]; D5-2 text itself unchanged (rule 9). Michiels 2019 Eng. Struct. volume and pages from Crossref: 181, 362-373. The three Michiels journal full texts: fetch.py and one Firecrawl try both failed (Elsevier paywall). pytest after the edits: 81 passed.
+
+**Decisions by the author today:** none new.
+
+**Open:** (2) Author (physical): the three Michiels journal PDFs (via ResearchGate, the author's Academia page or an email to the author; WANTLIST lines 31-33). (3) Merge PR #30 (auto-mode blocks Claude from merging).
+
+**Next:** unchanged: 9 Nov spare; 10 Nov Day 12 freeze at v0.3.0.
+
 ## 8 Nov 2026, Claude in the app (Day 11, figures and pin v0.3.0)
 
 **Done:** Day 11 pulled forward to the spare day at the author's request, locked on main and done by the app only. New `src/shellform/figures.py` and `scripts/day11_figures.py`: Figs. 1-5 from `results/` (mechanism figure = Fig. 2: demand/limit ratio of each check against Sa, by support and span). Gallery rebuilt (it still showed pre-D10-1 numbers). Pin moved to ShellBench v0.3.0 (tagged 8 Nov; only the carbon factor source notes changed, no value): all 168 rerun, 0 mismatches, every difference 0.0 (`results/batch_pinmove_v030.*`). Record files stay at v0.2.0 until the freeze. `carbon.factor_status` now reads the factor check status from ShellBench (v0.3.0: closed). Paper: `paper/07_results_outline.md` (Results outline, figure list), Methods outline and `numbers.md` rows. Notes: `notes/day11_figures.md`. Cloud pytest: 81 passed (CalculiX 2.21).
