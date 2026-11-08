@@ -2,6 +2,16 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 9 Nov 2026, Claude Code in VS Code (Day 12 sync)
+
+**Done:** Pulled main (898512c, up to date). `C:\Users\ASUS\ShellBench-pin` is at v0.3.0, matching `SHELLBENCH_TAG`. `pip install -e . --no-deps`, then `python -m pytest`: 81 passed (45 s). The newest entry names no scripts, so none were rerun; `results/` unchanged (`git status` clean). `python scripts/day12_freeze.py --help` runs, so the laptop is ready if the freeze is handed over.
+
+**Lock respected:** the laptop did not run the freeze or create a tag. When checked, origin had no `freeze-2026-11-09` tag, no Day 12 branch and no Day 12 "done" entry from the app. The freeze script and the pre-registration entry (fd5cc85) are on main.
+
+**Decisions by the author today:** none new.
+
+**Open:** (1) The app runs `python scripts/day12_freeze.py`, tags `freeze-2026-11-09`, fills `paper/numbers.md` and pushes. (2) If the app cannot do the heavy run, the author releases the lock in writing on main; the laptop then runs the script (D12-2: one run only).
+
 ## 9 Nov 2026, Claude Code on the laptop (Michiels PDFs received)
 
 **Done:** Tim Michiels shared two published PDFs. Checked both title pages: C&S 195 (2018) masonry arches (14 pp) and Eng. Struct. 153 (2017) key design parameters for RC shells (10 pp). Saved to `C:\Users\ASUS\Papers\` (Michiels_2018_CompStruct195_masonry_arches.pdf, Michiels_2017_EngStruct153_key_parameters_RC_shells.pdf). Zotero: attached as linked files to PAD446WN and 8UVN633S; trashed duplicate records R363CWKM and LCNRYXMP. WANTLIST ticked.
