@@ -2,6 +2,10 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 8 Nov 2026, Claude in the app (Day 11 lock, pulled forward from 9 Nov)
+
+**Lock:** Day 11 (every paper figure built by a script in `scripts/`, including the mechanism figure) is done by the app only, from 04:40 UTC on 8 Nov, the spare day. The author asked to pull it forward ("finish all"). The laptop should not start Day 11; pull when the app's Day 11 entry appears above this one.
+
 ## 7 Nov 2026, Claude in the app (Michiels sources and Annex F wording)
 
 **Done:** Checked the Michiels papers in Semantic Scholar and on publisher and repository pages (legal routes only). The three Elsevier papers are closed access: C&S 195 (2018) 85-98, doi:10.1016/j.compstruc.2017.10.001; Eng. Struct. 153 (2017) 411-420, "Identification of key design parameters for earthquake resistance of reinforced concrete shell structures", doi:10.1016/j.engstruct.2017.10.043; Eng. Struct. (2019) corrugated shells, doi:10.1016/j.engstruct.2018.12.043. Only the J. IASS 2017 paper has an open copy (hdl.handle.net/10317/25326). New `paper/06_michiels_sources.md`: links, the thesis chapter for each paper, what ShellForm needs from each, and a ready-to-send request note. `paper/references.md` now has one row per paper with its DOI, plus the thesis row. `notes/michiels2017.md` citations completed. `docs/data_contract.md` years corrected (C&S is 2018, the corrugated paper is 2019; DOIs unchanged).
