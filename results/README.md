@@ -15,3 +15,7 @@ Every file here is written by a script in the repo and names the ShellBench tag 
 - `s5_plateau.csv`, `s5_summary.csv`, `s5_meta.json`: Day 10, test S5 (`python -m shellform.s5`). 0 failures.
 - `fe_crosscheck.csv`, `fe_crosscheck_meta.json`: Day 10, `fe.py` against ShellBench's `shellfe` on four gravity shells (`python -m shellform.crosscheck`).
 - `buckling_modes_check.csv`: Day 10, near-threshold designs rechecked with four buckling factors (the measurement behind D10-1; `python -m shellform.crosscheck --modes`).
+
+## Freeze run (9 Nov 2026, Day 12)
+
+Every file here was written by `python scripts/day12_freeze.py` from the code at git tag `freeze-2026-11-09`, with ShellBench `v0.3.0` and CalculiX 2.21. `freeze_meta.json` lists each step, its command, exit status and wall time. The earlier "provisional" notes above describe the Day 4-6 states; the carbon factor check was closed in ShellBench v0.3.0. `buckling_modes_check_pre_d10.csv` is kept as evidence from before the D10-1 fix.

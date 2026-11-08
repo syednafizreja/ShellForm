@@ -1,18 +1,18 @@
 {
- "shellbench_tag": "v0.2.0",
+ "shellbench_tag": "v0.3.0",
  "baseline": "results/batch_all.csv",
  "input_file_tags": {
   "baseline": [
-   "v0.2.0"
+   "v0.3.0"
   ],
   "lam3": [
-   "v0.2.0"
+   "v0.3.0"
   ],
   "lam8": [
-   "v0.2.0"
+   "v0.3.0"
   ],
   "mesh61": [
-   "v0.2.0"
+   "v0.3.0"
   ]
  },
  "baseline_settings": {

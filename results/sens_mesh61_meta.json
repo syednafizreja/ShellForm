@@ -1,5 +1,5 @@
 {
- "shellbench_tag": "v0.2.0",
+ "shellbench_tag": "v0.3.0",
  "calculix": "This is Version 2.21",
  "variant": "mesh61",
  "settings": {
@@ -9,7 +9,7 @@
  "designs": 168,
  "feasible": 168,
  "command": "python -m shellform.sensitivity --run mesh61",
- "wall_time_s": 2909.5127610419995,
+ "wall_time_s": 2853.9051004830003,
  "status": "provisional: carbon factors in ShellBench's file are marked 'author to confirm'",
  "tried": [
   {

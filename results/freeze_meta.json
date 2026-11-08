@@ -1,0 +1,73 @@
+{
+ "freeze_tag": "freeze-2026-11-09",
+ "code_commit": "fd5cc85b2ca704f31d3e7640fd388bde0633cd61",
+ "code_describe": "freeze-2026-11-09",
+ "shellbench_tag": "v0.3.0",
+ "calculix": "This is Version 2.21",
+ "grid_n": 41,
+ "steps": [
+  {
+   "step": 1,
+   "name": "batch_all",
+   "command": "python -m shellform.batch --preset all --compare-record --workers 4",
+   "exit": 0,
+   "wall_time_s": 1137.7
+  },
+  {
+   "step": 2,
+   "name": "day04_records",
+   "command": "scripts/day12_freeze.py:records_from_batch",
+   "exit": 0,
+   "wall_time_s": 0.1
+  },
+  {
+   "step": 3,
+   "name": "day05_10m",
+   "command": "python scripts/day05_steel_carbon_10m.py --span 10 --workers 4",
+   "exit": 0,
+   "wall_time_s": 92.7
+  },
+  {
+   "step": 4,
+   "name": "day05_20m",
+   "command": "python scripts/day05_steel_carbon_10m.py --span 20 --workers 4",
+   "exit": 0,
+   "wall_time_s": 95.6
+  },
+  {
+   "step": 5,
+   "name": "sensitivity",
+   "command": "python -m shellform.sensitivity --run lam3 lam8 mesh61 --summarise --workers 4",
+   "exit": 0,
+   "wall_time_s": 5085.2
+  },
+  {
+   "step": 6,
+   "name": "s5",
+   "command": "python -m shellform.s5",
+   "exit": 0,
+   "wall_time_s": 0.1
+  },
+  {
+   "step": 7,
+   "name": "crosscheck",
+   "command": "python -m shellform.crosscheck --workers 4",
+   "exit": 0,
+   "wall_time_s": 9.1
+  },
+  {
+   "step": 8,
+   "name": "crosscheck_modes",
+   "command": "python -m shellform.crosscheck --modes --workers 4",
+   "exit": 0,
+   "wall_time_s": 310.7
+  },
+  {
+   "step": 9,
+   "name": "figures",
+   "command": "python scripts/day11_figures.py",
+   "exit": 0,
+   "wall_time_s": 18.2
+  }
+ ]
+}

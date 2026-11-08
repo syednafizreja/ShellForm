@@ -1,5 +1,5 @@
 {
- "shellbench_tag": "v0.2.0",
+ "shellbench_tag": "v0.3.0",
  "record": "results/batch_all.csv",
  "f_c_pa": 19100000.0,
  "lambda_min": 5.0,

@@ -1,5 +1,5 @@
 {
- "shellbench_tag": "v0.2.0",
+ "shellbench_tag": "v0.3.0",
  "grid_n": 41,
  "inputs": {
   "e_pa": 32500000000.0,
@@ -36,8 +36,7 @@
   },
   "density_kg_m3": 2549.2905324448207
  },
- "status": "provisional: steel and carbon not yet computed",
- "note": "Rewritten on 7 Nov 2026 (Day 10, D10-1) from results/batch_all.csv, which runs the same pipeline.size_one with four buckling factors requested.",
+ "status": "written from results/batch_all.csv by scripts/day12_freeze.py (freeze run)",
  "tried": [
   {
    "design_id": "L10-corners-r0.10-gravity-sa0.0",
