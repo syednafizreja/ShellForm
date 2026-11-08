@@ -2,6 +2,10 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 9 Nov 2026, Claude in the app (Day 12 lock: freeze, pulled forward from 10 Nov)
+
+**Lock:** Day 12 (the freeze: final run of all 168 designs, sensitivity, S5, cross-check and figures at ShellBench v0.3.0; freeze tag; `paper/numbers.md` filled from the freeze files) is done by the app only, from 16:25 UTC on 8 Nov (00:25 on 9 Nov, UTC+8), the spare day. The author asked to start the new day. The laptop should not start Day 12; pull when the app's Day 12 entry appears above this one.
+
 ## 8 Nov 2026, Claude Code on the laptop (Day 11 laptop check)
 
 **Done:** Open item (1) from the app's Day 11 entry. Pulled main (69b9abe). `C:\Users\ASUS\ShellBench-pin` fetched tags and checked out v0.3.0 (f8a77b4; `git describe` = v0.3.0). Reinstalled ShellBench (reports 0.2.0, as pin.py expects) and ShellForm editable, `--no-deps`. `python -m pytest`: 81 passed (75 s), same as cloud. `python scripts/day11_figures.py --no-gallery`: Figs. 2-5 JSON byte-identical to the committed ones; PNG/PDF bytes differ (rendering and metadata across machines), so the committed images were kept.
