@@ -10,7 +10,7 @@ Annex F closed from the full text already in `C:\Users\ASUS\Papers\EN_1992-1-1_2
 
 **Decisions by the author today:** none new.
 
-**Open:** (2) Author (physical): the three Michiels journal PDFs (via ResearchGate, the author's Academia page or an email to the author; WANTLIST lines 31-33). (3) Merge PR #30 (auto-mode blocks Claude from merging).
+**Open:** (2) Author (physical): the three Michiels journal PDFs (via ResearchGate, the author's Academia page or an email to the author; WANTLIST lines 31-33). PR #30 merged. Later on 8 Nov, Claude searched again (ResearchGate shows request-only; the Academia profile does not list them): no lawful open copy exists, so the thesis chapters stay the substitute (Professor's call: earlier version of the same work), recorded in WANTLIST as NEEDS-SYED-DOWNLOAD.
 
 **Next:** unchanged: 9 Nov spare; 10 Nov Day 12 freeze at v0.3.0.
 
