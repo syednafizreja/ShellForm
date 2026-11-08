@@ -20,7 +20,7 @@ ShellBench comes first until 11 Nov: its GATE days are never displaced by ShellF
 
 - ShellBench PR #130 (carbon official-copy note): waits for Syed to merge.
 - S4 published case: fallback in use (no full text by 4 Nov). If the Michiels full text arrives before 10 Nov, run the published arch as an extra check beside S4. Sources: `docs/handoff.md`, 6 Nov.
-- EN 1992-1-1 Annex F (F.2)/(F.3): checked by Claude from excerpts; relief condition wording fixed 7 Nov; author to confirm and add the page from their licensed copy.
+- EN 1992-1-1 Annex F (F.2)/(F.3): checked by Claude 8 Nov in the full BS EN 1992-1-1:2004 text: F.1(4), printed p. 211 (PDF p. 213); expressions and relief condition match `steel.py`. Author to confirm.
 - Michiels journal papers: links and access status in `paper/06_michiels_sources.md` (7 Nov). Thesis chapters are the working source.
 - `paper/00_core.md`: Syed fills it before the Methods prose.
 

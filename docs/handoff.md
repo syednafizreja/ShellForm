@@ -6,9 +6,11 @@ Newest entry first. Each Claude reads this at the start of a session and adds an
 
 **Done:** Open item (1) from the app's Day 11 entry. Pulled main (69b9abe). `C:\Users\ASUS\ShellBench-pin` fetched tags and checked out v0.3.0 (f8a77b4; `git describe` = v0.3.0). Reinstalled ShellBench (reports 0.2.0, as pin.py expects) and ShellForm editable, `--no-deps`. `python -m pytest`: 81 passed (75 s), same as cloud. `python scripts/day11_figures.py --no-gallery`: Figs. 2-5 JSON byte-identical to the committed ones; PNG/PDF bytes differ (rendering and metadata across machines), so the committed images were kept.
 
+Annex F closed from the full text already in `C:\Users\ASUS\Papers\EN_1992-1-1_2004.pdf` (BS EN 1992-1-1:2004): F.1(4), (F.2)-(F.7) on printed p. 211 (PDF p. 213), (F.8)-(F.10) on p. 212. The expressions and the relief condition (σEdx > |τEdxy|, compression positive) match `steel.py`; no code change. Updated `steel.py` docstring, `paper/references.md`, `docs/plan.md` (checked by Claude; author to confirm). `docs/preregistration.md` still says [check]; left unchanged under rule 9 (needs a dated amendment if you want it updated). Michiels 2019 Eng. Struct. volume and pages from Crossref: 181, 362-373. The three Michiels journal full texts: fetch.py and one Firecrawl try both failed (Elsevier paywall). pytest after the edits: 81 passed.
+
 **Decisions by the author today:** none new.
 
-**Open:** (2) Author: Michiels journal versions and Annex F page, as before.
+**Open:** (2) Author (physical): the three Michiels journal PDFs (via ResearchGate, the author's Academia page or an email to the author; WANTLIST lines 31-33). Optional: a dated preregistration amendment recording the Annex F page.
 
 **Next:** unchanged: 9 Nov spare; 10 Nov Day 12 freeze at v0.3.0.
 
