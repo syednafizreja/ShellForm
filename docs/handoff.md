@@ -1,6 +1,11 @@
-# Handoff between the cloud session and the laptop session
+﻿# Handoff between the cloud session and the laptop session
 
 Newest entry first. Each session reads this at the start of a session and adds an entry at the end (see "Sync with cloud the assistant" in CONTRIBUTING.md).
+
+## 9 Nov 2026, laptop session (Michiels PDFs received)
+
+**Done:** Tim Michiels shared two published PDFs. Checked both title pages: C&S 195 (2018) masonry arches (14 pp) and Eng. Struct. 153 (2017) key design parameters for RC shells (10 pp). Saved to `C:\Users\ASUS\Papers\` (Michiels_2018_CompStruct195_masonry_arches.pdf, Michiels_2017_EngStruct153_key_parameters_RC_shells.pdf). Zotero: attached as linked files to PAD446WN and 8UVN633S; trashed duplicate records R363CWKM and LCNRYXMP. WANTLIST ticked.
+**Open:** Eng. Struct. 2019 corrugated shells still preprint only (AURM4W3K). Dynamic-funicularity paper still wanted. PDFs not yet read for values; none used yet.
 
 ## 9 Nov 2026, cloud session (Day 12 lock: freeze, pulled forward from 10 Nov)
 
