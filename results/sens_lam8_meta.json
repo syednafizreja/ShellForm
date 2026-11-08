@@ -1,5 +1,5 @@
 {
- "shellbench_tag": "v0.2.0",
+ "shellbench_tag": "v0.3.0",
  "calculix": "This is Version 2.21",
  "variant": "lam8",
  "settings": {
@@ -9,7 +9,7 @@
  "designs": 168,
  "feasible": 168,
  "command": "python -m shellform.sensitivity --run lam8",
- "wall_time_s": 1138.6872221310005,
+ "wall_time_s": 1093.832368545,
  "status": "provisional: carbon factors in ShellBench's file are marked 'author to confirm'",
  "tried": [
   {

@@ -11,7 +11,7 @@ ShellBench comes first until 11 Nov: its GATE days are never displaced by ShellF
 | Sat 7 Nov | 10 | S5 plateau table; move the pin to ShellBench v0.2.0 and run `python -m shellform.batch --preset all --compare-record`; write the `sensitivity_meta.json` baseline path with `as_posix()` | S5 table in `results/`, 0 record mismatches, tests pass |
 | Sun 8 Nov | 11 (pulled forward) | Spare day used for Day 11 (author's request); pin moved to ShellBench v0.3.0 (tagged 8 Nov) with the record check | Every paper figure built by `scripts/day11_figures.py`; 0 record mismatches |
 | Mon 9 Nov | — | Now spare (Day 11 done on 8 Nov). Was: figures from the pre-freeze record, including the mechanism figure (governing check per design against Sa, by support case; `paper/04_supervisor_advice.md` section 3) | Every paper figure built by a script in `scripts/` |
-| Tue 10 Nov | 12 | **Freeze**: final run, freeze commit; fill `paper/numbers.md` rows from the freeze files | Freeze commit tagged; every row names its file and ShellBench tag |
+| Mon 9 Nov (pulled forward) / Tue 10 Nov | 12 | **Freeze** (done 9 Nov, tag `freeze-2026-11-09`): final run, freeze commit; fill `paper/numbers.md` rows from the freeze files | Freeze commit tagged; every row names its file and ShellBench tag |
 | 11–13 Nov | 13–15 | Final figures; explorer with real results; README; ShellForm v0.1 release and Zenodo DOI; Syed drafts Methods and Results from `paper/02_methods_outline.md` and `paper/03_sensitivity_outline.md` | v0.1 on GitHub and Zenodo; Methods and Results drafts in `paper/` |
 | 14–17 Nov | — | Check window, shared with ShellBench: Syed checks every number; Claude fixes | Every `numbers.md` row checked by Syed |
 | After 17 Nov | — | Syed writes Discussion, Introduction, Abstract; preprint; submit to *Computers & Structures* | Submitted before the European deadlines in January |
@@ -34,6 +34,8 @@ ShellBench comes first until 11 Nov: its GATE days are never displaced by ShellF
 - Later: paper 3, "where the null breaks", as the PhD or postdoc proposal.
 
 ## Changes
+
+- 9 Nov 2026: Day 12 (freeze) done on the spare day, at the author's request ("its a new day. lets go"). Tag `freeze-2026-11-09`; 10 Nov is now spare for the app. Pre-registration entry of 9 Nov.
 
 - 8 Nov 2026: Day 11 done on the spare day, at the author's request ("finish all"); 9 Nov becomes spare. ShellBench v0.3.0 was tagged on 8 Nov, so the pin moved before the freeze (LOG Day 11).
 

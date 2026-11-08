@@ -1,6 +1,6 @@
 # Results: outline and figure list (Day 11, 8 Nov 2026)
 
-Outline only, not paper text. Syed writes the sentences (academic-manuscript-writing ground rule 1; syed-academic-voice-dna section 0). Each bullet is one paragraph's job, in ISCT order (Identify, Summarise, Compare, Transition), with the figure it rests on and the file each number comes from. All numbers are **pre-freeze** (record files at ShellBench v0.2.0, main before the 10 Nov freeze). They are refreshed from the freeze run and get a row in `numbers.md` before they go into the paper. [J] marks Claude's judgement.
+Outline only, not paper text. Syed writes the sentences (academic-manuscript-writing ground rule 1; syed-academic-voice-dna section 0). Each bullet is one paragraph's job, in ISCT order (Identify, Summarise, Compare, Transition), with the figure it rests on and the file each number comes from. All numbers were checked against the **freeze run** (9 Nov 2026, tag `freeze-2026-11-09`, ShellBench v0.3.0): the rerun gave the same values as the 7 Nov files to the last digit. Each has a row in `numbers.md`. [J] marks Claude's judgement.
 
 Order follows the narrative in `00_core.md` and `04_supervisor_advice.md`: the mechanism leads, the pre-registered null is the evidence, robustness and validation follow. The sensitivity paragraphs are in `03_sensitivity_outline.md` and slot in as section 3.4.
 
@@ -55,6 +55,6 @@ Order follows the narrative in `00_core.md` and `04_supervisor_advice.md`: the m
 
 ## Checks before Syed writes
 
-- Numbers above are pre-freeze; take them again from the freeze files (10 Nov) and fill `numbers.md`.
+- Numbers above agree with the freeze files (9 Nov); Syed checks the `numbers.md` rows.
 - Fig. 3's factor-band bars are mostly hidden by the markers because the band moves both strategies almost equally; say so in the caption.
 - Never "resilience at no carbon cost"; never "first"; "extends Michiels & Adriaenssens".

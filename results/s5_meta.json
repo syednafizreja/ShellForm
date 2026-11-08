@@ -1,5 +1,5 @@
 {
- "shellbench_tag": "v0.2.0",
+ "shellbench_tag": "v0.3.0",
  "tg_s": 0.35,
  "rising_branch_end_s": 0.1,
  "tg_source": "shellbench.seismic.TG_ANCHOR_S (spec S4, B5; GB 50011-2010 Table 5.1.4-2)",

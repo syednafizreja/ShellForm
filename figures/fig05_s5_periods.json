@@ -1,5 +1,5 @@
 {
- "shellbench_tag": "v0.2.0",
+ "shellbench_tag": "v0.3.0",
  "record": "results/s5_plateau.csv",
  "tg_s": 0.35,
  "plateau_start_s": 0.1,

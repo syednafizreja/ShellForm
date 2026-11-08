@@ -99,3 +99,11 @@
 - Problem: the Day 8 gallery had not been rebuilt after D10-1 (one panel showed an old carbon value); the batch meta status was typed text that no longer matched ShellBench
 - Lesson: a figure must read its tag and numbers from its record, never from the pin or a typed string, or a pin move or rerun mislabels it silently
 - Tomorrow: 9 Nov is now spare; 10 Nov Day 12, freeze: rerun everything at v0.3.0, then `python scripts/day11_figures.py`; fill `paper/numbers.md` from the freeze files
+
+## Day 12 - 9 Nov 2026 (freeze, pulled forward from 10 Nov)
+
+- Done (Claude, under the author's standing delegation): lock on main; `scripts/day12_freeze.py` (one command reruns baseline with record check, Day 4-6 records, steel and carbon, the three section 7 checks, S5, cross-check and `--modes`, all figures); pre-registration entry of 9 Nov (D12-1 to D12-3); code frozen and tagged `freeze-2026-11-09` (commit fd5cc85); freeze run at ShellBench v0.3.0 (CalculiX 2.21, 4 workers, 6749 s); `paper/numbers.md` rows and `paper/07_results_outline.md` checked against the freeze files; README, results/README, plan.
+- Result: 168 of 168 feasible, 0 record mismatches. Every thickness, buckling factor, period and carbon value equals the 7 Nov files (largest relative difference 0); only the tag column moved to v0.3.0. Verdicts unchanged: baseline 79 of 84 no meaningful difference, 5 seismic cheaper (10 m corners, rise 0.15); headline claim not made. S5: 0 failures in baseline and variants (longest T1 0.308 s baseline, 0.341 s at lambda 3). Cross-check: displacement 0, buckling within 0.26 %; modes check 173 rechecked, 0 would fail. pytest 81 passed.
+- Problem: pushing the tag to GitHub from the cloud returned 403; the commit is on main. Docstrings in `batch.py` and `sensitivity.py` still say "10 Nov"; left as is, because editing code would move the freeze.
+- Lesson: a one-command freeze (`day12_freeze.py`) makes the "one run after the freeze" auditable.
+- Tomorrow: 10 Nov spare (app). Day 13 = 11 Nov: final figures, explorer with real results, README, v0.1 release and Zenodo DOI.

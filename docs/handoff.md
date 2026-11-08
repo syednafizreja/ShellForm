@@ -2,6 +2,15 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 9 Nov 2026, Claude in the app (Day 12 done: freeze)
+
+**Done:** Day 12 pulled forward from 10 Nov to the spare day at the author's request. Code frozen at tag `freeze-2026-11-09` (commit fd5cc85); `python scripts/day12_freeze.py` reran all 168 designs (0 record mismatches), the Day 4-6 records, the lambda 3, lambda 8 and 61 x 61 checks, S5, the cross-check and every figure at ShellBench v0.3.0 (CalculiX 2.21, 6749 s). Result: identical to the 7 Nov values; only the tag column changed. Baseline 79 of 84 no meaningful difference; headline claim not made; S5 0 failures; modes check 0 would fail. `paper/numbers.md` rows and `paper/07_results_outline.md` now point at the freeze. Pre-registration entry of 9 Nov (D12-1 to D12-3); notes/day12_freeze.md; LOG; plan. Cloud pytest: 81 passed.
+
+**Decisions by the author today:** start the new day at once. Claude decided D12-1 to D12-3 [J].
+
+**Open:** (1) Laptop: `git pull origin main`; then `git fetch origin --tags` (the cloud could not push the tag: see below). No pin change (still v0.3.0). Optional: `python -m pytest` (expect 81 passed). (2) Tag: if `freeze-2026-11-09` is missing on GitHub, create it on fd5cc85 and push it: `git tag -a freeze-2026-11-09 fd5cc85 -m "ShellForm code freeze"` then `git push origin freeze-2026-11-09`. (3) Author: check the `numbers.md` rows (14-17 Nov); Michiels journal PDFs.
+
+**Next:** 10 Nov spare. 11 Nov Day 13: final figures, explorer with real results, README, v0.1 release and Zenodo DOI. ShellBench stays first until 11 Nov.
 ## 9 Nov 2026, Claude Code in VS Code (Day 12 sync)
 
 **Done:** Pulled main (898512c, up to date). `C:\Users\ASUS\ShellBench-pin` is at v0.3.0, matching `SHELLBENCH_TAG`. `pip install -e . --no-deps`, then `python -m pytest`: 81 passed (45 s). The newest entry names no scripts, so none were rerun; `results/` unchanged (`git status` clean). `python scripts/day12_freeze.py --help` runs, so the laptop is ready if the freeze is handed over.
