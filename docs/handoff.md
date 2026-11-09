@@ -2,6 +2,14 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 9 Nov 2026, Claude Code in VS Code (v0.1.0 released, DOI minted)
+
+**Done:** Tag `v0.1.0` pushed (on 5d02335) and GitHub release published (https://github.com/syednafizreja/ShellForm/releases/tag/v0.1.0). Zenodo minted DOI 10.5281/zenodo.24084111 (v0.1.0; concept DOI for all versions 10.5281/zenodo.24084110); record checked (creator Hasib, links to tree v0.1.0) and doi.org redirect checked by Claude; author to confirm. DOI added to `CITATION.cff`, README, `paper/08_data_availability.md`, `paper/references.md`.
+
+**Decisions by the author today:** approved the release.
+
+**Open:** ShellBench dataset DOI still [?] (its own release). Author: `.claude/commands/settings.local.json` holds permission rules but is in the wrong folder (commands/); delete it or move it to `.claude/`.
+
 ## 9 Nov 2026, Claude Code in VS Code (release v0.1.0 prepared)
 
 **Done:** Author approved the v0.1.0 release. Checked: repo already public; Zenodo GitHub webhook installed; tag `freeze-2026-11-09` on GitHub; no release yet. Release text test count corrected to 94 (PR #38).
