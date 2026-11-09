@@ -62,6 +62,21 @@ def test_bundled_fonts_register():
     assert style.register_fonts() == len(style.FONT_FILES)
 
 
+def test_style_needs_no_font_fallback(caplog):
+    """Every font face the style asks for is bundled, so matplotlib never
+    falls back with a 'Failed to find font weight' warning."""
+    import logging
+    import matplotlib.pyplot as plt
+    style.apply()
+    with caplog.at_level(logging.WARNING, logger="matplotlib.font_manager"):
+        fig, ax = plt.subplots()
+        ax.set_title(r"$\mathbf{a}\ \mathit{b}\ \mathrm{c}$", fontweight="semibold")
+        ax.set_xlabel("x", fontweight="medium")
+        fig.canvas.draw()
+        plt.close(fig)
+    assert not [r for r in caplog.records if "Failed to find font" in r.getMessage()]
+
+
 @pytest.mark.parametrize("stem", ["fig02_mechanism", "fig03_strategy_difference", "fig04_carbon_drivers",
                                   "fig05_s5_periods", "gallery_10m", "gallery_20m"])
 def test_figure_metadata_names_the_tag_and_width(stem):
