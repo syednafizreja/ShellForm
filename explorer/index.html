@@ -3,204 +3,854 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ShellForm design explorer</title>
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="ShellForm design explorer: 168 sized concrete shell designs, gravity-only against seismic-aware form-finding, and their A1-A3 carbon.">
+<title>ShellForm · Design explorer</title>
 <!--
-  explorer/index.html — ShellForm design explorer (Day 13, 9 Nov 2026).
+  explorer/index.html — ShellForm design explorer.
+  Day 13 (9 Nov 2026) first version; rebuilt to the ShellForm visual system
+  (docs/visual_style.md) on 9 Nov 2026.
+
   Shows the 168 sized designs of the freeze run. Data: explorer/explorer_data.js,
   written by scripts/day13_explorer_data.py from results/batch_all.csv. This page
-  computes nothing except the relative carbon difference of the two strategies,
-  (seismic - gravity) / gravity, and the 5 % rule of pre-registration section 7.
-  Open the file directly in a browser; no server needed. three.js r128 from a CDN.
+  computes nothing except (a) the relative carbon difference of the two
+  strategies, (seismic - gravity) / gravity, (b) the 5 % rule of pre-registration
+  section 7 (the same rule as shellform.pipeline.comparison), and (c) counts,
+  minima and maxima of those values over the 84 cells for the summary strip.
+  Opens straight from disk, offline: three.js r128 (MIT) and Inter (OFL) are in
+  explorer/vendor/.
 -->
 <style>
-  :root { --bg:#f7f7f5; --panel:#fff; --ink:#1d1d1b; --muted:#6b6b66; --grav:#6b7280; --seis:#c2410c; --grid:#e5e5e0; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg:#151514; --panel:#20201e; --ink:#ededea; --muted:#a3a39c; --grav:#a3a3a3; --seis:#fb923c; --grid:#333330; }
-  }
-  * { box-sizing:border-box; }
-  body { margin:0; font:15px/1.45 system-ui, sans-serif; background:var(--bg); color:var(--ink); }
-  header { padding:12px 16px 4px; }
-  header h1 { margin:0; font-size:18px; }
-  header p { margin:2px 0 0; color:var(--muted); font-size:13px; max-width:980px; }
-  main { display:grid; grid-template-columns:320px 1fr; gap:12px; padding:8px 16px 16px; }
-  @media (max-width:800px) { main { grid-template-columns:1fr; } }
-  aside, .card { background:var(--panel); border-radius:8px; padding:12px; }
-  label { display:block; margin:10px 0 4px; font-size:13px; color:var(--muted); }
-  select, input[type=range] { width:100%; }
-  .right { display:grid; grid-template-rows:auto auto; gap:12px; align-content:start; }
-  #view { background:var(--panel); border-radius:8px; height:420px; position:relative; }
-  #view canvas { display:block; width:100%; height:100%; border-radius:8px; }
-  #legend { position:absolute; left:10px; bottom:8px; font-size:12px; color:var(--muted); }
-  .stat { font-size:28px; font-weight:600; margin-top:12px; }
-  .unit { font-size:13px; color:var(--muted); font-weight:400; }
-  table { width:100%; font-size:13px; margin-top:8px; border-collapse:collapse; }
-  td { padding:2px 0; } td:last-child { text-align:right; font-variant-numeric:tabular-nums; }
-  .verdict { margin-top:10px; padding:8px; border-radius:6px; background:var(--bg); font-size:13px; }
-  .verdict b { font-size:14px; }
-  .note { font-size:12px; color:var(--muted); margin-top:10px; }
-  svg text { fill:var(--muted); font-size:11px; }
-  .sw { display:inline-block; width:10px; height:10px; border-radius:2px; margin:0 4px 0 10px; vertical-align:-1px; }
+@font-face { font-family: "Inter var-sf"; src: url("vendor/Inter-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Inter var-sf"; src: url("vendor/Inter-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Inter var-sf"; src: url("vendor/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+
+/* ---- Tokens: colour roles of docs/visual_style.md (light) ---------------- */
+:root {
+  color-scheme: light;
+  --page: #f6f5f1;
+  --surface: #ffffff;
+  --surface-2: #fbfaf7;
+  --sunken: #f0efea;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #898781;
+  --hair: rgba(11, 11, 11, 0.08);
+  --hair-2: rgba(11, 11, 11, 0.14);
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --band: #efeee9;
+  --band-edge: #d6d4cb;
+  --gravity: #2a78d6;
+  --seismic: #eb6834;
+  --gravity-soft: rgba(42, 120, 214, 0.10);
+  --seismic-soft: rgba(235, 104, 52, 0.10);
+  --check-buckling: #6250d6;
+  --check-t_min: #1baf7a;
+  --check-compression: #e87ba4;
+  --check-deflection: #eda100;
+  --div-lo: #0f6e78;
+  --div-mid: #f2f1ec;
+  --div-hi: #b5452a;
+  --concrete: #d8d4ca;
+  --good: #0ca30c;
+  --focus: #2a78d6;
+  --shadow: 0 1px 2px rgba(20, 20, 18, 0.04), 0 8px 24px -12px rgba(20, 20, 18, 0.10);
+  --radius: 14px;
+  --radius-sm: 9px;
+  --viewport-top: #fbfaf7;
+  --viewport-bot: #eeede7;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --surface-2: #1f1f1e;
+  --sunken: #141413;
+  --ink: #f0efec;
+  --ink-2: #c3c2b7;
+  --muted: #8f8d86;
+  --hair: rgba(255, 255, 255, 0.08);
+  --hair-2: rgba(255, 255, 255, 0.14);
+  --grid: #2c2c2a;
+  --axis: #383835;
+  --band: #252523;
+  --band-edge: #3a3a37;
+  --gravity: #3987e5;
+  --seismic: #d95926;
+  --gravity-soft: rgba(57, 135, 229, 0.16);
+  --seismic-soft: rgba(217, 89, 38, 0.16);
+  --check-buckling: #9085e9;
+  --check-t_min: #199e70;
+  --check-compression: #e87ba4;  /* light step kept in dark: #d55181 fails CVD vs aqua (docs/visual_style.md) */
+  --check-deflection: #c98500;
+  --div-lo: #2a9aa6;
+  --div-mid: #2a2a28;
+  --div-hi: #d8603f;
+  --concrete: #a9a59b;
+  --focus: #6da7ec;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+  --viewport-top: #222220;
+  --viewport-bot: #141413;
+}
+
+/* ---- Base --------------------------------------------------------------- */
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--page); color: var(--ink);
+  font: 400 14px/1.5 "Inter var-sf", Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased;
+}
+.num { font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 6px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+button { font: inherit; color: inherit; }
+a { color: inherit; }
+sub { font-size: 0.72em; }
+
+/* ---- Top bar ------------------------------------------------------------ */
+.bar {
+  position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 16px;
+  padding: 12px 28px; background: color-mix(in srgb, var(--page) 82%, transparent);
+  backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  border-bottom: 1px solid var(--hair);
+}
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand svg { display: block; }
+.brand b { font-weight: 600; letter-spacing: -0.01em; font-size: 15px; }
+.brand span { color: var(--muted); font-size: 13px; padding-left: 10px; border-left: 1px solid var(--hair-2); }
+.bar .grow { flex: 1; }
+.prov { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 99px;
+  background: var(--surface); border: 1px solid var(--hair); color: var(--ink-2); font-size: 12px; white-space: nowrap;
+}
+.chip i { width: 6px; height: 6px; border-radius: 50%; background: var(--good); display: inline-block; }
+.iconbtn {
+  display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; cursor: pointer;
+  background: var(--surface); border: 1px solid var(--hair); color: var(--ink-2); transition: background .15s, color .15s;
+}
+.iconbtn:hover { color: var(--ink); background: var(--surface-2); }
+.iconbtn svg { width: 17px; height: 17px; }
+
+/* ---- Page --------------------------------------------------------------- */
+.wrap { max-width: 1480px; margin: 0 auto; padding: 28px 28px 40px; }
+.intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 40px; align-items: end; margin-bottom: 22px; }
+.eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+h1 { font-size: 30px; line-height: 1.15; letter-spacing: -0.022em; font-weight: 600; margin: 0; max-width: 22ch; }
+.lede { color: var(--ink-2); max-width: 64ch; margin: 10px 0 0; font-size: 15px; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(120px, 1fr)); gap: 1px; background: var(--hair); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--hair); box-shadow: var(--shadow); }
+.stat { background: var(--surface); padding: 14px 18px 13px; }
+.stat .v { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
+.stat .v small { font-size: 13px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+.stat .k { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+.grid { display: grid; grid-template-columns: 276px minmax(0, 1fr) 372px; gap: 16px; align-items: start; }
+.card { background: var(--surface); border: 1px solid var(--hair); border-radius: var(--radius); box-shadow: var(--shadow); }
+.card-h { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 16px 18px 0; }
+.card-h h2 { font-size: 13px; font-weight: 600; margin: 0; letter-spacing: -0.005em; }
+.card-h p { margin: 0; font-size: 12px; color: var(--muted); }
+#cellname { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; font-family: ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace; }
+.pad { padding: 16px 18px 18px; }
+
+/* ---- Controls ----------------------------------------------------------- */
+.ctl { padding: 4px 18px 18px; }
+.field { margin-top: 16px; }
+.field > .lab { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; color: var(--ink-2); font-weight: 500; margin-bottom: 7px; }
+.field > .lab output { color: var(--ink); font-weight: 600; }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; background: var(--sunken); border-radius: 10px; padding: 3px; gap: 2px; border: 1px solid var(--hair); }
+.seg button {
+  height: 30px; border: 0; background: transparent; border-radius: 7px; cursor: pointer; font-size: 13px; color: var(--ink-2);
+  transition: background .15s, color .15s, box-shadow .15s; white-space: nowrap; padding: 0 6px;
+}
+.seg button:hover { color: var(--ink); }
+.seg button[aria-checked="true"] { background: var(--surface); color: var(--ink); font-weight: 500; box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 0 0 1px var(--hair); }
+.seg .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+.range { position: relative; padding-top: 2px; }
+input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; background: transparent; margin: 0; cursor: pointer; }
+input[type=range]::-webkit-slider-runnable-track { height: 4px; border-radius: 4px; background: linear-gradient(90deg, var(--ink) var(--p, 50%), var(--grid) var(--p, 50%)); }
+input[type=range]::-moz-range-track { height: 4px; border-radius: 4px; background: var(--grid); }
+input[type=range]::-moz-range-progress { height: 4px; border-radius: 4px; background: var(--ink); }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; margin-top: -7px; border-radius: 50%; background: var(--surface); border: 1px solid var(--hair-2); box-shadow: 0 1px 3px rgba(0,0,0,.18); }
+input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--surface); border: 1px solid var(--hair-2); box-shadow: 0 1px 3px rgba(0,0,0,.18); }
+.ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); padding: 2px 2px 0; }
+.ticks span { width: 0; display: flex; justify-content: center; }
+.hint { font-size: 12px; color: var(--muted); margin: 18px 0 0; line-height: 1.5; }
+.hint kbd { font: 500 11px/1 "Inter var-sf", Inter, system-ui, sans-serif; padding: 2px 5px; border-radius: 4px; border: 1px solid var(--hair-2); background: var(--surface-2); }
+
+/* ---- 3D viewport --------------------------------------------------------- */
+.viewport { position: relative; height: 620px; border-radius: var(--radius); overflow: hidden; background: radial-gradient(120% 90% at 50% 0%, var(--viewport-top), var(--viewport-bot)); }
+.viewport canvas { display: block; width: 100%; height: 100%; outline: none; }
+.hud { position: absolute; left: 16px; right: 16px; top: 14px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; pointer-events: none; }
+.hud > * { pointer-events: auto; }
+.hud-id { font-size: 12px; color: var(--ink-2); }
+.hud-id b { display: block; font-size: 15px; color: var(--ink); font-weight: 600; letter-spacing: -0.01em; margin-bottom: 2px; }
+.tools { display: flex; gap: 6px; }
+.tools .seg { background: color-mix(in srgb, var(--surface) 80%, transparent); backdrop-filter: blur(8px); }
+.tools .seg button { height: 28px; font-size: 12px; padding: 0 10px; }
+.foot { position: absolute; left: 16px; right: 16px; bottom: 14px; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; pointer-events: none; }
+.foot > * { pointer-events: auto; }
+.legend3d { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--ink-2); background: color-mix(in srgb, var(--surface) 82%, transparent); backdrop-filter: blur(8px); border: 1px solid var(--hair); border-radius: 10px; padding: 9px 12px; }
+.legend3d .row { display: flex; align-items: center; gap: 8px; }
+.sw { width: 14px; height: 10px; border-radius: 3px; display: inline-block; flex: none; }
+.sw.wire { background: repeating-linear-gradient(90deg, var(--ink-2) 0 2px, transparent 2px 4px); opacity: .6; }
+.cbar { width: 150px; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--div-lo), var(--div-mid), var(--div-hi)); }
+.cbar-t { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 3px; }
+.exag { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--ink-2); background: color-mix(in srgb, var(--surface) 82%, transparent); backdrop-filter: blur(8px); border: 1px solid var(--hair); border-radius: 10px; padding: 7px 12px; }
+.exag input { width: 110px; }
+.nogl { position: absolute; inset: 0; display: none; place-items: center; text-align: center; color: var(--ink-2); padding: 40px; font-size: 13px; }
+
+/* ---- Metrics panel ------------------------------------------------------- */
+.verdict { margin: 14px 18px 0; border-radius: 12px; padding: 14px 16px; background: var(--sunken); border: 1px solid var(--hair); }
+.verdict .t { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14px; }
+.verdict .t svg { flex: none; }
+.verdict .d { font-size: 13px; color: var(--ink-2); margin-top: 4px; }
+.verdict .big { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; margin-top: 6px; }
+.verdict .big small { font-size: 13px; color: var(--muted); font-weight: 500; letter-spacing: 0; }
+.verdict.out { background: var(--seismic-soft); border-color: color-mix(in srgb, var(--seismic) 30%, transparent); }
+table.cmp { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
+table.cmp col.c1 { width: 40%; } table.cmp col.c4 { width: 13%; }
+table.cmp th { font-weight: 500; font-size: 11px; color: var(--muted); text-align: right; padding: 0 0 8px; white-space: nowrap; }
+table.cmp th:first-child { text-align: left; }
+table.cmp th .sw { width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: 0; }
+table.cmp td { padding: 7px 0; border-top: 1px solid var(--hair); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+table.cmp td:first-child { text-align: left; color: var(--ink-2); white-space: normal; }
+table.cmp td.sel { font-weight: 600; }
+table.cmp td .u { color: var(--muted); font-size: 11px; margin-left: 2px; }
+table.cmp td:first-child .u { margin-left: 4px; }
+table.cmp td.band { font-size: 11.5px; color: var(--ink-2); }
+table.cmp td.d { color: var(--muted); font-size: 12px; }
+.gov { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; white-space: nowrap; }
+.gov i { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
+.note { font-size: 12px; color: var(--muted); line-height: 1.55; margin: 14px 0 0; }
+
+/* ---- Lower charts ------------------------------------------------------ */
+.lower { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 16px; margin-top: 16px; }
+.chart { position: relative; }
+.chart svg { display: block; width: 100%; overflow: visible; }
+.chart svg text { font-family: inherit; }
+.leg { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--ink-2); }
+.leg span { display: inline-flex; align-items: center; gap: 6px; }
+.leg .ln { width: 16px; height: 2px; border-radius: 2px; display: inline-block; }
+.leg .bx { width: 12px; height: 10px; border-radius: 2px; background: var(--band); border: 1px solid var(--band-edge); display: inline-block; }
+.tip {
+  position: absolute; pointer-events: none; z-index: 5; min-width: 168px; padding: 9px 11px; border-radius: 10px; font-size: 12px;
+  background: var(--surface); border: 1px solid var(--hair-2); box-shadow: 0 8px 24px -8px rgba(0,0,0,.25); opacity: 0; transform: translateY(4px);
+  transition: opacity .12s, transform .12s;
+}
+.tip.on { opacity: 1; transform: none; }
+.tip b { display: block; font-weight: 600; margin-bottom: 4px; }
+.tip .r { display: flex; justify-content: space-between; gap: 14px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.tip .r span:first-child { display: inline-flex; align-items: center; gap: 6px; }
+.cell { cursor: pointer; transition: opacity .12s; }
+.cell:hover { opacity: .85; }
+
+/* ---- Table and footer --------------------------------------------------- */
+details.tbl { margin-top: 16px; }
+details.tbl summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; font-size: 13px; font-weight: 600; }
+details.tbl summary::-webkit-details-marker { display: none; }
+details.tbl summary .chev { transition: transform .2s; color: var(--muted); }
+details.tbl[open] summary .chev { transform: rotate(180deg); }
+.tbl-wrap { overflow-x: auto; padding: 0 18px 18px; }
+table.data { width: 100%; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+table.data th { position: sticky; top: 0; background: var(--surface); text-align: right; font-weight: 500; color: var(--muted); font-size: 11.5px; padding: 8px 10px; border-bottom: 1px solid var(--hair-2); white-space: nowrap; }
+table.data td { text-align: right; padding: 7px 10px; border-bottom: 1px solid var(--hair); white-space: nowrap; }
+table.data th:first-child, table.data td:first-child, table.data th:nth-child(2), table.data td:nth-child(2) { text-align: left; }
+table.data tr.cur td { background: var(--sunken); font-weight: 500; }
+.btn { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; border-radius: 9px; border: 1px solid var(--hair-2); background: var(--surface); cursor: pointer; font-size: 12.5px; font-weight: 500; }
+.btn:hover { background: var(--surface-2); }
+footer { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--hair); display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+footer b { color: var(--ink-2); font-weight: 500; }
+footer code { font-family: ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace; font-size: 11.5px; color: var(--ink-2); }
+
+/* ---- Responsive, motion, print ------------------------------------------ */
+@media (max-width: 1240px) {
+  .grid { grid-template-columns: 260px minmax(0, 1fr); }
+  .metrics { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
+  .intro { grid-template-columns: 1fr; }
+}
+@media (max-width: 860px) {
+  .wrap { padding: 18px 14px 32px; }
+  .bar { padding: 10px 14px; }
+  .bar .prov { display: none; }
+  .grid, .lower, footer { grid-template-columns: 1fr; }
+  .metrics { display: block; }
+  .viewport { height: 460px; }
+  .hud { flex-direction: column; left: 12px; right: 12px; top: 10px; }
+  .tools { flex-wrap: wrap; }
+  .foot { flex-direction: column; align-items: stretch; left: 10px; right: 10px; bottom: 10px; gap: 6px; }
+  .legend3d { padding: 7px 10px; font-size: 11px; }
+  .exag input { flex: 1; width: auto; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  h1 { font-size: 24px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media print {
+  .bar, .tools, .exag, details.tbl summary .chev, .hint { display: none !important; }
+  body { background: #fff; }
+  .card { box-shadow: none; }
+}
+@media (forced-colors: active) { .seg button[aria-checked="true"] { outline: 2px solid CanvasText; } }
 </style>
 </head>
 <body>
-<header>
-  <h1>ShellForm design explorer</h1>
-  <p>Gravity-only against seismic-aware form-finding of concrete shells: 168 sized designs and their A1–A3 carbon.
-     <span id="prov"></span></p>
+<header class="bar">
+  <a class="brand" href="#" aria-label="ShellForm design explorer">
+    <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+      <rect width="26" height="26" rx="7" fill="var(--ink)"/>
+      <path d="M4.5 18.5 C 8 7.5, 18 7.5, 21.5 18.5" fill="none" stroke="var(--surface)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M4.5 18.5 C 9 11.5, 17 11.5, 21.5 18.5" fill="none" stroke="var(--seismic)" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M3.5 18.5 H 22.5" stroke="var(--surface)" stroke-opacity=".5" stroke-width="1" stroke-linecap="round"/>
+    </svg>
+    <b>ShellForm</b><span>Design explorer</span>
+  </a>
+  <div class="grow"></div>
+  <div class="prov" id="prov" aria-label="Data provenance"></div>
+  <button class="iconbtn" id="theme" type="button" aria-label="Switch light or dark theme" title="Theme">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg>
+  </button>
 </header>
-<main>
-  <aside>
-    <label for="span">Span</label>
-    <select id="span"><option value="10">10 m</option><option value="20">20 m</option></select>
-    <label for="supports">Supports</label>
-    <select id="supports"><option value="corners">4 corner supports</option><option value="edges">Continuous edges</option></select>
-    <label for="rise">Rise-to-span ratio</label>
-    <select id="rise"><option value="0.1">0.10</option><option value="0.15" selected>0.15</option><option value="0.2">0.20</option></select>
-    <label for="strategy">Strategy shown in 3D</label>
-    <select id="strategy"><option value="gravity">Gravity-only form</option><option value="seismic" selected>Seismic-aware form</option></select>
-    <label for="sa">Plateau spectral acceleration S<sub>a</sub>: <b id="saval">0.3</b> g</label>
-    <input id="sa" type="range" min="0" max="6" step="1" value="3">
-    <label for="exag">Height difference to the gravity form, drawn ×<b id="exagval">1</b></label>
-    <input id="exag" type="range" min="0" max="3" step="1" value="0">
 
-    <div class="stat"><span id="carbon">–</span> <span class="unit">kgCO₂e/m² of plan</span></div>
-    <table>
-      <tr><td>Factor band (±25 %)</td><td id="band">–</td></tr>
-      <tr><td>Thickness</td><td id="thk">–</td></tr>
-      <tr><td>Governing check</td><td id="gov">–</td></tr>
-      <tr><td>Buckling factor λ</td><td id="buck">–</td></tr>
-      <tr><td>Steel</td><td id="steel">–</td></tr>
-      <tr><td>Concrete share of carbon</td><td id="share">–</td></tr>
-      <tr><td>First period T₁</td><td id="t1">–</td></tr>
-    </table>
-    <div class="verdict" id="verdict">–</div>
-    <p class="note">Carbon factors: GB/T 51366, read from ShellBench. Rule: a strategy is cheaper only if it saves 5 % or more
-      (pre-registration, section 7). Results are the frozen run; no number on this page is edited by hand.</p>
-  </aside>
-  <div class="right">
-    <div id="view"><div id="legend"></div></div>
-    <div class="card">
-      <div style="font-size:13px;color:var(--muted)">Carbon against S<sub>a</sub> for this span, support case and rise
-        <span class="sw" style="background:var(--grav)"></span>gravity-only
-        <span class="sw" style="background:var(--seis)"></span>seismic-aware</div>
-      <svg id="chart" width="100%" height="190" role="img" aria-label="Carbon against Sa for both strategies"></svg>
+<div class="wrap">
+  <section class="intro">
+    <div>
+      <p class="eyebrow">Concrete shells · gravity-only vs seismic-aware form-finding</p>
+      <h1>What does seismic resilience cost in carbon?</h1>
+      <p class="lede">Each of the 168 designs was form-found, sized to the pre-registered checks and costed in A1–A3 carbon.
+        Choose a span, support case, rise and seismic level to see the two strategies side by side.</p>
     </div>
+    <div class="stats" id="stats" aria-label="Summary of all designs"></div>
+  </section>
+
+  <div class="grid">
+    <!-- Controls -->
+    <aside class="card" aria-label="Design selection">
+      <div class="card-h"><h2>Design</h2><p id="cellname"></p></div>
+      <div class="ctl">
+        <div class="field"><div class="lab" id="l-span">Span</div>
+          <div class="seg" role="radiogroup" aria-labelledby="l-span" data-key="span"></div></div>
+        <div class="field"><div class="lab" id="l-sup">Supports</div>
+          <div class="seg" role="radiogroup" aria-labelledby="l-sup" data-key="supports"></div></div>
+        <div class="field"><div class="lab" id="l-rise">Rise-to-span ratio</div>
+          <div class="seg" role="radiogroup" aria-labelledby="l-rise" data-key="rise"></div></div>
+        <div class="field">
+          <div class="lab"><label for="sa">Plateau spectral acceleration S<sub>a</sub></label><output id="saval" class="num"></output></div>
+          <div class="range"><input id="sa" type="range" min="0" max="6" step="1" aria-valuetext=""></div>
+          <div class="ticks" aria-hidden="true" id="saticks"></div>
+        </div>
+        <div class="field"><div class="lab" id="l-str">Form shown</div>
+          <div class="seg" role="radiogroup" aria-labelledby="l-str" data-key="strategy"></div></div>
+        <p class="hint">Drag to orbit, scroll to zoom. <kbd>←</kbd> <kbd>→</kbd> step S<sub>a</sub>; <kbd>G</kbd>/<kbd>S</kbd> switch form. The link in the address bar keeps this view.</p>
+      </div>
+    </aside>
+
+    <!-- 3D -->
+    <section class="card" aria-label="3D view of the selected form">
+      <div class="viewport" id="view">
+        <div class="hud">
+          <div class="hud-id" id="hudid" aria-live="polite"></div>
+          <div class="tools">
+            <div class="seg" role="radiogroup" aria-label="Surface colour" data-key="colour"></div>
+            <div class="seg" role="radiogroup" aria-label="Camera" data-key="cam"></div>
+            <button class="iconbtn" id="snap" type="button" aria-label="Save the view as a PNG image" title="Save PNG">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="foot">
+          <div class="legend3d" id="leg3d"></div>
+          <label class="exag"><span>Height change drawn ×<b id="exagval" class="num">1</b></span>
+            <input id="exag" type="range" min="0" max="3" step="1" value="0" aria-label="Exaggerate the height change to the gravity form"></label>
+        </div>
+        <div class="nogl" id="nogl">The 3D view needs WebGL, which this browser has turned off. All numbers below still work.</div>
+      </div>
+    </section>
+
+    <!-- Metrics -->
+    <aside class="card metrics" aria-label="Selected design">
+      <div>
+        <div class="verdict" id="verdict" aria-live="polite"></div>
+      </div>
+      <div class="pad">
+        <table class="cmp" id="cmp" aria-label="Gravity-only and seismic-aware designs at this cell"></table>
+        <p class="note">Carbon: A1–A3, GB/T 51366 factors read from ShellBench; the band is the ±25 % factor range.
+          A strategy counts as cheaper only if it saves 5 % or more (pre-registration, section 7).</p>
+      </div>
+    </aside>
   </div>
-</main>
+
+  <div class="lower">
+    <section class="card" aria-label="Carbon against Sa">
+      <div class="card-h"><h2>Carbon against S<sub>a</sub></h2><p id="c1sub"></p></div>
+      <div class="pad">
+        <div class="leg" style="margin-bottom:8px">
+          <span><i class="ln" style="background:var(--gravity)"></i>gravity-only form</span>
+          <span><i class="ln" style="background:var(--seismic)"></i>seismic-aware form</span>
+          <span><i class="bx"></i>±5 % of gravity-only</span>
+        </div>
+        <div class="chart" id="c1"><svg id="c1svg" height="292" role="img" aria-label="Carbon per square metre of plan against Sa for both strategies"></svg><div class="tip" id="tip1"></div></div>
+      </div>
+    </section>
+    <section class="card" aria-label="All 84 comparisons">
+      <div class="card-h"><h2>All 84 comparisons</h2><p>seismic-aware vs gravity-only carbon · click a cell</p></div>
+      <div class="pad">
+        <div class="leg" style="margin-bottom:8px;align-items:center">
+          <span><span class="num" style="color:var(--muted)" id="hmlo"></span><i class="cbar" style="width:120px;height:8px"></i><span class="num" style="color:var(--muted)" id="hmhi"></span></span>
+          <span><i class="bx" style="background:none;border:1.5px solid var(--ink)"></i>outside ±5 %</span>
+          <span><i class="bx" style="background:none;border:1.5px dashed var(--ink-2)"></i>selected</span>
+        </div>
+        <div class="chart" id="c2"><svg id="c2svg" height="292" role="img" aria-label="Matrix of the relative carbon difference for every span, support case, rise and Sa"></svg><div class="tip" id="tip2"></div></div>
+      </div>
+    </section>
+  </div>
+
+  <details class="card tbl" id="tbl">
+    <summary><span>Table view: the 14 designs of this span, support case and rise</span>
+      <span style="display:flex;gap:10px;align-items:center"><span class="btn" id="csv" role="button" tabindex="0">Download all 168 (CSV)</span>
+      <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+    <div class="tbl-wrap"><table class="data" id="data"></table></div>
+  </details>
+
+  <footer>
+    <div><b>How to read this.</b> Every number on this page is a column of <code>results/batch_all.csv</code> from the frozen run,
+      copied without change. The page computes only the relative difference of the two strategies, the 5 % verdict and the
+      counts in the summary strip. Forms are drawn on every second line of the 41 × 41 network, rounded to 1 mm (picture only).
+      The height-change colour is the seismic-aware form minus the gravity-only form at the same S<sub>a</sub>.</div>
+    <div id="credits"></div>
+  </footer>
+</div>
 
 <script src="explorer_data.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="vendor/three.min.js"></script>
+<script src="vendor/OrbitControls.js"></script>
 <script>
+"use strict";
 const DATA = window.SHELLFORM_DATA;
-const SA_LEVELS = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6];
+const SA = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6];
+const SPANS = [10, 20], SUPS = ["corners", "edges"], RISES = [0.1, 0.15, 0.2];
 const EXAG = [1, 5, 10, 20];
-const RULE = 0.05;  // pre-registration section 7: 5 % meaningful difference
+const RULE = 0.05;  // pre-registration section 7; same rule as shellform.pipeline.comparison
+const CHECK = { buckling: "buckling", t_min: "minimum thickness", compression: "compression", deflection: "deflection" };
+const SHORT = { buckling: "buckling", t_min: "min. thickness", compression: "compression", deflection: "deflection" };
+const SUPLAB = { corners: "Corner supports", edges: "Edge supports" };
 const $ = id => document.getElementById(id);
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const f1 = v => v.toFixed(1), pct = v => (v >= 0 ? "+" : "−") + Math.abs(100 * v).toFixed(1) + " %";
 
-document.getElementById("prov").textContent =
-  `Data: ${DATA.source}, freeze ${DATA.freeze_tag} (code ${DATA.code_commit.slice(0, 7)}), ShellBench ${DATA.shellbench_tag}.`;
+/* ---------- Data index and summary ------------------------------------- */
+const key = (s, u, r, t, a) => [s, u, r, t, a].join("|");
+const IDX = {};
+for (const d of DATA.designs) IDX[key(d.span_m, d.supports, d.rise_ratio, d.strategy, d.sa_g)] = d;
+const get = (s, u, r, t, a) => IDX[key(s, u, r, t, a)];
+const rel = (s, u, r, a) => { const g = get(s, u, r, "gravity", a), q = get(s, u, r, "seismic", a);
+  return (q.carbon_kgco2e_m2 - g.carbon_kgco2e_m2) / g.carbon_kgco2e_m2; };
+const verdictOf = x => Math.abs(x) < RULE ? "no meaningful difference" : x < 0 ? "seismic-aware cheaper" : "gravity-only cheaper";
+const CELLS = [];
+for (const s of SPANS) for (const u of SUPS) for (const r of RISES) for (const a of SA) CELLS.push({ s, u, r, a, x: rel(s, u, r, a) });
 
-const index = {};
-for (const d of DATA.designs) index[[d.span_m, d.supports, d.rise_ratio, d.strategy, d.sa_g].join("|")] = d;
-const find = (span, sup, rise, strat, sa) => index[[span, sup, rise, strat, sa].join("|")];
+/* ---------- State (kept in the URL hash) --------------------------------- */
+const S = { span: 10, supports: "corners", rise: 0.15, sa: 0.3, strategy: "seismic", colour: "dz", cam: "iso", exag: 0 };
+function readHash() {
+  const h = new URLSearchParams(location.hash.slice(1));
+  const n = (k, ok) => { const v = parseFloat(h.get(k)); if (ok.includes(v)) S[k] = v; };
+  n("span", SPANS); n("rise", RISES); n("sa", SA); n("exag", [0, 1, 2, 3]);
+  for (const [k, ok] of [["supports", SUPS], ["strategy", ["gravity", "seismic"]], ["colour", ["dz", "strategy"]]]) if (ok.includes(h.get(k))) S[k] = h.get(k);
+}
+const writeHash = () => history.replaceState(null, "", "#" + new URLSearchParams({ span: S.span, supports: S.supports, rise: S.rise, sa: S.sa, strategy: S.strategy, colour: S.colour, exag: S.exag }));
 
+/* ---------- Header, stats, credits -------------------------------------- */
+$("prov").innerHTML = `<span class="chip"><i></i>Freeze ${DATA.freeze_tag.replace("freeze-", "")}</span>
+  <span class="chip">ShellBench ${DATA.shellbench_tag}</span><span class="chip num">code ${DATA.code_commit.slice(0, 7)}</span>`;
+(function stats() {
+  const nmd = CELLS.filter(c => Math.abs(c.x) < RULE).length;
+  const lo = Math.min(...CELLS.map(c => c.x)), hi = Math.max(...CELLS.map(c => c.x));
+  const tiles = [
+    [DATA.designs.length, "", "sized designs"],
+    [`${nmd}<small> / ${CELLS.length}</small>`, "", "cells: no meaningful difference"],
+    [pct(lo).replace(" %", "<small> %</small>"), "", "largest saving, seismic-aware"],
+    [pct(hi).replace(" %", "<small> %</small>"), "", "largest extra carbon"],
+  ];
+  $("stats").innerHTML = tiles.map(([v, , k]) => `<div class="stat"><div class="v num">${v}</div><div class="k">${k}</div></div>`).join("");
+})();
+$("credits").innerHTML = `<b>Data.</b> <code>${DATA.source}</code>, tag <code>${DATA.freeze_tag}</code>, code <code>${DATA.code_commit.slice(0, 7)}</code>,
+  ShellBench <code>${DATA.shellbench_tag}</code>. Built by <code>scripts/day13_explorer_data.py</code>.<br>
+  <b>Software.</b> three.js r128 (MIT) and the Inter typeface (SIL OFL 1.1), bundled in <code>explorer/vendor/</code>.`;
+
+/* ---------- Segmented controls ------------------------------------------ */
+const SEGS = {
+  span: SPANS.map(v => [v, `${v} m`]),
+  supports: SUPS.map(v => [v, v === "corners" ? "4 corners" : "Edges"]),
+  rise: RISES.map(v => [v, v.toFixed(2)]),
+  strategy: [["gravity", `<i class="dot" style="background:var(--gravity)"></i>Gravity-only`], ["seismic", `<i class="dot" style="background:var(--seismic)"></i>Seismic-aware`]],
+  colour: [["dz", "Height change"], ["strategy", "Plain"]],
+  cam: [["iso", "3D"], ["plan", "Plan"], ["elev", "Side"]],
+};
+document.querySelectorAll(".seg[data-key]").forEach(el => {
+  const k = el.dataset.key;
+  el.innerHTML = SEGS[k].map(([v, l]) => `<button type="button" role="radio" data-v="${v}">${l}</button>`).join("");
+  el.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; pick(k, b.dataset.v); });
+  el.addEventListener("keydown", e => {
+    if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)) return;
+    e.preventDefault(); e.stopPropagation();
+    const bs = [...el.querySelectorAll("button")], i = bs.findIndex(b => b.getAttribute("aria-checked") === "true");
+    const j = (i + (e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : bs.length - 1)) % bs.length;
+    pick(k, bs[j].dataset.v); bs[j].focus();
+  });
+});
+function pick(k, v) {
+  if (k === "cam") { setCam(v); syncSegs(); return; }
+  S[k] = ["span", "rise"].includes(k) ? parseFloat(v) : v;
+  if (k === "span") lastSpan = null;
+  update();
+}
+function syncSegs() {
+  document.querySelectorAll(".seg[data-key]").forEach(el => {
+    const k = el.dataset.key;
+    el.querySelectorAll("button").forEach(b => {
+      const on = String(S[k]) === b.dataset.v; b.setAttribute("aria-checked", on); b.tabIndex = on ? 0 : -1; });
+  });
+}
+$("saticks").innerHTML = SA.map(a => `<span>${a.toFixed(1)}</span>`).join("");
+const saEl = $("sa"), exEl = $("exag");
+saEl.addEventListener("input", () => { S.sa = SA[+saEl.value]; update(); });
+exEl.addEventListener("input", () => { S.exag = +exEl.value; update(); });
+document.addEventListener("keydown", e => {
+  if (e.target.closest("input, .seg, summary, .btn") || e.metaKey || e.ctrlKey || e.altKey) return;
+  const i = SA.indexOf(S.sa);
+  if (e.key === "ArrowRight" && i < 6) { S.sa = SA[i + 1]; update(); }
+  else if (e.key === "ArrowLeft" && i > 0) { S.sa = SA[i - 1]; update(); }
+  else if (e.key.toLowerCase() === "g") { S.strategy = "gravity"; update(); }
+  else if (e.key.toLowerCase() === "s") { S.strategy = "seismic"; update(); }
+});
+
+/* ---------- Colour helpers ---------------------------------------------- */
+function hex(h) { const n = parseInt(h.replace("#", ""), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+function srgb2lin(c) { c /= 255; return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; }
+function lin2srgb(c) { c = c <= 0.0031308 ? 12.92 * c : 1.055 * c ** (1 / 2.4) - 0.055; return Math.round(255 * Math.min(1, Math.max(0, c))); }
+function toOk(h) { const [r, g, b] = hex(h).map(srgb2lin);
+  const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b), m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b), s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
+  return [0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s, 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s, 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s]; }
+function fromOk([L, a, b]) { const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3, m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3, s = (L - 0.0894841775 * a - 1.291485548 * b) ** 3;
+  return [4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s, -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s, -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s].map(lin2srgb); }
+function diverge(t, mid = "--div-mid") { // t in [-1, 1] -> rgb along lo - mid - hi, interpolated in OKLab
+  t = Math.max(-1, Math.min(1, t));
+  const A = toOk(css(mid)), B = toOk(css(t < 0 ? "--div-lo" : "--div-hi")), u = Math.abs(t);
+  return fromOk(A.map((v, i) => v + (B[i] - v) * u)); }
+const rgb = c => `rgb(${c.join(",")})`;
+
+/* ---------- 3D ------------------------------------------------------------ */
 const view = $("view");
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-view.insertBefore(renderer.domElement, view.firstChild);
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 500);
-camera.up.set(0, 0, 1);
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-scene.add(new THREE.HemisphereLight(0xffffff, 0x666666, 0.9));
-const sun = new THREE.DirectionalLight(0xffffff, 0.6); sun.position.set(10, -20, 30); scene.add(sun);
-let meshes = [], lastSpan = null;
+let renderer = null, scene, camera, controls, group, ground, lastSpan = null, glOK = true;
+try {
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+} catch (e) { glOK = false; }
+if (!window.THREE || !glOK) { $("nogl").style.display = "grid"; }
+else {
+  renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  view.insertBefore(renderer.domElement, view.firstChild);
+  renderer.domElement.setAttribute("aria-label", "3D view; drag to orbit, scroll to zoom");
+  renderer.domElement.tabIndex = 0;
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(32, 1, 0.1, 1000);
+  camera.up.set(0, 0, 1);
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true; controls.dampingFactor = 0.08; controls.maxPolarAngle = Math.PI * 0.495;
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xb9b5aa, 0.62));
+  const key = new THREE.DirectionalLight(0xfffaf2, 0.62);
+  key.position.set(-14, -22, 34); key.castShadow = true;
+  key.shadow.mapSize.set(2048, 2048); key.shadow.radius = 6; key.shadow.bias = -0.0004;
+  Object.assign(key.shadow.camera, { left: -16, right: 16, top: 16, bottom: -16, near: 1, far: 120 });
+  scene.add(key);
+  const rim = new THREE.DirectionalLight(0xffffff, 0.25); rim.position.set(20, 18, 10); scene.add(rim);
+  ground = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.ShadowMaterial({ opacity: 0.16 }));
+  ground.receiveShadow = true; scene.add(ground);
+  group = new THREE.Group(); scene.add(group);
+}
 
-function geometry(d, base, k) {
-  // base: gravity form of the same cell; k: exaggeration of the height difference.
+function shellGeometry(d, base, k) {
   const p = d.nodes.slice();
   if (base && k !== 1) for (let i = 2; i < p.length; i += 3) p[i] = base.nodes[i] + k * (d.nodes[i] - base.nodes[i]);
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.Float32BufferAttribute(p, 3));
+  const g = new THREE.BufferGeometry();
+  g.setAttribute("position", new THREE.Float32BufferAttribute(p, 3));
   const idx = [];
   for (let i = 0; i < d.n - 1; i++) for (let j = 0; j < d.n - 1; j++) {
-    const a = i * d.n + j, b = a + 1, c = a + d.n, e = c + 1;
-    idx.push(a, c, b, b, c, e);
-  }
-  geo.setIndex(idx); geo.computeVertexNormals();
-  return geo;
+    const a = i * d.n + j, b = a + 1, c = a + d.n, e = c + 1; idx.push(a, c, b, b, c, e); }
+  g.setIndex(idx); g.computeVertexNormals();
+  return g;
 }
-
+function gridLines(d, base, k, colour, opacity) {
+  const p = d.nodes, n = d.n, z = i => (base && k !== 1) ? base.nodes[i + 2] + k * (p[i + 2] - base.nodes[i + 2]) : p[i + 2];
+  const pts = [];
+  for (let i = 0; i < n; i += 2) for (let j = 0; j < n - 1; j++) { const a = 3 * (i * n + j), b = 3 * (i * n + j + 1); pts.push(p[a], p[a + 1], z(a) + 0.004, p[b], p[b + 1], z(b) + 0.004); }
+  for (let j = 0; j < n; j += 2) for (let i = 0; i < n - 1; i++) { const a = 3 * (i * n + j), b = 3 * ((i + 1) * n + j); pts.push(p[a], p[a + 1], z(a) + 0.004, p[b], p[b + 1], z(b) + 0.004); }
+  const g = new THREE.BufferGeometry(); g.setAttribute("position", new THREE.Float32BufferAttribute(pts, 3));
+  return new THREE.LineSegments(g, new THREE.LineBasicMaterial({ color: colour, transparent: true, opacity }));
+}
+function supports(d) {
+  const out = new THREE.Group(), n = d.n, p = d.nodes, ink = new THREE.Color(css("--ink"));
+  const mat = new THREE.MeshStandardMaterial({ color: ink, roughness: 0.6 });
+  const s = d.span_m / 10;
+  if (d.supports === "corners") {
+    for (const [i, j] of [[0, 0], [0, n - 1], [n - 1, 0], [n - 1, n - 1]]) {
+      const a = 3 * (i * n + j), m = new THREE.Mesh(new THREE.CylinderGeometry(0.16 * s, 0.22 * s, 0.12 * s, 24), mat);
+      m.rotation.x = Math.PI / 2; m.position.set(p[a], p[a + 1], 0.06 * s); m.castShadow = true; out.add(m); }
+  } else {
+    const pts = [], ring = [];
+    for (let j = 0; j < n; j++) ring.push(j); for (let i = 1; i < n; i++) ring.push(i * n + n - 1);
+    for (let j = n - 2; j >= 0; j--) ring.push((n - 1) * n + j); for (let i = n - 2; i >= 0; i--) ring.push(i * n);
+    for (const r of ring) pts.push(new THREE.Vector3(p[3 * r], p[3 * r + 1], 0.02));
+    const g = new THREE.BufferGeometry().setFromPoints(pts);
+    out.add(new THREE.Line(g, new THREE.LineBasicMaterial({ color: ink, linewidth: 2 })));
+  }
+  return out;
+}
+function plate(span) { // plan square under the form, a quiet reference
+  const h = span / 2 + span * 0.08, g = new THREE.BufferGeometry().setFromPoints([[-h, -h], [h, -h], [h, h], [-h, h], [-h, -h]].map(([x, y]) => new THREE.Vector3(x, y, 0.001)));
+  return new THREE.Line(g, new THREE.LineBasicMaterial({ color: new THREE.Color(css("--axis")) }));
+}
 function draw(shown, grav, k) {
-  for (const m of meshes) { scene.remove(m); m.geometry.dispose(); }
-  meshes = [];
-  const col = shown.strategy === "seismic" ? css("--seis") : css("--grav");
-  meshes.push(new THREE.Mesh(geometry(shown, grav, k),
-    new THREE.MeshStandardMaterial({ color: col, side: THREE.DoubleSide, roughness: 0.7 })));
-  if (shown.strategy === "seismic") {
-    meshes.push(new THREE.Mesh(geometry(grav, null, 1),
-      new THREE.MeshBasicMaterial({ color: css("--grav"), wireframe: true, transparent: true, opacity: 0.35 })));
+  if (!group) return;
+  while (group.children.length) { const c = group.children.pop(); c.traverse(o => { o.geometry && o.geometry.dispose(); o.material && o.material.dispose(); }); }
+  const geo = shellGeometry(shown, grav, k);
+  let mat;
+  if (S.colour === "dz") {
+    const lim = dzLimit(), col = [];
+    for (let i = 2; i < shown.nodes.length; i += 3) {
+      const c = diverge((shown.nodes[i] - grav.nodes[i]) / lim, "--concrete").map(v => v / 255);
+      const lc = new THREE.Color(c[0], c[1], c[2]).convertSRGBToLinear(); col.push(lc.r, lc.g, lc.b); }
+    geo.setAttribute("color", new THREE.Float32BufferAttribute(col, 3));
+    mat = new THREE.MeshStandardMaterial({ vertexColors: true, side: THREE.DoubleSide, roughness: 0.62, metalness: 0 });
+  } else {
+    const c = new THREE.Color(css(shown.strategy === "seismic" ? "--seismic" : "--gravity")).convertSRGBToLinear();
+    c.lerp(new THREE.Color(1, 1, 1), 0.18);
+    mat = new THREE.MeshStandardMaterial({ color: c, side: THREE.DoubleSide, roughness: 0.55, metalness: 0 });
   }
-  meshes.forEach(m => scene.add(m));
-  $("legend").textContent = shown.strategy === "seismic"
-    ? `Solid: seismic-aware form${k > 1 ? ` (height difference ×${k})` : ""}. Wire: gravity form.`
-    : "Gravity-only form.";
+  const mesh = new THREE.Mesh(geo, mat); mesh.castShadow = true; mesh.receiveShadow = true; group.add(mesh);
+  const dark = document.documentElement.dataset.theme === "dark";
+  group.add(gridLines(shown, grav, k, dark ? 0xffffff : 0x111111, dark ? 0.16 : 0.13));
+  if (shown.strategy === "seismic") group.add(gridLines(grav, null, 1, new THREE.Color(css("--gravity")), 0.55));
+  group.add(supports(shown)); group.add(plate(shown.span_m));
 }
-
-function chart(span, sup, rise, sa) {
-  const svg = $("chart"), W = svg.clientWidth || 600, H = 190, L = 44, R = 10, T = 10, B = 26;
-  const g = SA_LEVELS.map(s => find(span, sup, rise, "gravity", s).carbon_kgco2e_m2);
-  const s = SA_LEVELS.map(x => find(span, sup, rise, "seismic", x).carbon_kgco2e_m2);
-  let lo = Math.min(...g, ...s), hi = Math.max(...g, ...s);
-  const pad = Math.max(0.5, 0.15 * hi); lo = Math.max(0, lo - pad); hi = hi + pad;
-  const X = i => L + i * (W - L - R) / 6, Y = v => T + (hi - v) / (hi - lo) * (H - T - B);
-  const line = (v, c) => `<polyline fill="none" stroke="${c}" stroke-width="2" points="${v.map((y, i) => X(i) + "," + Y(y)).join(" ")}"/>` +
-    v.map((y, i) => `<circle cx="${X(i)}" cy="${Y(y)}" r="${SA_LEVELS[i] === sa ? 5 : 3}" fill="${c}"><title>${SA_LEVELS[i]} g: ${y.toFixed(1)}</title></circle>`).join("");
-  let out = "";
-  for (let k = 0; k <= 4; k++) {
-    const v = lo + k * (hi - lo) / 4;
-    out += `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" stroke="${css("--grid")}"/><text x="${L - 6}" y="${Y(v) + 4}" text-anchor="end">${v.toFixed(1)}</text>`;
-  }
-  SA_LEVELS.forEach((x, i) => out += `<text x="${X(i)}" y="${H - 8}" text-anchor="middle">${x.toFixed(1)} g</text>`);
-  svg.innerHTML = out + line(g, css("--grav")) + line(s, css("--seis"));
+function dzLimit() { // symmetric colour limit for this span, support case and rise: largest |dz| over all Sa
+  let m = 0;
+  for (const a of SA) { const g = get(S.span, S.supports, S.rise, "gravity", a), q = get(S.span, S.supports, S.rise, "seismic", a);
+    for (let i = 2; i < g.nodes.length; i += 3) m = Math.max(m, Math.abs(q.nodes[i] - g.nodes[i])); }
+  return m || 1e-3;
 }
-
-function update() {
-  const span = +$("span").value, sup = $("supports").value, rise = +$("rise").value;
-  const strat = $("strategy").value, sa = SA_LEVELS[+$("sa").value], k = EXAG[+$("exag").value];
-  $("saval").textContent = sa.toFixed(1); $("exagval").textContent = k;
-  const d = find(span, sup, rise, strat, sa);
-  const gv = find(span, sup, rise, "gravity", sa), sv = find(span, sup, rise, "seismic", sa);
-  draw(d, find(span, sup, rise, "gravity", sa), k);
-  if (span !== lastSpan) { camera.position.set(1.3 * span, -1.4 * span, 1.0 * span); lastSpan = span; }
-  controls.target.set(0, 0, rise * span / 3);
-  $("carbon").textContent = d.carbon_kgco2e_m2.toFixed(1);
-  $("band").textContent = `${d.carbon_low.toFixed(1)}–${d.carbon_high.toFixed(1)}`;
-  $("thk").textContent = (d.thickness_m * 1000).toFixed(0) + " mm";
-  $("gov").textContent = d.governing === "t_min" ? "minimum thickness" : d.governing;
-  $("buck").textContent = d.buckling_factor.toFixed(2);
-  $("steel").textContent = d.steel_kg_m2.toFixed(2) + " kg/m²";
-  $("share").textContent = (100 * d.concrete_share).toFixed(0) + " %";
-  $("t1").textContent = d.period_1_s.toFixed(3) + " s";
-  const rel = (sv.carbon_kgco2e_m2 - gv.carbon_kgco2e_m2) / gv.carbon_kgco2e_m2;
-  // Same rule as shellform.pipeline.comparison: |diff| < 5 % is no meaningful difference.
-  const verdict = Math.abs(rel) < RULE ? "no meaningful difference" : rel < 0 ? "seismic-aware cheaper" : "gravity-only cheaper";
-  $("verdict").innerHTML = `<b>${verdict}</b><br>Seismic-aware ${sv.carbon_kgco2e_m2.toFixed(1)} against gravity-only ` +
-    `${gv.carbon_kgco2e_m2.toFixed(1)} kgCO₂e/m²: ${rel >= 0 ? "+" : ""}${(100 * rel).toFixed(1)} %` +
-    (verdict === "seismic-aware cheaper" ? ". This cell is one 5 mm thickness step next to the buckling limit (see the paper, Results 3.3)." : ".");
-  chart(span, sup, rise, sa);
+let camTarget = null;
+function setCam(v) {
+  S.cam = v; if (!camera) return;
+  const L = S.span, zc = S.rise * L * 0.35;
+  const pos = { iso: [1.45 * L, -1.85 * L, 1.05 * L], plan: [0.001, -0.001, 2.9 * L], elev: [0, -2.7 * L, 0.2 * L] }[v];
+  const f = Math.max(1, 1.3 / (camera.aspect || 1.3));  // step back on narrow screens so the whole form fits
+  camTarget = { pos: new THREE.Vector3(...pos).multiplyScalar(f), tgt: new THREE.Vector3(0, 0, zc), t: 0 };
 }
-
 function resize() {
+  if (!renderer) return;
   const w = view.clientWidth, h = view.clientHeight;
   renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
-  if (lastSpan !== null) update();
 }
-document.querySelectorAll("select, input").forEach(el => el.addEventListener("input", update));
-window.addEventListener("resize", resize);
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function loop() {
+  requestAnimationFrame(loop);
+  if (!renderer) return;
+  if (camTarget) {
+    camTarget.t = reduce ? 1 : Math.min(1, camTarget.t + 0.06);
+    const e = 1 - (1 - camTarget.t) ** 3;
+    camera.position.lerp(camTarget.pos, e); controls.target.lerp(camTarget.tgt, e);
+    if (camTarget.t >= 1) camTarget = null;
+  }
+  controls.update(); renderer.render(scene, camera);
+}
+$("snap").addEventListener("click", () => {
+  if (!renderer) return; renderer.render(scene, camera);
+  const a = document.createElement("a"); a.download = `shellform_${cur().id}.png`; a.href = renderer.domElement.toDataURL("image/png"); a.click();
+});
+
+/* ---------- Panels ------------------------------------------------------- */
+const cur = () => get(S.span, S.supports, S.rise, S.strategy, S.sa);
+const icon = ok => ok
+  ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>`
+  : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m0 0-5-5m5 5 5-5"/></svg>`;
+function panels() {
+  const g = get(S.span, S.supports, S.rise, "gravity", S.sa), q = get(S.span, S.supports, S.rise, "seismic", S.sa);
+  const x = rel(S.span, S.supports, S.rise, S.sa), v = verdictOf(x), inside = Math.abs(x) < RULE;
+  $("verdict").className = "verdict" + (inside ? "" : " out");
+  $("verdict").innerHTML = `<div class="t">${icon(inside)}${v[0].toUpperCase() + v.slice(1)}</div>
+    <div class="big num">${pct(x)}</div><div class="d" style="margin-top:0">carbon of the seismic-aware form against the gravity-only form at the same S<sub>a</sub></div>
+    <div class="d">${inside ? "Inside the ±5 % band of the pre-registered rule." :
+      `Outside the ±5 % band (${CELLS.filter(c => Math.abs(c.x) >= RULE).length} of ${CELLS.length} cells). In the paper (Results 3.3) these cells are one 5 mm thickness step next to the buckling limit.`}</div>`;
+  const sel = S.strategy;
+  const row = (lab, gv, qv, unit, dec, diff = true) => {
+    const d = diff ? qv - gv : null;
+    return `<tr><td>${lab}${unit ? `<span class="u">${unit}</span>` : ""}</td><td class="${sel === "gravity" ? "sel" : ""}">${gv.toFixed(dec)}</td>
+      <td class="${sel === "seismic" ? "sel" : ""}">${qv.toFixed(dec)}</td>
+      <td class="d">${d === null ? "" : (Math.abs(d) < 0.5 * 10 ** -dec ? "0" : (d > 0 ? "+" : "−") + Math.abs(d).toFixed(dec))}</td></tr>`;
+  };
+  const gov = d => `<span class="gov" title="${CHECK[d.governing] || d.governing}"><i style="background:var(--check-${d.governing})"></i>${SHORT[d.governing] || d.governing}</span>`;
+  $("cmp").innerHTML = `<colgroup><col class="c1"><col><col><col class="c4"></colgroup><thead><tr><th>At S<sub>a</sub> ${S.sa.toFixed(1)} g</th><th><i class="sw" style="background:var(--gravity)"></i>Gravity</th><th><i class="sw" style="background:var(--seismic)"></i>Seismic</th><th>Δ</th></tr></thead><tbody>
+    ${row("Carbon", g.carbon_kgco2e_m2, q.carbon_kgco2e_m2, "kgCO₂e/m²", 1)}
+    <tr><td>Factor band ±25 %</td><td class="band num">${f1(g.carbon_low)}–${f1(g.carbon_high)}</td><td class="band num">${f1(q.carbon_low)}–${f1(q.carbon_high)}</td><td></td></tr>
+    ${row("Thickness", 1000 * g.thickness_m, 1000 * q.thickness_m, "mm", 0)}
+    <tr><td>Sets the thickness</td><td>${gov(g)}</td><td>${gov(q)}</td><td></td></tr>
+    ${row("Buckling factor λ", g.buckling_factor, q.buckling_factor, "", 2)}
+    ${row("Steel", g.steel_kg_m2, q.steel_kg_m2, "kg/m²", 2)}
+    ${row("Concrete share", 100 * g.concrete_share, 100 * q.concrete_share, "%", 0)}
+    ${row("First period T₁", g.period_1_s, q.period_1_s, "s", 3)}</tbody>`;
+  const d = cur();
+  $("hudid").innerHTML = `<b>${d.strategy === "seismic" ? "Seismic-aware" : "Gravity-only"} form</b>${S.span} m · ${SUPLAB[S.supports].toLowerCase()} · rise ${S.rise.toFixed(2)} · S<sub>a</sub> ${S.sa.toFixed(1)} g`;
+  $("cellname").textContent = d.id;
+  const k = EXAG[S.exag];
+  const lim = dzLimit() * 1000;
+  $("leg3d").innerHTML = (S.colour === "dz" ? `<div>Height change to the gravity-only form</div>
+      <div><i class="cbar" style="display:block;background:linear-gradient(90deg,var(--div-lo),var(--concrete),var(--div-hi))"></i><div class="cbar-t num"><span>−${lim.toFixed(0)} mm</span><span>0</span><span>+${lim.toFixed(0)} mm</span></div></div>`
+      : `<div class="row"><i class="sw" style="background:var(--${d.strategy})"></i>${d.strategy === "seismic" ? "Seismic-aware" : "Gravity-only"} form</div>`)
+    + (d.strategy === "seismic" ? `<div class="row"><i class="sw wire" style="background:repeating-linear-gradient(90deg,var(--gravity) 0 2px,transparent 2px 4px);opacity:1"></i>Gravity-only form (lines)</div>` : "")
+    ;
+}
+
+/* ---------- Chart 1: carbon against Sa ------------------------------------ */
+function chart1() {
+  const svg = $("c1svg"), W = svg.clientWidth || 600, H = 292, L = 46, R = 14, T = 12, B = 30;
+  const g = SA.map(a => get(S.span, S.supports, S.rise, "gravity", a)), q = SA.map(a => get(S.span, S.supports, S.rise, "seismic", a));
+  const gv = g.map(d => d.carbon_kgco2e_m2), qv = q.map(d => d.carbon_kgco2e_m2);
+  let lo = Math.min(...gv.map(v => v * (1 - RULE)), ...qv), hi = Math.max(...gv.map(v => v * (1 + RULE)), ...qv);
+  const step = niceStep((hi - lo) / 4); lo = Math.floor(lo / step) * step; hi = Math.ceil(hi / step) * step;
+  const X = i => L + i * (W - L - R) / 6, Y = v => T + (hi - v) / (hi - lo) * (H - T - B);
+  let o = "";
+  for (let v = lo; v <= hi + 1e-9; v += step) o += `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--grid)"/><text x="${L - 8}" y="${Y(v) + 4}" text-anchor="end" font-size="11" fill="var(--muted)" class="num">${v.toFixed(step < 1 ? 1 : 0)}</text>`;
+  o += `<path d="${gv.map((v, i) => `${i ? "L" : "M"}${X(i)},${Y(v * (1 + RULE))}`).join("")}${gv.map((v, i) => `L${X(6 - i)},${Y(gv[6 - i] * (1 - RULE))}`).join("")}Z" fill="var(--band)" stroke="var(--band-edge)" stroke-width="1"/>`;
+  SA.forEach((a, i) => o += `<text x="${X(i)}" y="${H - 8}" text-anchor="middle" font-size="11" fill="${a === S.sa ? "var(--ink)" : "var(--muted)"}" font-weight="${a === S.sa ? 600 : 400}" class="num">${a.toFixed(1)} g</text>`);
+  o += `<line x1="${X(SA.indexOf(S.sa))}" x2="${X(SA.indexOf(S.sa))}" y1="${T}" y2="${H - B}" stroke="var(--ink-2)" stroke-width="1" stroke-dasharray="2 3"/>`;
+  const line = (v, c) => `<polyline fill="none" stroke="var(${c})" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" points="${v.map((y, i) => X(i) + "," + Y(y)).join(" ")}"/>`;
+  const dots = (v, c, strat) => v.map((y, i) => `<circle cx="${X(i)}" cy="${Y(y)}" r="${SA[i] === S.sa && S.strategy === strat ? 5.5 : 4}" fill="var(${c})" stroke="var(--surface)" stroke-width="2"/>`).join("");
+  o += line(gv, "--gravity") + line(qv, "--seismic") + dots(gv, "--gravity", "gravity") + dots(qv, "--seismic", "seismic");
+  o += `<line id="xh" x1="0" x2="0" y1="${T}" y2="${H - B}" stroke="var(--ink)" stroke-opacity=".25" visibility="hidden"/>`;
+  SA.forEach((a, i) => o += `<rect x="${X(i) - (W - L - R) / 12}" y="${T}" width="${(W - L - R) / 6}" height="${H - T - B}" fill="transparent" data-i="${i}" style="cursor:pointer"/>`);
+  svg.innerHTML = o;
+  $("c1sub").textContent = `${S.span} m · ${SUPLAB[S.supports].toLowerCase()} · rise ${S.rise.toFixed(2)} · kgCO₂e/m² of plan`;
+  const tip = $("tip1");
+  svg.querySelectorAll("rect[data-i]").forEach(r => {
+    r.addEventListener("mouseenter", () => {
+      const i = +r.dataset.i, x = (qv[i] - gv[i]) / gv[i];
+      const xh = svg.querySelector("#xh"); xh.setAttribute("x1", X(i)); xh.setAttribute("x2", X(i)); xh.setAttribute("visibility", "visible");
+      tip.innerHTML = `<b>S<sub>a</sub> ${SA[i].toFixed(1)} g</b>
+        <div class="r"><span><i class="sw" style="background:var(--gravity);width:8px;height:8px;border-radius:50%"></i>gravity-only</span><span>${f1(gv[i])}</span></div>
+        <div class="r"><span><i class="sw" style="background:var(--seismic);width:8px;height:8px;border-radius:50%"></i>seismic-aware</span><span>${f1(qv[i])}</span></div>
+        <div class="r" style="margin-top:3px;color:var(--ink)"><span>difference</span><span>${pct(x)}</span></div>`;
+      place(tip, X(i), Math.min(Y(gv[i]), Y(qv[i])), W);
+    });
+    r.addEventListener("mouseleave", () => { tip.classList.remove("on"); svg.querySelector("#xh").setAttribute("visibility", "hidden"); });
+    r.addEventListener("click", () => { S.sa = SA[+r.dataset.i]; update(); });
+  });
+}
+function niceStep(x) { const p = 10 ** Math.floor(Math.log10(x)), m = x / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+function place(tip, x, y, W) {
+  tip.classList.add("on");
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  tip.style.left = Math.max(0, Math.min(W - w, x - w / 2)) + "px";
+  tip.style.top = Math.max(0, y - h - 12) + "px";
+}
+
+/* ---------- Chart 2: matrix of all 84 cells --------------------------------- */
+function chart2() {
+  const svg = $("c2svg"), W = svg.clientWidth || 640, narrow = W < 520, L = narrow ? 78 : 150, R = 6, T = 22, rowH = 20, gap = 10;
+  const groups = []; for (const s of SPANS) for (const u of SUPS) groups.push([s, u]);
+  const H = T + groups.length * (3 * rowH) + (groups.length - 1) * gap + 4;
+  svg.setAttribute("height", H);
+  const cw = (W - L - R) / 7;
+  const lim = Math.max(...CELLS.map(c => Math.abs(c.x)));
+  $("hmlo").textContent = pct(-lim); $("hmhi").textContent = pct(lim);
+  let o = "";
+  SA.forEach((a, i) => o += `<text x="${L + (i + 0.5) * cw}" y="${T - 8}" text-anchor="middle" font-size="${narrow ? 10 : 11}" fill="${a === S.sa ? "var(--ink)" : "var(--muted)"}" font-weight="${a === S.sa ? 600 : 400}" class="num">${a.toFixed(1)}${narrow ? "" : " g"}</text>`);
+  groups.forEach(([s, u], gi) => {
+    const y0 = T + gi * (3 * rowH + gap);
+    o += `<text x="0" y="${y0 + 1.5 * rowH - 2}" font-size="12" font-weight="500" fill="var(--ink)">${s} m</text><text x="0" y="${y0 + 1.5 * rowH + 12}" font-size="11" fill="var(--muted)">${u === "corners" ? "corners" : "edges"}</text>`;
+    RISES.forEach((r, ri) => {
+      const y = y0 + ri * rowH;
+      o += `<text x="${L - 8}" y="${y + rowH / 2 + 4}" text-anchor="end" font-size="11" fill="var(--muted)" class="num">${r.toFixed(2)}</text>`;
+      SA.forEach((a, i) => {
+        const x = rel(s, u, r, a), out = Math.abs(x) >= RULE, sel = s === S.span && u === S.supports && r === S.rise && a === S.sa;
+        const c = rgb(diverge(x / lim));
+        o += `<rect class="cell" data-c="${s}|${u}|${r}|${a}" x="${L + i * cw + 1}" y="${y + 1}" width="${cw - 2}" height="${rowH - 2}" rx="3" fill="${c}"
+          ${out ? `stroke="var(--ink)" stroke-width="1.5"` : ""} ${sel ? `stroke="var(--ink-2)" stroke-width="1.5" stroke-dasharray="3 2"` : ""}/>`;
+        if (cw > 46) o += `<text x="${L + (i + 0.5) * cw}" y="${y + rowH / 2 + 4}" text-anchor="middle" font-size="10.5" pointer-events="none" class="num" fill="${Math.abs(x) / lim > 0.55 ? "#fff" : "var(--ink-2)"}">${Math.abs(x) < 0.0005 ? "0.0" : (x > 0 ? "+" : "−") + Math.abs(100 * x).toFixed(1)}</text>`;
+      });
+    });
+  });
+  if (!narrow) o += `<text x="${L - 8}" y="${T - 8}" text-anchor="end" font-size="11" fill="var(--muted)">rise / S<tspan baseline-shift="sub" font-size="8">a</tspan></text>`;
+  svg.innerHTML = o;
+  const tip = $("tip2");
+  svg.querySelectorAll(".cell").forEach(el => {
+    const [s, u, r, a] = el.dataset.c.split("|"), sN = +s, rN = +r, aN = +a;
+    el.addEventListener("mouseenter", () => {
+      const g = get(sN, u, rN, "gravity", aN), q = get(sN, u, rN, "seismic", aN), x = rel(sN, u, rN, aN);
+      tip.innerHTML = `<b>${s} m · ${u} · rise ${rN.toFixed(2)} · S<sub>a</sub> ${aN.toFixed(1)} g</b>
+        <div class="r"><span>gravity-only</span><span>${f1(g.carbon_kgco2e_m2)}</span></div>
+        <div class="r"><span>seismic-aware</span><span>${f1(q.carbon_kgco2e_m2)}</span></div>
+        <div class="r" style="color:var(--ink);margin-top:3px"><span>${verdictOf(x)}</span><span>${pct(x)}</span></div>`;
+      const bb = el.getBBox(); place(tip, bb.x + bb.width / 2, bb.y, W);
+    });
+    el.addEventListener("mouseleave", () => tip.classList.remove("on"));
+    el.addEventListener("click", () => { Object.assign(S, { span: sN, supports: u, rise: rN, sa: aN }); lastSpan = null; update(); });
+  });
+}
+
+/* ---------- Table and CSV ---------------------------------------------------- */
+const COLS = [["id", "Design", d => d.id], ["strategy", "Strategy", d => d.strategy], ["sa_g", "S<sub>a</sub> [g]", d => d.sa_g.toFixed(1)],
+  ["thickness_m", "t [mm]", d => (1000 * d.thickness_m).toFixed(0)], ["governing", "Sets t", d => CHECK[d.governing] || d.governing],
+  ["buckling_factor", "λ", d => d.buckling_factor.toFixed(2)], ["steel_kg_m2", "Steel [kg/m²]", d => d.steel_kg_m2.toFixed(2)],
+  ["carbon_kgco2e_m2", "Carbon [kgCO₂e/m²]", d => d.carbon_kgco2e_m2.toFixed(2)], ["carbon_low", "Low", d => d.carbon_low.toFixed(2)],
+  ["carbon_high", "High", d => d.carbon_high.toFixed(2)], ["period_1_s", "T₁ [s]", d => d.period_1_s.toFixed(3)]];
+function table() {
+  const rows = DATA.designs.filter(d => d.span_m === S.span && d.supports === S.supports && d.rise_ratio === S.rise)
+    .sort((a, b) => a.sa_g - b.sa_g || a.strategy.localeCompare(b.strategy));
+  $("data").innerHTML = `<thead><tr>${COLS.map(c => `<th scope="col">${c[1]}</th>`).join("")}</tr></thead><tbody>` +
+    rows.map(d => `<tr class="${d === cur() ? "cur" : ""}">${COLS.map(c => `<td>${c[2](d)}</td>`).join("")}</tr>`).join("") + "</tbody>";
+}
+function csv(e) {
+  e.preventDefault(); e.stopPropagation();
+  const keys = Object.keys(DATA.designs[0]).filter(k => k !== "nodes" && k !== "n");
+  const body = [keys.join(",")].concat(DATA.designs.map(d => keys.map(k => d[k]).join(","))).join("\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([`# ShellForm explorer export. Source ${DATA.source}, ${DATA.freeze_tag}, ShellBench ${DATA.shellbench_tag}\n` + body], { type: "text/csv" }));
+  a.download = `shellform_designs_${DATA.freeze_tag}.csv`; a.click();
+}
+$("csv").addEventListener("click", csv);
+$("csv").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") csv(e); });
+
+/* ---------- Theme -------------------------------------------------------------- */
+(function theme() {
+  const saved = localStorage.getItem("shellform-theme");
+  const dark = saved ? saved === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
+  $("theme").addEventListener("click", () => {
+    const t = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = t; localStorage.setItem("shellform-theme", t); update();
+  });
+})();
+
+/* ---------- Update ------------------------------------------------------------- */
+function update() {
+  const i = SA.indexOf(S.sa);
+  saEl.value = i; saEl.style.setProperty("--p", (100 * i / 6) + "%"); saEl.setAttribute("aria-valuetext", `${S.sa.toFixed(1)} g`);
+  $("saval").textContent = `${S.sa.toFixed(1)} g`;
+  exEl.value = S.exag; exEl.style.setProperty("--p", (100 * S.exag / 3) + "%"); $("exagval").textContent = EXAG[S.exag];
+  syncSegs();
+  const d = cur(), g = get(S.span, S.supports, S.rise, "gravity", S.sa);
+  draw(d, g, EXAG[S.exag]);
+  if (S.span !== lastSpan) { setCam(S.cam || "iso"); lastSpan = S.span; }
+  panels(); chart1(); chart2(); table(); writeHash();
+}
+readHash();
+window.addEventListener("resize", () => { resize(); chart1(); chart2(); });
+window.addEventListener("hashchange", () => { readHash(); update(); });
 resize(); update();
-(function loop() { requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); })();
+if (renderer) { const t = camTarget; if (t) { camera.position.copy(t.pos); controls.target.copy(t.tgt); camTarget = null; } }
+loop();
 </script>
 </body>
 </html>
