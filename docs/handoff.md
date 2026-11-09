@@ -8,7 +8,9 @@ Newest entry first. Each Claude reads this at the start of a session and adds an
 
 **Decisions by the author today:** approved the release.
 
-**Open:** ShellBench dataset DOI still [?] (its own release). Author: `.claude/commands/settings.local.json` holds permission rules but is in the wrong folder (commands/); delete it or move it to `.claude/`.
+**Later the same day:** stray `.claude/commands/settings.local.json` deleted. ShellBench reference row filled with its Zenodo DOI 10.5281/zenodo.23851676 (v0.1.0, concept 10.5281/zenodo.23851675; record checked, links to the ShellBench repo).
+
+**Open:** `paper/08_data_availability.md` still has "dataset DOI [?] (ShellBench's 11 Nov release)": ShellBench v0.3.0 has no Zenodo record yet, so it stays [?] until that release.
 
 ## 9 Nov 2026, Claude Code in VS Code (release v0.1.0 prepared)
 
