@@ -128,6 +128,9 @@ def apply():
         "mathtext.rm": "Inter",
         "mathtext.it": "Inter:italic",
         "mathtext.bf": "Inter:semibold",
+        # No bold-italic Inter is bundled; without this line matplotlib's default
+        # "sans:italic:bold" falls back to Inter 400 with a findfont warning.
+        "mathtext.bfit": "Inter:italic",
         "mathtext.sf": "Inter",
         "mathtext.cal": "Inter",
         "mathtext.tt": "DejaVu Sans Mono",
