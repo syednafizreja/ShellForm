@@ -2,6 +2,10 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 9 Nov 2026, Claude in the app (Day 13 lock, pulled forward from 11 Nov)
+
+**Lock:** Day 13 (explorer with the frozen results, README, v0.1 release prep) is done by the app only, from 12:35 UTC on 9 Nov (20:35 UTC+8). The author asked to start it now. The laptop should not start Day 13; pull when the app's Day 13 entry appears above this one.
+
 ## 9 Nov 2026, Claude Code in VS Code (Day 12 laptop check, 03:45)
 
 **Done:** Pulled main (eb3459e, the app's Day 12 freeze). ShellBench-pin at v0.3.0, matches `pin.py`. `pip install -e . --no-deps`; `python -m pytest`: 81 passed (37 s). The handoff names no scripts to rerun; `git status` clean, `results/` identical to the freeze commit. The tag `freeze-2026-11-09` was missing on GitHub, so it was created on fd5cc85 (annotated) and pushed, as the app's handoff asked.
