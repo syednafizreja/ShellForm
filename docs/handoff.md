@@ -8,7 +8,9 @@ Newest entry first. Each session reads this at the start of a session and adds a
 
 **Decisions by the author today:** approved the release.
 
-**Open:** ShellBench dataset DOI still [?] (its own release). Author: the local settings foldercommands/settings.local.json` holds permission rules but is in the wrong folder (commands/); delete it or move it to the local settings folder.
+**Later the same day:** stray local settings file deleted. ShellBench reference row filled with its Zenodo DOI 10.5281/zenodo.23851676 (v0.1.0, concept 10.5281/zenodo.23851675; record checked, links to the ShellBench repo).
+
+**Open:** `paper/08_data_availability.md` still has "dataset DOI [?] (ShellBench's 11 Nov release)": ShellBench v0.3.0 has no Zenodo record yet, so it stays [?] until that release.
 
 ## 9 Nov 2026, laptop session (release v0.1.0 prepared)
 
