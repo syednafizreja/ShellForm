@@ -8,7 +8,7 @@ ShellForm v0.1.0: code, results, figures and design explorer for "The carbon cos
 
 - Code frozen at `freeze-2026-11-09` (pre-registration section 9 and its entry of 9 Nov 2026); results from one run, `python scripts/day12_freeze.py` (`results/freeze_meta.json`).
 - Pinned to ShellBench v0.3.0 (`src/shellform/pin.py`); every result file names that tag.
-- 168 sized designs; tests S1-S5 (S1b waits for ShellBench `floor-r1`; S4 is the pre-registered fallback); 82 tests.
+- 168 sized designs; tests S1-S5 (S1b waits for ShellBench `floor-r1`; S4 is the pre-registered fallback); 94 tests (`python -m pytest`, CalculiX 2.21).
 - Figures 1-5: `python scripts/day11_figures.py`. Explorer: open `explorer/index.html`.
 - Extends Michiels & Adriaenssens (C&S 2018; J. IASS 2017) by sizing each form to code checks and counting A1-A3 carbon.
 
