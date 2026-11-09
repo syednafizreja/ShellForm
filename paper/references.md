@@ -15,5 +15,6 @@ Skill sections 3 and 8. One row per reference. Only sources the author has opene
 | GB/T 51366-2019 | n/a | web reproduction only (CABR site) | Table D.0.1 | carbon factors |
 | EN 1992-1-1:2004 | n/a | yes (BS EN 1992-1-1:2004 full text, `C:\Users\ASUS\Papers\EN_1992-1-1_2004.pdf`, read 8 Nov) | informative Annex F, F.1(4), (F.2), (F.3), condition σEdx ≤ \|τEdxy\| (relief (F.5)-(F.7) for σEdx > \|τEdxy\|), printed p. 211 (PDF p. 213); (F.8)-(F.10) on p. 212. Checked by Claude; author to confirm | orthogonal reinforcement rule |
 | ShellBench (author's earlier work) | Zenodo DOI [?] | yes | tag v0.1.0 | modules, loads, CalculiX wrapper |
+| ShellForm v0.1.0 (this work's code) | 10.5281/zenodo.24084111 | yes (Zenodo record and doi.org redirect checked 9 Nov by Claude; author to confirm) | release v0.1.0 | code, results, figures |
 
 Rows still needed: three recent C&S papers to model; force density method (primary source); IASS Recommendations (1979) and Dulácska & Kollár (1995) for the buckling factor; the literature set of skill section 4 (about 5 foundational, 15 related, 10 recent).
