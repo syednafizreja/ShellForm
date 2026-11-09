@@ -107,3 +107,11 @@
 - Problem: pushing the tag to GitHub from the cloud returned 403; the commit is on main. Docstrings in `batch.py` and `sensitivity.py` still say "10 Nov"; left as is, because editing code would move the freeze.
 - Lesson: a one-command freeze (`day12_freeze.py`) makes the "one run after the freeze" auditable.
 - Tomorrow: 10 Nov spare (app). Day 13 = 11 Nov: final figures, explorer with real results, README, v0.1 release and Zenodo DOI.
+
+## Day 13 - 9 Nov 2026 (explorer and release prep, pulled forward from 11 Nov)
+
+- Done (Claude, under the author's standing delegation): lock on main; `scripts/day13_explorer_data.py` writes `explorer/explorer_data.js` (all 168 designs from `results/batch_all.csv`, freeze run; forms rebuilt by `designs.form`, drawn on every 2nd grid line, rounded to 1 mm); `explorer/index.html` rebuilt on the real data (3D form with the gravity form as wire and an exaggeration slider, carbon against Sa for both strategies, the 5 % rule per cell, factor band, governing check); `tests/test_explorer.py`; README (status, main result, run lines, setup tag v0.3.0); CITATION.cff 0.1.0; `docs/release_v0.1.0.md`; `paper/08_data_availability.md`.
+- Result: explorer verdicts equal `sensitivity_cells.csv` in 84 of 84 cells (same rule as `pipeline.comparison`); headless browser check: no page errors. pytest 82 passed.
+- Problem: the v0.1.0 tag, the GitHub release and the Zenodo DOI need the author (tag push blocked in the cloud; Zenodo needs the author's account, and likely a public repo).
+- Lesson: explorer data as a .js file opens from disk with no server.
+- Tomorrow: 10 Nov spare. Author: release steps in `docs/release_v0.1.0.md`; Syed drafts Methods and Results (11-13 Nov).

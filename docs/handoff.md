@@ -2,6 +2,16 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 9 Nov 2026, Claude in the app (Day 13 done: explorer and release prep)
+
+**Done:** Day 13 pulled forward from 11 Nov at the author's request. `explorer/index.html` now shows all 168 frozen designs (data `explorer/explorer_data.js` from `scripts/day13_explorer_data.py`); verdicts match `sensitivity_cells.csv` in 84 of 84 cells. `tests/test_explorer.py` (82 tests). README, CITATION.cff 0.1.0, `docs/release_v0.1.0.md`, `paper/08_data_availability.md`, LOG. Code under `src/` unchanged since the freeze.
+
+**Decisions by the author today:** start Day 13 now. Claude decided [J]: explorer data as a .js file; forms drawn on 21 x 21 lines.
+
+**Open (author):** (1) Laptop: `git pull origin main`; push the `freeze-2026-11-09` tag if it is still missing (9 Nov Day 12 entry). (2) Release: follow `docs/release_v0.1.0.md` (tag v0.1.0, GitHub release, Zenodo; visibility is the author's call). (3) Check `numbers.md` rows 14-17 Nov.
+
+**Next:** 10 Nov spare; 11-13 Nov Syed drafts Methods and Results.
+
 ## 9 Nov 2026, Claude in the app (Day 13 lock, pulled forward from 11 Nov)
 
 **Lock:** Day 13 (explorer with the frozen results, README, v0.1 release prep) is done by the app only, from 12:35 UTC on 9 Nov (20:35 UTC+8). The author asked to start it now. The laptop should not start Day 13; pull when the app's Day 13 entry appears above this one.

@@ -35,6 +35,8 @@ ShellBench comes first until 11 Nov: its GATE days are never displaced by ShellF
 
 ## Changes
 
+- 9 Nov 2026: Day 13 build work (explorer, README, release prep) done the same evening at the author's request; the v0.1.0 tag, release and Zenodo DOI wait for the author (`docs/release_v0.1.0.md`).
+
 - 9 Nov 2026: Day 12 (freeze) done on the spare day, at the author's request ("its a new day. lets go"). Tag `freeze-2026-11-09`; 10 Nov is now spare for the app. Pre-registration entry of 9 Nov.
 
 - 8 Nov 2026: Day 11 done on the spare day, at the author's request ("finish all"); 9 Nov becomes spare. ShellBench v0.3.0 was tagged on 8 Nov, so the pin moved before the freeze (LOG Day 11).
