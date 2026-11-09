@@ -2,6 +2,14 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 9 Nov 2026, Claude Code in VS Code (laptop check of the premium-quality pass)
+
+**Done:** Pulled main (5a2a8c7). ShellBench-pin at v0.3.0, matches `pin.py`. `pip install -e . --no-deps`; `python -m pytest`: 93 passed (74 s, CalculiX present). Ran `python scripts/day11_figures.py`: `fig02`-`fig05` `.json` unchanged; `gallery_10m.json` and `gallery_20m.json` differ only in `dz_min_mm`/`dz_max_mm` at about 1e-11 mm (laptop vs cloud floating point); every carbon value identical. Images differ by bytes only. All figure files were restored to the committed (cloud) versions; `results/` unchanged.
+
+**Decisions by the author today:** none new.
+
+**Open:** (1) [J] Matplotlib warns "Failed to find font weight bold for Inter, now using 400": somewhere the figure code asks for `bold`, but only Regular/Medium/SemiBold/Italic are bundled. Either map bold to SemiBold in `style.py` or bundle Inter-Bold. App to fix. (2) Author: open `explorer/index.html` and the figures; release steps in `docs/release_v0.1.0.md`.
+
 ## 9 Nov 2026, Claude in the app (premium-quality pass)
 
 **Done:** The author set a permanent rule: every output must look and work like premium, months-long work. One visual system now covers figures and explorer: `docs/visual_style.md` (follow it for all future figures, slides and interfaces) and `src/shellform/style.py`. Figs. 1-5 redrawn (`python scripts/day11_figures.py`); every figure `.json` byte-identical, so no number moved. `explorer/index.html` rebuilt and now offline (`explorer/vendor/`). README front page. `tests/test_visual_style.py`. Pre-registration entry PQ-1 to PQ-3 (presentation-only change after the freeze). Cloud pytest: 87 passed, 6 skipped (no CalculiX in the cloud).
