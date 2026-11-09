@@ -2,6 +2,14 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 9 Nov 2026, Claude in the app (premium-quality pass)
+
+**Done:** The author set a permanent rule: every output must look and work like premium, months-long work. One visual system now covers figures and explorer: `docs/visual_style.md` (follow it for all future figures, slides and interfaces) and `src/shellform/style.py`. Figs. 1-5 redrawn (`python scripts/day11_figures.py`); every figure `.json` byte-identical, so no number moved. `explorer/index.html` rebuilt and now offline (`explorer/vendor/`). README front page. `tests/test_visual_style.py`. Pre-registration entry PQ-1 to PQ-3 (presentation-only change after the freeze). Cloud pytest: 87 passed, 6 skipped (no CalculiX in the cloud).
+
+**Decisions by the author today:** the premium-quality rule. Claude decided [J]: provenance in image metadata instead of a footer; Inter bundled; strategy colours blue/orange reserved; dark-theme magenta kept at the light step.
+
+**Open:** (1) Laptop: `git pull origin main`, then `pip install -e . --no-deps` and `python -m pytest` (expect 93 collected, all passing with CalculiX). Optional: `python scripts/day11_figures.py` should leave every `figures/*.json` unchanged (images may differ by bytes). (2) Author: open `explorer/index.html` and the figures; say what still feels ordinary. (3) Release steps in `docs/release_v0.1.0.md` unchanged.
+
 ## 9 Nov 2026, Claude in the app (Day 13 done: explorer and release prep)
 
 **Done:** Day 13 pulled forward from 11 Nov at the author's request. `explorer/index.html` now shows all 168 frozen designs (data `explorer/explorer_data.js` from `scripts/day13_explorer_data.py`); verdicts match `sensitivity_cells.csv` in 84 of 84 cells. `tests/test_explorer.py` (82 tests). README, CITATION.cff 0.1.0, `docs/release_v0.1.0.md`, `paper/08_data_availability.md`, LOG. Code under `src/` unchanged since the freeze.

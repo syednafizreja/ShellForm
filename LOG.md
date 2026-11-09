@@ -115,3 +115,11 @@
 - Problem: the v0.1.0 tag, the GitHub release and the Zenodo DOI need the author (tag push blocked in the cloud; Zenodo needs the author's account, and likely a public repo).
 - Lesson: explorer data as a .js file opens from disk with no server.
 - Tomorrow: 10 Nov spare. Author: release steps in `docs/release_v0.1.0.md`; Syed drafts Methods and Results (11-13 Nov).
+
+## 9 Nov 2026 (evening) - premium-quality pass
+
+- Done (Claude, under the author's standing delegation, after the author's rule that every output must be premium): one visual system for figures and explorer, `docs/visual_style.md` and `src/shellform/style.py` (colour roles checked with the dataviz palette validator, Inter bundled in `assets/fonts/`, Elsevier full width 190 mm); Figs. 2-5 and both galleries redrawn (panel letters, one-row legends, reserved strategy colours, diverging Δz map, PDF for the galleries, provenance moved into image metadata); `explorer/index.html` rebuilt (summary strip, segmented controls, soft-shadow 3D view coloured by height change, side-by-side comparison panel, carbon against Sa with the ±5 % band and tooltips, clickable matrix of all 84 cells, table view and CSV, light and dark, phone width, keyboard, shareable links, offline with three.js and Inter in `explorer/vendor/`); README front page with screenshots and figures; `tests/test_visual_style.py`; pre-registration entry PQ-1 to PQ-3.
+- Result: every figure `.json` byte-identical before and after (no plotted number moved); computing modules byte-identical to `freeze-2026-11-09`. pytest 87 passed, 6 skipped (CalculiX not in this cloud container; the skipped tests do not touch the changed files).
+- Problem: the dark theme's reference magenta failed the colour-blind check against aqua; the light step is kept in dark (recorded in the style guide).
+- Lesson: keep provenance in the file metadata and the JSON, not on the artwork.
+- Tomorrow: 10 Nov spare. Author: look at the explorer and figures; release steps in `docs/release_v0.1.0.md`.
