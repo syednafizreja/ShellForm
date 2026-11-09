@@ -2,6 +2,12 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 9 Nov 2026, Claude Code in VS Code (Inter bold warning fixed)
+
+**Done:** Cause of the "Failed to find font weight bold for Inter" warning: `style.apply()` set `mathtext.fontset = custom` but left `mathtext.bfit` at matplotlib's default `sans:italic:bold`, and no bold-italic Inter is bundled. Fixed in `src/shellform/style.py` (`mathtext.bfit = "Inter:italic"`). New test `test_style_needs_no_font_fallback` in `tests/test_visual_style.py` (fails without the fix, passes with it). `day11_figures.py` now prints 0 findfont warnings; figure `.json` numbers unchanged (gallery dz noise ~1e-11 mm only), figure files left at the committed cloud versions. pytest: 94 passed. Presentation-only change, no number moved [J].
+
+**Open:** Author: open `explorer/index.html` and the figures; release steps in `docs/release_v0.1.0.md`.
+
 ## 9 Nov 2026, Claude Code in VS Code (laptop check of the premium-quality pass)
 
 **Done:** Pulled main (5a2a8c7). ShellBench-pin at v0.3.0, matches `pin.py`. `pip install -e . --no-deps`; `python -m pytest`: 93 passed (74 s, CalculiX present). Ran `python scripts/day11_figures.py`: `fig02`-`fig05` `.json` unchanged; `gallery_10m.json` and `gallery_20m.json` differ only in `dz_min_mm`/`dz_max_mm` at about 1e-11 mm (laptop vs cloud floating point); every carbon value identical. Images differ by bytes only. All figure files were restored to the committed (cloud) versions; `results/` unchanged.
