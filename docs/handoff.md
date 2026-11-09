@@ -2,6 +2,12 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 9 Nov 2026, Claude Code in VS Code (release v0.1.0 prepared)
+
+**Done:** Author approved the v0.1.0 release. Checked: repo already public; Zenodo GitHub webhook installed; tag `freeze-2026-11-09` on GitHub; no release yet. Release text test count corrected to 94 (PR #38).
+
+**Open:** Tag `v0.1.0` and the GitHub release were blocked by the laptop's permission guard (public action); the author runs them. After Zenodo mints the DOI: put it in `CITATION.cff` (`doi:`), README and `paper/references.md`.
+
 ## 9 Nov 2026, Claude Code in VS Code (Inter bold warning fixed)
 
 **Done:** Cause of the "Failed to find font weight bold for Inter" warning: `style.apply()` set `mathtext.fontset = custom` but left `mathtext.bfit` at matplotlib's default `sans:italic:bold`, and no bold-italic Inter is bundled. Fixed in `src/shellform/style.py` (`mathtext.bfit = "Inter:italic"`). New test `test_style_needs_no_font_fallback` in `tests/test_visual_style.py` (fails without the fix, passes with it). `day11_figures.py` now prints 0 findfont warnings; figure `.json` numbers unchanged (gallery dz noise ~1e-11 mm only), figure files left at the committed cloud versions. pytest: 94 passed. Presentation-only change, no number moved [J].
