@@ -111,4 +111,4 @@ In 79 of 84 cells the two strategies differ in carbon by less than 5 % ("no mean
 
 ## Licence
 
-Code: MIT. Cite with [CITATION.cff](CITATION.cff). Bundled third-party files keep their own licences: three.js r128 (MIT, `explorer/vendor/three.LICENSE`) and the Inter typeface (SIL Open Font License 1.1, `assets/fonts/OFL.txt`).
+Code: MIT. Cite with [CITATION.cff](CITATION.cff) or DOI [10.5281/zenodo.24084111](https://doi.org/10.5281/zenodo.24084111) (v0.1.0; all versions [10.5281/zenodo.24084110](https://doi.org/10.5281/zenodo.24084110)). Bundled third-party files keep their own licences: three.js r128 (MIT, `explorer/vendor/three.LICENSE`) and the Inter typeface (SIL Open Font License 1.1, `assets/fonts/OFL.txt`).
