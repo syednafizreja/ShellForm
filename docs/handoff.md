@@ -2,6 +2,14 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 10 Nov 2026, Claude Code in VS Code (daily sync)
+
+**Done:** pulled to `2b34283`; ShellBench-pin at v0.3.0, matching `pin.py`. Laptop pytest: 101 passed (CalculiX present, so the 6 cloud skips ran). Ran `scripts/day14_paper_tables.py`: `results/` unchanged. In `paper/tables/`, only S2 and S3 in Table 3 (and `tables.json`) moved, by floating-point round-off: S2 1.4e-11 → 1.2e-11, S3 5.4e-16 → 6.5e-16 on Windows. Both are still 10^2 to 10^6 times below the 1e-9 tolerance. Claude restored the committed (cloud) values, so the tables stay as frozen.
+
+**Decisions [J]:** a re-run on another machine does not reproduce the last digits of S2 and S3. So in the manuscript, report them as an order of magnitude ("about 1e-11" and "below 1e-15"), not as exact values, or name the machine they came from. Methods and Results drafts do not quote S2/S3 directly; only Table 3 and `numbers.md` row 48 do.
+
+**Open:** Syed: decide how Table 3 states S2/S3 (see above). Unchanged from the last entry: read the two drafts (11-13 Nov), λ ≥ 5 sources, Michiels journal papers, ShellBench v0.3.0 dataset DOI (11 Nov).
+
 ## 10 Nov 2026, Claude in the app (spare day: paper tables and drafting kit)
 
 **Done:** `scripts/day14_paper_tables.py` builds Tables 1-5 and S1 into `paper/tables/` from the freeze record and ShellBench v0.3.0 (S1-S3 recomputed on the 41 x 41 networks: 0 m, 1.4e-11, 5.4e-16). `tests/test_paper_tables.py` (7 tests). `paper/09_drafting_kit.md`: one slot per Methods and Results paragraph for Syed's rough sentence, with numbers, tables, caption facts and a professor-mode risk list (P1 λ ≥ 5 sources unopened; P2 S4 is the fallback; P3-P6). Stale pre-D10-1 counts fixed in `03_sensitivity_outline.md`; Methods outline cites the v0.1.0 DOI; `numbers.md` rows for the tables; `figures/README.md` freeze line corrected. Figures checked against `docs/visual_style.md` section 7: no change needed [J]. Cloud pytest: 95 passed, 6 skipped (no CalculiX). Nothing under `src/` or `results/` changed.
