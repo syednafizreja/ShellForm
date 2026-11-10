@@ -17,4 +17,4 @@ Each figure names, in its PNG and PDF metadata and in its `.json` file, the Shel
 | 4 | `fig04_carbon_drivers.{png,pdf,json}` | `shellform.figures.fig04_carbon_drivers` | `results/batch_all.csv`, `sensitivity_cells.csv`, `sens_*.csv` |
 | 5 | `fig05_s5_periods.{png,pdf,json}` | `shellform.figures.fig05_s5_periods` | `results/s5_plateau.csv`, ShellBench spectrum |
 
-The figures of 8 Nov 2026 (Day 11) are pre-freeze (record at ShellBench v0.2.0). They are rebuilt from the freeze run on 10 Nov with the same command. Questions each figure answers and the Results outline: `paper/07_results_outline.md`.
+The figures were rebuilt from the freeze run (tag `freeze-2026-11-09`, ShellBench v0.3.0) on 9 Nov 2026 and restyled the same evening; each `.json` names v0.3.0. Manuscript tables are built the same way by `python scripts/day14_paper_tables.py` (`paper/tables/`). Questions each figure answers and the Results outline: `paper/07_results_outline.md`.

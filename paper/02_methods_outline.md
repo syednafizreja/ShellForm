@@ -5,7 +5,7 @@ The author writes the prose (skill ground rule 1). This skeleton gives the order
 ## 2.1 Overview and pre-registration
 - Research question: `docs/preregistration.md` section 1.
 - Pre-registered 30 Oct 2026, before any design-space run; amendments dated (list them in a table or appendix, with why).
-- Code: ShellForm repository, freeze commit (section 9), pinned to ShellBench tag (`src/shellform/pin.py`; v0.3.0 from 8 Nov 2026). Zenodo DOI [?]. One command per output: `python -m shellform.batch --preset all`, `python -m shellform.sensitivity`, `python -m shellform.s5`, `python scripts/day11_figures.py`.
+- Code: ShellForm repository, freeze commit (section 9), pinned to ShellBench tag (`src/shellform/pin.py`; v0.3.0 from 8 Nov 2026). Zenodo DOI 10.5281/zenodo.24084111 (ShellForm v0.1.0; concept DOI 10.5281/zenodo.24084110, `CITATION.cff`). One command per output: `python -m shellform.batch --preset all`, `python -m shellform.sensitivity`, `python -m shellform.s5`, `python scripts/day11_figures.py`.
 
 ## 2.2 Design space
 - 168 designs: table of prereg section 3 (`src/shellform/design_space.py`).

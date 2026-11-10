@@ -37,3 +37,14 @@ Rows from the Day 11 figures, rebuilt from the freeze files on 9 Nov 2026 (figur
 | Results 3.3, Fig. 3 | 79 of 84 cells no meaningful difference; 5 seismic cheaper (10 m corners, rise 0.15, Sa 0.1-0.5 g) | `results/sensitivity_cells.csv` (baseline), `figures/fig03_strategy_difference.json` | freeze-2026-11-09, ShellBench v0.3.0 | |
 | Results 3.4, Fig. 4 | carbon ratio by driver (Sa, strategy, λ 3, λ 8, 61 x 61, band) | `figures/fig04_carbon_drivers.json`, ranges | freeze-2026-11-09, ShellBench v0.3.0 | |
 | Results 3.5, Fig. 5 | T1 ranges per group; all at or below Tg 0.35 s | `figures/fig05_s5_periods.json`, groups | freeze-2026-11-09, ShellBench v0.3.0 | |
+
+Rows from the manuscript tables, built 10 Nov 2026 by `python scripts/day14_paper_tables.py` from the freeze files (`paper/tables/`). The tables are the source; these rows name what the text quotes from them.
+
+| Manuscript location | Value | Source (file, function or table) | Commit or tag | Checked by Syed (date) |
+|---|---|---|---|---|
+| Methods 2.2, Table 1 | 168 designs (2 × 2 × 3 × 2 × 7) | `paper/tables/table1_design_space.md`; `shellform.design_space` | freeze-2026-11-09, ShellBench v0.3.0 | |
+| Methods 2.4, Table 2 | E_c 32.5 GPa; ν 0.2; 25.0 kN/m³; SDL 1.224 kPa; live 0.5 kPa; f_c 19.1, f_t 1.71, f_y 360 MPa; γ 1.3/1.5, 1.3/1.4; T_g 0.35 s | `paper/tables/table2_inputs.md`; `shellform.inputs.load_inputs` (each row names its ShellBench source; confirm clauses in your copy) | ShellBench v0.3.0 | |
+| Methods 2.6, Table 2 | C40 340 kgCO₂e/m³; HRB400 2.34 kgCO₂e/kg (GB/T 51366-2019 via ShellBench), ±25 % band | `paper/tables/table2_inputs.md`; `shellform.carbon.load_factors` | ShellBench v0.3.0 | |
+| Methods 2.8, Table 3 | S1 0 m; S2 1.4e-11; S3 5.4e-16; S4 2.1e-11 (tol. 1e-9); S5 0 failures; cross-check buckling within 0.26 % (tol. 2 %) | `paper/tables/table3_validation.md` (S1-S3 recomputed by the script; S4 `day07_s4_meta.json`; S5 `s5_summary.csv`; `fe_crosscheck.csv`) | freeze-2026-11-09, ShellBench v0.3.0 | |
+| Results 3.2, Table 4 | corner t 75-105 mm (10 m), 185-265 mm (20 m); edges 50 mm; concrete share 79.9-81.2 % | `paper/tables/table4_sized_designs.md`; `results/batch_all.csv` | freeze-2026-11-09, ShellBench v0.3.0 | |
+| Results 3.3-3.4, Table 5 | verdict counts per run and span; headline 4/10 (10 m baseline), 0/10 elsewhere; never made | `paper/tables/table5_verdicts.md`; `results/sensitivity_summary.csv` | freeze-2026-11-09, ShellBench v0.3.0 | |
