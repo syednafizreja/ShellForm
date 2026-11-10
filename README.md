@@ -7,6 +7,7 @@ Gravity-only versus seismic-aware form-finding of concrete shells: 168 sized des
 <a href="explorer/index.html">Design explorer</a> ·
 <a href="figures/README.md">Figures</a> ·
 <a href="docs/preregistration.md">Pre-registration</a> ·
+<a href="paper/README.md">Paper</a> ·
 <a href="paper/numbers.md">Numbers and sources</a> ·
 <a href="CITATION.cff">Cite</a>
 </p>
@@ -29,6 +30,7 @@ ShellForm extends the seismic form-finding of Michiels & Adriaenssens (2017, 201
 | **Decision rule** | Pre-registered: a strategy is cheaper only if it saves 5 % or more ([section 7](docs/preregistration.md)) |
 | **Result (freeze run)** | 79 of 84 cells: no meaningful difference. Details under [Main result](#main-result-freeze-run-9-nov-2026). |
 | **Record** | Code tag `freeze-2026-11-09`, ShellBench `v0.3.0`; every number traces to `results/` |
+| **Release** | [v0.1.0](https://github.com/syednafizreja/ShellForm/releases/tag/v0.1.0), DOI [10.5281/zenodo.24084111](https://doi.org/10.5281/zenodo.24084111) |
 
 ## Explore
 
@@ -46,13 +48,17 @@ All figures are drawn from `results/` by `python scripts/day11_figures.py`, at f
 
 ## Status
 
-9 Nov 2026 (evening): premium-quality pass. One visual system for figures and explorer ([docs/visual_style.md](docs/visual_style.md)); explorer rebuilt (offline, dark theme, 84-cell matrix, table view); Figs. 1-5 restyled with every plotted number unchanged; `tests/test_visual_style.py`.
+10 Nov 2026: manuscript tables built by script from the freeze record (`python scripts/day14_paper_tables.py`, Tables 1-5 and S1 in [paper/tables/](paper/tables/)); drafting kit ([paper/09_drafting_kit.md](paper/09_drafting_kit.md)); draft 1 of Methods and Results ([paper/10_methods_draft.md](paper/10_methods_draft.md), [paper/11_results_draft.md](paper/11_results_draft.md)), which the author checks 11-13 Nov. Laptop re-run: pytest 101 passed, `results/` unchanged. No code under `src/` and no result changed.
+
+9 Nov 2026 (release): v0.1.0 tagged and published on GitHub; Zenodo DOI [10.5281/zenodo.24084111](https://doi.org/10.5281/zenodo.24084111) (all versions [10.5281/zenodo.24084110](https://doi.org/10.5281/zenodo.24084110)), added to `CITATION.cff` and the paper files. Inter bold-italic font fallback fixed in `style.py` (no plotted number moved). 94 tests.
+
+9 Nov 2026 (evening): premium-quality pass. One visual system for figures and explorer ([docs/visual_style.md](docs/visual_style.md)); explorer rebuilt (offline, dark theme, 84-cell matrix, table view); Figs. 1-5 restyled with every plotted number unchanged; `tests/test_visual_style.py`. 93 tests.
 
 Day 13 (9 Nov 2026): design explorer with the frozen results ([explorer/index.html](explorer/index.html), open it in a browser); v0.1.0 release prepared ([docs/release_v0.1.0.md](docs/release_v0.1.0.md)). 82 tests.
 
 Day 12 (9 Nov 2026): freeze run. Code frozen at tag `freeze-2026-11-09`; all 168 designs, the three robustness checks, S5, the solver cross-check and every figure rerun from it at ShellBench `v0.3.0` (`python scripts/day12_freeze.py`, record in `results/freeze_meta.json`); the rerun reproduced the 7 Nov values exactly. 81 tests.
 
-Day 11 (8 Nov 2026): all 168 designs sized with steel and carbon; tests S4 (fallback) and S5 pass; sensitivity runs done; every paper figure built by one script, including the mechanism figure; 81 tests. Pinned to ShellBench `v0.3.0` (record files at `v0.2.0` until the 10 Nov freeze run; the pin move changed no number).
+Day 11 (8 Nov 2026): all 168 designs sized with steel and carbon; tests S4 (fallback) and S5 pass; sensitivity runs done; every paper figure built by one script, including the mechanism figure; 81 tests. Pinned to ShellBench `v0.3.0` (record files at `v0.2.0` until the 9 Nov freeze run; the pin move changed no number).
 
 | Item | Where | Status |
 |---|---|---|
@@ -62,6 +68,8 @@ Day 11 (8 Nov 2026): all 168 designs sized with steel and carbon; tests S4 (fall
 | 168 sized designs | `src/shellform/pipeline.py`, `batch.py`, `results/` | All feasible; carbon factor check closed in ShellBench v0.3.0; frozen 9 Nov (`freeze-2026-11-09`, ShellBench v0.3.0) |
 | Figures | `src/shellform/figures.py`, `gallery.py`, `scripts/day11_figures.py`, [figures/](figures/README.md) | Figs. 1-5 from the record, incl. the mechanism figure (rebuilt from the freeze run) |
 | Design explorer | [explorer/index.html](explorer/index.html), `scripts/day13_explorer_data.py` | All 168 designs from the freeze run; both strategies in 3D, carbon against Sa, the 5 % rule in all 84 cells; offline, light and dark |
+| Paper tables and drafts | [paper/](paper/README.md), `scripts/day14_paper_tables.py` | Tables 1-5 and S1 from the freeze record (`tests/test_paper_tables.py`); Methods and Results draft 1 with the author for checking; Discussion, Introduction and Abstract not started |
+| Release | [v0.1.0](https://github.com/syednafizreja/ShellForm/releases/tag/v0.1.0), [CITATION.cff](CITATION.cff) | Published 9 Nov 2026, DOI 10.5281/zenodo.24084111 |
 | Visual system | [docs/visual_style.md](docs/visual_style.md), `src/shellform/style.py` | One colour per meaning in figures and explorer; checked by `tests/test_visual_style.py` |
 
 ## Run
@@ -77,6 +85,7 @@ python -m shellform.gallery                   # figures/gallery_10m.png, gallery
 python scripts/day11_figures.py               # every paper figure (Figs. 1-5)
 python scripts/day12_freeze.py                # the whole freeze run (about 2 h on 4 workers)
 python scripts/day13_explorer_data.py         # explorer/explorer_data.js from results/batch_all.csv
+python scripts/day14_paper_tables.py          # manuscript tables in paper/tables/ from the freeze record
 python -m pytest
 ```
 
