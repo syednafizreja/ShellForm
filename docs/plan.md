@@ -35,6 +35,8 @@ ShellBench comes first until 11 Nov: its GATE days are never displaced by ShellF
 
 ## Changes
 
+- 10 Nov 2026: spare day used for the manuscript tables (`scripts/day14_paper_tables.py`, `paper/tables/`) and the drafting kit (`paper/09_drafting_kit.md`). v0.1.0 and its Zenodo DOI were released by the author on 9 Nov. Remaining build work for 11-13 Nov: Syed's Methods and Results drafts only.
+
 - 9 Nov 2026: Day 13 build work (explorer, README, release prep) done the same evening at the author's request; the v0.1.0 tag, release and Zenodo DOI wait for the author (`docs/release_v0.1.0.md`).
 
 - 9 Nov 2026: Day 12 (freeze) done on the spare day, at the author's request ("its a new day. lets go"). Tag `freeze-2026-11-09`; 10 Nov is now spare for the app. Pre-registration entry of 9 Nov.

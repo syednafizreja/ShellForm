@@ -123,3 +123,11 @@
 - Problem: the dark theme's reference magenta failed the colour-blind check against aqua; the light step is kept in dark (recorded in the style guide).
 - Lesson: keep provenance in the file metadata and the JSON, not on the artwork.
 - Tomorrow: 10 Nov spare. Author: look at the explorer and figures; release steps in `docs/release_v0.1.0.md`.
+
+## 10 Nov 2026 - spare day: paper tables and drafting kit
+
+- Done (Claude, under the author's standing delegation; the author asked to "finish all" and to use every academic skill): `scripts/day14_paper_tables.py` builds the manuscript tables from the freeze record into `paper/tables/` (Table 1 design space, Table 2 inputs read from ShellBench, Table 3 validation with S1-S3 recomputed on the 41 x 41 networks, Table 4 sized designs, Table 5 verdicts per run, Table S1 all 168 designs as Markdown and CSV); `tests/test_paper_tables.py` (7 tests); `paper/09_drafting_kit.md` (a slot for Syed's rough sentence in every Methods and Results paragraph, with numbers, tables, caption facts and a professor-mode risk list P1-P6); `03_sensitivity_outline.md` corrected to the freeze counts; Methods outline cites the v0.1.0 DOI; `numbers.md` rows for the tables; figures checked against the visual-style checklist.
+- Result: every table value reads from `results/` or ShellBench v0.3.0; S1 0 m, S2 1.4e-11, S3 5.4e-16, all tests S1-S5 and the cross-check pass. pytest 95 passed, 6 skipped (no CalculiX in the cloud). No code under `src/` changed; no result changed.
+- Problem: Claude did not write Methods or Results prose: the author's manuscript skills say Syed writes the first rough sentences and Claude edits them. Four counts in `03_sensitivity_outline.md` still showed the pre-D10-1 values (36 + 6 cells, headline 5 of 10); fixed.
+- Lesson: build manuscript tables by script from the frozen record, like the figures, so a stale count cannot survive in a table.
+- Tomorrow: 11-13 Nov, Syed drafts Methods and Results from `paper/09_drafting_kit.md`. ShellBench comes first on 11 Nov.

@@ -1,0 +1,23 @@
+# Table 4. Sized designs by span, supports and rise
+
+Results 3.2. Ranges over both strategies and all seven Sa levels (14 designs per row).
+
+| L [m] | supports | rise/span | feasible | governing check | t [mm] | λ [-] | T1 [s] | steel [kg] | carbon [kgCO₂e/m² plan] | concrete share [%] |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 10 | corners | 0.10 | 14/14 | buckling | 105 | 5.05-5.10 | 0.182-0.184 | 275 | 45.5 | 80.7 |
+| 10 | corners | 0.15 | 14/14 | buckling | 85-90 | 5.02-5.63 | 0.159-0.167 | 224-238 | 37.6-39.8 | 80.9-81.0 |
+| 10 | corners | 0.20 | 14/14 | buckling | 75 | 5.26-5.54 | 0.164-0.180 | 202-204 | 34.0-34.3 | 81.0-81.1 |
+| 10 | edges | 0.10 | 14/14 | t_min | 50 | 67.93-78.51 | 0.044-0.045 | 173 | 21.6 | 81.2 |
+| 10 | edges | 0.15 | 14/14 | t_min | 50 | 114.94-163.12 | 0.034-0.037 | 179-180 | 22.4-22.5 | 81.2 |
+| 10 | edges | 0.20 | 14/14 | t_min | 50 | 140.91-252.17 | 0.029-0.034 | 188-190 | 23.4-23.8 | 81.2 |
+| 20 | corners | 0.10 | 14/14 | buckling | 260-265 | 5.00-5.20 | 0.306-0.308 | 2864-2953 | 114.9-117.3 | 79.9-80.2 |
+| 20 | corners | 0.15 | 14/14 | buckling | 215 | 5.04-5.09 | 0.253-0.261 | 2318-2336 | 95.9-96.2 | 80.6-80.7 |
+| 20 | corners | 0.20 | 14/14 | buckling | 185 | 5.08-5.23 | 0.259-0.279 | 2028-2057 | 84.7-85.2 | 80.6-81.0 |
+| 20 | edges | 0.10 | 14/14 | t_min | 50 | 14.00-16.32 | 0.107-0.111 | 692-693 | 21.6 | 81.2 |
+| 20 | edges | 0.15 | 14/14 | t_min | 50 | 23.14-33.50 | 0.082-0.090 | 718-722 | 22.4-22.5 | 81.2 |
+| 20 | edges | 0.20 | 14/14 | t_min | 50 | 27.22-52.89 | 0.069-0.081 | 751-762 | 23.4-23.8 | 81.2 |
+
+- Carbon at the central factors (GB/T 51366-2019, read from ShellBench); band corners in Table S1.
+- Source: `results/batch_all.csv`.
+
+Built by `python scripts/day14_paper_tables.py` from the freeze record (freeze-2026-11-09); ShellBench v0.3.0. Do not edit by hand; rerun the script.

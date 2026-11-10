@@ -2,6 +2,14 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 10 Nov 2026, Claude in the app (spare day: paper tables and drafting kit)
+
+**Done:** `scripts/day14_paper_tables.py` builds Tables 1-5 and S1 into `paper/tables/` from the freeze record and ShellBench v0.3.0 (S1-S3 recomputed on the 41 x 41 networks: 0 m, 1.4e-11, 5.4e-16). `tests/test_paper_tables.py` (7 tests). `paper/09_drafting_kit.md`: one slot per Methods and Results paragraph for Syed's rough sentence, with numbers, tables, caption facts and a professor-mode risk list (P1 λ ≥ 5 sources unopened; P2 S4 is the fallback; P3-P6). Stale pre-D10-1 counts fixed in `03_sensitivity_outline.md`; Methods outline cites the v0.1.0 DOI; `numbers.md` rows for the tables; `figures/README.md` freeze line corrected. Figures checked against `docs/visual_style.md` section 7: no change needed [J]. Cloud pytest: 95 passed, 6 skipped (no CalculiX). Nothing under `src/` or `results/` changed.
+
+**Decisions:** Claude did not write Methods or Results prose, because the author's manuscript skills (academic-manuscript-writing rule 1, voice-dna section 0) say Syed writes the first rough sentences [J].
+
+**Open:** (1) Laptop: `git pull origin main`, `pip install -e . --no-deps`, `python -m pytest` (expect 101 passed with CalculiX). Optional: `python scripts/day14_paper_tables.py` should leave `paper/tables/` unchanged. (2) Syed, 11-13 Nov: fill the slots in `paper/09_drafting_kit.md`. (3) Still with the author: λ ≥ 5 sources (IASS 1979, Dulácska & Kollár 1995), Michiels journal papers, ShellBench v0.3.0 dataset DOI (11 Nov).
+
 ## 9 Nov 2026, Claude Code in VS Code (v0.1.0 released, DOI minted)
 
 **Done:** Tag `v0.1.0` pushed (on 5d02335) and GitHub release published (https://github.com/syednafizreja/ShellForm/releases/tag/v0.1.0). Zenodo minted DOI 10.5281/zenodo.24084111 (v0.1.0; concept DOI for all versions 10.5281/zenodo.24084110); record checked (creator Hasib, links to tree v0.1.0) and doi.org redirect checked by Claude; author to confirm. DOI added to `CITATION.cff`, README, `paper/08_data_availability.md`, `paper/references.md`.
