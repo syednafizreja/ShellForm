@@ -2,6 +2,12 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 10 Nov 2026, Claude Code in VS Code (README brought up to date)
+
+**Done:** README front page updated to 10 Nov: Paper link in the header; Release row (v0.1.0, DOI) in At a glance; Status entries for 9 Nov (release, DOI, font fix, 94 tests) and 10 Nov (paper tables, drafting kit, Methods and Results draft 1, laptop pytest 101 passed); test count added to the premium-pass line (93); status table rows for paper tables/drafts and the release; run line for `day14_paper_tables.py`; Day 11 line corrected (freeze run was 9 Nov, not 10 Nov). S1b row left as is: ShellBench still has no `floor-r1` tag (checked in the pin clone).
+
+**Open:** unchanged from the entry below.
+
 ## 10 Nov 2026, Claude Code in VS Code (daily sync)
 
 **Done:** pulled to `2b34283`; ShellBench-pin at v0.3.0, matching `pin.py`. Laptop pytest: 101 passed (CalculiX present, so the 6 cloud skips ran). Ran `scripts/day14_paper_tables.py`: `results/` unchanged. In `paper/tables/`, only S2 and S3 in Table 3 (and `tables.json`) moved, by floating-point round-off: S2 1.4e-11 → 1.2e-11, S3 5.4e-16 → 6.5e-16 on Windows. Both are still 10^2 to 10^6 times below the 1e-9 tolerance. Claude restored the committed (cloud) values, so the tables stay as frozen.
