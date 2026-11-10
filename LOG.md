@@ -131,3 +131,4 @@
 - Problem: Claude did not write Methods or Results prose: the author's manuscript skills say Syed writes the first rough sentences and Claude edits them. Four counts in `03_sensitivity_outline.md` still showed the pre-D10-1 values (36 + 6 cells, headline 5 of 10); fixed.
 - Lesson: build manuscript tables by script from the frozen record, like the figures, so a stale count cannot survive in a table.
 - Tomorrow: 11-13 Nov, Syed drafts Methods and Results from `paper/09_drafting_kit.md`. ShellBench comes first on 11 Nov.
+- Later on 10 Nov: the author said the drafts should be written by Claude in his loaded writing style. Claude wrote draft 1 of Methods (`paper/10_methods_draft.md`) and Results (`paper/11_results_draft.md`) in his voice from the freeze numbers; every number has a `numbers.md` row; [J] sentences and [check] sources are listed for the author.
