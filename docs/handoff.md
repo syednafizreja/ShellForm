@@ -2,6 +2,14 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 11 Nov 2026, Claude in the app (buckling sources, Discussion draft 1)
+
+**Done:** Risk P1: Dulácska & Kollár 1995 and ACI 318.2-14 read; IASS 1979 not available (stays [check], cited via ACI 318.2R-14 R3.1.8). `notes/buckling_threshold_sources.md`; Methods 2.5 rewritten; dated pre-registration entry (citation only); `references.md`, `numbers.md`, drafting kit P1 updated. `paper/12_discussion_draft.md` (draft 1 in Syed's voice). Cloud pytest: 101 passed (CalculiX 2.21 installed in the cloud today). Nothing under `src/` or `results/` changed.
+
+**Decisions [J]:** ShellBench v0.4.0 changes only plotting code in the modules ShellForm imports, and ShellForm does not use the family dataset, so the pin stays at v0.3.0.
+
+**Open:** (1) Laptop: `git pull origin main`; no reinstall or rerun needed (docs only). (2) Syed: open the Dulácska & Kollár PDF and confirm pp. 316-319 and Table 3; read the Discussion and accept or cut the four [J] sentences listed at its end; find a source for "formwork is often the largest cost of a shell" or cut it. (3) Still open: Michiels journal versions, the literature search before the Introduction, Table 3 S2/S3 wording.
+
 ## 10 Nov 2026, Claude Code in VS Code (daily sync)
 
 **Done:** pulled to `2b34283`; ShellBench-pin at v0.3.0, matching `pin.py`. Laptop pytest: 101 passed (CalculiX present, so the 6 cloud skips ran). Ran `scripts/day14_paper_tables.py`: `results/` unchanged. In `paper/tables/`, only S2 and S3 in Table 3 (and `tables.json`) moved, by floating-point round-off: S2 1.4e-11 → 1.2e-11, S3 5.4e-16 → 6.5e-16 on Windows. Both are still 10^2 to 10^6 times below the 1e-9 tolerance. Claude restored the committed (cloud) values, so the tables stay as frozen.
