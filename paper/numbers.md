@@ -51,3 +51,5 @@ Rows from the manuscript tables, built 10 Nov 2026 by `python scripts/day14_pape
 | Results 3.1 | seismic-aware rise at 0.6 g, rise 0.15: corners 72 mm (10 m), 144 mm (20 m); edges 63 mm, 125 mm; no horizontal shift | `figures/gallery_10m.json`, `gallery_20m.json`, dz_max_mm, max_horizontal_shift_mm | freeze-2026-11-09, ShellBench v0.3.0 | |
 | Results 3.3 | λ at 85 mm, 10 m corners rise 0.15: gravity 4.978 (fails); seismic 5.016-5.052 at 0.1-0.5 g (pass) | `results/batch_all_meta.json`, tried | freeze-2026-11-09, ShellBench v0.3.0 | |
 | Results 3.1 | S4 arch, rise-to-span 1/4, 10 m, 0.3 g: crown lean 0.75 m | `results/day07_s4_arch.csv`, crown_lean_m | v0.1.0 (S4 run, 4 Nov) | |
+| Methods 2.5; Discussion 4.3 | buckling safety factor γ 1.50-3.00 by slenderness; combined reductions implied by λ 3 / 5 / 8 at γ = 3.0: 1.0 / 0.6 / 0.375 (= 3.0 / λ, Claude's arithmetic [J]) | Dulácska & Kollár (1995), Table 3, p. 319; `notes/buckling_threshold_sources.md` | source read 11 Nov 2026 | |
+| Discussion 4.5 | accidental imperfection amplitude 1/4 to 3/4 of the wall thickness | Dulácska & Kollár (1995), p. 317 | source read 11 Nov 2026 | |
