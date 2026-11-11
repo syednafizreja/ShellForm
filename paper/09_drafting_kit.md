@@ -50,7 +50,7 @@ Order from `02_methods_outline.md`: a reader who wants to rebuild the study. Met
 ### 2.5 Checks and sizing
 - Point: smallest thickness in 5 mm steps from 50 mm that passes every check in every combination.
 - Facts: pre-registration section 5 table (compression ≤ f_c, steel A_s = T/f_y with ρ_min, λ ≥ 5, deflection ≤ L/300, t ≥ 50 mm); D4-2 to D4-4; steel D5-1 to D5-5.
-- Open: the sources behind λ ≥ 5 (IASS 1979 recommendations; Dulácska & Kollár 1995) are still marked [check] and have not been opened. See professor note P1 below.
+- 11 Nov: Dulácska & Kollár 1995 and ACI 318.2-14 opened; IASS 1979 not (cited via ACI). See P1 and `notes/buckling_threshold_sources.md`.
 - Your rough sentence:
 
 ### 2.6 Carbon (Table 2)
@@ -121,7 +121,7 @@ Captions are yours to word. Each must carry these facts so the figure stands alo
 
 Ranked by risk to acceptance [J]. None of these changes a result; each changes what you must read or write.
 
-- P1 (high). The λ ≥ 5 threshold sizes every corner shell, and Fig. 4 shows it moves carbon by 20-30 %. Its sources (IASS 1979; Dulácska & Kollár 1995) are still [check] and unopened. Before submission, open them and give page or clause, or call the threshold a stated assumption and lean on the λ 3 / λ 8 runs.
+- P1 (high; **downgraded to medium 11 Nov**: Dulácska & Kollár 1995 and ACI 318.2-14 opened, IASS 1979 not; Methods 2.5 now states 5 as an assumption inside the λ 3-8 bracket, see `notes/buckling_threshold_sources.md`). The λ ≥ 5 threshold sizes every corner shell, and Fig. 4 shows it moves carbon by 20-30 %. Its sources (IASS 1979; Dulácska & Kollár 1995) are still [check] and unopened. Before submission, open them and give page or clause, or call the threshold a stated assumption and lean on the λ 3 / λ 8 runs.
 - P2 (high). S4 is a closed-form fallback, not the published Michiels arch. A C&S reviewer will ask for the published case. The email in `05_email_michiels.md` and the journal papers in `06_michiels_sources.md` remain the route; until then, say so in Methods 2.8 and Limitations.
 - P3 (medium). Half the design space (edge supports) sits at the 50 mm minimum, so it cannot discriminate between strategies. Present that as part of the mechanism (the support condition decides), not as filler. The 50 mm itself is [J] (cover on both faces); give the reasoning in one sentence.
 - P4 (medium). The 5 % rule is smaller than one 5 mm step on 55-90 mm shells (6-9 %). Table S1 gives λ at the sized thickness for every design, which answers "are the 79 cells near a step?" (R2-3 in `01_professor_test.md`).
