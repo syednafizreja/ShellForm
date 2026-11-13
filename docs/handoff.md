@@ -2,6 +2,14 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 14 Nov 2026, Claude in the app (check window day 1: verification add-ons)
+
+**Done:** V1-V5 and two figures beside the frozen record (`notes/day17_verification.md`). V1 sphere buckling +1.96 % (R/t 50) and +1.33 % (R/t 100) from Zoelly; V2 λ1 converged to 0.62 % (61 to 81 nodes), corner-shell SLS deflection not converged (point-support singularity, at most 0.18 of L/300); V3 FDM residual at most 2.2e-11 N; V4 membrane share 76-100 %; V5 formwork cannot move a verdict (soffit areas differ at most 1.44 %). Fig. 6 (carbon against λ1, Pareto front: edge shells only) and Fig. S1. Methods 2.8, Results 3.6, Discussion 4.5 updated in Syed's voice; `numbers.md` rows; pre-registration amendment (exploratory, after the freeze); README equation and badges. Frozen `results/` files unchanged. Cloud pytest 125 passed.
+
+**Decisions [J], under the standing delegation:** complete sphere instead of a cap (the formula is exact for it); V5 as a bound that needs no formwork factor, because ShellBench holds none and ShellForm may not supply one; the deflection non-convergence is reported as found, not hidden.
+
+**Open:** (1) Laptop: `git pull origin main`, `pip install -e . --no-deps`, `python -m pytest` (expect 125 passed with CalculiX); optional `python scripts/day17_verification.py` (about 6 min) should reproduce `results/verify_*.csv` to round-off. (2) Syed, 15-17 Nov: confirm the page of the Zoelly formula in Timoshenko & Gere [check]; accept or cut the two new [J] sentences in Results 3.6; decide whether Fig. 6 goes in the paper or the supplement. (3) Still open: Zenodo token (ShellBench H4, Day 34 figures), title choice, "19 to 29 %" wording.
+
 ## 13 Nov 2026, Claude Code in VS Code (daily sync)
 
 **Done:** pulled to `002b946`; ShellBench-pin at v0.3.0, matching `pin.py`. `pip install -e . --no-deps`; laptop pytest: 101 passed (CalculiX present). The newest entry names no script to rerun (docs only), so none was run. `git status` clean: `results/` and `paper/tables/` unchanged.

@@ -16,5 +16,7 @@ Each figure names, in its PNG and PDF metadata and in its `.json` file, the Shel
 | 3 | `fig03_strategy_difference.{png,pdf,json}` | `shellform.figures.fig03_strategy_difference` | `results/sensitivity_cells.csv` (baseline) |
 | 4 | `fig04_carbon_drivers.{png,pdf,json}` | `shellform.figures.fig04_carbon_drivers` | `results/batch_all.csv`, `sensitivity_cells.csv`, `sens_*.csv` |
 | 5 | `fig05_s5_periods.{png,pdf,json}` | `shellform.figures.fig05_s5_periods` | `results/s5_plateau.csv`, ShellBench spectrum |
+| 6 | `fig06_carbon_stability.{png,pdf,json}` | `shellform.verify_figures.fig06_carbon_stability` (`scripts/day17_figures.py`) | `results/batch_all.csv`, `sens_lam3.csv`, `sens_lam8.csv` |
+| S1 | `figS1_verification.{png,pdf,json}` | `shellform.verify_figures.figS1_verification` | `results/verify_v1..v5_*.csv` (`scripts/day17_verification.py`, 14 Nov 2026) |
 
 The figures were rebuilt from the freeze run (tag `freeze-2026-11-09`, ShellBench v0.3.0) on 9 Nov 2026 and restyled the same evening; each `.json` names v0.3.0. Manuscript tables are built the same way by `python scripts/day14_paper_tables.py` (`paper/tables/`). Questions each figure answers and the Results outline: `paper/07_results_outline.md`.

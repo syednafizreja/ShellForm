@@ -1,0 +1,299 @@
+{
+ "shellbench_tag": "v0.3.0",
+ "record": [
+  "results/verify_v1_zoelly.csv",
+  "results/verify_v2_hconv.csv",
+  "results/verify_v3_fdm_residual.csv",
+  "results/verify_v4_energy.csv",
+  "results/verify_v5_formwork.csv"
+ ],
+ "panels": {
+  "a_zoelly": {
+   "R/t=50": {
+    "elements": [
+     384,
+     864,
+     1536,
+     2400,
+     3456
+    ],
+    "error_pct": [
+     3.547,
+     2.741,
+     2.484,
+     2.213,
+     1.965
+    ]
+   },
+   "R/t=100": {
+    "elements": [
+     384,
+     864,
+     1536,
+     2400,
+     3456
+    ],
+    "error_pct": [
+     2.066,
+     2.101,
+     1.614,
+     1.573,
+     1.328
+    ]
+   }
+  },
+  "b_buckling_factor": {
+   "L10-corners-r0.15-gravity-sa0.0": {
+    "elements": [
+     100,
+     400,
+     900,
+     1600
+    ],
+    "change_vs_finest_pct": [
+     9.177,
+     0.852,
+     -0.213,
+     0.0
+    ]
+   },
+   "L10-corners-r0.15-seismic-sa0.6": {
+    "elements": [
+     100,
+     400,
+     900,
+     1600
+    ],
+    "change_vs_finest_pct": [
+     12.082,
+     1.607,
+     0.036,
+     0.0
+    ]
+   },
+   "L10-edges-r0.15-gravity-sa0.0": {
+    "elements": [
+     100,
+     400,
+     900,
+     1600
+    ],
+    "change_vs_finest_pct": [
+     12.005,
+     0.688,
+     0.094,
+     0.0
+    ]
+   },
+   "L10-edges-r0.15-seismic-sa0.6": {
+    "elements": [
+     100,
+     400,
+     900,
+     1600
+    ],
+    "change_vs_finest_pct": [
+     11.67,
+     1.363,
+     0.627,
+     0.0
+    ]
+   },
+   "L20-corners-r0.15-gravity-sa0.0": {
+    "elements": [
+     100,
+     400,
+     900,
+     1600
+    ],
+    "change_vs_finest_pct": [
+     9.056,
+     1.034,
+     -0.107,
+     0.0
+    ]
+   },
+   "L20-corners-r0.15-seismic-sa0.6": {
+    "elements": [
+     100,
+     400,
+     900,
+     1600
+    ],
+    "change_vs_finest_pct": [
+     11.3,
+     1.634,
+     0.101,
+     0.0
+    ]
+   },
+   "L20-edges-r0.15-gravity-sa0.0": {
+    "elements": [
+     100,
+     400,
+     900,
+     1600
+    ],
+    "change_vs_finest_pct": [
+     29.764,
+     1.699,
+     0.525,
+     0.0
+    ]
+   },
+   "L20-edges-r0.15-seismic-sa0.6": {
+    "elements": [
+     100,
+     400,
+     900,
+     1600
+    ],
+    "change_vs_finest_pct": [
+     44.231,
+     5.845,
+     0.462,
+     0.0
+    ]
+   }
+  },
+  "c_sls_deflection_m": {
+   "L10-corners-r0.15-gravity-sa0.0": {
+    "elements": [
+     100,
+     400,
+     900,
+     1600
+    ],
+    "change_vs_finest_pct": [
+     -30.068,
+     -11.796,
+     -4.602,
+     0.0
+    ]
+   },
+   "L10-corners-r0.15-seismic-sa0.6": {
+    "elements": [
+     100,
+     400,
+     900,
+     1600
+    ],
+    "change_vs_finest_pct": [
+     -26.501,
+     -9.324,
+     -3.635,
+     0.0
+    ]
+   },
+   "L10-edges-r0.15-gravity-sa0.0": {
+    "elements": [
+     100,
+     400,
+     900,
+     1600
+    ],
+    "change_vs_finest_pct": [
+     -0.248,
+     0.004,
+     0.002,
+     0.0
+    ]
+   },
+   "L10-edges-r0.15-seismic-sa0.6": {
+    "elements": [
+     100,
+     400,
+     900,
+     1600
+    ],
+    "change_vs_finest_pct": [
+     -11.187,
+     -1.706,
+     -0.096,
+     0.0
+    ]
+   },
+   "L20-corners-r0.15-gravity-sa0.0": {
+    "elements": [
+     100,
+     400,
+     900,
+     1600
+    ],
+    "change_vs_finest_pct": [
+     -29.507,
+     -12.8,
+     -5.498,
+     0.0
+    ]
+   },
+   "L20-corners-r0.15-seismic-sa0.6": {
+    "elements": [
+     100,
+     400,
+     900,
+     1600
+    ],
+    "change_vs_finest_pct": [
+     -25.73,
+     -10.028,
+     -3.964,
+     0.0
+    ]
+   },
+   "L20-edges-r0.15-gravity-sa0.0": {
+    "elements": [
+     100,
+     400,
+     900,
+     1600
+    ],
+    "change_vs_finest_pct": [
+     -0.682,
+     -0.01,
+     0.003,
+     0.0
+    ]
+   },
+   "L20-edges-r0.15-seismic-sa0.6": {
+    "elements": [
+     100,
+     400,
+     900,
+     1600
+    ],
+    "change_vs_finest_pct": [
+     -22.93,
+     -4.259,
+     -1.455,
+     0.0
+    ]
+   }
+  },
+  "d_fdm_residual": {
+   "worst_residual_n": 2.1827872842550278e-11
+  },
+  "e_membrane_share": {
+   "corners_uls_gravity_pct": [
+    76.27,
+    89.23
+   ],
+   "corners_uls_seismic_px_pct": [
+    77.23,
+    89.23
+   ],
+   "edges_uls_gravity_pct": [
+    90.99,
+    99.91
+   ],
+   "edges_uls_seismic_px_pct": [
+    92.35,
+    99.87
+   ]
+  },
+  "f_formwork": {
+   "worst_rel_formwork_area_pct": 1.444,
+   "cells_safe_for_any_formwork": 79
+  }
+ }
+}
