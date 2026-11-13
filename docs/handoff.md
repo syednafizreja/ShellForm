@@ -1,6 +1,14 @@
-﻿# Handoff between Claude in the app and Claude Code in VS Code
+# Handoff between Claude in the app and Claude Code in VS Code
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
+
+## 14 Nov 2026, Claude Code in VS Code (daily sync after check window day 1)
+
+**Done:** pulled to `5af02ef`; `pip install -e . --no-deps`; laptop pytest: 125 passed (CalculiX present). Ran `scripts/day17_verification.py`: all `results/verify_*` files reproduce to round-off. Laptop CalculiX is 2.23 (cloud record says 2.21); largest shift is in the 6th significant figure (V2 SLS deflection 0.0581771 vs 0.0581767 m). One reported figure moves at two significant figures: V3 worst FDM residual 2.33e-11 N on the laptop against 2.18e-11 N in the record; both are far below the 1e-10 N tolerance. Regenerated files were discarded, so the committed record stays the cloud run.
+
+**Decision [J]:** keep the cloud outputs as the record; if Methods 2.8 quotes "at most 2.2e-11 N", consider "below 3e-11 N" or naming the CalculiX version, so the laptop run also matches.
+
+**Open:** unchanged from the entry below (Syed, 15-17 Nov: Zoelly page in Timoshenko & Gere, the two [J] sentences in Results 3.6, Fig. 6 placement; Zenodo token, title, "19 to 29 %").
 
 ## 14 Nov 2026, Claude in the app (check window day 1: verification add-ons)
 
