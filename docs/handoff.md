@@ -2,6 +2,12 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 13 Nov 2026, Claude Code in VS Code (daily sync)
+
+**Done:** pulled to `002b946`; ShellBench-pin at v0.3.0, matching `pin.py`. `pip install -e . --no-deps`; laptop pytest: 101 passed (CalculiX present). The newest entry names no script to rerun (docs only), so none was run. `git status` clean: `results/` and `paper/tables/` unchanged.
+
+**Open:** unchanged from the entry below (Syed, 14-17 Nov: title, "19 to 29 %" vs "20-30 %", [J] sentences, C&S keyword limit).
+
 ## 13 Nov 2026 (later), Claude in the app (Abstract, highlights, Conclusions)
 
 **Done:** `paper/15_abstract_conclusion_draft.md`: three title options (recommend 1 [J]), abstract (246 words; C&S limit 250, guide read 13 Nov), five highlights (each at most 81 characters; limit 85), keywords, Section 5 Conclusions. Every number is a `numbers.md` row; two arithmetic rows added for the highlights. Every manuscript section now has draft 1. Docs only.
