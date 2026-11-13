@@ -1,5 +1,7 @@
 # 4. Discussion (draft 1, 11 Nov 2026)
 
+> **Superseded on 14 Nov 2026** by the assembled manuscript `manuscript/shellform_cas.tex`. Corrections made there during the self-review (`16_self_review.md`) are not back-ported here; edit the manuscript, not this draft.
+
 Written by Claude in Syed's voice under his standing rule of 10 Nov (Claude writes the prose; Syed reads, changes and owns it). Built from `00_core.md` section 4, the Results draft (`11_results_draft.md`), `notes/buckling_threshold_sources.md` and the freeze files (tag `freeze-2026-11-09`, ShellBench v0.3.0). Every number already appears in the Results draft and has, or is listed for, a row in `numbers.md`. No new literature claim is made without a source that has been opened; `[check]` marks the rest. Interpretive sentences are Claude's judgement [J] until Syed accepts them; they are listed at the end.
 
 ## 4.1 Why the seismic level does not reach the carbon

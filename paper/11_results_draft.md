@@ -1,5 +1,7 @@
 # 3. Results (draft 1, 10 Nov 2026)
 
+> **Superseded on 14 Nov 2026** by the assembled manuscript `manuscript/shellform_cas.tex`. Corrections made there during the self-review (`16_self_review.md`) are not back-ported here; edit the manuscript, not this draft.
+
 Written by Claude in Syed's voice at his request of 10 Nov, from `07_results_outline.md`, `03_sensitivity_outline.md`, the freeze files (tag `freeze-2026-11-09`, ShellBench v0.3.0) and `paper/tables/`. Syed reads, changes and owns it. Every number has a row in `numbers.md`. Interpretive sentences are Claude's judgement [J] until Syed accepts them; they are listed in the side notes at the end. Each paragraph follows Identify, Summarise, Compare, Transition.
 
 ## 3.1 The two forms are close

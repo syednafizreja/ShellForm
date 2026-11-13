@@ -10,8 +10,8 @@ Rows from the sensitivity runs. **Freeze run, 9 Nov 2026 (Day 12): every value b
 
 | Manuscript location | Value | Source (file, function or table) | Commit or tag | Checked by Syed (date) |
 |---|---|---|---|---|
-| Results 3.x, para A | corner carbon at λ ≥ 3: 0.735-0.812 of baseline | `results/sensitivity_reference.csv`, carbon_ratio_to_baseline, variant lam3, corners | freeze-2026-11-09, ShellBench v0.3.0 | |
-| Results 3.x, para A | corner carbon at λ ≥ 8: 1.219-1.294 of baseline | same, variant lam8 | freeze-2026-11-09, ShellBench v0.3.0 | |
+| Results 3.x, para A | corner carbon at λ ≥ 3: 0.736-0.812 of baseline (gravity form, Sa 0; rounded from 0.7358-0.8124, corrected 14 Nov from 0.735) | `results/sensitivity_reference.csv`, carbon_ratio_to_baseline, variant lam3, corners | freeze-2026-11-09, ShellBench v0.3.0 | |
+| Results 3.x, para A | corner carbon at λ ≥ 8: 1.220-1.295 of baseline (gravity form, Sa 0; rounded from 1.2197-1.2946, corrected 14 Nov from 1.219-1.294) | same, variant lam8 | freeze-2026-11-09, ShellBench v0.3.0 | |
 | Results 3.x, para A | lowest edge λ at 50 mm: 14.00 (20 m, rise 0.10) | `results/sensitivity_reference.csv`, buckling_factor, edges | freeze-2026-11-09, ShellBench v0.3.0 | |
 | Results 3.x, para A | gravity-form cost of resilience: 1.000-1.004 (λ 5), 1.000-1.003 (λ 3), 1.000-1.036 (λ 8) | `results/sensitivity_cells.csv`, cost_of_resilience_gravity | freeze-2026-11-09, ShellBench v0.3.0 | |
 | Results 3.x, para A | λ 8, 20 m, corners, rise 0.10: 325 → 330 → 335 mm at 0-0.3, 0.4-0.5, 0.6 g | `results/sensitivity_cells.csv`, thickness_gravity_m | freeze-2026-11-09, ShellBench v0.3.0 | |
@@ -20,7 +20,7 @@ Rows from the sensitivity runs. **Freeze run, 9 Nov 2026 (Day 12): every value b
 | Results 3.x, para D | 61 × 61: 17 of 168 thicknesses move one step; carbon ratio 1.000-1.026; T1 max 0.318 s | `results/sens_mesh61.csv`, `sensitivity_reference.csv` | freeze-2026-11-09, ShellBench v0.3.0 | |
 | Results 3.x, para E | headline: 0 of 10 scope cells per span under every variant | `results/sensitivity_summary.csv`, headline_cells_holding | freeze-2026-11-09, ShellBench v0.3.0 | |
 | S5 row of the validation table | T1 < Tg = 0.35 s for all 168 designs; baseline T1 0.029-0.308 s; longest 0.308 s (20 m corners); 0 failures in baseline and in all three variants (longest 0.341 s, λ 3, 20 m corners) | `results/s5_summary.csv`, `s5_plateau.csv` | freeze-2026-11-09, ShellBench v0.3.0 | |
-| S5 row, caveat | 70 of 84 edge designs have T1 < 0.1 s (rising branch, alpha 0.45-1.0 alpha_max); the plateau load is conservative for them | `results/s5_plateau.csv`, branch, alpha_shape | freeze-2026-11-09, ShellBench v0.3.0 | |
+| S5 row, caveat | 70 of 84 edge designs have T1 < 0.1 s (rising branch, alpha 0.61-0.95 alpha_max; corrected 14 Nov from 0.45-1.0, the file gives 0.607-0.946); the plateau load is conservative for them | `results/s5_plateau.csv`, branch, alpha_shape | freeze-2026-11-09, ShellBench v0.3.0 | |
 | Methods, solver | `fe.py` against `shellbench.shellfe`, four gravity shells: displacement identical, first buckling factor within 0.26 % (2 factors each) | `results/fe_crosscheck.csv` | freeze-2026-11-09, ShellBench v0.3.0 | |
 | Methods, solver | one requested buckling factor reads high: up to 0.26 % (λ 5) and 3.6 % (λ 8) in the Day 4-9 sizing; 4 requested since 7 Nov (D10-1) | `results/buckling_modes_check_pre_d10.csv` (before the fix); `results/fe_crosscheck_meta.json`, modes_check (after: 173 rechecked, 0 would fail) | freeze-2026-11-09, ShellBench v0.3.0 | |
 
@@ -59,13 +59,13 @@ Rows for the Abstract, Highlights and Conclusions (13 Nov 2026). No new values: 
 | Manuscript location | Value | Source (file, function or table) | Commit or tag | Checked by Syed (date) |
 |---|---|---|---|---|
 | Highlight 4 | gravity-form carbon within 0.4 % up to 0.6 g | cost of resilience 1.000-1.004 (row "Results 3.x, para A" above), rounded | freeze-2026-11-09, ShellBench v0.3.0 | |
-| Highlight 5 | corner-shell carbon moves 19 to 29 % at λ 3 or 8 | 1 − 0.812 = 0.188; 1.294 − 1 = 0.294 (rows "Results 3.x, para A" above), Claude's arithmetic [J] | freeze-2026-11-09, ShellBench v0.3.0 | |
+| Highlight 5; Results 3.4; Discussion 4.3 | corner-shell carbon moves 19 to 29 % at λ 3 or 8 (Results and Discussion said 20-30 % until 14 Nov) | 1 − 0.8124 = 0.188; 1.2946 − 1 = 0.295 (rows "Results 3.x, para A" above), Claude's arithmetic [J] | freeze-2026-11-09, ShellBench v0.3.0 | |
 
 Rows from the verification add-ons, 14 Nov 2026 (check window, after the freeze; not pre-registered). Run: `python scripts/day17_verification.py`, CalculiX 2.21 in the cloud. Sized thicknesses from the freeze record. Summary of every run: `results/verify_meta.json`.
 
 | Manuscript location | Value | Source (file, function or table) | Commit or tag | Checked by Syed (date) |
 |---|---|---|---|---|
-| Methods 2.8, Results 3.6 para 2 | sphere p_cr FE vs Zoelly, finest mesh (3456 S8R): +1.96 % (R/t 50), +1.33 % (R/t 100); all five meshes at R/t 100 and the three finest at R/t 50 within 3 % | `results/verify_v1_zoelly.csv`, relative_error | main after 14 Nov merge, ShellBench v0.3.0 | |
+| Methods 2.8, Results 3.6 para 2 | sphere p_cr FE vs Zoelly, finest mesh (3456 S8R): +1.96 % (R/t 50), +1.33 % (R/t 100); all five meshes at R/t 100 and the four finest at R/t 50 within 3 % (corrected 14 Nov from "three finest"; 864 elements gives 2.74 %) | `results/verify_v1_zoelly.csv`, relative_error | main after 14 Nov merge, ShellBench v0.3.0 | |
 | Results 3.6 para 2 | membrane displacement stiff by 1.49 % (R/t 50), 0.75 % (R/t 100) | same, membrane_ur_fe_m / membrane_ur_closed_form_m − 1 | same | |
 | Results 3.6 para 2 | sized shells R/t about 78 to 520 (circular-arc estimate R = ((L/2)² + f²)/(2f), t from the record) | `results/batch_all.csv`, Claude's arithmetic [J] | freeze-2026-11-09 | |
 | Results 3.6 para 3 | λ1 change 61 → 81 nodes: at most 0.62 % (edges), 0.21 % (corners) | `results/verify_v2_hconv.csv`; `verify_meta.json` v2 | main after 14 Nov merge, ShellBench v0.3.0 | |
@@ -75,3 +75,18 @@ Rows from the verification add-ons, 14 Nov 2026 (check window, after the freeze;
 | Results 3.6 para 5 | membrane share: corners 76.3-89.2 %, edges 91.0-99.9 %; 10 m, rise 0.15, 0.6 g: 87.3 / 84.3 % (corners), 97.6 / 94.3 % (edges), gravity-only / seismic-aware | `results/verify_v4_energy.csv`; `figures/figS1_verification.json` panel e | same | |
 | Results 3.6 para 6, Discussion 4.5 | soffit area difference at most 1.44 %; 79 of 84 verdicts safe for any formwork term; 5 grid-step cells: area difference at most 0.22 % | `results/verify_v5_formwork.csv` | same | |
 | Results 3.6 para 7 (Fig. 6) | front = edge shells only; λ1 68-252 (10 m), 14-53 (20 m); 21.6-23.8 kgCO₂e/m² | `figures/fig06_carbon_stability.json` | freeze-2026-11-09 record | |
+
+Rows added 14 Nov 2026 (check window day 2, manuscript assembly and self-review). Each value was recomputed from the named file by Claude (script in the handoff entry of 14 Nov); Syed checks.
+
+| Manuscript location | Value | Source (file, function or table) | Commit or tag | Checked by Syed (date) |
+|---|---|---|---|---|
+| Methods 2.2 | equal force densities: free edge drawn in by 0.24 × span, 38 % of plan kept | `notes/day03_one_shell.md` (D3-1); pre-registration amendment of 31 Oct | before freeze (Day 3) | |
+| Results 3.1 | corner-supported seismic-aware forms dip by at most 4.2 mm (20 m, 0.3 g); edge forms do not dip | `figures/gallery_10m.json`, `gallery_20m.json`, dz_min_mm | freeze-2026-11-09, ShellBench v0.3.0 | |
+| Results 3.1 | edge-supported rise at 0.6 g: 63 mm (10 m), 125 mm (20 m) | same, dz_max_mm (62.6, 125.2) | same | |
+| Results 3.3 | λ at 85 mm, 10 m corners rise 0.15: gravity 4.978; seismic 5.016-5.052 (0.1-0.5 g) | `results/batch_all_meta.json`, tried | same | |
+| Results 3.4 | all 84 corner designs: λ 3 ratio 0.732-0.826, λ 8 ratio 1.219-1.295 (Fig. 4 bars) | `figures/fig04_carbon_drivers.json`, ranges | same | |
+| Results 3.4 | seismic-aware cost of resilience −5.7 to +1.5 %; strategy −5.7 to +1.4 % | `fig04_carbon_drivers.json`; `results/sensitivity_cells.csv` (baseline rel_central −0.0567 to +0.0144) | same | |
+| Results 3.4 | λ 3 cells: λ at 55 mm 3.0003 (gravity), 2.936 and 2.846 (seismic); +8.4 % and +8.2 % carbon | `results/sens_lam3_meta.json`, tried; `sensitivity_cells.csv` lam3 rel_central 0.0839, 0.0819 | same | |
+| Results 3.4 | 61 × 61: corner λ at equal thickness moves at most 2.0 % | `results/sens_mesh61.csv` vs `batch_all.csv`, buckling_factor (max 0.0201) | same | |
+| Results 3.6 para 3 | edge shells: record λ1 above the 81 × 81 value by up to 5.8 % | `results/verify_v2_hconv.csv` (L20-edges-r0.15-seismic-sa0.6: 0.0584) | main after 14 Nov merge | |
+| Results 3.6 para 5 | seismic-aware form has the smaller membrane share in all 72 cells with Sa > 0, both ULS cases, by up to 13 points; lateral case lowers the share in 129 of 144 designs with Sa > 0, by at most 2.8 points | `results/verify_v4_energy.csv` (form difference −0.1295 to −0.0001; case difference min −0.0284) | same | |
