@@ -1,0 +1,96 @@
+% paper/manuscript/supplement.tex
+% Supplementary material for the ShellForm manuscript (Computers & Structures).
+% S1 literature search protocol (paper/13_literature_search.md),
+% S2 Fig. S1 (figures/figS1_verification.pdf), S3 pre-registration amendments
+% (docs/preregistration.md, summarised), S4 Table S1 (paper/tables/tableS1_all_designs.md).
+% Build: latexmk -pdf supplement.tex
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=22mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx,booktabs,array,longtable,xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\graphicspath{{../../figures/}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thesection}{S\arabic{section}}
+\definecolor{markcol}{HTML}{B4462B}
+\newcommand{\chk}{\textsuperscript{\textcolor{markcol}{\sffamily\scriptsize[check]}}}
+
+\title{Supplementary material\\[1ex]\large Does seismic-aware form-finding lower the embodied carbon of reinforced concrete shells? A pre-registered comparison of 168 sized designs}
+\author{Syed Nafiz Reja Hasib}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Literature search protocol}
+
+The gap statement of Section~1 rests on a documented search, run on 13 November 2026 in OpenAlex (about 250 million records, open access and paywalled). The search window was 2015--2026, to include the work of Michiels and Adriaenssens (2017--2019); the gap claim rests on papers from 2020--2026. A paper was included if it studies (a) form-finding or shape design of shells or arches under lateral or seismic load, (b) the embodied carbon of concrete shells or shell floors, or (c) the seismic response of concrete shells. Retrofit, frames, walls, tanks, piles and masonry infill were excluded.
+
+\begin{table}[h]
+\centering\small
+\caption{Search queries, screening and inclusion.}
+\begin{tabular}{llrrr}
+\toprule
+Query & Words & From & Screened & Included\\
+\midrule
+Q1 & form finding shell structures seismic lateral loading & 2015 & top 20 & 5\\
+Q2 & embodied carbon concrete shell structures form-finding & 2018 & top 20 & 6\\
+Q3 & thin concrete shell roof seismic behaviour reinforced concrete earthquake & 2015 & top 20 & 1\\
+Q4 & earthquake response of thin reinforced concrete shell roofs stiffness low mass parametric & 2016 & top 10 & 2\\
+Q5 & concrete shell form finding optimisation material reduction buckling governs thickness & 2018 & top 10 & 1\\
+Q6 & embodied carbon seismic design shell form-found compression-only lateral load material efficiency & 2019 & top 10 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Q6 found no paper that reports the embodied carbon of seismic-aware form-finding. Forward citation searching from Michiels and Adriaenssens (2017, 2018) is still to be done\chk. The full log, with the 15 included papers, is \texttt{paper/13\_literature\_search.md} in the repository.
+
+\section{Verification of the analysis chain}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{figS1_verification.pdf}
+\caption{Verification checks V1--V5, run after the freeze (Section~3.6 of the paper): (a) sphere buckling against the classical value; (b) first buckling factor and (c) SLS deflection under mesh refinement from 21 to 81 nodes per side; (d) residual of the assembled force density system; (e) membrane share of strain energy; (f) soffit area difference against carbon difference (formwork bound).}
+\end{figure}
+
+\section{Pre-registration amendments}
+
+The pre-registration of 28--30 October 2026 and every dated amendment are in \texttt{docs/preregistration.md}. Each amendment states whether it was written before or after the results it affects. In summary:
+
+\begin{longtable}{p{0.16\textwidth}p{0.20\textwidth}p{0.56\textwidth}}
+\toprule
+Date (2026) & Timing & Change\\
+\midrule
+\endhead
+30 Oct & before any run & Seismic-aware strategy defined (four directions, envelope check); own 3D solver; ICE replaced by a $\pm$25\,\% factor band; thresholds set ($\lambda$ 5, with 3 and 8; $L/300$; 50~mm; 5~mm steps; 5\,\% decision band). Midrange instead of mean of the four thrust surfaces.\\
+31 Oct & before any design-space run & Corner-supported free edges drawn in by $0.10L$ (D3-1); own S8R deck, to be cross-checked against ShellBench's wrapper.\\
+1 Nov & before the first sizing run & Seismic case in $+x$ only (symmetry); corner zones of $0.2L$ out of the compression check; characteristic deflection combination; bisection sizing.\\
+1 Nov & after the 84 designs & Poisson's ratio read in place from ShellBench (value unchanged); loads per plan area recorded (D4-5); code basis for roof live load added. No thickness changed.\\
+2 Nov & before the 84-design run & Steel rule (two directions, EN 1992-1-1 Annex F, no biaxial relief), minimum ratio in both directions, support-zone thickening, net steel.\\
+3 Nov & after results; fix before the 20~m run & Carbon per m$^2$ of plan area for corner-supported shells (code followed the stated rule).\\
+4 Nov & just after the S4 run & S4 fallback: closed-form lean of a parabolic arch (published arch not available).\\
+6 Nov & during the sensitivity runs & How the three sensitivity runs were run (all 168 designs).\\
+7 Nov & before the corrected runs & Pin moved to ShellBench v0.2.0 (0 mismatches); four buckling factors requested (D10-1).\\
+8 Nov & citation only & EN 1992-1-1 Annex F read in full.\\
+9 Nov & before the freeze run & Freeze one day early; pin ShellBench v0.3.0.\\
+9 Nov & after the freeze & Presentation only (plotting style).\\
+11 Nov & citation only & Buckling-threshold sources read (Dul\'acska and Koll\'ar 1995; ACI 318.2-14).\\
+14 Nov & after the freeze, exploratory & Verification checks V1--V5 and Fig.~6; no result changed.\\
+\bottomrule
+\end{longtable}
+
+\section{All 168 sized designs}
+
+Table~S1 lists every sized design at the central carbon factors, with the low and high ends of the $\pm$25\,\% band. Design identifiers give span, supports, rise-to-span ratio, strategy and $S_a$ (g). The same values are in \texttt{paper/tables/tableS1\_all\_designs.csv}; the full record, with every check, is \texttt{results/batch\_all.csv} at tag \texttt{freeze-2026-11-09} (ShellBench v0.3.0).
+
+\begin{center}
+\input{tables/tableS1_all_designs_long}
+\end{center}
+
+\end{document}
