@@ -2,6 +2,16 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 14 Nov 2026 (later), Claude in the app (check window day 2: manuscript assembled, self-review)
+
+**Done:** `paper/manuscript/`: `shellform_cas.tex` and its PDF (C&S, elsarticle, numbered references, line numbers, review marks [check] / [J] / [?] visible; `\reviewmarksfalse` hides them), `supplement.tex` and PDF, `highlights.txt`, `references.bib` (15 DOIs checked against Crossref), `tables/` from `scripts/day18_manuscript_tables.py` (copies the frozen `paper/tables/*.md`, presentation only). `paper/16_self_review.md`: 20 fixes made and 9 open items. `numbers.md` (3 rows corrected, 10 added) and `references.md` (2 years corrected, 4 rows added). Drafts 10-15 marked superseded: edit the manuscript from now on. No file in `src/`, `results/`, `figures/` or `paper/tables/` changed. Cloud pytest not run (no code changed; the new script ran cleanly).
+
+**Decisions [J], under the standing delegation:** numbered references (C&S guide, read 14 Nov); "19-29 %" everywhere (the open choice of 13 Nov, also closed in PR #51); title option 1; amendments go to Supplement S3; residual quoted as "below 3e-11 N" so the laptop run also matches (superseded by PR #51's "below 2.5e-11 N"); the surface-area load check dropped from Results 3.3 (not a pre-registered run, no ledger row).
+
+**Merged with the laptop session's closeout (PR #51):** the manuscript uses its decisions: residual "below 2.5 × 10⁻¹¹ N on both machines", Hutchinson (2016) for the sphere benchmark ("the classical value", Timoshenko & Gere and the Zoelly name dropped), its rewritten "funicular for none of them" reading, title option 1, seven keywords, Fig. 6 in the main text.
+
+**Open:** (1) Laptop: `git pull origin main`; to rebuild the PDF you need TeX Live with `elsarticle` (or Overleaf); the committed PDFs are current. Nothing to rerun. (2) Syed, 15-17 Nov: read the PDF; work through `paper/16_self_review.md` section 2 (Michiels C&S 2018 first-hand, nine abstract-only sources, code clauses, affiliation, CRediT/competing/funding/AI statements) and accept or cut each [J] in section 3. (3) Still open: Zenodo token (ShellForm v0.2.0 with V1-V5; ShellBench H4 and Day 34 figures); cover letter and suggested reviewers.
+
 ## 14 Nov 2026 (later), Claude Code in VS Code (open items closed under the standing delegation)
 
 **Done:** (1) FDM residual now "below 2.5 × 10⁻¹¹ N" in Results 3.6, README and `numbers.md`, so the record run (2.18e-11) and the laptop rerun (2.33e-11) both match. (2) Benchmark citation: Timoshenko & Gere could not be opened (no legal copy; archive.org search-inside blocked; NASA SP-8032 scan has no text layer). Substitute: Hutchinson 2016, Proc. R. Soc. A 472: 20160577, Section 3, which states p_C = 2E/√(3(1 − ν²)) (t/R)² (opened 14 Nov). Paper text now says "the classical value", because no opened source ties the formula to Zoelly; row added to `references.md`. (3) "19 to 29 %" now in Results 3.4, Discussion and Highlight 5. (4) Title option 1 chosen. (5) Keywords: seven, and the C&S guide asks for 1 to 7 (read 14 Nov). (6) Results 3.6 [J] sentences: S8R thickness reading kept; the "less funicular" sentence rewritten as a reading. (7) Fig. 6 stays in the main text; Fig. S1 in the supplement.

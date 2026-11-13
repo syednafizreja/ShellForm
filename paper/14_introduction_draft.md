@@ -1,5 +1,7 @@
 # 1. Introduction (draft 1, 13 Nov 2026)
 
+> **Superseded on 14 Nov 2026** by the assembled manuscript `manuscript/shellform_cas.tex`. Corrections made there during the self-review (`16_self_review.md`) are not back-ported here; edit the manuscript, not this draft.
+
 Written by Claude in Syed's voice under his standing rule of 10 Nov (Claude writes the prose; Syed reads, changes and owns it). Sources: `13_literature_search.md` (abstract-level reading, 13 Nov), `notes/michiels2017.md`, `00_core.md` section 4, the Results and Discussion drafts. Every cited number carries `[check]` until Syed has opened the full text and added a page. No global statistics are quoted, because none has been read from a source. Interpretive sentences [J] are listed at the end.
 
 ## Paragraph 1: shells as a low-carbon structure

@@ -1,5 +1,7 @@
 # 2. Methods (draft 1, 10 Nov 2026)
 
+> **Superseded on 14 Nov 2026** by the assembled manuscript `manuscript/shellform_cas.tex`. Corrections made there during the self-review (`16_self_review.md`) are not back-ported here; edit the manuscript, not this draft.
+
 Written by Claude in Syed's voice at his request of 10 Nov ("it's supposed to be done by itself; follow the same style"), from `02_methods_outline.md`, `09_drafting_kit.md`, the pre-registration and the freeze files. Syed reads, changes and owns it. Every number has a row in `numbers.md` or a table in `paper/tables/`. `[check]` = source not yet opened by Syed; `[?]` = value still missing; `[J]` in the side notes = Claude's judgement. Side notes in *italics* are for Syed and are deleted before submission.
 
 ## 2.1 Overview and pre-registration

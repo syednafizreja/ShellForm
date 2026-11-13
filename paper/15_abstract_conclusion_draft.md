@@ -1,5 +1,7 @@
 # Abstract, highlights, title and Conclusion (draft 1, 13 Nov 2026)
 
+> **Superseded on 14 Nov 2026** by the assembled manuscript `manuscript/shellform_cas.tex`. Corrections made there during the self-review (`16_self_review.md`) are not back-ported here; edit the manuscript, not this draft.
+
 Written by Claude in Syed's voice under his standing rule of 10 Nov (Claude writes the prose; Syed reads, changes and owns it). Built only from numbers that already have a row in `numbers.md` (freeze tag `freeze-2026-11-09`, ShellBench v0.3.0) and from the Methods, Results, Discussion and Introduction drafts. Journal limits (Computers & Structures guide for authors, read 13 Nov 2026): abstract at most 250 words, standing alone, no references unless essential (then author and year); highlights 3 to 5 bullets, each at most 85 characters including spaces, as a separate file. Interpretive sentences [J] are listed at the end.
 
 ## Title (pick one)

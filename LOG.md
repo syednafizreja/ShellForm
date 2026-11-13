@@ -162,3 +162,11 @@
 - Result: sphere buckling +1.96 % (R/t 50) and +1.33 % (R/t 100) from Zoelly; λ1 converged to 0.62 % (61 to 81 nodes); FDM residual at most 2.2e-11 N; membrane share 76-100 %; formwork cannot move a verdict (areas differ at most 1.44 %). Corner-shell SLS deflection does not converge (singular at point supports) but stays at most 0.18 of L/300. Frozen `results/` files unchanged. Cloud pytest 125 passed.
 - Lesson: CalculiX shell pressure `P` acts along the element normal; check the sign with a static step before trusting a buckling factor (a wrong sign gave negative and huge factors).
 - Next: author's check window (15-17 Nov); optional sphere run at R/t 200-500.
+
+## 14 Nov 2026 - Check window, day 2: manuscript assembled and self-reviewed
+
+- Done (Claude in the app, under the author's standing delegation; the author said "done lets start next day"): one Computers & Structures manuscript, `paper/manuscript/shellform_cas.tex` → PDF (29 pages, elsarticle preprint, line numbers, numbered references as the C&S guide asks), `supplement.tex` → PDF (S1 search protocol, S2 Fig. S1, S3 amendments, S4 Table S1), `highlights.txt`, `references.bib`; tables converted by `scripts/day18_manuscript_tables.py` from the frozen `paper/tables/`. Reviewer-2 self-review in `paper/16_self_review.md`: every number recomputed from `results/` and `figures/*.json`, all 15 DOIs checked against Crossref.
+- Result: 20 fixes (F1-F20), among them truncated λ 3/8 ratios (now 0.736-0.812, 1.220-1.295), one claim the data did not support (membrane share: the form, not the lateral case, lowers it), "19-29 %" used everywhere, two reference years (Hawkins 2019, Caycedo Garcia 2025), Schek (1974) added. No code under `src/`, no result, table or figure changed.
+- Problem: 9 open items only the author can close (section 2 of the review), led by the unread C&S 2018 Michiels paper and nine abstract-only sources.
+- Lesson: recompute every number from the result file, not from `numbers.md`; the ledger had copied two truncations and one stale range.
+- Next: author's check of the PDF (15-17 Nov), the `[check]` readings, affiliation, statements; v0.2.0 archive when the Zenodo token is available.
