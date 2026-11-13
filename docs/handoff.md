@@ -2,6 +2,12 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 15 Nov 2026, Claude Code in VS Code (daily sync after check window day 2)
+
+**Done:** pulled to `e57222e`; ShellBench-pin at v0.3.0, matching `pin.py`. `pip install -e . --no-deps`; laptop pytest: 125 passed. Reran `scripts/day18_manuscript_tables.py` (the only script the newest entry names): 7 tables written, `git status` clean, so `results/` and `paper/manuscript/tables/` are unchanged. No TeX on the laptop, so the PDF was not rebuilt (the committed PDF is current).
+
+**Open:** unchanged from the entry below (`paper/16_self_review.md` sections 2 and 3; Zenodo v0.2.0; cover letter and reviewers).
+
 ## 14 Nov 2026 (later), Claude in the app (check window day 2: manuscript assembled, self-review)
 
 **Done:** `paper/manuscript/`: `shellform_cas.tex` and its PDF (C&S, elsarticle, numbered references, line numbers, review marks [check] / [J] / [?] visible; `\reviewmarksfalse` hides them), `supplement.tex` and PDF, `highlights.txt`, `references.bib` (15 DOIs checked against Crossref), `tables/` from `scripts/day18_manuscript_tables.py` (copies the frozen `paper/tables/*.md`, presentation only). `paper/16_self_review.md`: 20 fixes made and 9 open items. `numbers.md` (3 rows corrected, 10 added) and `references.md` (2 years corrected, 4 rows added). Drafts 10-15 marked superseded: edit the manuscript from now on. No file in `src/`, `results/`, `figures/` or `paper/tables/` changed. Cloud pytest not run (no code changed; the new script ran cleanly).
