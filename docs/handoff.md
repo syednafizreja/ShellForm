@@ -11,7 +11,7 @@ Newest entry first. Each session reads this at the start and adds an entry at th
 - Long-term reproduction: `environment-lock.yml`, `SHA256SUMS` (committed bytes of `results/` and `figures/`), `docs/REPRODUCE.md`. Version 0.2.0 in `pyproject.toml`, `__init__.py`, `CITATION.cff` (fuller abstract and keywords). `.nojekyll` for GitHub Pages.
 - pytest 125 passed. `scripts/day14_paper_tables.py` rerun: S2 and S3 residuals in Table 3 differ at round-off (1.4e-11 to 1.2e-11; 5.4e-16 to 6.5e-16), both pass by orders of magnitude; committed tables left as they were [J].
 
-**Open for the author:** PR titles and bodies on GitHub were cleaned; five old commit messages still contain the assistant's name (history not rewritten: it would need a force-push and would orphan the v0.1.0 archive); rebuild the PDF on Overleaf (one LaTeX comment changed); the items in `paper/16_self_review.md` section 2.
+**Open for the author:** PR titles and bodies on GitHub were cleaned; five old commit messages still contain the assistant's name (history not rewritten: it would need a force-push and would orphan the v0.1.0 archive); the v0.1.0 Zenodo archive keeps its original files and cannot be edited; request Software Heritage "save code now" for ShellForm and ShellBench (blocked from here); consider a ShellBench v0.3.0 GitHub release so Zenodo archives the pinned tag; rebuild the PDF on Overleaf (one LaTeX comment changed); the items in `paper/16_self_review.md` section 2.
 
 ## 15 Nov 2026, laptop session (daily sync after check window day 2)
 

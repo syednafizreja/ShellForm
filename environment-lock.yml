@@ -1,4 +1,5 @@
-# Exact environment used for the ShellForm record (conda env "shellform", Windows 11, exported 15 Nov 2026).
+# Laptop environment that reproduces the ShellForm record (conda env "shellform", Windows 11, exported 13 Nov 2026).
+# It has CalculiX 2.23; the freeze run itself used CalculiX 2.21 (results/README.md).
 # Recreate: conda env create -n shellform -f environment-lock.yml
 # Then install ShellBench at tag v0.3.0 and ShellForm itself with pip install -e . --no-deps (see docs/REPRODUCE.md).
 name: shellform
