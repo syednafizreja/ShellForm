@@ -53,3 +53,10 @@ Rows from the manuscript tables, built 10 Nov 2026 by `python scripts/day14_pape
 | Results 3.1 | S4 arch, rise-to-span 1/4, 10 m, 0.3 g: crown lean 0.75 m | `results/day07_s4_arch.csv`, crown_lean_m | v0.1.0 (S4 run, 4 Nov) | |
 | Methods 2.5; Discussion 4.3 | buckling safety factor γ 1.50-3.00 by slenderness; combined reductions implied by λ 3 / 5 / 8 at γ = 3.0: 1.0 / 0.6 / 0.375 (= 3.0 / λ, Claude's arithmetic [J]) | Dulácska & Kollár (1995), Table 3, p. 319; `notes/buckling_threshold_sources.md` | source read 11 Nov 2026 | |
 | Discussion 4.5 | accidental imperfection amplitude 1/4 to 3/4 of the wall thickness | Dulácska & Kollár (1995), p. 317 | source read 11 Nov 2026 | |
+
+Rows for the Abstract, Highlights and Conclusions (13 Nov 2026). No new values: each is a row above, or arithmetic on one.
+
+| Manuscript location | Value | Source (file, function or table) | Commit or tag | Checked by Syed (date) |
+|---|---|---|---|---|
+| Highlight 4 | gravity-form carbon within 0.4 % up to 0.6 g | cost of resilience 1.000-1.004 (row "Results 3.x, para A" above), rounded | freeze-2026-11-09, ShellBench v0.3.0 | |
+| Highlight 5 | corner-shell carbon moves 19 to 29 % at λ 3 or 8 | 1 − 0.812 = 0.188; 1.294 − 1 = 0.294 (rows "Results 3.x, para A" above), Claude's arithmetic [J] | freeze-2026-11-09, ShellBench v0.3.0 | |
