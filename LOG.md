@@ -149,3 +149,9 @@
 - Lesson: search the field's own vocabulary ("force density", "reinforced concrete shell", "seismic") before claiming a gap; the closest 2026 papers only appeared on the third and fourth queries.
 - Build window ends today. 14-17 Nov: Syed's check window (open the [check] papers in full, accept or cut [J] sentences, numbers.md rows).
 
+
+## 13 Nov 2026 (later) - Abstract, highlights, Conclusions
+
+- Done (Claude; the author gave full permission to finish all): `paper/15_abstract_conclusion_draft.md` with title options, abstract (246 of 250 words), five highlights (at most 81 of 85 characters), keywords and Section 5 Conclusions. Limits taken from the Computers & Structures guide for authors, read 13 Nov. Two `numbers.md` rows for rounded values in the highlights.
+- Result: every section of the manuscript has draft 1. No code or result changed.
+- Lesson: count abstract words and highlight characters by script; the first draft was 257 words.

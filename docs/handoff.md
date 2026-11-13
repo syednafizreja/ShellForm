@@ -2,6 +2,12 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 13 Nov 2026 (later), Claude in the app (Abstract, highlights, Conclusions)
+
+**Done:** `paper/15_abstract_conclusion_draft.md`: three title options (recommend 1 [J]), abstract (246 words; C&S limit 250, guide read 13 Nov), five highlights (each at most 81 characters; limit 85), keywords, Section 5 Conclusions. Every number is a `numbers.md` row; two arithmetic rows added for the highlights. Every manuscript section now has draft 1. Docs only.
+
+**Open:** (1) Laptop: `git pull origin main`; nothing to rerun. (2) Syed, 14-17 Nov: pick the title; choose "19 to 29 %" or "20-30 %" and use it in Results 3.4 and Highlight 5 alike; accept or cut the [J] sentences; check the C&S keyword limit.
+
 ## 13 Nov 2026, Claude in the app (literature search, Introduction draft 1)
 
 **Done:** documented OpenAlex search (`paper/13_literature_search.md`: protocol, 6 queries, 15 papers, gap line); `paper/14_introduction_draft.md`; 9 rows in `references.md`; Table 3 S2/S3 wording decided [J] (side note in Methods). Docs only.
