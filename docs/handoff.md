@@ -2,6 +2,14 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 14 Nov 2026 (later), Claude Code in VS Code (open items closed under the standing delegation)
+
+**Done:** (1) FDM residual now "below 2.5 × 10⁻¹¹ N" in Results 3.6, README and `numbers.md`, so the record run (2.18e-11) and the laptop rerun (2.33e-11) both match. (2) Benchmark citation: Timoshenko & Gere could not be opened (no legal copy; archive.org search-inside blocked; NASA SP-8032 scan has no text layer). Substitute: Hutchinson 2016, Proc. R. Soc. A 472: 20160577, Section 3, which states p_C = 2E/√(3(1 − ν²)) (t/R)² (opened 14 Nov). Paper text now says "the classical value", because no opened source ties the formula to Zoelly; row added to `references.md`. (3) "19 to 29 %" now in Results 3.4, Discussion and Highlight 5. (4) Title option 1 chosen. (5) Keywords: seven, and the C&S guide asks for 1 to 7 (read 14 Nov). (6) Results 3.6 [J] sentences: S8R thickness reading kept; the "less funicular" sentence rewritten as a reading. (7) Fig. 6 stays in the main text; Fig. S1 in the supplement.
+
+**Decisions [J], Claude, author to confirm:** all seven items above.
+
+**Open:** Zenodo token (needs Syed's account). Syed to read the changed sentences and the Hutchinson page before submission.
+
 ## 14 Nov 2026, Claude Code in VS Code (daily sync after check window day 1)
 
 **Done:** pulled to `5af02ef`; `pip install -e . --no-deps`; laptop pytest: 125 passed (CalculiX present). Ran `scripts/day17_verification.py`: all `results/verify_*` files reproduce to round-off. Laptop CalculiX is 2.23 (cloud record says 2.21); largest shift is in the 6th significant figure (V2 SLS deflection 0.0581771 vs 0.0581767 m). One reported figure moves at two significant figures: V3 worst FDM residual 2.33e-11 N on the laptop against 2.18e-11 N in the record; both are far below the 1e-10 N tolerance. Regenerated files were discarded, so the committed record stays the cloud run.
