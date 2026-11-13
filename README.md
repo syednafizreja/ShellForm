@@ -65,7 +65,7 @@ All figures are drawn from `results/` by `python scripts/day11_figures.py`, at f
 
 ## Status
 
-14 Nov 2026 (check window, day 1): five verification add-ons beside the frozen record, with no frozen setting or result changed ([notes/day17_verification.md](notes/day17_verification.md)). A complete sphere under pressure buckles within 2.0 % (R/t 50) and 1.3 % (R/t 100) of the Zoelly value in the same CalculiX path that sizes every shell; λ1 changes by at most 0.6 % between 61 and 81 nodes per side; the force density residual is at most 2.2e-11 N; 76-100 % of the strain energy is membrane energy; no formwork factor or reuse count can move a verdict across the 5 % rule. New Fig. 6 (carbon against λ1, with the Pareto front) and Fig. S1. Cloud pytest 125 passed.
+14 Nov 2026 (check window, day 1): five verification add-ons beside the frozen record, with no frozen setting or result changed ([notes/day17_verification.md](notes/day17_verification.md)). A complete sphere under pressure buckles within 2.0 % (R/t 50) and 1.3 % (R/t 100) of the classical value in the same CalculiX path that sizes every shell; λ1 changes by at most 0.6 % between 61 and 81 nodes per side; the force density residual is below 2.5e-11 N; 76-100 % of the strain energy is membrane energy; no formwork factor or reuse count can move a verdict across the 5 % rule. New Fig. 6 (carbon against λ1, with the Pareto front) and Fig. S1. Cloud pytest 125 passed.
 
 13 Nov 2026: manuscript draft 1 complete. Documented literature search ([paper/13_literature_search.md](paper/13_literature_search.md)); Introduction ([paper/14_introduction_draft.md](paper/14_introduction_draft.md)); title options, Abstract (246 words), highlights and Conclusions ([paper/15_abstract_conclusion_draft.md](paper/15_abstract_conclusion_draft.md)). The author checks every section 14-17 Nov. No code under `src/` and no result changed.
 
@@ -93,7 +93,7 @@ Day 11 (8 Nov 2026): all 168 designs sized with steel and carbon; tests S4 (fall
 | Design explorer | [explorer/index.html](explorer/index.html), `scripts/day13_explorer_data.py` | All 168 designs from the freeze run; both strategies in 3D, carbon against Sa, the 5 % rule in all 84 cells; offline, light and dark |
 | Paper tables and drafts | [paper/](paper/README.md), `scripts/day14_paper_tables.py` | Tables 1-5 and S1 from the freeze record (`tests/test_paper_tables.py`); draft 1 of every section (Introduction, Methods, Results, Discussion, Conclusions, Abstract, highlights) with the author for checking, 14-17 Nov |
 | Release | [v0.1.0](https://github.com/syednafizreja/ShellForm/releases/tag/v0.1.0), [CITATION.cff](CITATION.cff) | Published 9 Nov 2026, DOI 10.5281/zenodo.24084111 |
-| Verification add-ons | `src/shellform/verification.py`, `scripts/day17_verification.py`, Fig. S1 | Sphere buckling benchmark within 2.0 % of Zoelly; λ1 mesh-converged to 0.6 %; FDM residual below 1e-10 N; membrane energy share; formwork bound (14 Nov 2026) |
+| Verification add-ons | `src/shellform/verification.py`, `scripts/day17_verification.py`, Fig. S1 | Sphere buckling benchmark within 2.0 % of the classical value; λ1 mesh-converged to 0.6 %; FDM residual below 1e-10 N; membrane energy share; formwork bound (14 Nov 2026) |
 | Visual system | [docs/visual_style.md](docs/visual_style.md), `src/shellform/style.py` | One colour per meaning in figures and explorer; checked by `tests/test_visual_style.py` |
 
 ## Run
