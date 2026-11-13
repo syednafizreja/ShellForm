@@ -1,0 +1,7 @@
+Highlights
+
+- 168 reinforced concrete shells sized to the same code checks, two form strategies
+- Seismic-aware and gravity forms differ by under 5 % carbon in 79 of 84 cases
+- Buckling or the 50 mm minimum sets thickness; minimum steel sets reinforcement
+- Seismic level up to 0.6 g leaves gravity-form carbon within 0.4 %
+- Buckling factor of 3 or 8 moves corner-shell carbon by 19 to 29 %
