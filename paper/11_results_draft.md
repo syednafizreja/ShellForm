@@ -40,6 +40,22 @@ The 61 × 61 network changes little. All 168 designs remain feasible, and 17 of 
 
 Fig. 5 places the first period of every baseline design on the GB 50011 design spectrum shape read from ShellBench. All 168 designs have T1 between 0.029 and 0.308 s, at or below T_g = 0.35 s, so test S5 has no failure; the same holds in all three sensitivity runs (longest T1 0.341 s, at λ ≥ 3). The corner-supported shells sit on the plateau. 70 of the 84 edge-supported designs are stiffer still and sit on the rising branch, where the spectral value is 0.61 to just under 1.0 of the plateau value. For them the plateau load we used is conservative. The no-difference result is therefore not caused by an underestimated seismic load. Its limits lie elsewhere: linear buckling without imperfections, and an equivalent static load in place of a dynamic analysis. Section 4 discusses both.
 
+## 3.6 Verification of the analysis chain
+
+The checks in this section were added after the freeze. They test the tools, not the hypothesis, and none of them changes a thickness or a verdict (Fig. S1).
+
+The buckling path is accurate where it matters. A complete sphere under external pressure, meshed with the same S8R elements and solved with the same eigenvalue step, buckles at 1.96 % above the Zoelly value at R/t = 50 and 1.33 % above it at R/t = 100, on the finest of five meshes (3456 elements). The offset falls with t/R and matches the membrane stiffness of the same model, which is 1.49 % and 0.75 % too stiff. We read it as the thickness effect of the solid-element expansion of S8R, not as a mesh error [J]. The sized shells are thinner than either sphere (R/t of about 78 to 520), so we did not test their whole range.
+
+The record network is fine enough for buckling but not for deflection at a point support. On eight designs refined from 21 to 81 nodes per side at their frozen thickness, λ1 changes by at most 0.62 % between the two finest networks. On the record network (41 × 41) the corner-shell λ1 is above the finest value by 0.8-1.0 % for the gravity-only form and 1.6 % for the seismic-aware form. This is the bias that the 61 × 61 sensitivity run already measured, and it removed only the 5 grid-step cells (Section 3.4). The SLS deflection of corner-supported shells does not converge: it grows by 3.8-5.8 % per refinement, because its largest value sits next to a point support. It never comes near the limit. On the finest network the largest deflection is 0.18 of L/300.
+
+The form-finding is exact to round-off. The residual of the assembled force density system is at most 2.2 × 10⁻¹¹ N for unit nodal weights, over all 84 solves (four families, three rises, seven Sa levels).
+
+The shells carry the design lateral load mainly as membranes. Membrane action holds 76.3-89.2 % of the strain energy of the corner-supported shells and 91.0-99.9 % of the edge-supported ones, over all 168 designs and both ULS cases. The lateral case lowers the share, and lowers it more for the seismic-aware form. For the 10 m shells at rise 0.15 and Sa = 0.6 g, the share is 87.3 % (gravity-only) and 84.3 % (seismic-aware) with corner supports, and 97.6 % and 94.3 % with edge supports. A form found for a band of four directions is less funicular for any one of them than the gravity form is for gravity [J].
+
+Formwork cannot change a verdict. Its carbon scales with the soffit area, and the soffit areas of the two strategies differ by at most 1.44 % in any cell. Adding a formwork term of any size to both strategies gives a difference that lies between the carbon difference and the area difference. So, whatever the formwork factor and whether the formwork is used once, 5 times or 20 times, the 79 "no meaningful difference" cells stay inside the 5 % band. The absolute carbon would change; ShellBench holds no formwork factor yet, so we give none [?].
+
+Fig. 6 puts carbon against λ1 for every sized design. The non-dominated front is made only of edge-supported shells: they sit on the 50 mm minimum with λ1 of 68-252 (10 m) and 14-53 (20 m) at 21.6-23.8 kgCO₂e/m². Corner-supported shells sit on the threshold they were sized to, and each step from λ ≥ 3 to 5 to 8 costs carbon. The two strategies lie on top of each other. The support condition and the buckling threshold move the trade-off between stability and carbon; the strategy does not.
+
 ## Side notes for Syed (delete before submission)
 
 - [J] sentences to accept, change or cut: "These differences are small because the four directions of shaking cancel" (3.1); "This is the mechanism of the study" paragraph (3.2); "one thickness step, not a saving" (3.3); "an order of magnitude more" (3.4); "Near a threshold, which strategy wins depends only on..." (3.4); "the plateau load we used is conservative" (3.5).
@@ -47,4 +63,5 @@ Fig. 5 places the first period of every baseline design on the GB 50011 design s
 - 3.1: 63 and 125 mm are the edge-supported values from `figures/gallery_*.json` (dz_max_mm at 0.6 g); add these to `numbers.md` when you check them.
 - 3.3: λ at 85 mm (gravity 4.978; seismic 5.016-5.052 at 0.1-0.5 g) is `results/batch_all_meta.json`, tried; add a `numbers.md` row.
 - 3.4: −5.7 to +1.5 % and −5.7 to +1.4 % are `figures/fig04_carbon_drivers.json`, ranges; 70/90/110 mm and 31.1/39.8/48.6 kgCO₂e/m² are `sensitivity_reference.csv`.
+- 3.6 (added 14 Nov): every number is in `notes/day17_verification.md`, `results/verify_meta.json` and the new `numbers.md` rows. [J] sentences: "the thickness effect of the solid-element expansion"; "less funicular for any one of them". Fig. 6 and Fig. S1 are new; renumber if Fig. 6 goes to the supplement.
 - C&S accepts a combined Results and discussion; this draft keeps them separate so that Section 4 can carry the literature comparison.
