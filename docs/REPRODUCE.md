@@ -9,9 +9,8 @@ This file is for anyone who wants to check or reuse ShellForm's results years af
 | Zenodo (all versions) | [10.5281/zenodo.24084110](https://doi.org/10.5281/zenodo.24084110) | Permanent archive; the concept DOI resolves to the latest version |
 | Zenodo v0.1.0 | [10.5281/zenodo.24084111](https://doi.org/10.5281/zenodo.24084111) | The first release, 9 Nov 2026 |
 | GitHub | <https://github.com/syednafizreja/ShellForm> | Working repository |
-| Software Heritage | <https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/syednafizreja/ShellForm> | Independent source archive of the full git history |
 
-ShellBench, which ShellForm imports, is archived the same way: all versions at [10.5281/zenodo.23851675](https://doi.org/10.5281/zenodo.23851675).
+ShellBench, which ShellForm imports, has a Zenodo record (all versions [10.5281/zenodo.23851675](https://doi.org/10.5281/zenodo.23851675)), but the pinned tag `v0.3.0` is a git tag, not a Zenodo release. Identify it by its commit hash (section 2). Independent archives of both repositories can be found by searching the origin URL at [Software Heritage](https://archive.softwareheritage.org/).
 
 ## 2. What was run
 
@@ -22,7 +21,7 @@ ShellBench, which ShellForm imports, is archived the same way: all versions at [
 | Python | 3.12 (3.12.15 in the exported environment) |
 | Key libraries | numpy 2.5.4, scipy 1.18.1, matplotlib 3.11.2, meshio 5.3.5, pytest 9.1.1 |
 | CalculiX (`ccx`) | 2.21 for the freeze run (`results/README.md`); the earlier Day 4-10 record was written with 2.23, and the freeze run reproduced its values (`docs/CHANGELOG.md`, Day 12) |
-| Full environment | [`environment-lock.yml`](../environment-lock.yml) (conda, exact versions) |
+| Full environment | [`environment-lock.yml`](../environment-lock.yml) (conda, exact versions of the laptop environment that reproduces the record) |
 | Units | SI throughout (m, N, Pa, kg, kgCO2e) |
 
 ## 3. Verify the record without running anything
@@ -49,7 +48,7 @@ The comparison checks feasibility, thickness, governing check and steel case exa
 ## 5. When something no longer installs
 
 - **Exact versions unavailable.** Use the nearest Python 3 and library versions that install, run the tests, then `--compare-record`. Differences in thickness, steel or carbon point to a numerical change worth recording; differences at round-off level do not.
-- **ShellBench unavailable on GitHub.** Download ShellBench v0.3.0 from its Zenodo record (section 1) and install it from the unpacked folder.
+- **ShellBench unavailable on GitHub.** Find commit `f8a77b49bfd8e22552b2fea5a158f902c9da24b0` of `https://github.com/syednafizreja/ShellBench` in Software Heritage, or in any later ShellBench archive that contains tag `v0.3.0`, and install it from the unpacked folder. Check the commit hash before use.
 - **CalculiX unavailable.** Any CalculiX 2.x that reads the generated `.inp` files should do; the buckling and static steps use standard keywords. The verification sphere (`scripts/day17_verification.py`, check V1) is a quick test that a new solver build gives the classical buckling pressure.
 - **Python itself unavailable.** The record does not need the code to be read. All results are CSV and JSON, figures are PNG and PDF with their plotted data in a JSON beside each, and the method is written out in the manuscript (`paper/manuscript/`) and the pre-registration, so the study can be re-implemented from the text and checked against the CSV files.
 
