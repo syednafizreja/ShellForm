@@ -1,0 +1,80 @@
+{
+ "shellbench_tag": "v0.3.0",
+ "record": "results/batch_all.csv (freeze-2026-11-09)",
+ "calculix": "This is Version 2.21",
+ "script": "scripts/day17_verification.py",
+ "v3": {
+  "networks": 84,
+  "worst_residual_n": 2.1827872842550278e-11,
+  "tolerance_n": 1e-10,
+  "passed": true,
+  "file": "results/verify_v3_fdm_residual.csv",
+  "wall_time_s": 3.69462939999994
+ },
+ "v5": {
+  "cells": 84,
+  "worst_rel_formwork_area": 0.014441338775955659,
+  "worst_bound": 0.05671091326130728,
+  "cells_safe": 79,
+  "file": "results/verify_v5_formwork.csv",
+  "wall_time_s": 0.0019304889999602892
+ },
+ "v2": {
+  "finest_pair": [
+   61,
+   81
+  ],
+  "worst_change_finest_pair": {
+   "buckling_factor": 0.006230964372963554,
+   "sls_deflection_m": 0.05817705984846855
+  },
+  "worst_change_finest_pair_by_supports": {
+   "corners": {
+    "buckling_factor": 0.002138733421795047,
+    "sls_deflection_m": 0.05817705984846855
+   },
+   "edges": {
+    "buckling_factor": 0.006230964372963554,
+    "sls_deflection_m": 0.01476507534126914
+   }
+  },
+  "lambda_finest_vs_record_by_supports": {
+   "corners": [
+    -0.016075231414077407,
+    -0.008446900328610507
+   ],
+   "edges": [
+    -0.055221007314422255,
+    -0.006831610204957039
+   ]
+  },
+  "passed_buckling": true,
+  "passed_deflection": false,
+  "largest_deflection_ratio_finest": 0.18230638721548786,
+  "tolerance": 0.015,
+  "file": "results/verify_v2_hconv.csv",
+  "wall_time_s": 62.11081600800003
+ },
+ "v4": {
+  "gravity_case_range": [
+   0.7627104235422518,
+   0.999066940716585
+  ],
+  "seismic_case_range": [
+   0.7722801040266973,
+   0.9986589289567228
+  ],
+  "file": "results/verify_v4_energy.csv",
+  "wall_time_s": 171.77143840399992
+ },
+ "v1": {
+  "finest_mesh_errors": {
+   "R/t=50": 0.019645000000000093,
+   "R/t=100": 0.013278000000000035
+  },
+  "passed": true,
+  "tolerance": 0.03,
+  "file": "results/verify_v1_zoelly.csv",
+  "wall_time_s": 27.809332118000043
+ }
+}
