@@ -1,6 +1,17 @@
 # Handoff between the cloud session and the laptop session
 
-Newest entry first. Each session reads this at the start of a session and adds an entry at the end (see "Sync with cloud the assistant" in CONTRIBUTING.md).
+Newest entry first. Each session reads this at the start and adds an entry at the top (see "Sync between sessions" in CONTRIBUTING.md).
+
+## 15 Nov 2026, laptop session (repository finalised, v0.2.0)
+
+**Done (under the author's standing delegation: "finalize and finish everything", "make the github repo look incredibly professional", "future proof"):**
+- Name kept as ShellForm: a v0.1.0 DOI, the manuscript, CITATION and the pre-registration already use it, and it pairs with ShellBench; a rename would split citations [J].
+- README rewritten as a landing page (key finding first, method diagram, verification table, quick start with generic paths, layout tree, BibTeX). Dated status moved to `docs/CHANGELOG.md`.
+- Project rules moved from the assistant rules file to `CONTRIBUTING.md`; the rules file and the local command folder are no longer tracked (kept on the laptop, ignored through `.git/info/exclude`). The assistant's name replaced by "the assistant" / "cloud session" / "laptop session" in 44 files; only the manuscript's AI-use declaration names the tool. Dated wording amendment in `docs/preregistration.md`.
+- Long-term reproduction: `environment-lock.yml`, `SHA256SUMS` (committed bytes of `results/` and `figures/`), `docs/REPRODUCE.md`. Version 0.2.0 in `pyproject.toml`, `__init__.py`, `CITATION.cff` (fuller abstract and keywords). `.nojekyll` for GitHub Pages.
+- pytest 125 passed. `scripts/day14_paper_tables.py` rerun: S2 and S3 residuals in Table 3 differ at round-off (1.4e-11 to 1.2e-11; 5.4e-16 to 6.5e-16), both pass by orders of magnitude; committed tables left as they were [J].
+
+**Open for the author:** PR titles and bodies on GitHub were cleaned; five old commit messages still contain the assistant's name (history not rewritten: it would need a force-push and would orphan the v0.1.0 archive); the v0.1.0 Zenodo archive keeps its original files and cannot be edited; request Software Heritage "save code now" for ShellForm and ShellBench (blocked from here); consider a ShellBench v0.3.0 GitHub release so Zenodo archives the pinned tag; rebuild the PDF on Overleaf (one LaTeX comment changed); the items in `paper/16_self_review.md` section 2.
 
 ## 15 Nov 2026, laptop session (daily sync after check window day 2)
 
@@ -347,7 +358,7 @@ Annex F closed from the full text already in `C:\Users\ASUS\Papers\EN_1992-1-1_2
 
 **Open:** all open items of the two entries below stand: (1) corner carbon per 100 m² against 73.4 m² (author's decision, needs a dated amendment); (2) `day04_size_10m.py` line 52 `span ** 2`, fix before the 20 m run; (3) the author's checks of the carbon factor rows, Annex F and GB 50010 Table 8.5.1 note 2; (4) the author approves ShellBench's Day 17 pre-registration today, and ShellBench comes first; (5) stale PRs #1 and #2.
 
-**Next:** Day 6 (3 Nov), 20 m sizing, done by one the assistant only. Pull just before starting.
+**Next:** Day 6 (3 Nov), 20 m sizing, done by one session only. Pull just before starting.
 
 ## 2 Nov 2026, laptop session (Day 5 cross-check)
 

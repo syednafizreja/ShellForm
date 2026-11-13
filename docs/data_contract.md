@@ -15,7 +15,7 @@
 
 ShellForm **never copies a ShellBench value into its own files**. It imports ShellBench (pinned to a tag) or reads ShellBench's data files. If a value changes in ShellBench, ShellForm picks it up and the change is visible in both logs. Every ShellForm result names the ShellBench tag it used.
 
-The same rules as ShellBench's `CONTRIBUTING.md` apply: the assistant never supplies carbon factors or code values; you read them from the source. Unconfirmed values stay marked [?].
+The same rules as ShellBench's project rules apply: the assistant never supplies carbon factors or code values; you read them from the source. Unconfirmed values stay marked [?].
 
 ---
 
