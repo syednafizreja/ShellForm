@@ -1,0 +1,280 @@
+{
+ "shellbench_tag": "v0.3.0",
+ "record": [
+  "results/sens_lam3.csv",
+  "results/batch_all.csv",
+  "results/sens_lam8.csv"
+ ],
+ "panels": {
+  "10m": {
+   "front": [
+    {
+     "design_id": "L10-edges-r0.10-gravity-sa0.0",
+     "lambda_min_run": 5.0,
+     "lambda_1": 67.931,
+     "carbon_kgco2e_m2": 21.5876
+    },
+    {
+     "design_id": "L10-edges-r0.10-seismic-sa0.1",
+     "lambda_min_run": 5.0,
+     "lambda_1": 68.0868,
+     "carbon_kgco2e_m2": 21.5878
+    },
+    {
+     "design_id": "L10-edges-r0.10-seismic-sa0.2",
+     "lambda_min_run": 5.0,
+     "lambda_1": 68.7935,
+     "carbon_kgco2e_m2": 21.589
+    },
+    {
+     "design_id": "L10-edges-r0.10-seismic-sa0.3",
+     "lambda_min_run": 5.0,
+     "lambda_1": 70.1329,
+     "carbon_kgco2e_m2": 21.5922
+    },
+    {
+     "design_id": "L10-edges-r0.10-seismic-sa0.4",
+     "lambda_min_run": 5.0,
+     "lambda_1": 72.3768,
+     "carbon_kgco2e_m2": 21.5967
+    },
+    {
+     "design_id": "L10-edges-r0.10-seismic-sa0.5",
+     "lambda_min_run": 5.0,
+     "lambda_1": 75.2461,
+     "carbon_kgco2e_m2": 21.6017
+    },
+    {
+     "design_id": "L10-edges-r0.10-seismic-sa0.6",
+     "lambda_min_run": 5.0,
+     "lambda_1": 78.5124,
+     "carbon_kgco2e_m2": 21.6095
+    },
+    {
+     "design_id": "L10-edges-r0.15-gravity-sa0.0",
+     "lambda_min_run": 5.0,
+     "lambda_1": 114.9363,
+     "carbon_kgco2e_m2": 22.3752
+    },
+    {
+     "design_id": "L10-edges-r0.15-seismic-sa0.1",
+     "lambda_min_run": 5.0,
+     "lambda_1": 115.7759,
+     "carbon_kgco2e_m2": 22.3766
+    },
+    {
+     "design_id": "L10-edges-r0.15-seismic-sa0.2",
+     "lambda_min_run": 5.0,
+     "lambda_1": 119.3527,
+     "carbon_kgco2e_m2": 22.3848
+    },
+    {
+     "design_id": "L10-edges-r0.15-seismic-sa0.3",
+     "lambda_min_run": 5.0,
+     "lambda_1": 126.6592,
+     "carbon_kgco2e_m2": 22.3988
+    },
+    {
+     "design_id": "L10-edges-r0.15-seismic-sa0.4",
+     "lambda_min_run": 5.0,
+     "lambda_1": 136.8437,
+     "carbon_kgco2e_m2": 22.4202
+    },
+    {
+     "design_id": "L10-edges-r0.15-seismic-sa0.5",
+     "lambda_min_run": 5.0,
+     "lambda_1": 149.3069,
+     "carbon_kgco2e_m2": 22.4467
+    },
+    {
+     "design_id": "L10-edges-r0.15-seismic-sa0.6",
+     "lambda_min_run": 5.0,
+     "lambda_1": 163.1172,
+     "carbon_kgco2e_m2": 22.4849
+    },
+    {
+     "design_id": "L10-edges-r0.20-seismic-sa0.3",
+     "lambda_min_run": 5.0,
+     "lambda_1": 181.7007,
+     "carbon_kgco2e_m2": 23.4896
+    },
+    {
+     "design_id": "L10-edges-r0.20-seismic-sa0.4",
+     "lambda_min_run": 5.0,
+     "lambda_1": 210.5801,
+     "carbon_kgco2e_m2": 23.5509
+    },
+    {
+     "design_id": "L10-edges-r0.20-seismic-sa0.5",
+     "lambda_min_run": 5.0,
+     "lambda_1": 239.0643,
+     "carbon_kgco2e_m2": 23.6357
+    },
+    {
+     "design_id": "L10-edges-r0.20-seismic-sa0.6",
+     "lambda_min_run": 5.0,
+     "lambda_1": 252.1747,
+     "carbon_kgco2e_m2": 23.7559
+    }
+   ],
+   "points": 168,
+   "baseline_ranges": {
+    "corners": {
+     "lambda_1": [
+      5.015647,
+      5.633023
+     ],
+     "carbon_kgco2e_m2": [
+      34.004127277953764,
+      45.52773726103448
+     ]
+    },
+    "edges": {
+     "lambda_1": [
+      67.93099,
+      252.1747
+     ],
+     "carbon_kgco2e_m2": [
+      21.58757356642104,
+      23.755934577973193
+     ]
+    }
+   }
+  },
+  "20m": {
+   "front": [
+    {
+     "design_id": "L20-edges-r0.10-gravity-sa0.0",
+     "lambda_min_run": 5.0,
+     "lambda_1": 14.0048,
+     "carbon_kgco2e_m2": 21.5876
+    },
+    {
+     "design_id": "L20-edges-r0.10-seismic-sa0.1",
+     "lambda_min_run": 5.0,
+     "lambda_1": 14.0437,
+     "carbon_kgco2e_m2": 21.5878
+    },
+    {
+     "design_id": "L20-edges-r0.10-seismic-sa0.2",
+     "lambda_min_run": 5.0,
+     "lambda_1": 14.0699,
+     "carbon_kgco2e_m2": 21.589
+    },
+    {
+     "design_id": "L20-edges-r0.10-seismic-sa0.3",
+     "lambda_min_run": 5.0,
+     "lambda_1": 14.3227,
+     "carbon_kgco2e_m2": 21.5922
+    },
+    {
+     "design_id": "L20-edges-r0.10-seismic-sa0.4",
+     "lambda_min_run": 5.0,
+     "lambda_1": 14.8417,
+     "carbon_kgco2e_m2": 21.5967
+    },
+    {
+     "design_id": "L20-edges-r0.10-seismic-sa0.5",
+     "lambda_min_run": 5.0,
+     "lambda_1": 15.5392,
+     "carbon_kgco2e_m2": 21.6017
+    },
+    {
+     "design_id": "L20-edges-r0.10-seismic-sa0.6",
+     "lambda_min_run": 5.0,
+     "lambda_1": 16.3202,
+     "carbon_kgco2e_m2": 21.6095
+    },
+    {
+     "design_id": "L20-edges-r0.15-gravity-sa0.0",
+     "lambda_min_run": 5.0,
+     "lambda_1": 23.4278,
+     "carbon_kgco2e_m2": 22.3752
+    },
+    {
+     "design_id": "L20-edges-r0.15-seismic-sa0.1",
+     "lambda_min_run": 5.0,
+     "lambda_1": 23.6497,
+     "carbon_kgco2e_m2": 22.3766
+    },
+    {
+     "design_id": "L20-edges-r0.15-seismic-sa0.2",
+     "lambda_min_run": 5.0,
+     "lambda_1": 24.501,
+     "carbon_kgco2e_m2": 22.3848
+    },
+    {
+     "design_id": "L20-edges-r0.15-seismic-sa0.3",
+     "lambda_min_run": 5.0,
+     "lambda_1": 26.1007,
+     "carbon_kgco2e_m2": 22.3988
+    },
+    {
+     "design_id": "L20-edges-r0.15-seismic-sa0.4",
+     "lambda_min_run": 5.0,
+     "lambda_1": 28.7554,
+     "carbon_kgco2e_m2": 22.4202
+    },
+    {
+     "design_id": "L20-edges-r0.15-seismic-sa0.5",
+     "lambda_min_run": 5.0,
+     "lambda_1": 31.27,
+     "carbon_kgco2e_m2": 22.4467
+    },
+    {
+     "design_id": "L20-edges-r0.15-seismic-sa0.6",
+     "lambda_min_run": 5.0,
+     "lambda_1": 33.4996,
+     "carbon_kgco2e_m2": 22.4881
+    },
+    {
+     "design_id": "L20-edges-r0.20-seismic-sa0.3",
+     "lambda_min_run": 5.0,
+     "lambda_1": 38.0695,
+     "carbon_kgco2e_m2": 23.4896
+    },
+    {
+     "design_id": "L20-edges-r0.20-seismic-sa0.4",
+     "lambda_min_run": 5.0,
+     "lambda_1": 44.2437,
+     "carbon_kgco2e_m2": 23.5509
+    },
+    {
+     "design_id": "L20-edges-r0.20-seismic-sa0.5",
+     "lambda_min_run": 5.0,
+     "lambda_1": 49.1339,
+     "carbon_kgco2e_m2": 23.6357
+    },
+    {
+     "design_id": "L20-edges-r0.20-seismic-sa0.6",
+     "lambda_min_run": 5.0,
+     "lambda_1": 52.8897,
+     "carbon_kgco2e_m2": 23.7585
+    }
+   ],
+   "points": 168,
+   "baseline_ranges": {
+    "corners": {
+     "lambda_1": [
+      5.003262,
+      5.231046
+     ],
+     "carbon_kgco2e_m2": [
+      84.67150968940949,
+      117.34999266735355
+     ]
+    },
+    "edges": {
+     "lambda_1": [
+      14.00485,
+      52.88974
+     ],
+     "carbon_kgco2e_m2": [
+      21.58757356642104,
+      23.758522369234427
+     ]
+    }
+   }
+  }
+ }
+}

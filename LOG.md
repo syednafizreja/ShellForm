@@ -155,3 +155,10 @@
 - Done (Claude; the author gave full permission to finish all): `paper/15_abstract_conclusion_draft.md` with title options, abstract (246 of 250 words), five highlights (at most 81 of 85 characters), keywords and Section 5 Conclusions. Limits taken from the Computers & Structures guide for authors, read 13 Nov. Two `numbers.md` rows for rounded values in the highlights.
 - Result: every section of the manuscript has draft 1. No code or result changed.
 - Lesson: count abstract words and highlight characters by script; the first draft was 257 words.
+
+## 14 Nov 2026 - Check window, day 1: verification add-ons
+
+- Done (Claude in the app, under the author's standing delegation; the author said "finish today and start another day"): V1-V5 (`src/shellform/verification.py`, `scripts/day17_verification.py`), Fig. 6 and Fig. S1 (`src/shellform/verify_figures.py`, `scripts/day17_figures.py`), `tests/test_verification.py`, `notes/day17_verification.md`, pre-registration amendment, README equation and badges, Methods 2.8, Results 3.6, Discussion 4.5, `numbers.md` rows.
+- Result: sphere buckling +1.96 % (R/t 50) and +1.33 % (R/t 100) from Zoelly; λ1 converged to 0.62 % (61 to 81 nodes); FDM residual at most 2.2e-11 N; membrane share 76-100 %; formwork cannot move a verdict (areas differ at most 1.44 %). Corner-shell SLS deflection does not converge (singular at point supports) but stays at most 0.18 of L/300. Frozen `results/` files unchanged. Cloud pytest 125 passed.
+- Lesson: CalculiX shell pressure `P` acts along the element normal; check the sign with a static step before trusting a buckling factor (a wrong sign gave negative and huge factors).
+- Next: author's check window (15-17 Nov); optional sphere run at R/t 200-500.

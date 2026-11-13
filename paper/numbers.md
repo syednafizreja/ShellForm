@@ -60,3 +60,18 @@ Rows for the Abstract, Highlights and Conclusions (13 Nov 2026). No new values: 
 |---|---|---|---|---|
 | Highlight 4 | gravity-form carbon within 0.4 % up to 0.6 g | cost of resilience 1.000-1.004 (row "Results 3.x, para A" above), rounded | freeze-2026-11-09, ShellBench v0.3.0 | |
 | Highlight 5 | corner-shell carbon moves 19 to 29 % at λ 3 or 8 | 1 − 0.812 = 0.188; 1.294 − 1 = 0.294 (rows "Results 3.x, para A" above), Claude's arithmetic [J] | freeze-2026-11-09, ShellBench v0.3.0 | |
+
+Rows from the verification add-ons, 14 Nov 2026 (check window, after the freeze; not pre-registered). Run: `python scripts/day17_verification.py`, CalculiX 2.21 in the cloud. Sized thicknesses from the freeze record. Summary of every run: `results/verify_meta.json`.
+
+| Manuscript location | Value | Source (file, function or table) | Commit or tag | Checked by Syed (date) |
+|---|---|---|---|---|
+| Methods 2.8, Results 3.6 para 2 | sphere p_cr FE vs Zoelly, finest mesh (3456 S8R): +1.96 % (R/t 50), +1.33 % (R/t 100); all five meshes at R/t 100 and the three finest at R/t 50 within 3 % | `results/verify_v1_zoelly.csv`, relative_error | main after 14 Nov merge, ShellBench v0.3.0 | |
+| Results 3.6 para 2 | membrane displacement stiff by 1.49 % (R/t 50), 0.75 % (R/t 100) | same, membrane_ur_fe_m / membrane_ur_closed_form_m − 1 | same | |
+| Results 3.6 para 2 | sized shells R/t about 78 to 520 (circular-arc estimate R = ((L/2)² + f²)/(2f), t from the record) | `results/batch_all.csv`, Claude's arithmetic [J] | freeze-2026-11-09 | |
+| Results 3.6 para 3 | λ1 change 61 → 81 nodes: at most 0.62 % (edges), 0.21 % (corners) | `results/verify_v2_hconv.csv`; `verify_meta.json` v2 | main after 14 Nov merge, ShellBench v0.3.0 | |
+| Results 3.6 para 3 | record λ1 above the 81 × 81 value, corners: 0.8-1.0 % (gravity-only), 1.6 % (seismic-aware) | `results/verify_v2_hconv.csv`, buckling_factor at n 41 and 81 | same | |
+| Results 3.6 para 3 | corner SLS deflection change 61 → 81: 3.8-5.8 %; edges at most 1.48 %; largest δ/(L/300) on 81 × 81: 0.18 | same, sls_deflection_m, deflection_ratio | same | |
+| Results 3.6 para 4, README | FDM residual at most 2.2 × 10⁻¹¹ N over 84 solves | `results/verify_v3_fdm_residual.csv` | same | |
+| Results 3.6 para 5 | membrane share: corners 76.3-89.2 %, edges 91.0-99.9 %; 10 m, rise 0.15, 0.6 g: 87.3 / 84.3 % (corners), 97.6 / 94.3 % (edges), gravity-only / seismic-aware | `results/verify_v4_energy.csv`; `figures/figS1_verification.json` panel e | same | |
+| Results 3.6 para 6, Discussion 4.5 | soffit area difference at most 1.44 %; 79 of 84 verdicts safe for any formwork term; 5 grid-step cells: area difference at most 0.22 % | `results/verify_v5_formwork.csv` | same | |
+| Results 3.6 para 7 (Fig. 6) | front = edge shells only; λ1 68-252 (10 m), 14-53 (20 m); 21.6-23.8 kgCO₂e/m² | `figures/fig06_carbon_stability.json` | freeze-2026-11-09 record | |
