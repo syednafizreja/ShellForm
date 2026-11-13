@@ -2,6 +2,12 @@
 
 Newest entry first. Each Claude reads this at the start of a session and adds an entry at the end (see "Sync with cloud Claude" in CLAUDE.md).
 
+## 13 Nov 2026, Claude in the app (literature search, Introduction draft 1)
+
+**Done:** documented OpenAlex search (`paper/13_literature_search.md`: protocol, 6 queries, 15 papers, gap line); `paper/14_introduction_draft.md`; 9 rows in `references.md`; Table 3 S2/S3 wording decided [J] (side note in Methods). Docs only.
+
+**Open:** (1) Laptop: `git pull origin main`; nothing to rerun. (2) Syed, 14-17 Nov: open in full Leonardi 2026, Pérez Vega 2026 and Hammood 2023 first (the papers a reviewer will compare with), then the other [check] rows; forward snowballing from Michiels 2017/2018; accept or cut the [J] sentences in the Introduction, Discussion and Results. (3) ShellBench dataset DOI (Zenodo token) closes `paper/08_data_availability.md` "dataset DOI [?]".
+
 ## 11 Nov 2026, Claude in the app (buckling sources, Discussion draft 1)
 
 **Done:** Risk P1: Dulácska & Kollár 1995 and ACI 318.2-14 read; IASS 1979 not available (stays [check], cited via ACI 318.2R-14 R3.1.8). `notes/buckling_threshold_sources.md`; Methods 2.5 rewritten; dated pre-registration entry (citation only); `references.md`, `numbers.md`, drafting kit P1 updated. `paper/12_discussion_draft.md` (draft 1 in Syed's voice). Cloud pytest: 101 passed (CalculiX 2.21 installed in the cloud today). Nothing under `src/` or `results/` changed.
