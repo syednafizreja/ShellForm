@@ -1,6 +1,6 @@
 # Day 8 (5 Nov 2026): batch runner and first gallery
 
-Written by Claude in the app, under the author's standing delegation. ShellBench tag: v0.1.0. CalculiX 2.21 (cloud); the record on main was written with 2.23 on the laptop.
+Written by the cloud session, under the author's standing delegation. ShellBench tag: v0.1.0. CalculiX 2.21 (cloud); the record on main was written with 2.23 on the laptop.
 
 Plan line (setup guide, Thu 5 Nov): "Batch runner (every row names the ShellBench tag); first gallery." Done when: "8 designs run from one command."
 
@@ -11,7 +11,7 @@ Plan line (setup guide, Thu 5 Nov): "Batch runner (every row names the ShellBenc
 - `src/shellform/gallery.py`: `python -m shellform.gallery` draws `figures/gallery_10m.png` and `figures/gallery_20m.png`, with the plotted numbers in `figures/gallery_<span>m.json`.
 - `tests/test_batch.py`: 4 tests (selection, record check passes on the record and catches a change, one design end to end against the record).
 
-## Decisions (Claude, under the standing delegation) [J]
+## Decisions (the assistant, under the standing delegation) [J]
 
 - D8-1: preset `smoke8` = rise/span 0.15, Sa 0.3 g, every span, support case and strategy (8 designs). It touches every branch of the code at the middle rise and the S4 Sa.
 - D8-2: record check tolerance. Text columns (`feasible`, `governing_check`, `steel_governing_case`) and the thickness must match exactly; other numbers to 1e-3 relative. Day 4's CalculiX 2.21 against 2.23 difference was at most 2.3e-4 (deflection), so 1e-3 allows the version difference and still catches a model change.

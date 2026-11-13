@@ -1,6 +1,6 @@
 # Day 9 (6 Nov 2026): sensitivity runs of pre-registration section 7
 
-Written by Claude in the app, under the author's standing delegation. ShellBench tag: v0.1.0. CalculiX 2.21 (cloud). Results are provisional until the 10 Nov freeze run.
+Written by the cloud session, under the author's standing delegation. ShellBench tag: v0.1.0. CalculiX 2.21 (cloud). Results are provisional until the 10 Nov freeze run.
 
 Plan line (setup guide, Fri 6 Nov): "Stop-loss check: more than 2 days behind → drop 20 m span. Run all 168 designs." Both were already met on Day 8 (all 168 through the batch runner, 0 mismatches), so Day 9 took the next item of Phase 2, the section 7 sensitivity runs (plan line of Sun 8 Nov: "Sensitivity: buckling threshold ×2, factor set, mesh density"; done when "Sensitivity table; note any flipped conclusion").
 
@@ -15,7 +15,7 @@ Plan line (setup guide, Fri 6 Nov): "Stop-loss check: more than 2 days behind �
 - `src/shellform/sensitivity.py`: `python -m shellform.sensitivity --run lam3 lam8 mesh61` and `--summarise`. Writes `results/sens_<variant>.csv` and `_meta.json`, `results/sensitivity_summary.csv` (variant × span), `sensitivity_cells.csv` (variant × cell, with "flipped"), `sensitivity_reference.csv` (gravity form at Sa = 0 under each setting) and `sensitivity_meta.json`.
 - `tests/test_sensitivity.py`: 7 tests (verdict rule, variants change one setting, grid size, infeasible cells kept, headline rule, baseline reproduces the record, reference table).
 
-## Decisions (Claude, under the standing delegation) [J]
+## Decisions (the assistant, under the standing delegation) [J]
 
 - **D9-1:** every variant runs all 168 designs, not only the headline scope named in section 7 (rise 0.15, both supports, Sa ≥ 0.2 g). It cost 17 min (λ 3), about 17 min (λ 8) and 43 min (61 × 61) on four cores, and it shows every verdict, not only the headline.
 - **D9-2:** "a conclusion that flips" (section 7) is read as: any cell whose verdict changes at any band corner, or a change of headline status. Infeasible designs would get the verdict "infeasible" (none occurred).

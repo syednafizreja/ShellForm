@@ -2,7 +2,7 @@
 
 > **Superseded on 14 Nov 2026** by the assembled manuscript `manuscript/shellform_cas.tex`. Corrections made there during the self-review (`16_self_review.md`) are not back-ported here; edit the manuscript, not this draft.
 
-Written by Claude in Syed's voice under his standing rule of 10 Nov (Claude writes the prose; Syed reads, changes and owns it). Built from `00_core.md` section 4, the Results draft (`11_results_draft.md`), `notes/buckling_threshold_sources.md` and the freeze files (tag `freeze-2026-11-09`, ShellBench v0.3.0). Every number already appears in the Results draft and has, or is listed for, a row in `numbers.md`. No new literature claim is made without a source that has been opened; `[check]` marks the rest. Interpretive sentences are Claude's judgement [J] until Syed accepts them; they are listed at the end.
+Written by the assistant in Syed's voice under his standing rule of 10 Nov (the assistant writes the prose; Syed reads, changes and owns it). Built from `00_core.md` section 4, the Results draft (`11_results_draft.md`), `notes/buckling_threshold_sources.md` and the freeze files (tag `freeze-2026-11-09`, ShellBench v0.3.0). Every number already appears in the Results draft and has, or is listed for, a row in `numbers.md`. No new literature claim is made without a source that has been opened; `[check]` marks the rest. Interpretive sentences are the assistant's judgement [J] until Syed accepts them; they are listed at the end.
 
 ## 4.1 Why the seismic level does not reach the carbon
 
@@ -53,4 +53,4 @@ We state each limit with what would remove it.
 - 4.5 item 5 (14 Nov): the unsourced clause "formwork is often the largest cost of a shell" was cut and replaced by the V5 result.
 - No comparison with other published carbon figures for shells yet. That needs the documented literature search (`01_professor_test.md`), which is still open. Add one paragraph to 4.3 when it is done.
 - C&S allows a combined Results and Discussion. If the editor or word count prefers it, 4.1 and 4.3 merge into Section 3 and 4.2, 4.4 and 4.5 stay as Discussion.
-- AI-use declaration: this section was drafted by Claude from your results and rules; the Elsevier declaration must say so.
+- AI-use declaration: this section was drafted by the assistant from your results and rules; the Elsevier declaration must say so.

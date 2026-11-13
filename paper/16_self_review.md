@@ -1,6 +1,6 @@
 # Self-review of the assembled manuscript (14 Nov 2026, check window day 2)
 
-Reviewer-2 pass on `manuscript/shellform_cas.tex` by Claude, under Syed's standing delegation. Three checks: every number against the result files (recomputed, not read from `numbers.md`), consistency across sections, and claim against evidence. Then the voice and humanizer pass. Frozen results (`results/`, `paper/tables/`, `figures/`) were not touched.
+Reviewer-2 pass on `manuscript/shellform_cas.tex` by the assistant, under Syed's standing delegation. Three checks: every number against the result files (recomputed, not read from `numbers.md`), consistency across sections, and claim against evidence. Then the voice and humanizer pass. Frozen results (`results/`, `paper/tables/`, `figures/`) were not touched.
 
 ## 1. Fixed in the manuscript
 
@@ -29,12 +29,12 @@ Reviewer-2 pass on `manuscript/shellform_cas.tex` by Claude, under Syed's standi
 
 Every other number in the manuscript was recomputed from `results/` and `figures/*.json` and agrees with the text (168 feasible; governing 84/84 each; λ_min/λ 0.888-0.997 and 0.956-0.999; edge buckling 0.020-0.074 and 0.095-0.357; 0.51 f_c; 0.28 L/300; steel 0.82 / 0.95 / 57.9 kg, 2028-2953 kg; concrete share 79.9-81.2 %; 79/84 and 5 cells at 5.5-5.7 %; λ 4.978 and 5.016-5.052; cost of resilience 1.000-1.004, 1.003, 1.036; 70, 90, 110 mm and 31.1, 39.8, 48.6 kgCO₂e/m²; 17 of 168 (5 + 12); 2.0 %; 1.000-1.026; T1 0.029-0.308 s, 0.341 s; 70 of 84; V1 +1.96 / +1.33 %, 1.49 / 0.75 %; V2 0.62 %, 0.8-1.0 / 1.6 %, 3.8-5.8 %, 0.18; V4 76.3-89.2 / 91.0-99.9 %, 87.3 / 84.3 / 97.6 / 94.3 %; V5 1.44 %, 79; Fig. 6 68-252, 14-53, 21.6-23.8).
 
-## 2. Reviewer-2 points that stay open (cannot be fixed by Claude)
+## 2. Reviewer-2 points that stay open (cannot be fixed by the assistant)
 
 Ranked by desk-reject risk [J].
 
 1. **Michiels & Adriaenssens (C&S 2018) is cited for the method we extend, but the journal paper is still unread** (thesis Ch. 3 used). In a C&S submission, the paper the method extends must be read first-hand, page-cited, and S4 should ideally reproduce one of its arches. Get it through a library or ask the authors (draft email in `05_email_michiels.md`).
-2. **Nine sources are abstract-only** (`[check]` in the PDF): Jayasinghe 2022, Oval 2023, Leonardi 2026, Málaga-Chuquitaype 2022, Hammood 2023, Pérez Vega 2026, Caycedo Garcia 2025, Michiels 2017 (Eng. Struct.), Schek 1974. (The sphere benchmark now cites Hutchinson 2016, Section 3, opened by Claude on 14 Nov; confirm that page too.) Open each, add the page to `references.md`. Leonardi 2026 first: confirm it has no seismic case before keeping "we found no study".
+2. **Nine sources are abstract-only** (`[check]` in the PDF): Jayasinghe 2022, Oval 2023, Leonardi 2026, Málaga-Chuquitaype 2022, Hammood 2023, Pérez Vega 2026, Caycedo Garcia 2025, Michiels 2017 (Eng. Struct.), Schek 1974. (The sphere benchmark now cites Hutchinson 2016, Section 3, opened by the assistant on 14 Nov; confirm that page too.) Open each, add the page to `references.md`. Leonardi 2026 first: confirm it has no seismic case before keeping "we found no study".
 3. **Literature depth.** 27 references, of which 16 are journal papers; the skill target is about 30 (5 foundational, 15 related, 10 recent). Forward snowballing from Michiels 2017/2018 is still to do. Foundational shell-buckling and form-finding texts (beyond Schek) are thin. A C&S reviewer will also expect at least one comparison of our carbon per m² with published shell carbon (Discussion 4.3 has none).
 4. **Linear buckling governs every corner shell, and imperfection-sensitive buckling is untested.** Stated as limitation 1, with the remedy (Riks with an eigenmode imperfection of t/4 to 3t/4 on a few governing cells). A reviewer may ask for it as a major revision; it is the natural revision experiment [J].
 5. **V1 covers R/t 50 and 100; the sized shells reach about 520.** Said in the text. A sphere at R/t 200-500 would close it (about 30 min of compute).

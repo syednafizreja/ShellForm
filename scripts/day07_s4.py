@@ -25,7 +25,7 @@ Pass (stated before the run, amendment of 4 Nov): every relative error
 below 1e-9 (positions divided by span, forces divided by the total load).
 
 No ShellBench value is used: S4 is geometry and statics only. The results
-file still names the pinned ShellBench tag (CLAUDE.md, code standards).
+file still names the pinned ShellBench tag (CONTRIBUTING.md, code standards).
 Writes results/day07_s4_arch.csv, results/day07_s4_shells.csv and
 results/day07_s4_meta.json.
 """

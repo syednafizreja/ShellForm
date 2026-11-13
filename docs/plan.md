@@ -4,7 +4,7 @@ Source: `docs/data_contract.md` section 5 (dates agreed 29 Oct) and the author's
 
 **13 Nov is the end of the build, not the finished paper.** By 13 Nov: code, results, figures, explorer, README, ShellForm v0.1 with a Zenodo DOI, and Syed's draft of Methods and Results. The full paper is written after the 17 Nov check window.
 
-ShellBench comes first until 11 Nov: its GATE days are never displaced by ShellForm work. One Claude per day; lock the day on main first.
+ShellBench comes first until 11 Nov: its GATE days are never displaced by ShellForm work. One session per day; lock the day on main first.
 
 | Date | Day | Work | Done when |
 |---|---|---|---|
@@ -13,14 +13,14 @@ ShellBench comes first until 11 Nov: its GATE days are never displaced by ShellF
 | Mon 9 Nov | — | Now spare (Day 11 done on 8 Nov). Was: figures from the pre-freeze record, including the mechanism figure (governing check per design against Sa, by support case; `paper/04_supervisor_advice.md` section 3) | Every paper figure built by a script in `scripts/` |
 | Mon 9 Nov (pulled forward) / Tue 10 Nov | 12 | **Freeze** (done 9 Nov, tag `freeze-2026-11-09`): final run, freeze commit; fill `paper/numbers.md` rows from the freeze files | Freeze commit tagged; every row names its file and ShellBench tag |
 | 11–13 Nov | 13–15 | Final figures; explorer with real results; README; ShellForm v0.1 release and Zenodo DOI; Syed drafts Methods and Results from `paper/02_methods_outline.md` and `paper/03_sensitivity_outline.md` | v0.1 on GitHub and Zenodo; Methods and Results drafts in `paper/` |
-| 14–17 Nov | — | Check window, shared with ShellBench: Syed checks every number; Claude fixes | Every `numbers.md` row checked by Syed |
+| 14–17 Nov | — | Check window, shared with ShellBench: Syed checks every number; the assistant fixes | Every `numbers.md` row checked by Syed |
 | After 17 Nov | — | Syed writes Discussion, Introduction, Abstract; preprint; submit to *Computers & Structures* | Submitted before the European deadlines in January |
 
 ## Open items carried into the plan
 
 - ShellBench PR #130 (carbon official-copy note): waits for Syed to merge.
 - S4 published case: fallback in use (no full text by 4 Nov). If the Michiels full text arrives before 10 Nov, run the published arch as an extra check beside S4. Sources: `docs/handoff.md`, 6 Nov.
-- EN 1992-1-1 Annex F (F.2)/(F.3): checked by Claude 8 Nov in the full BS EN 1992-1-1:2004 text: F.1(4), printed p. 211 (PDF p. 213); expressions and relief condition match `steel.py`. Author to confirm.
+- EN 1992-1-1 Annex F (F.2)/(F.3): checked by the assistant 8 Nov in the full BS EN 1992-1-1:2004 text: F.1(4), printed p. 211 (PDF p. 213); expressions and relief condition match `steel.py`. Author to confirm.
 - Michiels journal papers: links and access status in `paper/06_michiels_sources.md` (7 Nov). Thesis chapters are the working source.
 - `paper/00_core.md`: Syed fills it before the Methods prose.
 

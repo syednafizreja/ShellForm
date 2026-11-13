@@ -1,6 +1,6 @@
 # Reading notes: Michiels & Adriaenssens, seismic form-finding
 
-Written by Claude on 29 Oct 2026 from what is openly readable: the abstract and highlights of the C&S paper (ScienceDirect abstract page) and the abstract of the J. IASS paper (academia.edu). **The full texts have not been read.** Everything marked [check] must be confirmed against the full text before it enters `docs/preregistration.md`.
+Written by the assistant on 29 Oct 2026 from what is openly readable: the abstract and highlights of the C&S paper (ScienceDirect abstract page) and the abstract of the J. IASS paper (academia.edu). **The full texts have not been read.** Everything marked [check] must be confirmed against the full text before it enters `docs/preregistration.md`.
 
 ## 1. Citations
 
@@ -28,7 +28,7 @@ Written by Claude on 29 Oct 2026 from what is openly readable: the abstract and 
 - C&S: the form must hold a compression-only load path under gravity and the design acceleration. Result: up to 65 % less material than constant-thickness circular arches at the same acceleration (highlights).
 - J. IASS: a parametric study over boundary conditions and net stiffness [check: which parameters exactly].
 
-## 5. Finding F1 (Claude, checked by test): uniform lateral load only shears the gravity form
+## 5. Finding F1 (the assistant, checked by test): uniform lateral load only shears the gravity form
 
 In a force density network with fixed nodal loads and supports at z = 0, adding p_x = a w to every node (a = Sa in g, w = nodal weight) gives exactly
 

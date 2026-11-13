@@ -1,6 +1,6 @@
 # Professor-mode test of the paper (review notes)
 
-Added 6 Nov 2026 alongside `00_core.md`. Claude's notes [J], not paper text: they test the plan before writing (academic-manuscript-workflow, sections 1 and 2). Numbers quoted are from the pre-freeze record on main (3e4797b, ShellBench v0.1.0) and are provisional; the paper takes numbers only from `numbers.md` rows filled at the freeze run.
+Added 6 Nov 2026 alongside `00_core.md`. The assistant's notes [J], not paper text: they test the plan before writing (academic-manuscript-workflow, sections 1 and 2). Numbers quoted are from the pre-freeze record on main (3e4797b, ShellBench v0.1.0) and are provisional; the paper takes numbers only from `numbers.md` rows filled at the freeze run.
 
 Pre-freeze numbers used below (from `results/day05_comparison_10m.csv` and `_20m.csv`): carbon 34.3-45.5 kgCO₂e/m² (10 m corners), 85.2-117.3 (20 m corners), 21.6-23.4 (edges, both spans); cost of resilience 1.000 at 10 m and 1.000-1.004 at 20 m for the gravity strategy; seismic-aware edge forms up to 1.4 % more carbon from extra surface area; verdicts identical at all four band corners in 84 of 84 cells.
 
@@ -22,7 +22,7 @@ Documented search in two or three databases (OpenAlex, Lens, Scopus via library)
 
 ## 3. Journal fit [J, check each in the journal's own pages]
 
-C&S publishes computational methods first. Risk: an editor reads ShellForm as an application study. To fit, Methods must carry the computational contribution: the 3D force density solver with the four-direction thrust-surface envelope, its verification (S1-S5), and the reproducible batch pipeline. Keep a backup list of three or four journals with no-APC subscription routes, checked by Syed against Scopus quartile and the Guide for Authors. Claude has not checked APCs, quartiles or word limits, so none is stated here.
+C&S publishes computational methods first. Risk: an editor reads ShellForm as an application study. To fit, Methods must carry the computational contribution: the 3D force density solver with the four-direction thrust-surface envelope, its verification (S1-S5), and the reproducible batch pipeline. Keep a backup list of three or four journals with no-APC subscription routes, checked by Syed against Scopus quartile and the Guide for Authors. The assistant has not checked APCs, quartiles or word limits, so none is stated here.
 
 ## 4. Limitations list (seed; each needs the data that removes it)
 

@@ -113,7 +113,7 @@ def test_formwork_term_stays_between_carbon_and_area_differences():
 @pytest.mark.parametrize("name", ["verify_v1_zoelly.csv", "verify_v2_hconv.csv", "verify_v3_fdm_residual.csv",
                                   "verify_v4_energy.csv", "verify_v5_formwork.csv"])
 def test_record_names_the_pinned_tag(name):
-    """Every verification record names the pinned ShellBench tag (CLAUDE.md code standards)."""
+    """Every verification record names the pinned ShellBench tag (CONTRIBUTING.md code standards)."""
     rows = read(name)
     assert rows and {r["shellbench_tag"] for r in rows} == {SHELLBENCH_TAG}
 

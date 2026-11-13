@@ -2,7 +2,7 @@
 
 > **Superseded on 14 Nov 2026** by the assembled manuscript `manuscript/shellform_cas.tex`. Corrections made there during the self-review (`16_self_review.md`) are not back-ported here; edit the manuscript, not this draft.
 
-Written by Claude in Syed's voice under his standing rule of 10 Nov (Claude writes the prose; Syed reads, changes and owns it). Sources: `13_literature_search.md` (abstract-level reading, 13 Nov), `notes/michiels2017.md`, `00_core.md` section 4, the Results and Discussion drafts. Every cited number carries `[check]` until Syed has opened the full text and added a page. No global statistics are quoted, because none has been read from a source. Interpretive sentences [J] are listed at the end.
+Written by the assistant in Syed's voice under his standing rule of 10 Nov (the assistant writes the prose; Syed reads, changes and owns it). Sources: `13_literature_search.md` (abstract-level reading, 13 Nov), `notes/michiels2017.md`, `00_core.md` section 4, the Results and Discussion drafts. Every cited number carries `[check]` until Syed has opened the full text and added a page. No global statistics are quoted, because none has been read from a source. Interpretive sentences [J] are listed at the end.
 
 ## Paragraph 1: shells as a low-carbon structure
 
@@ -36,4 +36,4 @@ The study makes three contributions. First, an open and verified pipeline: a thr
 - Leonardi et al. (2026) is the paper a reviewer will hold closest to ours. From the abstract it is gravity-only with FRP reinforcement; confirm in the full text that it has no seismic case before keeping P4's "no study".
 - Never "first": P4 says "we found no study", tied to the documented search. Keep it that way.
 - C&S fit (`01_professor_test.md` R2-6): P6 puts the computational pipeline first on purpose.
-- AI-use declaration: this section was drafted by Claude from your search, results and rules; the Elsevier declaration must say so.
+- AI-use declaration: this section was drafted by the assistant from your search, results and rules; the Elsevier declaration must say so.

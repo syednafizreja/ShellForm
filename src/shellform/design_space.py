@@ -14,7 +14,7 @@ STRATEGIES = ("gravity", "seismic")
 SA_LEVELS_G = (0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6)
 
 # One row per sized design. Units in brackets; every row names the
-# ShellBench tag it used (CLAUDE.md, code standards).
+# ShellBench tag it used (CONTRIBUTING.md, code standards).
 RESULT_COLUMNS = (
     "design_id",
     "shellbench_tag",

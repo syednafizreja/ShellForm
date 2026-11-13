@@ -1,13 +1,13 @@
 # Methods and Results: drafting kit (10 Nov 2026)
 
-**Update, 10 Nov:** at Syed's request Claude has now written draft 1 of both sections in his voice: `10_methods_draft.md` and `11_results_draft.md`. Use this kit to check them: the numbers, caption facts and professor-mode risks below still apply.
+**Update, 10 Nov:** at Syed's request the assistant has now written draft 1 of both sections in his voice: `10_methods_draft.md` and `11_results_draft.md`. Use this kit to check them: the numbers, caption facts and professor-mode risks below still apply.
 
-For Syed's drafting days, 11-13 Nov. This file is not paper text. Your skills say you write the first rough sentences and Claude turns them into academic prose (academic-manuscript-writing, ground rule 1; syed-academic-voice-dna, section 0). So Claude has not written the Methods or Results prose. Claude has done everything around it: the tables are built from the freeze record, the outlines are checked against the freeze files, and every paragraph below has a slot for your rough sentence with its numbers next to it. [J] marks Claude's judgement.
+For Syed's drafting days, 11-13 Nov. This file is not paper text. Your skills say you write the first rough sentences and the assistant turns them into academic prose (academic-manuscript-writing, ground rule 1; syed-academic-voice-dna, section 0). So the assistant has not written the Methods or Results prose. The assistant has done everything around it: the tables are built from the freeze record, the outlines are checked against the freeze files, and every paragraph below has a slot for your rough sentence with its numbers next to it. [J] marks the assistant's judgement.
 
 ## How to use it (about 3 hours per section)
 
 1. For each slot below, type one or two rough sentences in your own words under "Your rough sentence". Typos and plain words are fine. Keep your order of ideas.
-2. Paste the filled slots into a ShellForm thread and ask for the voice-dna pass. Claude returns prose plus a two-column list, "kept (yours)" and "changed (and why)".
+2. Paste the filled slots into a ShellForm thread and ask for the voice-dna pass. The assistant returns prose plus a two-column list, "kept (yours)" and "changed (and why)".
 3. Check every number against `numbers.md` and the table it names. Accept or reject each change.
 4. Then the humanizer pass (academic-humanizer, layers 1-5) and the SKIP test: read only the first sentence of each paragraph; it must carry the argument.
 
@@ -133,4 +133,4 @@ Ranked by risk to acceptance [J]. None of these changes a result; each changes w
 - Every number has a row in `numbers.md`, checked by you.
 - No "first", no "novel"; "extends Michiels & Adriaenssens".
 - Never "resilience at no carbon cost"; never "both factor sets".
-- Elsevier generative-AI declaration: say how Claude was used (code, checks, tables, editing). Keep it accurate.
+- Elsevier generative-AI declaration: say how the assistant was used (code, checks, tables, editing). Keep it accurate.
