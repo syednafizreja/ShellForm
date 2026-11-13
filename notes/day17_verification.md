@@ -13,7 +13,7 @@ Check window, day 1. Written by Claude in the app under the author's standing de
 | V1 Zoelly sphere | `results/verify_v1_zoelly.csv` | < 3 % | finest mesh (3456 S8R): +1.96 % at R/t 50, +1.33 % at R/t 100 | pass |
 | V2 h-convergence, λ1 | `results/verify_v2_hconv.csv` | < 1.5 % (61 → 81) | at most 0.62 % (edges), 0.21 % (corners) | pass |
 | V2 h-convergence, δ_SLS | same | < 1.5 % (61 → 81) | edges at most 1.48 %; corners 3.8-5.8 % | corners fail; see below |
-| V3 FDM residual | `results/verify_v3_fdm_residual.csv` | < 1e-10 N | worst 2.2e-11 N over 84 solves | pass |
+| V3 FDM residual | `results/verify_v3_fdm_residual.csv` | < 1e-10 N | worst 2.2e-11 N over 84 solves (laptop rerun 14 Nov: 2.3e-11 N) | pass |
 | V4 membrane share | `results/verify_v4_energy.csv` | (descriptive) | corners 76.3-89.2 %, edges 91.0-99.9 % | — |
 | V5 formwork bound | `results/verify_v5_formwork.csv` | (5 % rule) | formwork area differs by at most 1.44 %; 79 of 84 verdicts safe for any formwork term | — |
 
@@ -21,7 +21,7 @@ Summary of every run, with pass flags and wall times: `results/verify_meta.json`
 
 ## V1. Complete sphere under external pressure
 
-The classical buckling pressure of a complete sphere is p_cr = 2E / √(3(1 − ν²)) · (t/R)² (Zoelly 1915; Timoshenko & Gere 1961, Section 11.7 [check the page in your copy]). The blueprint called it a "spherical cap" test. We used the complete sphere, because the formula is exact for it and a cap needs a boundary condition that the formula does not have [J].
+The classical buckling pressure of a complete sphere is p_cr = 2E / √(3(1 − ν²)) · (t/R)² (Hutchinson 2016, Proc. R. Soc. A 472: 20160577, Section 3, opened by Claude 14 Nov; Timoshenko & Gere 1961 not reachable without a library copy, so it is no longer cited. The name "Zoelly" is kept in file names only; the paper says "the classical value" because no opened source tied the formula to Zoelly). The blueprint called it a "spherical cap" test. We used the complete sphere, because the formula is exact for it and a cap needs a boundary condition that the formula does not have [J].
 
 - Mesh: a cube projected to the sphere (equiangular), m × m S8R elements per face, m = 8, 12, 16, 20, 24 (384 to 3456 elements). Six translations fixed in a statically determinate way, so the pressure meets no reaction.
 - Material: ShellBench's E = 32.5 GPa and ν = 0.2 (`shellform.inputs`). R = 5 m, t = 0.10 and 0.05 m.
@@ -69,6 +69,6 @@ From the frozen record only (`batch_all.csv`, `sens_lam3.csv`, `sens_lam8.csv`).
 
 ## Open
 
-- Author: confirm the page of the Zoelly formula in Timoshenko & Gere [check].
+- Resolved 14 Nov (Claude): cite Hutchinson 2016, Section 3, instead of Timoshenko & Gere. Author to confirm.
 - Author: a formwork factor F with its source, if the paper should give absolute A5 values [?].
 - A sphere run at R/t 200-500 needs finer meshes (more than 3456 elements); it would close the scope gap of V1.

@@ -20,7 +20,7 @@ So the null is not built into the design of the study [J]. A shell that the code
 
 ## 4.3 What does move carbon
 
-For these shells the carbon is set by the support condition and by the buckling factor a designer chooses. Corner-supported shells carry 75-105 mm at 10 m and 185-265 mm at 20 m, edge-supported shells 50 mm everywhere (Table 4). Moving the buckling threshold from 5 to 3 or 8 moves corner-shell carbon by 20-30 %, against at most 0.4 % for the seismic level on the gravity form (Section 3.4).
+For these shells the carbon is set by the support condition and by the buckling factor a designer chooses. Corner-supported shells carry 75-105 mm at 10 m and 185-265 mm at 20 m, edge-supported shells 50 mm everywhere (Table 4). Moving the buckling threshold from 5 to 3 or 8 moves corner-shell carbon by 19 to 29 %, against at most 0.4 % for the seismic level on the gravity form (Section 3.4).
 
 This matters more than the null itself [J]. No code fixes the buckling factor for shells: ACI 318.2-14 requires only that instability be "precluded" (cl. 3.1.8), and the reduction-factor approach (Dulácska and Kollár, 1995) leaves the reductions for imperfection, creep and cracking to the designer. Read through that approach, our three thresholds correspond to combined reductions of 1.0, 0.6 and 0.375 under a safety factor of 3.0 (Section 2.5). The carbon of a corner-supported concrete shell therefore depends on an engineering judgement that is rarely reported. A study that compares shell forms, or shells against other roofs, should report its buckling factor and its sensitivity, as we do in Table 5.
 

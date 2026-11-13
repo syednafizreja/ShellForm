@@ -4,6 +4,8 @@ Written by Claude in Syed's voice under his standing rule of 10 Nov (Claude writ
 
 ## Title (pick one)
 
+**Chosen 14 Nov 2026: option 1** (Claude, under the standing delegation; author to confirm).
+
 1. Does seismic-aware form-finding lower the embodied carbon of reinforced concrete shells? A pre-registered comparison of 168 sized designs
 2. Seismic-aware form-finding and the embodied carbon of code-sized reinforced concrete shells
 3. What sets the carbon of reinforced concrete shells in seismic regions: form, seismic level or buckling factor?
@@ -24,7 +26,7 @@ Seismic-aware form-finding has been developed for shells and arches whose materi
 
 ## Keywords
 
-Form-finding; force density method; reinforced concrete shells; embodied carbon; seismic design; linear buckling; pre-registration. [check: the C&S keyword limit in the guide for authors before submission]
+Form-finding; force density method; reinforced concrete shells; embodied carbon; seismic design; linear buckling; pre-registration. (Seven keywords; the C&S guide for authors asks for 1 to 7, read by Claude 14 Nov 2026; author to confirm.)
 
 ## 5. Conclusions
 
@@ -41,7 +43,7 @@ For design in this range, form-find for gravity, check the seismic combinations,
 
 - Word count: abstract 246 words (counted by script, 13 Nov). Highlights: longest 81 characters. Recount after any edit.
 - Every number traces to `numbers.md`: 168 designs (Table 1 row); 79 of 84 and the 5 cells (Results 3.3 row); governing checks 84/84 (Fig. 2 row); 57.9 kg and 2028-2953 kg (Results 3.2 steel row); 1.000-1.004 (Results 3.x para A row); 0.735-0.812 and 1.219-1.294 (para A rows); T_g 0.35 s (S5 row); thresholds and minimum from Methods 2.5 and Table 2.
-- Highlight 4 "within 0.4 %" is 1.000-1.004 rounded up; highlight 5 "19 to 29 %" is 1 − 0.812 = 0.188 to 1.294 − 1 = 0.294, rounded to whole percent. Results 3.4 says "20-30 %"; pick one wording and use it in both places [J].
+- Highlight 4 "within 0.4 %" is 1.000-1.004 rounded up; highlight 5 "19 to 29 %" is 1 − 0.812 = 0.188 to 1.294 − 1 = 0.294, rounded to whole percent. Resolved 14 Nov: "19 to 29 %" (the exact rounding) now stands in Results 3.4, Discussion and Highlight 5 alike.
 - The abstract names Michiels and Adriaenssens without a year, as the guide allows; add the year if the editor asks.
 - [J] sentences to accept, change or cut: "The cause is the governing checks" (abstract); the design advice sentence and the last sentence of the Conclusions.
 - No word "first", "novel" or "robust". The abstract says "it is not known", tied to the documented search in `13_literature_search.md`.
