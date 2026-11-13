@@ -140,3 +140,12 @@
 - Result: pytest 101 passed (cloud, CalculiX 2.21 now installed, so no skips). No code under `src/` or file under `results/` changed.
 - Lesson: an author-uploaded copy (academia.edu) and a free code PDF were enough to close most of a "source unopened" risk; search for them before marking a source unreachable.
 - Tomorrow (12 Nov): ShellBench Day 32 verdicts come first. ShellForm: Introduction draft 1 needs the documented literature search (`01_professor_test.md`) first.
+
+## 13 Nov 2026 - literature search, Introduction draft 1 (last build day)
+
+- Done (Claude, under the author's standing delegation; the author said "Continue"): documented search in OpenAlex, six queries, 15 papers included at abstract level (`paper/13_literature_search.md`, with protocol, hit counts and the draft gap line). Closest new papers: Pérez Vega et al. 2026 (force-density RC shells, nonlinear seismic, no carbon) and Leonardi et al. 2026 (carbon-optimised RC shells, gravity only per abstract). No paper found on the carbon of seismic-aware form-finding. `paper/14_introduction_draft.md` (draft 1 in Syed's voice, six paragraphs, every borrowed number [check]). Nine rows added to `references.md`. Table 3 S2/S3 wording decided [J]: text says "at round-off level, below 1e-10"; table keeps the frozen cloud values.
+- ShellBench: Day 32 and later wait on the v0.4.0 Zenodo DOI (author's token); 11 Nov duplicate PR #165 closed unmerged because PR #163 had already landed.
+- Result: no code under `src/` and no file under `results/` changed. pytest not rerun (docs only; 101 passed on 11 Nov).
+- Lesson: search the field's own vocabulary ("force density", "reinforced concrete shell", "seismic") before claiming a gap; the closest 2026 papers only appeared on the third and fourth queries.
+- Build window ends today. 14-17 Nov: Syed's check window (open the [check] papers in full, accept or cut [J] sentences, numbers.md rows).
+
