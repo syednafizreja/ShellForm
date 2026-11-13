@@ -2,11 +2,11 @@
 
 > **Superseded on 14 Nov 2026** by the assembled manuscript `manuscript/shellform_cas.tex`. Corrections made there during the self-review (`16_self_review.md`) are not back-ported here; edit the manuscript, not this draft.
 
-Written by Claude in Syed's voice under his standing rule of 10 Nov (Claude writes the prose; Syed reads, changes and owns it). Built only from numbers that already have a row in `numbers.md` (freeze tag `freeze-2026-11-09`, ShellBench v0.3.0) and from the Methods, Results, Discussion and Introduction drafts. Journal limits (Computers & Structures guide for authors, read 13 Nov 2026): abstract at most 250 words, standing alone, no references unless essential (then author and year); highlights 3 to 5 bullets, each at most 85 characters including spaces, as a separate file. Interpretive sentences [J] are listed at the end.
+Written by the assistant in Syed's voice under his standing rule of 10 Nov (the assistant writes the prose; Syed reads, changes and owns it). Built only from numbers that already have a row in `numbers.md` (freeze tag `freeze-2026-11-09`, ShellBench v0.3.0) and from the Methods, Results, Discussion and Introduction drafts. Journal limits (Computers & Structures guide for authors, read 13 Nov 2026): abstract at most 250 words, standing alone, no references unless essential (then author and year); highlights 3 to 5 bullets, each at most 85 characters including spaces, as a separate file. Interpretive sentences [J] are listed at the end.
 
 ## Title (pick one)
 
-**Chosen 14 Nov 2026: option 1** (Claude, under the standing delegation; author to confirm).
+**Chosen 14 Nov 2026: option 1** (the assistant, under the standing delegation; author to confirm).
 
 1. Does seismic-aware form-finding lower the embodied carbon of reinforced concrete shells? A pre-registered comparison of 168 sized designs
 2. Seismic-aware form-finding and the embodied carbon of code-sized reinforced concrete shells
@@ -28,7 +28,7 @@ Seismic-aware form-finding has been developed for shells and arches whose materi
 
 ## Keywords
 
-Form-finding; force density method; reinforced concrete shells; embodied carbon; seismic design; linear buckling; pre-registration. (Seven keywords; the C&S guide for authors asks for 1 to 7, read by Claude 14 Nov 2026; author to confirm.)
+Form-finding; force density method; reinforced concrete shells; embodied carbon; seismic design; linear buckling; pre-registration. (Seven keywords; the C&S guide for authors asks for 1 to 7, read by the assistant 14 Nov 2026; author to confirm.)
 
 ## 5. Conclusions
 
@@ -49,4 +49,4 @@ For design in this range, form-find for gravity, check the seismic combinations,
 - The abstract names Michiels and Adriaenssens without a year, as the guide allows; add the year if the editor asks.
 - [J] sentences to accept, change or cut: "The cause is the governing checks" (abstract); the design advice sentence and the last sentence of the Conclusions.
 - No word "first", "novel" or "robust". The abstract says "it is not known", tied to the documented search in `13_literature_search.md`.
-- AI-use declaration: the abstract, highlights and conclusions were drafted by Claude from your results and rules; the Elsevier declaration must say so.
+- AI-use declaration: the abstract, highlights and conclusions were drafted by the assistant from your results and rules; the Elsevier declaration must say so.

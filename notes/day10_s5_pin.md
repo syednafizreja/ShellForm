@@ -1,6 +1,6 @@
 # Day 10 (7 Nov 2026): S5 plateau table, pin to ShellBench v0.2.0, solver cross-check
 
-Written by Claude in the app, under the author's standing delegation. ShellBench tag: v0.2.0. CalculiX 2.21 (cloud). Results are provisional until the 10 Nov freeze run. Pre-registration: dated entry of 7 Nov (D10-1).
+Written by the cloud session, under the author's standing delegation. ShellBench tag: v0.2.0. CalculiX 2.21 (cloud). Results are provisional until the 10 Nov freeze run. Pre-registration: dated entry of 7 Nov (D10-1).
 
 Plan line (`docs/plan.md`): S5 plateau table; move the pin to v0.2.0 and run `python -m shellform.batch --preset all --compare-record`; write the `sensitivity_meta.json` baseline path with `as_posix()`. Done when: S5 table in `results/`, 0 record mismatches, tests pass.
 

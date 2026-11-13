@@ -6,7 +6,7 @@ The factors are ShellBench's, read in place from ``data/carbon_factors.csv``
 in the pinned clone with ShellBench's own reader
 (``shellbench.carbon.read_factors``). The concrete grade, bar steel and
 steel density are ShellBench's too (``shellbench.carbon``). ShellForm writes
-no factor (CLAUDE.md rule 2). Up to ShellBench v0.2.0 the source column of
+no factor (CONTRIBUTING.md rule 2). Up to ShellBench v0.2.0 the source column of
 the rows used here said the official-copy check was open, so every carbon
 number was provisional. From v0.3.0 it records the check as closed
 (6 Nov 2026). ``factor_status`` reads that column in place, so result files

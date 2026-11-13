@@ -1,6 +1,6 @@
 # Draft email to Tim Michiels (cc Sigrid Adriaenssens)
 
-Syed sends this from his own address. Find current addresses on their institutional pages; Claude has not looked them up and does not supply them.
+Syed sends this from his own address. Find current addresses on their institutional pages; the assistant has not looked them up and does not supply them.
 
 ---
 

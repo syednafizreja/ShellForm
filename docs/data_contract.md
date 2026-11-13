@@ -1,9 +1,9 @@
-> **Amended 30 Oct 2026 (Claude, under the author's delegation).** (1) ShellBench dropped ICE (its decision D29: the licence forbids distribution). ShellForm uses GB/T 51366 only, with a ±25 % factor band (pre-registration P3). (2) ShellBench `floor-r1` form-finds a 2D vault curve, not a doubly curved shell. ShellForm writes its own 3D force density solver (`src/shellform/formfind.py`), with floor-r1 as a 2D cross-check (S1b). From ShellBench, ShellForm still takes: the CalculiX wrapper (floor-r2), material values (`shellbench.checks`), the combinations, the seismic module, the site values and `data/carbon_factors.csv`. Wherever the text below says "both factor sets", "ICE" or "extends floor-r1", read it with this note.
+> **Amended 30 Oct 2026 (the assistant, under the author's delegation).** (1) ShellBench dropped ICE (its decision D29: the licence forbids distribution). ShellForm uses GB/T 51366 only, with a ±25 % factor band (pre-registration P3). (2) ShellBench `floor-r1` form-finds a 2D vault curve, not a doubly curved shell. ShellForm writes its own 3D force density solver (`src/shellform/formfind.py`), with floor-r1 as a 2D cross-check (S1b). From ShellBench, ShellForm still takes: the CalculiX wrapper (floor-r2), material values (`shellbench.checks`), the combinations, the seismic module, the site values and `data/carbon_factors.csv`. Wherever the text below says "both factor sets", "ICE" or "extends floor-r1", read it with this note.
 
 # ShellForm Data Contract — what comes from ShellBench, what ShellForm owns
 
 **Prepared:** 28 October 2026, after reading the ShellBench repo (`docs/baseline_spec.md`, `docs/schedule.md`, `docs/handoff.md`, `notes/`, `src/shellbench/`, `LOG.md`).
-**Replaces** the earlier version of this file. The earlier version gave values from the thesis and from memory. ShellBench has since checked and corrected many of them, and some (the carbon factors) are yours to enter, not Claude's.
+**Replaces** the earlier version of this file. The earlier version gave values from the thesis and from memory. ShellBench has since checked and corrected many of them, and some (the carbon factors) are yours to enter, not the assistant's.
 
 ## 1. The rule: best data wins, and there is one home for it
 
@@ -15,7 +15,7 @@
 
 ShellForm **never copies a ShellBench value into its own files**. It imports ShellBench (pinned to a tag) or reads ShellBench's data files. If a value changes in ShellBench, ShellForm picks it up and the change is visible in both logs. Every ShellForm result names the ShellBench tag it used.
 
-The same rules as ShellBench's `CLAUDE.md` apply: Claude never supplies carbon factors or code values; you read them from the source. Unconfirmed values stay marked [?].
+The same rules as ShellBench's project rules apply: the assistant never supplies carbon factors or code values; you read them from the source. Unconfirmed values stay marked [?].
 
 ---
 
@@ -90,16 +90,16 @@ Remaining days from 7 Nov, with done-when lines: `docs/plan.md`.
 | 6–9 Nov | Run 168 designs; carbon with both factor sets; sensitivity; S5; figures | carbon_factors.csv, v0.3 |
 | 10 Nov | **ShellForm code and analysis frozen** (commit), same protocol as ShellBench's surrogate | — |
 | 11–13 Nov | Final figures, explorer with real results, README, ShellForm v0.1 + Zenodo DOI; you draft Methods and Results | — |
-| 14–17 Nov | Check window, shared with ShellBench: you check every number; Claude fixes | — |
+| 14–17 Nov | Check window, shared with ShellBench: you check every number; the assistant fixes | — |
 | After 17 Nov | You write Discussion, Introduction, Abstract; preprint; submit to Computers & Structures (target: before the European deadlines in January) | — |
 
-**Shared allowance:** ShellBench and ShellForm use one Claude Pro allowance. Until 11 Nov, ShellBench GATE days come first, as ShellBench's schedule already says. Keep ShellForm chats short. Do the coding in Claude Code with the repo open, and use the app only for planning and review.
+**Shared allowance:** ShellBench and ShellForm use one AI-assistant allowance. Until 11 Nov, ShellBench GATE days come first, as ShellBench's schedule already says. Keep ShellForm chats short. Do the coding in the laptop session with the repo open, and use the app only for planning and review.
 
 ---
 
 ## 6. Text to send ShellBench by Mon 2 Nov ("What ShellForm needs")
 
-Paste into the ShellBench Project chat, or into `docs/handoff.md` through Claude Code:
+Paste into the ShellBench Project chat, or into `docs/handoff.md` through the laptop session:
 
 > **What ShellForm needs from ShellBench (author, [date]):**
 > 1. Floor-level code only: floor-r1 (force density), floor-r2 (CalculiX shell wrapper), floor-r3 (sizing, tie, buckling and quantity functions), with their public function signatures kept stable after each tag. ShellForm pins to the tags.

@@ -1,6 +1,6 @@
 # Day 17 (14 Nov 2026): verification add-ons V1-V5, Fig. 6 and Fig. S1
 
-Check window, day 1. Written by Claude in the app under the author's standing delegation. The add-ons come from the "strength add-ons" the author kept from the top-1 % finishing blueprint (13 Nov), in order of reviewer value.
+Check window, day 1. Written by the cloud session under the author's standing delegation. The add-ons come from the "strength add-ons" the author kept from the top-1 % finishing blueprint (13 Nov), in order of reviewer value.
 
 **What did not change.** No sizing setting (λ ≥ 5, L/300, t_min 50 mm, 5 mm steps), no ShellBench value (pin `v0.3.0`), no frozen result file and no freeze tag. Every add-on is a new output beside the record. They were added after the freeze, so they are not pre-registered (pre-registration amendment of 14 Nov 2026).
 
@@ -21,7 +21,7 @@ Summary of every run, with pass flags and wall times: `results/verify_meta.json`
 
 ## V1. Complete sphere under external pressure
 
-The classical buckling pressure of a complete sphere is p_cr = 2E / √(3(1 − ν²)) · (t/R)² (Hutchinson 2016, Proc. R. Soc. A 472: 20160577, Section 3, opened by Claude 14 Nov; Timoshenko & Gere 1961 not reachable without a library copy, so it is no longer cited. The name "Zoelly" is kept in file names only; the paper says "the classical value" because no opened source tied the formula to Zoelly). The blueprint called it a "spherical cap" test. We used the complete sphere, because the formula is exact for it and a cap needs a boundary condition that the formula does not have [J].
+The classical buckling pressure of a complete sphere is p_cr = 2E / √(3(1 − ν²)) · (t/R)² (Hutchinson 2016, Proc. R. Soc. A 472: 20160577, Section 3, opened by the assistant 14 Nov; Timoshenko & Gere 1961 not reachable without a library copy, so it is no longer cited. The name "Zoelly" is kept in file names only; the paper says "the classical value" because no opened source tied the formula to Zoelly). The blueprint called it a "spherical cap" test. We used the complete sphere, because the formula is exact for it and a cap needs a boundary condition that the formula does not have [J].
 
 - Mesh: a cube projected to the sphere (equiangular), m × m S8R elements per face, m = 8, 12, 16, 20, 24 (384 to 3456 elements). Six translations fixed in a statically determinate way, so the pressure meets no reaction.
 - Material: ShellBench's E = 32.5 GPa and ν = 0.2 (`shellform.inputs`). R = 5 m, t = 0.10 and 0.05 m.
@@ -52,7 +52,7 @@ With stress linear through the thickness, the energy per unit area is t u(σ_m) 
 
 ## V5. Formwork (A5)
 
-ShellBench holds no formwork factor, and ShellForm supplies none (CLAUDE.md rule 2). So the add-on asks a question that needs no factor. Add a formwork term φ · A_fw to the carbon of both strategies, with A_fw the soffit (surface) area per m² of plan and φ = F/N for any factor F and any number of reuses N (1, 5, 20 or other). Then the relative difference (C_s + φ A_s)/(C_g + φ A_g) − 1 lies between the carbon difference and the formwork-area difference, for every φ ≥ 0 (mediant inequality; tested for φ from 1e-3 to 1e4).
+ShellBench holds no formwork factor, and ShellForm supplies none (CONTRIBUTING.md rule 2). So the add-on asks a question that needs no factor. Add a formwork term φ · A_fw to the carbon of both strategies, with A_fw the soffit (surface) area per m² of plan and φ = F/N for any factor F and any number of reuses N (1, 5, 20 or other). Then the relative difference (C_s + φ A_s)/(C_g + φ A_g) − 1 lies between the carbon difference and the formwork-area difference, for every φ ≥ 0 (mediant inequality; tested for φ from 1e-3 to 1e4).
 
 - The surface areas of the two strategies differ by at most 1.44 % in every cell.
 - So in the 79 "no meaningful difference" cells, no formwork term can create a difference of 5 % or more.
@@ -69,6 +69,6 @@ From the frozen record only (`batch_all.csv`, `sens_lam3.csv`, `sens_lam8.csv`).
 
 ## Open
 
-- Resolved 14 Nov (Claude): cite Hutchinson 2016, Section 3, instead of Timoshenko & Gere. Author to confirm.
+- Resolved 14 Nov (the assistant): cite Hutchinson 2016, Section 3, instead of Timoshenko & Gere. Author to confirm.
 - Author: a formwork factor F with its source, if the paper should give absolute A5 values [?].
 - A sphere run at R/t 200-500 needs finer meshes (more than 3456 elements); it would close the scope gap of V1.

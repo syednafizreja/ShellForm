@@ -1,6 +1,6 @@
 # Core of the paper (write before any section)
 
-Skill: academic-manuscript-writing, section 1. The author writes every sentence below. Claude's notes are marked [J] and are prompts, not text for the paper. If one line cannot be written yet, the paper is not ready for that section.
+Skill: academic-manuscript-writing, section 1. The author writes every sentence below. The assistant's notes are marked [J] and are prompts, not text for the paper. If one line cannot be written yet, the paper is not ready for that section.
 
 Status: empty template, 6 Nov 2026. Results are provisional until the 10 Nov freeze (`docs/preregistration.md` section 9).
 
@@ -14,7 +14,7 @@ Status: empty template, 6 Nov 2026. Results are provisional until the 10 Nov fre
 
 [?] Author.
 
-[J] Prompt: keep within CLAUDE.md rule 8. ShellForm extends Michiels & Adriaenssens; it is not "the first seismic form-finding".
+[J] Prompt: keep within CONTRIBUTING.md rule 8. ShellForm extends Michiels & Adriaenssens; it is not "the first seismic form-finding".
 
 ## 3. Headline result (one sentence with a number)
 
@@ -24,7 +24,7 @@ Status: empty template, 6 Nov 2026. Results are provisional until the 10 Nov fre
 
 ## 4. Master narrative (pick one the data supports)
 
-**Chosen 6 Nov 2026 by Claude under the author's standing delegation of 30 Oct ("do not ask me ever") [J]. The author may reverse this.** Narrative: *explain a mechanism*, reported as a pre-registered null result.
+**Chosen 6 Nov 2026 by the assistant under the author's standing delegation of 30 Oct ("do not ask me ever") [J]. The author may reverse this.** Narrative: *explain a mechanism*, reported as a pre-registered null result.
 
 Working line (a direction, not paper text; the author writes the sentence): in reinforced concrete shells of 10 and 20 m sized to code checks, carbon does not respond to seismic level up to 0.6 g, so a seismic-aware form has nothing to save and no meaningful carbon difference from the gravity form.
 

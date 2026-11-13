@@ -6,7 +6,7 @@
 - `tables/`: built by `python scripts/day18_manuscript_tables.py` from `paper/tables/*.md` (presentation only; never edit by hand).
 - `highlights.txt`: separate file for submission (each bullet at most 85 characters).
 
-Review marks in the PDF: `[check]` = a source still to open, `[J]` = Claude's judgement to accept or cut, `[?]` = a missing value. Set `\reviewmarksfalse` near the top of `shellform_cas.tex` to hide them for submission.
+Review marks in the PDF: `[check]` = a source still to open, `[J]` = the assistant's judgement to accept or cut, `[?]` = a missing value. Set `\reviewmarksfalse` near the top of `shellform_cas.tex` to hide them for submission.
 
 Build (TeX Live with `elsarticle`):
 

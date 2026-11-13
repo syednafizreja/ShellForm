@@ -27,7 +27,7 @@ ShellBench tag: v0.0.1. Script: `scripts/day03_one_shell.py`. Results: `results/
 - Corner support is the hard case. The 168 designs will be decided by corner-supported shells: λ = 11.8 at 80 mm, against the λ ≥ 5 limit. [J]
 - Reaction check: CalculiX's support reaction leaves out self-weight lumped straight onto a fixed node. With 80 fixed edge nodes the sum is 7 % short; with 4 fixed corners it matches the weight to 0.3 %. So equilibrium is checked on corner-supported shells (`tests/test_fe.py`).
 
-## Decision made today (Claude, under delegation)
+## Decision made today (the assistant, under delegation)
 
 - **D3-1** [J]: with equal force densities the free edges of a corner-supported net pulled in by 2.4 m on a 10 m span, leaving 38 % of the plan. Corner forms now use a boundary force density set so the mid-edge inset is 0.10 x span (factor 18.5). Recorded as a pre-registration amendment.
 

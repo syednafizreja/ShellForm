@@ -1,6 +1,6 @@
 # Sources behind the buckling threshold λ_LBA ≥ 5 (risk P1)
 
-Written by Claude on 11 Nov 2026, under the author's standing delegation. Closes the "unopened" part of drafting-kit risk P1. **Author to open both copies and confirm the page numbers before the paper cites them.**
+Written by the assistant on 11 Nov 2026, under the author's standing delegation. Closes the "unopened" part of drafting-kit risk P1. **Author to open both copies and confirm the page numbers before the paper cites them.**
 
 ## 1. What was opened
 

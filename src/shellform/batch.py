@@ -7,7 +7,7 @@ steel, support zones and carbon at the sized thickness
 Day 4 to Day 6 results; only the order is new (one design at a time, both
 steps together).
 
-Every row names the ShellBench tag it used (CLAUDE.md, code standards), and
+Every row names the ShellBench tag it used (CONTRIBUTING.md, code standards), and
 the meta file names the tag, the CalculiX version and the command.
 
 Usage examples (from the repo root, in env ``shellform``):

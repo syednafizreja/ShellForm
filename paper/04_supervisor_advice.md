@@ -1,6 +1,6 @@
 # Supervisor-style guidance (adopted 6 Nov 2026)
 
-Claude's judgement [J], written in a demanding professor's voice and adopted by Syed on 6 Nov 2026 as the working guidance. Sources: `paper/00_core.md`, `paper/01_professor_test.md`, Day 9 sensitivity runs. No journal or conference facts were checked here; each one below is marked "check".
+The assistant's judgement [J], written in a demanding professor's voice and adopted by Syed on 6 Nov 2026 as the working guidance. Sources: `paper/00_core.md`, `paper/01_professor_test.md`, Day 9 sensitivity runs. No journal or conference facts were checked here; each one below is marked "check".
 
 ## 1. Direction
 

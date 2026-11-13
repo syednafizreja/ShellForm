@@ -1,6 +1,6 @@
 # Documented literature search for the Introduction (13 Nov 2026)
 
-Run by Claude under the author's standing delegation; closes `01_professor_test.md` section 2 as a first pass. **Leads, not conclusions:** every paper below was read at abstract level only, unless stated. Before a paper is cited for more than its existence, Syed opens the full text and adds the page.
+Run by the assistant under the author's standing delegation; closes `01_professor_test.md` section 2 as a first pass. **Leads, not conclusions:** every paper below was read at abstract level only, unless stated. Before a paper is cited for more than its existence, Syed opens the full text and adds the page.
 
 ## Protocol
 

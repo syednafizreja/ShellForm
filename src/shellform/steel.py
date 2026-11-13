@@ -17,7 +17,7 @@ docs/preregistration.md.
   and the same for direction 2. This is the orthogonal reinforcement rule for
   in-plane stress (EN 1992-1-1:2004 informative Annex F, F.1, expressions
   (F.2) and (F.3), valid for sigma_Edx <= |tau_Edxy| with compression
-  positive; checked by Claude on 8 Nov 2026 in BS EN 1992-1-1:2004, Annex F,
+  positive; checked by the assistant on 8 Nov 2026 in BS EN 1992-1-1:2004, Annex F,
   printed p. 211, (F.2)-(F.7); author to confirm), applied layer by layer with the linear stress profile
   between the two faces. The tension force per unit width T is the integral
   of the positive part of that demand over the thickness; A_s = T / f_y.

@@ -1,6 +1,6 @@
 # Table 2. Material values, loads and factors
 
-Methods 2.4 and 2.6. Every value is read from ShellBench at the pinned tag (`src/shellform/inputs.py`, `src/shellform/carbon.py`); none is typed into ShellForm (CLAUDE.md rule 2).
+Methods 2.4 and 2.6. Every value is read from ShellBench at the pinned tag (`src/shellform/inputs.py`, `src/shellform/carbon.py`); none is typed into ShellForm (CONTRIBUTING.md rule 2).
 
 | Quantity | Value | ShellBench source |
 |---|---|---|

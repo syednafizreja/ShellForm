@@ -364,7 +364,7 @@ def with_formwork(carbon_m2, formwork_area_m2_per_m2, phi):
         formwork_area_m2_per_m2: Formwork (soffit) area per m2 of plan [-];
             ShellForm takes it as the shell's surface area over its plan area.
         phi: Formwork carbon per m2 of formwork per use, F / N [kgCO2e/m2],
-            for a factor F and N reuses. ShellForm supplies no F (CLAUDE.md
+            for a factor F and N reuses. ShellForm supplies no F (CONTRIBUTING.md
             rule 2), so phi is swept.
     """
     return carbon_m2 + phi * formwork_area_m2_per_m2

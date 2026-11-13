@@ -1,6 +1,6 @@
 # Michiels sources: links, access and what ShellForm needs
 
-Checked by Claude on 7 Nov 2026 (Semantic Scholar records, publisher and repository pages). Only legal routes were used: publisher pages, institutional repositories, Semantic Scholar's open-access field and ResearchGate entries. No shadow library was used. The author opens each source and confirms each DOI at doi.org.
+Checked by the assistant on 7 Nov 2026 (Semantic Scholar records, publisher and repository pages). Only legal routes were used: publisher pages, institutional repositories, Semantic Scholar's open-access field and ResearchGate entries. No shadow library was used. The author opens each source and confirms each DOI at doi.org.
 
 ## The three journal papers (all paywalled)
 
@@ -15,7 +15,7 @@ Checked by Claude on 7 Nov 2026 (Semantic Scholar records, publisher and reposit
 - Michiels T., Adriaenssens S., Jorquera-Lucerga J.J. Parametric study of masonry shells form-found for seismic loading. *J. IASS* 58(4) (2017) 267-275. https://doi.org/10.20898/j.iass.2017.194.892. Submitted version, CC BY-NC-ND: http://hdl.handle.net/10317/25326. Thesis Ch. 5. The licence allows a non-commercial copy with credit, but the repo links to it rather than holding it [J].
 - Michiels T. Form finding of arches and shell structures subjected to seismic loading. PhD thesis, Princeton University (2018). https://dataspace.princeton.edu/handle/88435/dsp017h149s560. The author holds the PDF (7 Nov). It is © Michiels, all rights reserved, so it is not committed. The download link asks for a browser check (HTTP 401 from the cloud, 7 Nov).
 
-## Decision (7 Nov 2026, Claude, under the author's standing delegation) [J]
+## Decision (7 Nov 2026, the assistant, under the author's standing delegation) [J]
 
 1. The thesis chapters stay the working source. The paper cites the journal versions, because those are the peer-reviewed record. Before submission the author reads each journal version and notes any change from the thesis chapter in `paper/references.md`.
 2. S4 stays the pre-registered closed-form fallback (`notes/day07_s4.md`). The published C&S arch runs as an extra check only if its inputs are read from the journal version, or from thesis Ch. 3 marked as such, before the 10 Nov freeze.

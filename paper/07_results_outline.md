@@ -1,6 +1,6 @@
 # Results: outline and figure list (Day 11, 8 Nov 2026)
 
-Outline only, not paper text. Syed writes the sentences (academic-manuscript-writing ground rule 1; syed-academic-voice-dna section 0). Each bullet is one paragraph's job, in ISCT order (Identify, Summarise, Compare, Transition), with the figure it rests on and the file each number comes from. All numbers were checked against the **freeze run** (9 Nov 2026, tag `freeze-2026-11-09`, ShellBench v0.3.0): the rerun gave the same values as the 7 Nov files to the last digit. Each has a row in `numbers.md`. [J] marks Claude's judgement.
+Outline only, not paper text. Syed writes the sentences (academic-manuscript-writing ground rule 1; syed-academic-voice-dna section 0). Each bullet is one paragraph's job, in ISCT order (Identify, Summarise, Compare, Transition), with the figure it rests on and the file each number comes from. All numbers were checked against the **freeze run** (9 Nov 2026, tag `freeze-2026-11-09`, ShellBench v0.3.0): the rerun gave the same values as the 7 Nov files to the last digit. Each has a row in `numbers.md`. [J] marks the assistant's judgement.
 
 Order follows the narrative in `00_core.md` and `04_supervisor_advice.md`: the mechanism leads, the pre-registered null is the evidence, robustness and validation follow. The sensitivity paragraphs are in `03_sensitivity_outline.md` and slot in as section 3.4.
 
