@@ -64,6 +64,8 @@ All figures are drawn from `results/` by script, at full page width, as 600 dpi 
 
 Open the [live explorer](https://syednafizreja.github.io/ShellForm/explorer/), or [`explorer/index.html`](explorer/index.html) straight from disk; it needs no server and no internet (three.js and the Inter typeface are bundled in `explorer/vendor/`). Pick a span, support case, rise and Sa level to see both strategies side by side: the form in 3D coloured by how far the seismic-aware form moves from the gravity-only one, carbon and thickness for each, carbon against Sa, and a clickable matrix of all 84 comparisons. Light and dark themes, keyboard control, a shareable link for every view, and a CSV of all 168 designs.
 
+To try your own plan and supports, [ShellLab](https://syednafizreja.github.io/ShellLab/) runs ShellForm's force-density solver in the browser for any rectangular plan and support layout; its tests check it against ShellForm's own output.
+
 ## Verification
 
 Five checks beside the frozen record; no frozen setting or result changed ([notes/day17_verification.md](notes/day17_verification.md), Fig. S1).
