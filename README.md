@@ -1,29 +1,15 @@
-<h1 align="center">ShellForm</h1>
+# ShellForm
 
-<p align="center"><b>The carbon cost of seismic resilience</b><br>
-Gravity-only versus seismic-aware form-finding of concrete shells: 168 sized designs, their A1-A3 carbon, and an interactive explorer.</p>
+Gravity-only versus seismic-aware form-finding of reinforced concrete shells: 168 sized designs, their A1-A3 embodied carbon, and an offline explorer.
 
-<p align="center">
-<a href="https://github.com/syednafizreja/ShellForm/actions/workflows/tests.yml"><img alt="Tests" src="https://github.com/syednafizreja/ShellForm/actions/workflows/tests.yml/badge.svg"></a>
-<a href="https://doi.org/10.5281/zenodo.24084110"><img alt="DOI 10.5281/zenodo.24084110" src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24084110-2b2b29"></a>
-<a href="docs/preregistration.md"><img alt="Pre-registered" src="https://img.shields.io/badge/study-pre--registered-2b2b29"></a>
-<img alt="Python 3.12" src="https://img.shields.io/badge/python-3.12-2b2b29">
-<a href="LICENSE"><img alt="Licence MIT" src="https://img.shields.io/badge/licence-MIT-2b2b29"></a>
-</p>
+[![Tests](https://github.com/syednafizreja/ShellForm/actions/workflows/tests.yml/badge.svg)](https://github.com/syednafizreja/ShellForm/actions/workflows/tests.yml)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24084110-555555)](https://doi.org/10.5281/zenodo.24084110)
 
-<p align="center">
-<a href="https://syednafizreja.github.io/ShellForm/explorer/"><b>Live explorer</b></a> ·
-<a href="#key-finding">Key finding</a> ·
-<a href="#quick-start">Quick start</a> ·
-<a href="#verification">Verification</a> ·
-<a href="docs/preregistration.md">Pre-registration</a> ·
-<a href="paper/numbers.md">Numbers and sources</a> ·
-<a href="#citation">Cite</a>
-</p>
+[Explorer](https://syednafizreja.github.io/ShellForm/explorer/) | [Pre-registration](docs/preregistration.md) | [Numbers and sources](paper/numbers.md) | [Reproduce](docs/REPRODUCE.md)
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/img/explorer_dark.webp">
-  <img alt="The ShellForm design explorer: controls, a 3D view of the seismic-aware form coloured by its height change, the comparison panel, carbon against Sa and the matrix of all 84 comparisons." src="docs/img/explorer_light.webp">
+  <img alt="The ShellForm explorer: controls, a 3D view of the seismic-aware form coloured by its height change, the comparison panel, carbon against Sa and the matrix of all 84 comparisons." src="docs/img/explorer_light.webp">
 </picture>
 
 ## The question
@@ -32,19 +18,13 @@ How much embodied carbon does seismic resilience cost in a form-found concrete s
 
 ShellForm extends the seismic form-finding of Michiels & Adriaenssens (2017, 2018) by sizing each form to pass code checks and counting its A1-A3 embodied carbon. It is built on the validated, tagged modules of [ShellBench](https://github.com/syednafizreja/ShellBench) and never copies a ShellBench value ([data contract](docs/data_contract.md)).
 
-## Key finding
+## Result
 
-> In **79 of 84** cells the two strategies differ in carbon by less than 5 % ("no meaningful difference", pre-registration section 7).
+In 79 of the 84 paired cells the two strategies differ in carbon by less than 5 %, which the pre-registered rule (section 7) counts as no meaningful difference.
 
 The other 5 cells (10 m, corner supports, rise 0.15, Sa 0.1-0.5 g) are one 5 mm thickness step next to the buckling limit, and they disappear under every robustness check. Thickness is set by linear buckling (corner supports) or the 50 mm minimum (edge supports), and steel by the minimum ratio; none of these responds to Sa up to 0.6 g. Every number and its source: [paper/numbers.md](paper/numbers.md).
 
-| | |
-|---|---|
-| **Question** | Does seismic-aware form-finding save carbon against a gravity-only form sized for the same seismic level? |
-| **Design space** | 2 spans × 2 support cases × 3 rises × 2 strategies × 7 Sa levels = 168 sized designs |
-| **Decision rule** | Pre-registered: a strategy is cheaper only if it saves 5 % or more ([section 7](docs/preregistration.md)) |
-| **Record** | Code tag `freeze-2026-11-09`, ShellBench `v0.3.0`; every number traces to `results/` |
-| **Archive** | Zenodo, all versions [10.5281/zenodo.24084110](https://doi.org/10.5281/zenodo.24084110) |
+The record is code tag `freeze-2026-11-09` with ShellBench `v0.3.0`. The archive is on Zenodo, all versions: [10.5281/zenodo.24084110](https://doi.org/10.5281/zenodo.24084110).
 
 ## Method
 
@@ -58,16 +38,13 @@ $$
 
 $\mathbf{C}$ is the branch-node matrix (free nodes $f$, supports $x$), $\mathbf{Q}$ the diagonal of force densities, $\mathbf{x}$ the coordinates (solved for $x$, $y$ and $z$ alike) and $\mathbf{p}$ the nodal loads: the weight $W$ of each node, plus a lateral load $S_a W$ (Michiels & Adriaenssens). The seismic-aware form is the midrange of the four thrust surfaces for $S_a$ in $\pm x$ and $\pm y$; the gravity-only form has $S_a = 0$.
 
-```mermaid
-flowchart LR
-  A[Plan, supports, rise] --> B[Force density<br>form-finding]
-  B -->|Sa = 0| C[Gravity-only form]
-  B -->|Sa in ±x, ±y| D[Seismic-aware form<br>midrange of 4 thrust surfaces]
-  C --> E[CalculiX sizing<br>λ1 ≥ 5, compression, L/300]
-  D --> E
-  E --> F[Steel and A1-A3 carbon]
-  F --> G[5 % decision rule<br>84 paired cells]
-```
+Steps:
+
+1. Plan, supports and rise define the network.
+2. Force density form-finding gives the gravity-only form (Sa = 0) and the seismic-aware form (midrange of the four thrust surfaces).
+3. CalculiX sizes each form: λ1 ≥ 5, compression and L/300.
+4. Steel and A1-A3 carbon are counted for each sized design.
+5. The 5 % rule is applied to the 84 paired cells.
 
 **Design space.** 2 spans (10, 20 m) × 2 supports (4 corners, continuous edges) × 3 rise-to-span ratios (0.10, 0.15, 0.20) × 2 strategies (gravity-only, seismic-aware) × 7 plateau spectral accelerations (0-0.6 g) = 168 sized designs.
 
@@ -75,7 +52,7 @@ flowchart LR
 
 All figures are drawn from `results/` by script, at full page width, as 600 dpi PNG and vector PDF ([figures/README.md](figures/README.md); visual system in [docs/visual_style.md](docs/visual_style.md)).
 
-<img src="figures/gallery_10m.png" alt="Fig. 1, 10 m gallery: gravity-only form, height change of the seismic-aware form at Sa 0.3 g and 0.6 g, and the mid-plan section">
+<img src="figures/gallery_10m.png" width="100%" alt="Fig. 1, 10 m gallery: gravity-only form, height change of the seismic-aware form at Sa 0.3 g and 0.6 g, and the mid-plan section">
 
 | Fig. 2: what sets the thickness | Fig. 4: what moves carbon |
 |---|---|
