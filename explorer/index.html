@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <meta name="description" content="ShellForm design explorer: 168 sized concrete shell designs, gravity-only against seismic-aware form-finding, and their A1-A3 carbon.">
-<title>ShellForm · Design explorer</title>
+<title>ShellForm design explorer</title>
 <!--
   explorer/index.html — ShellForm design explorer.
   Day 13 (9 Nov 2026) first version; rebuilt to the ShellForm visual system
@@ -55,9 +55,9 @@
   --concrete: #d8d4ca;
   --good: #0ca30c;
   --focus: #2a78d6;
-  --shadow: 0 1px 2px rgba(20, 20, 18, 0.04), 0 8px 24px -12px rgba(20, 20, 18, 0.10);
-  --radius: 14px;
-  --radius-sm: 9px;
+  --shadow: none;
+  --radius: 4px;
+  --radius-sm: 3px;
   --viewport-top: #fbfaf7;
   --viewport-bot: #eeede7;
 }
@@ -89,7 +89,7 @@
   --div-hi: #d8603f;
   --concrete: #a9a59b;
   --focus: #6da7ec;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+  --shadow: none;
   --viewport-top: #222220;
   --viewport-bot: #141413;
 }
@@ -112,8 +112,7 @@ sub { font-size: 0.72em; }
 /* ---- Top bar ------------------------------------------------------------ */
 .bar {
   position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 16px;
-  padding: 12px 28px; background: color-mix(in srgb, var(--page) 82%, transparent);
-  backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  padding: 12px 28px; background: var(--page);
   border-bottom: 1px solid var(--hair);
 }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
@@ -123,12 +122,11 @@ sub { font-size: 0.72em; }
 .bar .grow { flex: 1; }
 .prov { display: flex; gap: 6px; flex-wrap: wrap; }
 .chip {
-  display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 99px;
+  display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 8px; border-radius: 3px;
   background: var(--surface); border: 1px solid var(--hair); color: var(--ink-2); font-size: 12px; white-space: nowrap;
 }
-.chip i { width: 6px; height: 6px; border-radius: 50%; background: var(--good); display: inline-block; }
 .iconbtn {
-  display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; cursor: pointer;
+  display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 4px; cursor: pointer;
   background: var(--surface); border: 1px solid var(--hair); color: var(--ink-2); transition: background .15s, color .15s;
 }
 .iconbtn:hover { color: var(--ink); background: var(--surface-2); }
@@ -137,8 +135,8 @@ sub { font-size: 0.72em; }
 /* ---- Page --------------------------------------------------------------- */
 .wrap { max-width: 1480px; margin: 0 auto; padding: 28px 28px 40px; }
 .intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 40px; align-items: end; margin-bottom: 22px; }
-.eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
-h1 { font-size: 30px; line-height: 1.15; letter-spacing: -0.022em; font-weight: 600; margin: 0; max-width: 22ch; }
+.eyebrow { font-size: 13px; color: var(--muted); margin: 0 0 6px; }
+h1 { font-size: 24px; line-height: 1.2; letter-spacing: -0.01em; font-weight: 600; margin: 0; max-width: 40ch; }
 .lede { color: var(--ink-2); max-width: 64ch; margin: 10px 0 0; font-size: 15px; }
 .stats { display: grid; grid-template-columns: repeat(4, minmax(120px, 1fr)); gap: 1px; background: var(--hair); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--hair); box-shadow: var(--shadow); }
 .stat { background: var(--surface); padding: 14px 18px 13px; }
@@ -159,13 +157,13 @@ h1 { font-size: 30px; line-height: 1.15; letter-spacing: -0.022em; font-weight: 
 .field { margin-top: 16px; }
 .field > .lab { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; color: var(--ink-2); font-weight: 500; margin-bottom: 7px; }
 .field > .lab output { color: var(--ink); font-weight: 600; }
-.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; background: var(--sunken); border-radius: 10px; padding: 3px; gap: 2px; border: 1px solid var(--hair); }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; background: var(--sunken); border-radius: 4px; padding: 2px; gap: 2px; border: 1px solid var(--hair); }
 .seg button {
-  height: 30px; border: 0; background: transparent; border-radius: 7px; cursor: pointer; font-size: 13px; color: var(--ink-2);
+  height: 30px; border: 0; background: transparent; border-radius: 3px; cursor: pointer; font-size: 13px; color: var(--ink-2);
   transition: background .15s, color .15s, box-shadow .15s; white-space: nowrap; padding: 0 6px;
 }
 .seg button:hover { color: var(--ink); }
-.seg button[aria-checked="true"] { background: var(--surface); color: var(--ink); font-weight: 500; box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 0 0 1px var(--hair); }
+.seg button[aria-checked="true"] { background: var(--surface); color: var(--ink); font-weight: 500; box-shadow: 0 0 0 1px var(--hair-2); }
 .seg .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
 .range { position: relative; padding-top: 2px; }
 input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; background: transparent; margin: 0; cursor: pointer; }
@@ -180,29 +178,29 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 
 .hint kbd { font: 500 11px/1 "Inter var-sf", Inter, system-ui, sans-serif; padding: 2px 5px; border-radius: 4px; border: 1px solid var(--hair-2); background: var(--surface-2); }
 
 /* ---- 3D viewport --------------------------------------------------------- */
-.viewport { position: relative; height: 620px; border-radius: var(--radius); overflow: hidden; background: radial-gradient(120% 90% at 50% 0%, var(--viewport-top), var(--viewport-bot)); }
+.viewport { position: relative; height: 620px; border-radius: var(--radius); overflow: hidden; background: var(--viewport-bot); }
 .viewport canvas { display: block; width: 100%; height: 100%; outline: none; }
 .hud { position: absolute; left: 16px; right: 16px; top: 14px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; pointer-events: none; }
 .hud > * { pointer-events: auto; }
 .hud-id { font-size: 12px; color: var(--ink-2); }
 .hud-id b { display: block; font-size: 15px; color: var(--ink); font-weight: 600; letter-spacing: -0.01em; margin-bottom: 2px; }
 .tools { display: flex; gap: 6px; }
-.tools .seg { background: color-mix(in srgb, var(--surface) 80%, transparent); backdrop-filter: blur(8px); }
+.tools .seg { background: var(--surface); }
 .tools .seg button { height: 28px; font-size: 12px; padding: 0 10px; }
 .foot { position: absolute; left: 16px; right: 16px; bottom: 14px; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; pointer-events: none; }
 .foot > * { pointer-events: auto; }
-.legend3d { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--ink-2); background: color-mix(in srgb, var(--surface) 82%, transparent); backdrop-filter: blur(8px); border: 1px solid var(--hair); border-radius: 10px; padding: 9px 12px; }
+.legend3d { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--ink-2); background: var(--surface); border: 1px solid var(--hair); border-radius: 3px; padding: 9px 12px; }
 .legend3d .row { display: flex; align-items: center; gap: 8px; }
 .sw { width: 14px; height: 10px; border-radius: 3px; display: inline-block; flex: none; }
 .sw.wire { background: repeating-linear-gradient(90deg, var(--ink-2) 0 2px, transparent 2px 4px); opacity: .6; }
 .cbar { width: 150px; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--div-lo), var(--div-mid), var(--div-hi)); }
 .cbar-t { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 3px; }
-.exag { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--ink-2); background: color-mix(in srgb, var(--surface) 82%, transparent); backdrop-filter: blur(8px); border: 1px solid var(--hair); border-radius: 10px; padding: 7px 12px; }
+.exag { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--ink-2); background: var(--surface); border: 1px solid var(--hair); border-radius: 3px; padding: 7px 12px; }
 .exag input { width: 110px; }
 .nogl { position: absolute; inset: 0; display: none; place-items: center; text-align: center; color: var(--ink-2); padding: 40px; font-size: 13px; }
 
 /* ---- Metrics panel ------------------------------------------------------- */
-.verdict { margin: 14px 18px 0; border-radius: 12px; padding: 14px 16px; background: var(--sunken); border: 1px solid var(--hair); }
+.verdict { margin: 14px 18px 0; border-radius: 3px; padding: 14px 16px; background: var(--sunken); border: 1px solid var(--hair); }
 .verdict .t { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14px; }
 .verdict .t svg { flex: none; }
 .verdict .d { font-size: 13px; color: var(--ink-2); margin-top: 4px; }
@@ -235,7 +233,7 @@ table.cmp td.d { color: var(--muted); font-size: 12px; }
 .leg .ln { width: 16px; height: 2px; border-radius: 2px; display: inline-block; }
 .leg .bx { width: 12px; height: 10px; border-radius: 2px; background: var(--band); border: 1px solid var(--band-edge); display: inline-block; }
 .tip {
-  position: absolute; pointer-events: none; z-index: 5; min-width: 168px; padding: 9px 11px; border-radius: 10px; font-size: 12px;
+  position: absolute; pointer-events: none; z-index: 5; min-width: 168px; padding: 9px 11px; border-radius: 4px; font-size: 12px;
   background: var(--surface); border: 1px solid var(--hair-2); box-shadow: 0 8px 24px -8px rgba(0,0,0,.25); opacity: 0; transform: translateY(4px);
   transition: opacity .12s, transform .12s;
 }
@@ -315,8 +313,8 @@ footer code { font-family: ui-monospace, "JetBrains Mono", Menlo, Consolas, mono
 <div class="wrap">
   <section class="intro">
     <div>
-      <p class="eyebrow">Concrete shells · gravity-only vs seismic-aware form-finding</p>
-      <h1>What does seismic resilience cost in carbon?</h1>
+      <p class="eyebrow">Concrete shells: gravity-only and seismic-aware form-finding</p>
+      <h1>Embodied carbon of seismic-aware concrete shells</h1>
       <p class="lede">Each of the 168 designs was form-found, sized to the pre-registered checks and costed in A1–A3 carbon.
         Choose a span, support case, rise and seismic level to see the two strategies side by side.</p>
     </div>
@@ -460,7 +458,7 @@ function readHash() {
 const writeHash = () => history.replaceState(null, "", "#" + new URLSearchParams({ span: S.span, supports: S.supports, rise: S.rise, sa: S.sa, strategy: S.strategy, colour: S.colour, exag: S.exag }));
 
 /* ---------- Header, stats, credits -------------------------------------- */
-$("prov").innerHTML = `<span class="chip"><i></i>Freeze ${DATA.freeze_tag.replace("freeze-", "")}</span>
+$("prov").innerHTML = `<span class="chip">Freeze ${DATA.freeze_tag.replace("freeze-", "")}</span>
   <span class="chip">ShellBench ${DATA.shellbench_tag}</span><span class="chip num">code ${DATA.code_commit.slice(0, 7)}</span>`;
 (function stats() {
   const nmd = CELLS.filter(c => Math.abs(c.x) < RULE).length;
