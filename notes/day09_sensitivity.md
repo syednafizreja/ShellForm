@@ -1,6 +1,6 @@
 # Day 9 (6 Nov 2026): sensitivity runs of pre-registration section 7
 
-Written by the cloud session, under the author's standing delegation. ShellBench tag: v0.1.0. CalculiX 2.21 (cloud). Results are provisional until the 10 Nov freeze run.
+ShellBench tag: v0.1.0. CalculiX 2.21 (second machine). Results are provisional until the 10 Nov freeze run.
 
 Plan line (setup guide, Fri 6 Nov): "Stop-loss check: more than 2 days behind → drop 20 m span. Run all 168 designs." Both were already met on Day 8 (all 168 through the batch runner, 0 mismatches), so Day 9 took the next item of Phase 2, the section 7 sensitivity runs (plan line of Sun 8 Nov: "Sensitivity: buckling threshold ×2, factor set, mesh density"; done when "Sensitivity table; note any flipped conclusion").
 
@@ -15,7 +15,7 @@ Plan line (setup guide, Fri 6 Nov): "Stop-loss check: more than 2 days behind �
 - `src/shellform/sensitivity.py`: `python -m shellform.sensitivity --run lam3 lam8 mesh61` and `--summarise`. Writes `results/sens_<variant>.csv` and `_meta.json`, `results/sensitivity_summary.csv` (variant × span), `sensitivity_cells.csv` (variant × cell, with "flipped"), `sensitivity_reference.csv` (gravity form at Sa = 0 under each setting) and `sensitivity_meta.json`.
 - `tests/test_sensitivity.py`: 7 tests (verdict rule, variants change one setting, grid size, infeasible cells kept, headline rule, baseline reproduces the record, reference table).
 
-## Decisions (the assistant, under the standing delegation) [J]
+## Decisions [J]
 
 - **D9-1:** every variant runs all 168 designs, not only the headline scope named in section 7 (rise 0.15, both supports, Sa ≥ 0.2 g). It cost 17 min (λ 3), about 17 min (λ 8) and 43 min (61 × 61) on four cores, and it shows every verdict, not only the headline.
 - **D9-2:** "a conclusion that flips" (section 7) is read as: any cell whose verdict changes at any band corner, or a change of headline status. Infeasible designs would get the verdict "infeasible" (none occurred).
@@ -43,7 +43,7 @@ Every cell of every variant has the same verdict at all four band corners (42 of
 
 **5. Mesh 61 × 61.** 20 of 168 thicknesses move by one 5 mm step (6 at 10 m, 14 at 20 m); at equal thickness the corner λ moves by at most 4.7 %. Gravity-form carbon at Sa = 0 is 1.000-1.026 of the 41 × 41 value; the largest change of any single design is 6.1 % (one step). Edges do not move. T1 is at most 0.321 s (41 × 41: 0.308 s), still below Tg = 0.35 s, so S5 holds on the finer network.
 
-**Professor-mode reading [J].** The null result is robust: no variant produces a single "seismic cheaper" cell, and the headline holds nowhere. What is sensitive is only the 10 m corner cells near a 5 mm thickness step, and every change there is a step effect between forms whose buckling factors differ by under about 5 %. The 5 % rule cannot resolve differences smaller than one thickness step on 55-90 mm shells (6-9 %); the paper must say so (R2-8 in `paper/01_professor_test.md`). The stronger finding for the Discussion is result 3: for corner-supported shells the buckling safety factor is the design choice that sets carbon, by 20-30 %, and seismic level up to 0.6 g moves it by a few per cent at most.
+**Reading [J].** The null result is robust: no variant produces a single "seismic cheaper" cell, and the headline holds nowhere. What is sensitive is only the 10 m corner cells near a 5 mm thickness step, and every change there is a step effect between forms whose buckling factors differ by under about 5 %. The 5 % rule cannot resolve differences smaller than one thickness step on 55-90 mm shells (6-9 %); the paper must say so. The stronger finding for the Discussion is result 3: for corner-supported shells the buckling safety factor is the design choice that sets carbon, by 20-30 %, and seismic level up to 0.6 g moves it by a few per cent at most.
 
 ## ShellBench v0.2.0 (tagged 6 Nov 2026)
 

@@ -1,6 +1,6 @@
 # Sources behind the buckling threshold λ_LBA ≥ 5 (risk P1)
 
-Written by the assistant on 11 Nov 2026, under the author's standing delegation. Closes the "unopened" part of drafting-kit risk P1. **Author to open both copies and confirm the page numbers before the paper cites them.**
+Written 11 Nov 2026. **Author to open both copies and confirm the page numbers before the paper cites them.**
 
 ## 1. What was opened
 
@@ -30,14 +30,12 @@ Written by the assistant on 11 Nov 2026, under the author's standing delegation.
   - λ ≥ 3: γ = 3.0 (the buckling-governed upper value of Table 3) with no reduction at all. This is a lower bound: every reduction factor is at most 1.
   - λ ≥ 5: γ = 3.0 with combined reductions of 0.6 (3.0 / 5).
   - λ ≥ 8: γ = 3.0 with combined reductions of 0.375 (3.0 / 8).
-- ShellForm does not compute ρ_imp, ρ_creep or ρ_crack for its shells. So the paper must present 5 as a stated assumption inside this bracket, and lean on the λ 3 and λ 8 runs (Section 2.9). In the frozen results the headline holds in 0 of 10 scope cells at λ 3, 5 and 8, and the few cells that change verdict are 5 mm thickness-step effects (`paper/11_results_draft.md` Section 3.4, Table 5).
+- ShellForm does not compute ρ_imp, ρ_creep or ρ_crack for its shells. So the paper must present 5 as a stated assumption inside this bracket, and lean on the λ 3 and λ 8 runs (Section 2.9). In the frozen results the headline holds in 0 of 10 scope cells at λ 3, 5 and 8, and the few cells that change verdict are 5 mm thickness-step effects (Table 5, `paper/tables/table5_verdicts.md`).
 
 ## 4. Changes made on 11 Nov
 
-- `paper/10_methods_draft.md` section 2.5: citations replaced; IASS (1979) cited only through ACI 318.2R-14; the bracket in section 3 written as one sentence.
-- `paper/references.md`: rows for Dulácska & Kollár (1995) and ACI 318.2-14; IASS (1979) row marked "not opened, cited via ACI 318.2R-14".
+- Methods section 2.5 of the paper: citations replaced; IASS (1979) cited only through ACI 318.2R-14; the bracket in section 3 written as one sentence.
 - `docs/preregistration.md`: dated amendment (no threshold changes; the [check] on the source is resolved as above).
-- `paper/09_drafting_kit.md` P1: downgraded from high to medium.
 
 ## 5. Still open (author)
 

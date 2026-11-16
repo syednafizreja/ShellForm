@@ -1,0 +1,8 @@
+# Exact versions used for the ShellForm record and tested in CI (Python 3.12).
+# ShellBench is installed separately at the tag in src/shellform/pin.py.
+# CalculiX (ccx) is a separate program and must be on the PATH.
+numpy==2.5.4
+scipy==1.18.1
+matplotlib==3.11.2
+openseespy==3.8.0.0
+pytest==9.1.1

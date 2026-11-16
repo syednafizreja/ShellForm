@@ -17,7 +17,7 @@ Gravity-only versus seismic-aware form-finding of concrete shells: 168 sized des
 <a href="#quick-start">Quick start</a> ·
 <a href="#verification">Verification</a> ·
 <a href="docs/preregistration.md">Pre-registration</a> ·
-<a href="paper/README.md">Paper</a> ·
+<a href="paper/numbers.md">Numbers and sources</a> ·
 <a href="#citation">Cite</a>
 </p>
 
@@ -103,17 +103,17 @@ The test suite (`tests/`) covers form-finding, sizing, carbon, the paper tables 
 
 ## Quick start
 
-ShellForm needs Python 3.12, CalculiX (`ccx`) on the path, and ShellBench installed at the tag pinned in [`src/shellform/pin.py`](src/shellform/pin.py).
+You need Python 3.12 and, for the finite element tests and runs, CalculiX (`ccx`) on the path (Ubuntu: `sudo apt install calculix-ccx`). Without `ccx` the tests that call it are skipped. ShellBench is installed from a clone at the tag pinned in [`src/shellform/pin.py`](src/shellform/pin.py).
 
 ```bash
-git clone https://github.com/syednafizreja/ShellBench.git ShellBench-pin
-git -C ShellBench-pin checkout v0.3.0          # the tag in src/shellform/pin.py
+git clone --branch v0.3.0 https://github.com/syednafizreja/ShellBench.git ShellBench-pin
 git clone https://github.com/syednafizreja/ShellForm.git
 cd ShellForm
+python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
 pip install -e ../ShellBench-pin --no-deps
-pip install meshio
 pip install -e . --no-deps
-python -m pytest
+python -m pytest                                    # 125 tests, about 1 min
 ```
 
 Reproduce the study:
@@ -127,13 +127,14 @@ python scripts/day12_freeze.py                # the whole freeze run (about 2 h 
 python scripts/day11_figures.py               # paper figures (Figs. 1-5)
 python scripts/day17_figures.py               # Fig. 6 and Fig. S1
 python scripts/day17_verification.py          # verification checks V1-V5 (about 6 min on 4 workers)
-python scripts/day14_paper_tables.py          # manuscript tables in paper/tables/
+python scripts/day14_paper_tables.py          # paper tables in paper/tables/
+python scripts/day18_manuscript_tables.py     # the same tables as LaTeX, paper/tables/latex/
 python scripts/day13_explorer_data.py         # explorer/explorer_data.js from results/batch_all.csv
 ```
 
 Every results row names the ShellBench tag it used.
 
-**Long-term reproduction.** Exact versions are in [`environment-lock.yml`](environment-lock.yml), checksums of every result and figure in [`SHA256SUMS`](SHA256SUMS), and [docs/REPRODUCE.md](docs/REPRODUCE.md) says how to verify the record without running anything and what to do when a dependency no longer installs.
+**Long-term reproduction.** Exact versions are in [`requirements.txt`](requirements.txt) and [`environment-lock.yml`](environment-lock.yml), checksums of every result and figure in [`SHA256SUMS`](SHA256SUMS), and [docs/REPRODUCE.md](docs/REPRODUCE.md) says how to verify the record without running anything and what to do when a dependency no longer installs.
 
 ## Repository layout
 
@@ -145,16 +146,17 @@ ShellForm/
 ├── results/           the frozen record: every CSV names its ShellBench tag
 ├── figures/           paper figures, PNG and PDF, with the data behind each
 ├── explorer/          offline interactive explorer (three.js, no server needed)
-├── paper/             manuscript (LaTeX), drafts, tables and the numbers-to-sources map
+├── paper/             paper tables (Markdown, CSV, LaTeX) and the numbers-to-sources map
 ├── notes/             dated working notes, one per step of the study
 ├── docs/              pre-registration, data contract, reproduction guide, changelog
-├── environment-lock.yml   exact software versions of the record
+├── requirements.txt   pinned Python packages (pip, any platform)
+├── environment-lock.yml   exact conda environment of the record (Windows)
 └── SHA256SUMS         checksums of every file in results/ and figures/
 ```
 
 ## Pre-registration and record
 
-The study design, the decision rule and the robustness checks were fixed in [docs/preregistration.md](docs/preregistration.md) on 30 Oct 2026, before any design-space run. Every later change is a dated amendment that says why. The full history is in [docs/CHANGELOG.md](docs/CHANGELOG.md) and [LOG.md](LOG.md). Rules for changes are in [CONTRIBUTING.md](CONTRIBUTING.md).
+The study design, the decision rule and the robustness checks were fixed in [docs/preregistration.md](docs/preregistration.md) on 30 Oct 2026, before any design-space run. Every later change is a dated amendment that says why. The history is in [docs/CHANGELOG.md](docs/CHANGELOG.md) and the dated notes in [notes/](notes/README.md). Rules for changes are in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Citation
 

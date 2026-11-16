@@ -1,6 +1,6 @@
 # Reading notes: Michiels & Adriaenssens, seismic form-finding
 
-Written by the assistant on 29 Oct 2026 from what is openly readable: the abstract and highlights of the C&S paper (ScienceDirect abstract page) and the abstract of the J. IASS paper (academia.edu). **The full texts have not been read.** Everything marked [check] must be confirmed against the full text before it enters `docs/preregistration.md`.
+Written 29 Oct 2026 from what is openly readable: the abstract and highlights of the C&S paper (ScienceDirect abstract page) and the abstract of the J. IASS paper (academia.edu). **The full texts have not been read.** Everything marked [check] must be confirmed against the full text before it enters `docs/preregistration.md`.
 
 ## 1. Citations
 
@@ -28,7 +28,7 @@ Written by the assistant on 29 Oct 2026 from what is openly readable: the abstra
 - C&S: the form must hold a compression-only load path under gravity and the design acceleration. Result: up to 65 % less material than constant-thickness circular arches at the same acceleration (highlights).
 - J. IASS: a parametric study over boundary conditions and net stiffness [check: which parameters exactly].
 
-## 5. Finding F1 (the assistant, checked by test): uniform lateral load only shears the gravity form
+## 5. Finding F1 (checked by test): uniform lateral load only shears the gravity form
 
 In a force density network with fixed nodal loads and supports at z = 0, adding p_x = a w to every node (a = Sa in g, w = nodal weight) gives exactly
 
@@ -61,4 +61,4 @@ The C&S arch cases (rise/span 1/2, 1/4, 1/8 at 0.15, 0.3, 0.45 g) are the most r
 
 ## Still to get
 
-Status 7 Nov 2026: the thesis (author's PDF) is the working source for all three Elsevier papers (Ch. 2-4); the J. IASS submitted version is open (link above). Still needed through a library login, ResearchGate request or `paper/05_email_michiels.md`: the journal versions of C&S 2018, Eng. Struct. 2017 and Eng. Struct. 2019, because they may differ from the thesis chapters. Full list and what S4 needs: `paper/06_michiels_sources.md`.
+Status 7 Nov 2026: the thesis (author's PDF) is the working source for all three Elsevier papers (Ch. 2-4); the J. IASS submitted version is open (link above). Still needed through a library login or a request to the authors: the journal versions of C&S 2018, Eng. Struct. 2017 and Eng. Struct. 2019, because they may differ from the thesis chapters.

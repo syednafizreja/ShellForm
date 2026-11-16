@@ -1,9 +1,21 @@
+# Python
 .venv/
+venv/
 __pycache__/
-*.pyc
+*.py[cod]
 .pytest_cache/
-.vscode/
 *.egg-info/
+build/
+dist/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# CalculiX scratch files (decks are written to temporary folders)
 *.frd
 *.dat
 *.sta
@@ -11,5 +23,18 @@ __pycache__/
 *.12d
 spooles.out
 results/tmp/
-notes/private/
 results/ccx/
+
+# LaTeX build files
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Private material that never belongs in the public repository
+notes/private/
+submission_package/

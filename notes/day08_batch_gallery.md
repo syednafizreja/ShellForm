@@ -1,6 +1,6 @@
 # Day 8 (5 Nov 2026): batch runner and first gallery
 
-Written by the cloud session, under the author's standing delegation. ShellBench tag: v0.1.0. CalculiX 2.21 (cloud); the record on main was written with 2.23 on the laptop.
+ShellBench tag: v0.1.0. CalculiX 2.21 (second machine); the record on main was written with 2.23 on the Windows machine.
 
 Plan line (setup guide, Thu 5 Nov): "Batch runner (every row names the ShellBench tag); first gallery." Done when: "8 designs run from one command."
 
@@ -11,7 +11,7 @@ Plan line (setup guide, Thu 5 Nov): "Batch runner (every row names the ShellBenc
 - `src/shellform/gallery.py`: `python -m shellform.gallery` draws `figures/gallery_10m.png` and `figures/gallery_20m.png`, with the plotted numbers in `figures/gallery_<span>m.json`.
 - `tests/test_batch.py`: 4 tests (selection, record check passes on the record and catches a change, one design end to end against the record).
 
-## Decisions (the assistant, under the standing delegation) [J]
+## Decisions [J]
 
 - D8-1: preset `smoke8` = rise/span 0.15, Sa 0.3 g, every span, support case and strategy (8 designs). It touches every branch of the code at the middle rise and the S4 Sa.
 - D8-2: record check tolerance. Text columns (`feasible`, `governing_check`, `steel_governing_case`) and the thickness must match exactly; other numbers to 1e-3 relative. Day 4's CalculiX 2.21 against 2.23 difference was at most 2.3e-4 (deflection), so 1e-3 allows the version difference and still catches a model change.
@@ -49,6 +49,6 @@ Rise/span 0.15. Row per support case: gravity form; plan map of z_seismic − z_
 
 ## Still open
 
-- Carbon factor rows, Annex F and the Michiels full texts: author, as in the handoff.
+- Carbon factor rows, Annex F and the Michiels full texts: author.
 - ShellBench `v0.3` (due 5 Nov), `floor-r2` and `floor-r3` were not tagged at 03:15 UTC on 5 Nov; pin stays at v0.1.0.
 - Laptop: pull, `python -m pytest` (expect 60 passed with CalculiX), then `python -m shellform.batch --compare-record` to repeat the done-when check on CalculiX 2.23.

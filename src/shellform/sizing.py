@@ -130,6 +130,7 @@ def size_design(xyz, n, fixed, span_m, inp, sa_g, workdir=None, lambda_min=LAMBD
     tried = {}
 
     def ok(i):
+        """True if grid thickness i passes every check (results cached in tried)."""
         t = round(float(grid[i]), 4)
         if t not in tried:
             tried[t] = check_thickness(xyz, n, fixed, span_m, t, inp, sa_g, workdir, lambda_min)

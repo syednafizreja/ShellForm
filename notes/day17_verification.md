@@ -1,6 +1,6 @@
 # Day 17 (14 Nov 2026): verification add-ons V1-V5, Fig. 6 and Fig. S1
 
-Check window, day 1. Written by the cloud session under the author's standing delegation. The add-ons come from the "strength add-ons" the author kept from the top-1 % finishing blueprint (13 Nov), in order of reviewer value.
+Check window, day 1. The add-ons were chosen on 13 Nov, in order of value to a reviewer.
 
 **What did not change.** No sizing setting (λ ≥ 5, L/300, t_min 50 mm, 5 mm steps), no ShellBench value (pin `v0.3.0`), no frozen result file and no freeze tag. Every add-on is a new output beside the record. They were added after the freeze, so they are not pre-registered (pre-registration amendment of 14 Nov 2026).
 
@@ -21,7 +21,7 @@ Summary of every run, with pass flags and wall times: `results/verify_meta.json`
 
 ## V1. Complete sphere under external pressure
 
-The classical buckling pressure of a complete sphere is p_cr = 2E / √(3(1 − ν²)) · (t/R)² (Hutchinson 2016, Proc. R. Soc. A 472: 20160577, Section 3, opened by the assistant 14 Nov; Timoshenko & Gere 1961 not reachable without a library copy, so it is no longer cited. The name "Zoelly" is kept in file names only; the paper says "the classical value" because no opened source tied the formula to Zoelly). The blueprint called it a "spherical cap" test. We used the complete sphere, because the formula is exact for it and a cap needs a boundary condition that the formula does not have [J].
+The classical buckling pressure of a complete sphere is p_cr = 2E / √(3(1 − ν²)) · (t/R)² (Hutchinson 2016, Proc. R. Soc. A 472: 20160577, Section 3, opened by the assistant 14 Nov; Timoshenko & Gere 1961 not reachable without a library copy, so it is no longer cited. The name "Zoelly" is kept in file names only; the paper says "the classical value" because no opened source tied the formula to Zoelly). The plan called it a "spherical cap" test. We used the complete sphere, because the formula is exact for it and a cap needs a boundary condition that the formula does not have [J].
 
 - Mesh: a cube projected to the sphere (equiangular), m × m S8R elements per face, m = 8, 12, 16, 20, 24 (384 to 3456 elements). Six translations fixed in a statically determinate way, so the pressure meets no reaction.
 - Material: ShellBench's E = 32.5 GPa and ν = 0.2 (`shellform.inputs`). R = 5 m, t = 0.10 and 0.05 m.

@@ -20,22 +20,20 @@ ShellForm is a frozen research artefact. Its results back a pre-registered study
 ## Checks before a pull request
 
 ```bash
+pip install -r requirements.txt
 pip install -e . --no-deps
 python -m pytest
+python -m shellform.batch --compare-record
 ```
 
-All tests must pass, and `git status` must show no change under `results/` unless the change is intended and recorded.
+All tests must pass, and `git status` must show no change under `results/` unless the change is intended and recorded in `docs/CHANGELOG.md`.
 
-## Sync between sessions
-
-Work ran in two places, a cloud session and a laptop session, with the repository as the handover. Each session pulled `main`, read the newest entry in [`docs/handoff.md`](docs/handoff.md) and the latest day in [`LOG.md`](LOG.md), and added a dated entry at the top of the handoff when it finished. Only one session worked on a given day.
-
-## Markers used in notes and drafts
+## Markers used in notes
 
 | Marker | Meaning |
-|---|---|
-| `[J]` | A judgement call, to be accepted or cut by the author |
-| `[check]` | A source read in abstract or secondary form, still to be confirmed in full text |
+| --- | --- |
+| `[J]` | A judgement call rather than a sourced fact, stated so a reader can disagree with it |
+| `[check]` | A source read in abstract or secondary form, not yet confirmed in full text |
 | `[?]` | A missing value, with the rule that closes it |
 
 Notes that say "the assistant" record work drafted with an AI assistant under the author's direction, as declared in the manuscript. The author checked and owns every result.

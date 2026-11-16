@@ -5,12 +5,12 @@ It imports ShellBench, installed in editable mode from a local clone that is
 checked out at the tag below. Every result names this tag.
 
 Move the pin only when a new ShellBench tag lands (floor-r1, floor-r2,
-floor-r3, v0.3), and record the move in LOG.md.
+floor-r3, v0.3), and record the move in docs/CHANGELOG.md.
 
 The pin is checked against the git tag of the clone when git can see it, and
 against the version string otherwise. (ShellBench v0.1.0 still reported
 "0.0.1"; v0.2.0 and v0.3.0 both report "0.2.0". Pin moved v0.1.0 -> v0.2.0
-on 7 Nov 2026, LOG.md Day 10; v0.2.0 -> v0.3.0 on 8 Nov 2026, LOG.md Day 11.)
+on 7 Nov 2026; v0.2.0 -> v0.3.0 on 8 Nov 2026; neither move changed a number.)
 """
 
 import subprocess

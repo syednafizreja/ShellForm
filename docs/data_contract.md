@@ -3,7 +3,7 @@
 # ShellForm Data Contract — what comes from ShellBench, what ShellForm owns
 
 **Prepared:** 28 October 2026, after reading the ShellBench repo (`docs/baseline_spec.md`, `docs/schedule.md`, `docs/handoff.md`, `notes/`, `src/shellbench/`, `LOG.md`).
-**Replaces** the earlier version of this file. The earlier version gave values from the thesis and from memory. ShellBench has since checked and corrected many of them, and some (the carbon factors) are yours to enter, not the assistant's.
+**Replaces** the earlier version of this file. The earlier version gave values from the thesis and from memory. ShellBench has since checked and corrected many of them, and some (the carbon factors) are entered by the author from their source, never supplied.
 
 ## 1. The rule: best data wins, and there is one home for it
 
@@ -15,7 +15,7 @@
 
 ShellForm **never copies a ShellBench value into its own files**. It imports ShellBench (pinned to a tag) or reads ShellBench's data files. If a value changes in ShellBench, ShellForm picks it up and the change is visible in both logs. Every ShellForm result names the ShellBench tag it used.
 
-The same rules as ShellBench's project rules apply: the assistant never supplies carbon factors or code values; you read them from the source. Unconfirmed values stay marked [?].
+The same rules as ShellBench's project rules apply: no carbon factor or code value is supplied from memory; each is read from its source. Unconfirmed values stay marked [?].
 
 ---
 
@@ -73,44 +73,19 @@ ShellBench validates the force density method under gravity (1%) and the Calculi
 | **S4. Published case** | Reproduce one published Michiels & Adriaenssens example (arch or shell form under lateral load) from the paper's stated inputs | Within the tolerance you can read from their figures; state it before running [J] |
 | **S5. Plateau check** | First-mode period of every sized design below Tg, from the floor-r2 modal analysis | Report any design that fails, with its real spectral value |
 
-Get the Michiels papers this week (ResearchGate request to the authors, or your library). S4 depends on them.
+---
+
+## 5. What ShellForm needs from ShellBench
+
+1. Floor-level code only: floor-r1 (force density), floor-r2 (CalculiX shell wrapper), floor-r3 (sizing, tie, buckling and quantity functions), with their public function signatures kept stable after each tag. ShellForm pins to the tags.
+2. `data/carbon_factors.csv` and the material and code values in `notes/`, read in place, not copied.
+3. `shellbench.seismic.alpha_spectrum()` and the site values from `docs/baseline_spec.md` (B5).
+4. **No columns from the building family dataset.** The 4 Nov format freeze does not need to include anything for ShellForm.
+5. Request: export the force density solver and the CalculiX wrapper as public functions with docstrings, so ShellForm can import them without reaching into private code.
 
 ---
 
-## 5. Dates (aligned with ShellBench's schedule)
-
-Remaining days from 7 Nov, with done-when lines: `docs/plan.md`.
-
-| Date | ShellForm work | Depends on |
-|---|---|---|
-| 29–30 Oct | Repo set up; read Michiels 2017 (C&S) and 2018; write `docs/preregistration.md` (sections 3–4 of this file, with decision rules); explorer skeleton (three.js, dummy data) | Nothing from ShellBench |
-| 31 Oct–1 Nov | Import floor-r1; add lateral load cases; tests S1–S3 | floor-r1 |
-| 2–3 Nov | Square-plan shell generator; analysis through floor-r2 (static, modal, buckling) | floor-r2 |
-| 4–5 Nov | Sizing loop through floor-r3 checks; test S4. **Send ShellBench the "no family columns needed" note by 2 Nov** | floor-r3 |
-| 6–9 Nov | Run 168 designs; carbon with both factor sets; sensitivity; S5; figures | carbon_factors.csv, v0.3 |
-| 10 Nov | **ShellForm code and analysis frozen** (commit), same protocol as ShellBench's surrogate | — |
-| 11–13 Nov | Final figures, explorer with real results, README, ShellForm v0.1 + Zenodo DOI; you draft Methods and Results | — |
-| 14–17 Nov | Check window, shared with ShellBench: you check every number; the assistant fixes | — |
-| After 17 Nov | You write Discussion, Introduction, Abstract; preprint; submit to Computers & Structures (target: before the European deadlines in January) | — |
-
-**Shared allowance:** ShellBench and ShellForm use one AI-assistant allowance. Until 11 Nov, ShellBench GATE days come first, as ShellBench's schedule already says. Keep ShellForm chats short. Do the coding in the laptop session with the repo open, and use the app only for planning and review.
-
----
-
-## 6. Text to send ShellBench by Mon 2 Nov ("What ShellForm needs")
-
-Paste into the ShellBench Project chat, or into `docs/handoff.md` through the laptop session:
-
-> **What ShellForm needs from ShellBench (author, [date]):**
-> 1. Floor-level code only: floor-r1 (force density), floor-r2 (CalculiX shell wrapper), floor-r3 (sizing, tie, buckling and quantity functions), with their public function signatures kept stable after each tag. ShellForm pins to the tags.
-> 2. `data/carbon_factors.csv` and the material and code values in `notes/`, read in place, not copied.
-> 3. `shellbench.seismic.alpha_spectrum()` and the site values from `docs/baseline_spec.md` (B5).
-> 4. **No columns from the building family dataset.** The 4 Nov format freeze does not need to include anything for ShellForm.
-> 5. Request: export the force density solver and the CalculiX wrapper as public functions with docstrings, so ShellForm can import them without reaching into private code.
-
----
-
-## 7. Literature ShellForm builds on (DOIs checked)
+## 6. Literature ShellForm builds on (DOIs checked)
 
 - Michiels & Adriaenssens 2018 (online 2017), Computers & Structures 195: 10.1016/j.compstruc.2017.10.001
 - Michiels & Adriaenssens 2017, Engineering Structures 153: 10.1016/j.engstruct.2017.10.043

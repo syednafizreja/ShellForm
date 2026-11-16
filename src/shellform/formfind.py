@@ -62,6 +62,7 @@ def square_network(span_m, n, supports, q=-1.0, q_boundary_factor=1.0):
     xyz = np.array([[x, y, 0.0] for y in s for x in s])
 
     def idx(i, j):
+        """0-based node index of grid point (i, j)."""
         return j * n + i
 
     edges, boundary = [], []
@@ -188,6 +189,7 @@ def corner_network_for_inset(span_m, n, rise_m, inset_ratio, lo=1.0, hi=200.0, t
         (network with q scaled to the rise, form coordinates, boundary factor).
     """
     def trial(f):
+        """Form-find with boundary force-density factor f and return the trial result."""
         net = square_network(span_m, n, "corners", q_boundary_factor=f)
         plan = net.xyz.copy()
         xyz = form_to_rise(net, rise_m)
