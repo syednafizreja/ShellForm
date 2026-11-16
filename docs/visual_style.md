@@ -14,7 +14,7 @@ The code that carries the rules: `src/shellform/style.py` (figures) and the `:ro
 
 ## 2. Colour roles
 
-All categorical colours are steps of the dataviz skill's validated reference palette. Hexes are given as light / dark (explorer dark theme).
+All categorical colours are steps of one reference palette, checked for colour-vision deficiency (CVD) and contrast (runs below). Hexes are given as light / dark (explorer dark theme).
 
 | Role | Meaning | Light | Dark | Secondary cue |
 |---|---|---|---|---|
@@ -33,10 +33,10 @@ All categorical colours are steps of the dataviz skill's validated reference pal
 Rules:
 
 - **The two strategy colours are reserved.** Nothing else is ever blue or orange (tested). The diverging map uses teal and brick so it cannot be read as a strategy.
-- Diverging maps are symmetric about zero and interpolated in OKLab through a warm grey zero. In the 3D explorer view the zero is concrete grey `#d8d4ca` (dark `#a9a59b`) so the shell reads as concrete.
+- Diverging maps are symmetric about zero and interpolated in OKLab through a warm grey zero. In the 3D explorer view the zero is concrete grey `#d2d6da` (dark `#a3a9af`) so the shell reads as concrete.
 - Status colours (good/warning) are not used for data.
 
-Validator runs (dataviz skill, `scripts/validate_palette.js`, 9 Nov 2026):
+Palette checks (CVD simulation and ΔE, 9 Nov 2026; the script was not kept in the repo):
 
 - Strategy pair, light: all checks pass (CVD ΔE 24.7, normal ΔE 33.6). Dark: all pass (CVD 26.8, normal 31.8).
 - Checks, light, all pairs: pass; CVD ΔE 6.1 (magenta-aqua, deutan) is in the 6-8 band, legal because every check has its own marker and label; three steps are below 3:1 contrast, so they always carry a marker and text.
@@ -47,7 +47,7 @@ Validator runs (dataviz skill, `scripts/validate_palette.js`, 9 Nov 2026):
 - **Inter** (SIL OFL 1.1), bundled: `assets/fonts/*.otf` for figures, subset `.woff2` in `explorer/vendor/` for the explorer. Bundling makes figures identical on Windows and Linux. Fallbacks: Arial, Helvetica.
 - Maths in figures uses Inter through matplotlib's custom mathtext (`$S_a$`, `$\lambda_{min}$`).
 - Figure sizes at final print size: text 7 pt, ticks 6.5 pt, panel titles 7.5 pt medium, panel letters 8 pt semibold (lower case, no brackets: **a**, **b**).
-- Explorer: 14 px body, 30 px page title (−0.022 em tracking), tabular figures in every column of numbers.
+- Explorer: 14 px body, 24 px page title (22 px on phones), tabular figures in every column of numbers.
 
 ## 4. Figures
 
@@ -61,7 +61,8 @@ Validator runs (dataviz skill, `scripts/validate_palette.js`, 9 Nov 2026):
 
 ## 5. Explorer
 
-- Layout: top bar with provenance chips (freeze tag, ShellBench tag, code commit) and theme switch; page title with a four-tile summary computed from the data; three columns (controls, 3D view, comparison panel); two charts (carbon against Sa with the ±5 % band, matrix of all 84 cells); table view with CSV download; footer stating what the page computes.
+- Interface neutrals (17 Nov 2026): cool blue-grey, like a drawing sheet. Light page `#f2f4f6`, panels `#ffffff`, text `#12161b`; dark page `#0e1115`, panels `#161a1f`, text `#e9edf1`. The neutrals carry no hue of their own, so blue and orange stay the only strong colours and always mean the two strategies. Flat panels: 1 px hairlines, 4 px corners, no shadows, blur or gradients.
+- Layout: top bar with provenance chips (freeze tag, ShellBench tag, code commit), copy-link button and theme switch; camera presets 3D, Plan, Side and Below, with free orbit on every side including the underside; page title with a four-tile summary computed from the data; three columns (controls, 3D view, comparison panel; the controls stay in view while scrolling on wide screens); two charts (carbon against Sa with the ±5 % band, matrix of all 84 cells); table view with CSV download; footer stating what the page computes.
 - Controls are segmented buttons (radio groups with arrow-key support) and stepped sliders with tick labels; the state lives in the URL hash, so a view can be shared.
 - 3D: soft shadows, concrete-grey surface coloured by Δz (or plain strategy colour), gravity-only form as blue lines, supports drawn, camera presets (3D, plan, side), PNG export.
 - Every chart has a hover tooltip; the matrix is clickable; nothing relies on colour alone.
@@ -72,7 +73,7 @@ Validator runs (dataviz skill, `scripts/validate_palette.js`, 9 Nov 2026):
 - Markdown in the repo: one H1, sentence-case headings, tables for anything with more than three parallel items, numbers with units and sources.
 - Slides and posters use the colour roles of section 2 and Inter; figures are inserted from `figures/` at their native aspect ratio, never stretched.
 
-## 7. The premium checklist (run before calling any artefact done)
+## 7. Checklist before an output is called done
 
 1. Same colour, same meaning as section 2; no stray default matplotlib or browser colours.
 2. No overlapping text, clipped labels or orphan legend entries at final size (look at the rendered output, not the code).

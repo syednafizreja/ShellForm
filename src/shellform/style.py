@@ -19,7 +19,7 @@ Colour roles (fixed across every figure and the explorer):
   teal (lower) to brick (higher) through a warm grey zero.
 - The 5 % "no meaningful difference" band: one warm grey wash.
 
-The categorical hexes are the dataviz skill's validated reference palette
+The categorical hexes are steps of one reference palette, checked for CVD
 (light mode): strategy = slots 1-2 (adjacent CVD dE 24.7, normal dE 33.6),
 checks = slots 7, 3, 5, 4 (all-pairs normal dE >= 19.6; CVD 6.1 is in the
 floor band, legal because each check has its own marker). Validator runs are
