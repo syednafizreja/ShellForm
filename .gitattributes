@@ -1,0 +1,5 @@
+# Keep the record byte-identical on every platform, so SHA256SUMS verifies
+# on Windows checkouts too (no CRLF conversion).
+results/** -text
+figures/** -text
+SHA256SUMS -text

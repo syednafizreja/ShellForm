@@ -1,6 +1,6 @@
 # Day 7 (4 Nov 2026): test S4, closed-form lean of a parabolic arch
 
-Written by the cloud session, under the author's standing delegation. ShellBench tag: v0.1.0 (no ShellBench value is used; S4 is geometry and statics only).
+ShellBench tag: v0.1.0 (no ShellBench value is used; S4 is geometry and statics only).
 
 ## Why the fallback
 

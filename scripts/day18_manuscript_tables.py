@@ -3,7 +3,7 @@
 Presentation only: every cell is copied from the Markdown tables that
 ``scripts/day14_paper_tables.py`` builds from the freeze record
 (tag ``freeze-2026-11-09``, ShellBench v0.3.0). No value is computed,
-rounded or typed here. Output: ``paper/manuscript/tables/*.tex``
+rounded or typed here. Output: ``paper/tables/latex/*.tex``
 (booktabs, no vertical rules, as the C&S Guide for Authors asks).
 
 Run: ``python scripts/day18_manuscript_tables.py``
@@ -16,7 +16,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "paper" / "tables"
-OUT = ROOT / "paper" / "manuscript" / "tables"
+OUT = ROOT / "paper" / "tables" / "latex"
 
 # Characters that need a LaTeX form. Unicode symbols are kept for
 # readability and mapped to math where pdflatex needs it.
@@ -82,7 +82,7 @@ def read_md_table(path: Path) -> tuple[list[str], list[list[str]]]:
 def write_tabular(name: str, colspec: str, size: str = r"\small",
                   drop: tuple[int, ...] = (), header_tex: list[str] | None = None,
                   breakable: tuple[int, ...] = ()) -> None:
-    """Write ``paper/manuscript/tables/<name>.tex`` from ``paper/tables/<name>.md``.
+    """Write ``paper/tables/latex/<name>.tex`` from ``paper/tables/<name>.md``.
 
     ``header_tex`` replaces the column labels only (short labels for the
     page width); the body cells are always copied from the Markdown table.
@@ -96,6 +96,7 @@ def write_tabular(name: str, colspec: str, size: str = r"\small",
     lines = [size, rf"\begin{{tabular}}{{{colspec}}}", r"\toprule",
              " & ".join(header[i] if header_tex else tex(header[i]) for i in keep) + r" \\", r"\midrule"]
     def cell(row: list[str], i: int) -> str:
+        """LaTeX text of cell i of a table row, with break points where allowed."""
         out = tex(row[i])
         if i in breakable:  # long code identifiers may break after . and _
             out = out.replace(r"\_", r"\_\allowbreak{}").replace(".", r".\allowbreak{}")
@@ -116,6 +117,7 @@ def write_longtable(name: str, colspec: str, out_name: str) -> None:
              r"\bottomrule", r"\endfoot"]
     lines += [" & ".join(tex(c) for c in r) + r" \\" for r in body]
     lines += [r"\end{longtable}"]
+    OUT.mkdir(parents=True, exist_ok=True)
     (OUT / f"{out_name}.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 

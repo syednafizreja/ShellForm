@@ -146,6 +146,7 @@ def comparison(rows):
     labels = ["central"] + list(band_corners())
 
     def col(label):
+        """Column name of the carbon result for one factor set label."""
         return "carbon_gbt51366_kgco2e_m2" if label == "central" else f"carbon_kgco2e_m2_{label}"
 
     by = {(r["supports"], r["rise_ratio"], r["strategy"], r["sa_g"]): r for r in rows}

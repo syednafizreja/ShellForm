@@ -64,6 +64,7 @@ def direction_gap(mid_xyz, gravity_xyz, sa_g, direction):
     cos = _cos_slope(mid_xyz)
 
     def worst(lam):
+        """Largest vertical gap (m, cosine-weighted) between the midrange form and one thrust surface at factor lam."""
         z_t = _heights_at(thrust_surface(gravity_xyz, sa_g, direction, lam), plan)
         return (np.abs(mid_xyz[:, 2] - z_t) * cos).max()
 

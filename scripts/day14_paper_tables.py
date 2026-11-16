@@ -164,6 +164,7 @@ def s123_errors():
         s2 = max(s2, equilibrium_error(thrust, net.edges, net.q, loads, net.free))
 
         def run(sup_xyz, p, net=net):
+            """Solve the network again with the supports moved to sup_xyz under loads p."""
             trial = Network(sup_xyz, net.edges, net.q, net.fixed, net.free, net.boundary_edge)
             return solve(trial, p)
 

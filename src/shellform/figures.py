@@ -11,8 +11,8 @@ restyle; plotted numbers unchanged).
 Figures (numbering is the planned paper order [J]; the form gallery of Day 8,
 ``shellform.gallery``, is Fig. 1):
 
-- Fig. 2, ``fig02_mechanism``: the mechanism figure of
-  ``paper/04_supervisor_advice.md`` section 3. For each of the 168 baseline
+- Fig. 2, ``fig02_mechanism``: the mechanism figure (what sets the
+  thickness). For each of the 168 baseline
   designs, the ratio of each check's demand to its limit at the sized
   thickness, against Sa, by support case and span. The check at ratio 1 is
   the one that sets the thickness.
@@ -322,6 +322,7 @@ def driver_ranges():
     out = {}
 
     def add(driver, span, sup, v):
+        """Widen the (min, max) range of one driver for one span and support case by v."""
         rng = out.setdefault(driver, {}).setdefault((span, sup), [v, v])
         rng[0], rng[1] = min(rng[0], v), max(rng[1], v)
 

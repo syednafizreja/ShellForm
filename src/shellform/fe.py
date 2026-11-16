@@ -60,6 +60,7 @@ def s8r_elements(n):
         raise ValueError("S8R meshing needs an odd number of grid nodes per side")
 
     def nid(i, j):
+        """1-based CalculiX node number of grid point (i, j)."""
         return j * n + i + 1
 
     els = []
@@ -312,6 +313,7 @@ def write_case_deck(xyz, n, fixed, thickness_m, e_pa, nu, density_kg_m3,
     head = base.split("*STEP", 1)[0].splitlines()
 
     def loads(acc, w, new):
+        """Load card lines for one step: gravity plus nodal loads; OP=NEW resets earlier loads."""
         op = ",OP=NEW" if new else ""
         out = [f"*DLOAD{op}", _grav_line(acc)]
         cl = _cload_lines(shares, used, w)

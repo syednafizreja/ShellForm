@@ -83,6 +83,7 @@ def load_factors(set_name=FACTOR_SET):
         set_name = sets[0]
 
     def per(material, qty_unit):
+        """Factor for one material in kgCO2e per qty_unit, converted from the table unit."""
         value, unit = table[(set_name, material)]
         want, mult = sb.CONVERSIONS[unit]
         if want != qty_unit:

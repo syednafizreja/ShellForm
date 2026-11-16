@@ -13,7 +13,7 @@ needs_ccx = pytest.mark.skipif(find_ccx() is None, reason="CalculiX not on PATH"
 
 
 def test_pin_matches_the_install():
-    # Pin moved to v0.3.0 on 8 Nov 2026 (LOG.md Day 11); v0.3.0 still reports 0.2.0.
+    # Pin moved to v0.3.0 on 8 Nov 2026 (docs/CHANGELOG.md); v0.3.0 still reports 0.2.0.
     assert SHELLBENCH_TAG == "v0.3.0"
     assert check_pin() == "v0.3.0"
 

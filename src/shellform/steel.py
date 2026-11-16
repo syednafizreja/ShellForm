@@ -17,8 +17,8 @@ docs/preregistration.md.
   and the same for direction 2. This is the orthogonal reinforcement rule for
   in-plane stress (EN 1992-1-1:2004 informative Annex F, F.1, expressions
   (F.2) and (F.3), valid for sigma_Edx <= |tau_Edxy| with compression
-  positive; checked by the assistant on 8 Nov 2026 in BS EN 1992-1-1:2004, Annex F,
-  printed p. 211, (F.2)-(F.7); author to confirm), applied layer by layer with the linear stress profile
+  positive; read on 8 Nov 2026 in BS EN 1992-1-1:2004, Annex F,
+  printed p. 211, (F.2)-(F.7); confirm against a licensed copy), applied layer by layer with the linear stress profile
   between the two faces. The tension force per unit width T is the integral
   of the positive part of that demand over the thickness; A_s = T / f_y.
   Where sigma_Edx > |tau_Edxy| (compression positive), Annex F gives
@@ -149,6 +149,7 @@ def tension_per_width(face_stress_pa, e1, e2, thickness_m):
     w = np.linspace(0.0, 1.0, N_DEPTH_POINTS)  # 0 = face 0, 1 = face 1
 
     def lin(v):
+        """Stress at fraction w through the thickness, linear between the two faces."""
         return v[:, :1] * (1.0 - w) + v[:, 1:] * w  # (n_el, N)
 
     tau = np.abs(lin(s12))
@@ -250,6 +251,7 @@ def take_off(xyz, n, thickness_m, case_results, inp, rho_min_ratio, steel_densit
     grav = np.maximum(as_case["uls_gravity"], as_min)
 
     def mass(a):
+        """Steel mass in kg: reinforcement a summed over its layers, times element area and steel density."""
         return float((a.sum(axis=1) * area).sum() * steel_density_kg_m3)
 
     steel = mass(design)

@@ -95,6 +95,7 @@ def select(preset=None, spans=None, supports=None, rise=None, strategy=None, sa=
         cases = [c for c in cases if c["design_id"] in set(ids)]
 
     def keep(c):
+        """True if design case c matches every filter that is set."""
         return ((f.get("spans") is None or any(abs(c["span_m"] - s) < 1e-9 for s in f["spans"]))
                 and (f.get("supports") is None or c["supports"] in f["supports"])
                 and (f.get("rise") is None or any(abs(c["rise_ratio"] - r) < 1e-9 for r in f["rise"]))

@@ -44,7 +44,7 @@ Validator runs (dataviz skill, `scripts/validate_palette.js`, 9 Nov 2026):
 
 ## 3. Type
 
-- **Inter** (SIL OFL 1.1), bundled: `assets/fonts/*.otf` for figures, subset `.woff2` in `explorer/vendor/` for the explorer. Bundling makes figures identical on Windows and in the cloud. Fallbacks: Arial, Helvetica.
+- **Inter** (SIL OFL 1.1), bundled: `assets/fonts/*.otf` for figures, subset `.woff2` in `explorer/vendor/` for the explorer. Bundling makes figures identical on Windows and Linux. Fallbacks: Arial, Helvetica.
 - Maths in figures uses Inter through matplotlib's custom mathtext (`$S_a$`, `$\lambda_{min}$`).
 - Figure sizes at final print size: text 7 pt, ticks 6.5 pt, panel titles 7.5 pt medium, panel letters 8 pt semibold (lower case, no brackets: **a**, **b**).
 - Explorer: 14 px body, 30 px page title (−0.022 em tracking), tabular figures in every column of numbers.
@@ -80,4 +80,4 @@ Validator runs (dataviz skill, `scripts/validate_palette.js`, 9 Nov 2026):
 4. Colour never the only cue; contrast checked; dark theme checked where it exists.
 5. Type: Inter, sizes as section 3, units in brackets, sentence case.
 6. Interfaces: keyboard, phone width, offline, light and dark, hover states, empty or error states.
-7. A before/after screenshot is kept in the thread or the handoff when the look changes.
+7. A before/after screenshot is kept with the pull request when the look changes.

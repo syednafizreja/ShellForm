@@ -197,6 +197,7 @@ def summarise_variant(name, rows, base_cells, base_rows):
             verdicts[c["verdict_central"]] = verdicts.get(c["verdict_central"], 0) + 1
 
         def rng(key, cs=cs):
+            """(min, max) of one column over the cells cs, ignoring blanks."""
             vals = [c[key] for c in cs if c[key] != ""]
             return (min(vals), max(vals)) if vals else ("", "")
 
