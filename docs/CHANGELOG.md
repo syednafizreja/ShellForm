@@ -4,7 +4,7 @@ Dated record of what changed, newest first. Release notes: [docs/releases/](rele
 
 ## 16 Nov 2026 (v0.2.0)
 
-Repository finalised for review. Dependencies declared once, in `requirements.txt`, and used by the README, the CI workflow and `pyproject.toml`; `meshio` dropped (nothing imports it). Working drafts, correspondence and the day-by-day working log moved out of the public tree; the manuscript is not part of the repository. Manuscript LaTeX tables now built in `paper/tables/latex/` by `scripts/day18_manuscript_tables.py`. Release notes moved to `docs/releases/`. Merged feature branches deleted. No code path that produces a number changed, and no result changed: `python -m shellform.batch --compare-record` and the test suite pass.
+Repository finalised for review. Dependencies declared once, in `requirements.txt`, and used by the README, the CI workflow and `pyproject.toml`; `meshio` dropped (nothing imports it). Working drafts, correspondence and the day-by-day working log moved out of the public tree; the manuscript is not part of the repository. Manuscript LaTeX tables now built in `paper/tables/latex/` by `scripts/day18_manuscript_tables.py`. Release notes moved to `docs/releases/`. `.gitattributes` keeps `results/`, `figures/` and `SHA256SUMS` byte-identical on every platform, so the checksums verify on Windows clones too. Old, superseded branches deleted and their open pull requests (#1, #2) closed. No code path that produces a number changed, and no result changed: `python -m shellform.batch --compare-record` and the test suite pass.
 
 ## 15 Nov 2026
 

@@ -34,7 +34,9 @@ cd ShellForm
 sha256sum -c SHA256SUMS
 ```
 
-On Windows, Git's default line-ending conversion changes text files on checkout, so clone with `core.autocrlf=false` as above, or check a Zenodo download instead.
+`.gitattributes` turns off line-ending conversion for `results/`, `figures/` and `SHA256SUMS`, so the check also passes on a Windows clone made with Git's default settings (v0.2.0 on; for v0.1.0, clone with `core.autocrlf=false` as above or check the Zenodo download).
+
+The checksums verify the record as cloned. `python -m shellform.batch` (with or without `--compare-record`) rewrites `results/batch_smoke8.*`, and the new values agree with the record only to the tolerance that `--compare-record` reports (round-off in the solver), so `sha256sum -c` then fails on those two files. `git checkout -- results/` restores the record.
 
 ## 4. Rerun
 
