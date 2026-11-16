@@ -97,6 +97,7 @@
 /* ---- Base --------------------------------------------------------------- */
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--page); color: var(--ink);
   font: 400 14px/1.5 "Inter var-sf", Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -178,7 +179,7 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 
 .hint kbd { font: 500 11px/1 "Inter var-sf", Inter, system-ui, sans-serif; padding: 2px 5px; border-radius: 4px; border: 1px solid var(--hair-2); background: var(--surface-2); }
 
 /* ---- 3D viewport --------------------------------------------------------- */
-.viewport { position: relative; height: 620px; border-radius: var(--radius); overflow: hidden; background: var(--viewport-bot); }
+.viewport { position: relative; height: 620px; height: clamp(360px, 68vh, 620px); border-radius: var(--radius); overflow: hidden; background: var(--viewport-bot); }
 .viewport canvas { display: block; width: 100%; height: 100%; outline: none; }
 .hud { position: absolute; left: 16px; right: 16px; top: 14px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; pointer-events: none; }
 .hud > * { pointer-events: auto; }
@@ -197,7 +198,7 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 
 .cbar-t { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 3px; }
 .exag { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--ink-2); background: var(--surface); border: 1px solid var(--hair); border-radius: 3px; padding: 7px 12px; }
 .exag input { width: 110px; }
-.nogl { position: absolute; inset: 0; display: none; place-items: center; text-align: center; color: var(--ink-2); padding: 40px; font-size: 13px; }
+.nogl { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: none; place-items: center; text-align: center; color: var(--ink-2); padding: 40px; font-size: 13px; }
 
 /* ---- Metrics panel ------------------------------------------------------- */
 .verdict { margin: 14px 18px 0; border-radius: 3px; padding: 14px 16px; background: var(--sunken); border: 1px solid var(--hair); }
@@ -206,7 +207,7 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 
 .verdict .d { font-size: 13px; color: var(--ink-2); margin-top: 4px; }
 .verdict .big { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; margin-top: 6px; }
 .verdict .big small { font-size: 13px; color: var(--muted); font-weight: 500; letter-spacing: 0; }
-.verdict.out { background: var(--seismic-soft); border-color: color-mix(in srgb, var(--seismic) 30%, transparent); }
+.verdict.out { background: var(--seismic-soft); border-color: var(--seismic); border-color: color-mix(in srgb, var(--seismic) 30%, transparent); }
 table.cmp { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
 table.cmp col.c1 { width: 40%; } table.cmp col.c4 { width: 13%; }
 table.cmp th { font-weight: 500; font-size: 11px; color: var(--muted); text-align: right; padding: 0 0 8px; white-space: nowrap; }
@@ -274,14 +275,23 @@ footer code { font-family: ui-monospace, "JetBrains Mono", Menlo, Consolas, mono
   .bar .prov { display: none; }
   .grid, .lower, footer { grid-template-columns: 1fr; }
   .metrics { display: block; }
-  .viewport { height: 460px; }
+  .viewport { height: 460px; height: clamp(300px, 62vh, 460px); }
   .hud { flex-direction: column; left: 12px; right: 12px; top: 10px; }
   .tools { flex-wrap: wrap; }
   .foot { flex-direction: column; align-items: stretch; left: 10px; right: 10px; bottom: 10px; gap: 6px; }
   .legend3d { padding: 7px 10px; font-size: 11px; }
   .exag input { flex: 1; width: auto; }
   .stats { grid-template-columns: repeat(2, 1fr); }
-  h1 { font-size: 24px; }
+  h1 { font-size: 22px; }
+}
+@media (max-width: 420px) {
+  .wrap { padding: 14px 10px 28px; }
+  .card-h, .pad { padding-left: 14px; padding-right: 14px; }
+  .ctl { padding: 4px 14px 14px; }
+  .stat { padding: 12px 14px; }
+  .stat .v { font-size: 19px; }
+  .seg button { font-size: 12px; padding: 0 4px; }
+  .brand span { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 @media print {
