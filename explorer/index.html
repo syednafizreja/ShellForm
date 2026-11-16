@@ -28,19 +28,19 @@
 /* ---- Tokens: colour roles of docs/visual_style.md (light) ---------------- */
 :root {
   color-scheme: light;
-  --page: #f6f5f1;
+  --page: #f2f4f6;
   --surface: #ffffff;
-  --surface-2: #fbfaf7;
-  --sunken: #f0efea;
-  --ink: #0b0b0b;
-  --ink-2: #52514e;
-  --muted: #898781;
-  --hair: rgba(11, 11, 11, 0.08);
-  --hair-2: rgba(11, 11, 11, 0.14);
-  --grid: #e1e0d9;
-  --axis: #c3c2b7;
-  --band: #efeee9;
-  --band-edge: #d6d4cb;
+  --surface-2: #f8f9fb;
+  --sunken: #eceff2;
+  --ink: #12161b;
+  --ink-2: #4a525c;
+  --muted: #7a838e;
+  --hair: rgba(18, 22, 27, 0.09);
+  --hair-2: rgba(18, 22, 27, 0.16);
+  --grid: #dde2e7;
+  --axis: #b7bfc8;
+  --band: #e8ecf0;
+  --band-edge: #cbd2da;
   --gravity: #2a78d6;
   --seismic: #eb6834;
   --gravity-soft: rgba(42, 120, 214, 0.10);
@@ -52,30 +52,30 @@
   --div-lo: #0f6e78;
   --div-mid: #f2f1ec;
   --div-hi: #b5452a;
-  --concrete: #d8d4ca;
+  --concrete: #d2d6da;
   --good: #0ca30c;
   --focus: #2a78d6;
   --shadow: none;
   --radius: 4px;
   --radius-sm: 3px;
-  --viewport-top: #fbfaf7;
-  --viewport-bot: #eeede7;
+  --viewport-top: #f7f8fa;
+  --viewport-bot: #e9edf1;
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --page: #0d0d0d;
-  --surface: #1a1a19;
-  --surface-2: #1f1f1e;
-  --sunken: #141413;
-  --ink: #f0efec;
-  --ink-2: #c3c2b7;
-  --muted: #8f8d86;
+  --page: #0e1115;
+  --surface: #161a1f;
+  --surface-2: #1b2026;
+  --sunken: #12151a;
+  --ink: #e9edf1;
+  --ink-2: #b2bbc5;
+  --muted: #828c97;
   --hair: rgba(255, 255, 255, 0.08);
   --hair-2: rgba(255, 255, 255, 0.14);
-  --grid: #2c2c2a;
-  --axis: #383835;
-  --band: #252523;
-  --band-edge: #3a3a37;
+  --grid: #262c33;
+  --axis: #39424c;
+  --band: #1f252c;
+  --band-edge: #36404a;
   --gravity: #3987e5;
   --seismic: #d95926;
   --gravity-soft: rgba(57, 135, 229, 0.16);
@@ -85,13 +85,13 @@
   --check-compression: #e87ba4;  /* light step kept in dark: #d55181 fails CVD vs aqua (docs/visual_style.md) */
   --check-deflection: #c98500;
   --div-lo: #2a9aa6;
-  --div-mid: #2a2a28;
+  --div-mid: #242a31;
   --div-hi: #d8603f;
-  --concrete: #a9a59b;
+  --concrete: #a3a9af;
   --focus: #6da7ec;
   --shadow: none;
-  --viewport-top: #222220;
-  --viewport-bot: #141413;
+  --viewport-top: #1a1f25;
+  --viewport-bot: #11151a;
 }
 
 /* ---- Base --------------------------------------------------------------- */
@@ -137,7 +137,7 @@ sub { font-size: 0.72em; }
 .wrap { max-width: 1480px; margin: 0 auto; padding: 28px 28px 40px; }
 .intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 40px; align-items: end; margin-bottom: 22px; }
 .eyebrow { font-size: 13px; color: var(--muted); margin: 0 0 6px; }
-h1 { font-size: 24px; line-height: 1.2; letter-spacing: -0.01em; font-weight: 600; margin: 0; max-width: 40ch; }
+h1 { font-size: 24px; line-height: 1.2; letter-spacing: -0.01em; font-weight: 600; margin: 0; max-width: 40ch; text-wrap: balance; }
 .lede { color: var(--ink-2); max-width: 64ch; margin: 10px 0 0; font-size: 15px; }
 .stats { display: grid; grid-template-columns: repeat(4, minmax(120px, 1fr)); gap: 1px; background: var(--hair); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--hair); box-shadow: var(--shadow); }
 .stat { background: var(--surface); padding: 14px 18px 13px; }
@@ -263,6 +263,15 @@ footer { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--hair);
 footer b { color: var(--ink-2); font-weight: 500; }
 footer code { font-family: ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace; font-size: 11.5px; color: var(--ink-2); }
 
+/* ---- Wide screens: controls stay in view ---------------------------------- */
+@media (min-width: 1241px) {
+  .grid > aside:first-child { position: sticky; top: 72px; }
+}
+.bar { box-shadow: inset 0 -1px 0 var(--hair); }
+.card-h h2 { text-transform: none; }
+.stats .stat:first-child .v { color: var(--ink); }
+.copied { color: var(--gravity) !important; }
+
 /* ---- Responsive, motion, print ------------------------------------------ */
 @media (max-width: 1240px) {
   .grid { grid-template-columns: 260px minmax(0, 1fr); }
@@ -315,6 +324,9 @@ footer code { font-family: ui-monospace, "JetBrains Mono", Menlo, Consolas, mono
   </a>
   <div class="grow"></div>
   <div class="prov" id="prov" aria-label="Data provenance"></div>
+  <button class="iconbtn" id="share" type="button" aria-label="Copy a link to this view" title="Copy link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2"/></svg>
+  </button>
   <button class="iconbtn" id="theme" type="button" aria-label="Switch light or dark theme" title="Theme">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg>
   </button>
@@ -349,7 +361,7 @@ footer code { font-family: ui-monospace, "JetBrains Mono", Menlo, Consolas, mono
         </div>
         <div class="field"><div class="lab" id="l-str">Form shown</div>
           <div class="seg" role="radiogroup" aria-labelledby="l-str" data-key="strategy"></div></div>
-        <p class="hint">Drag to orbit, scroll to zoom. <kbd>←</kbd> <kbd>→</kbd> step S<sub>a</sub>; <kbd>G</kbd>/<kbd>S</kbd> switch form. The link in the address bar keeps this view.</p>
+        <p class="hint">Drag to orbit on every side, including from below; scroll to zoom. <kbd>←</kbd> <kbd>→</kbd> step S<sub>a</sub>; <kbd>G</kbd>/<kbd>S</kbd> switch form. The link in the address bar keeps this view.</p>
       </div>
     </aside>
 
@@ -492,7 +504,7 @@ const SEGS = {
   rise: RISES.map(v => [v, v.toFixed(2)]),
   strategy: [["gravity", `<i class="dot" style="background:var(--gravity)"></i>Gravity-only`], ["seismic", `<i class="dot" style="background:var(--seismic)"></i>Seismic-aware`]],
   colour: [["dz", "Height change"], ["strategy", "Plain"]],
-  cam: [["iso", "3D"], ["plan", "Plan"], ["elev", "Side"]],
+  cam: [["iso", "3D"], ["plan", "Plan"], ["elev", "Side"], ["below", "Below"]],
 };
 document.querySelectorAll(".seg[data-key]").forEach(el => {
   const k = el.dataset.key;
@@ -565,14 +577,15 @@ else {
   camera = new THREE.PerspectiveCamera(32, 1, 0.1, 1000);
   camera.up.set(0, 0, 1);
   controls = new THREE.OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true; controls.dampingFactor = 0.08; controls.maxPolarAngle = Math.PI * 0.495;
-  scene.add(new THREE.HemisphereLight(0xffffff, 0xb9b5aa, 0.62));
-  const key = new THREE.DirectionalLight(0xfffaf2, 0.62);
+  controls.enableDamping = true; controls.dampingFactor = 0.08; controls.minPolarAngle = 0; controls.maxPolarAngle = Math.PI;  // full orbit: the shell can be seen from below as well
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xb3b9c0, 0.62));
+  const key = new THREE.DirectionalLight(0xffffff, 0.62);
   key.position.set(-14, -22, 34); key.castShadow = true;
   key.shadow.mapSize.set(2048, 2048); key.shadow.radius = 6; key.shadow.bias = -0.0004;
   Object.assign(key.shadow.camera, { left: -16, right: 16, top: 16, bottom: -16, near: 1, far: 120 });
   scene.add(key);
   const rim = new THREE.DirectionalLight(0xffffff, 0.25); rim.position.set(20, 18, 10); scene.add(rim);
+  const under = new THREE.DirectionalLight(0xffffff, 0.3); under.position.set(-12, -16, -24); scene.add(under);  // soft fill so the soffit reads when viewed from below
   ground = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.ShadowMaterial({ opacity: 0.16 }));
   ground.receiveShadow = true; scene.add(ground);
   group = new THREE.Group(); scene.add(group);
@@ -652,7 +665,7 @@ let camTarget = null;
 function setCam(v) {
   S.cam = v; if (!camera) return;
   const L = S.span, zc = S.rise * L * 0.35;
-  const pos = { iso: [1.45 * L, -1.85 * L, 1.05 * L], plan: [0.001, -0.001, 2.9 * L], elev: [0, -2.7 * L, 0.2 * L] }[v];
+  const pos = { iso: [1.45 * L, -1.85 * L, 1.05 * L], plan: [0.001, -0.001, 2.9 * L], elev: [0, -2.7 * L, 0.2 * L], below: [1.2 * L, -1.6 * L, -1.9 * L] }[v] || [1.45 * L, -1.85 * L, 1.05 * L];
   const f = Math.max(1, 1.3 / (camera.aspect || 1.3));  // step back on narrow screens so the whole form fits
   camTarget = { pos: new THREE.Vector3(...pos).multiplyScalar(f), tgt: new THREE.Vector3(0, 0, zc), t: 0 };
 }
@@ -671,6 +684,7 @@ function loop() {
     camera.position.lerp(camTarget.pos, e); controls.target.lerp(camTarget.tgt, e);
     if (camTarget.t >= 1) camTarget = null;
   }
+  if (ground) ground.visible = camera.position.z > 0;  // no ground shadow when looking up from below
   controls.update(); renderer.render(scene, camera);
 }
 $("snap").addEventListener("click", () => {
@@ -855,6 +869,16 @@ function update() {
 }
 readHash();
 window.addEventListener("resize", () => { resize(); chart1(); chart2(); });
+
+/* ---------- Copy link: the address already holds the view (hash) ------------- */
+(function share() {
+  const b = $("share"); if (!b) return;
+  b.addEventListener("click", () => {
+    const url = location.href, done = () => { b.classList.add("copied"); b.title = "Link copied"; setTimeout(() => { b.classList.remove("copied"); b.title = "Copy link"; }, 1600); };
+    if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(url).then(done, () => window.prompt("Copy this link:", url)); }
+    else { window.prompt("Copy this link:", url); }
+  });
+})();
 window.addEventListener("hashchange", () => { readHash(); update(); });
 resize(); update();
 if (renderer) { const t = camTarget; if (t) { camera.position.copy(t.pos); controls.target.copy(t.tgt); camTarget = null; } }
