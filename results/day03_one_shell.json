@@ -9,7 +9,7 @@
     "e_source": "ShellBench v0.0.1 anchor_frame.E_KN_M2",
     "nu": 0.2,
     "density_kg_m3": 2500.0,
-    "nu_density_status": "[?] placeholders, not from ShellBench"
+    "nu_density_status": "(unverified) placeholders, not from ShellBench"
   },
   "cases": {
     "edges": {

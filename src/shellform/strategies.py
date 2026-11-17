@@ -5,8 +5,8 @@ scaled vertically by lam and moved horizontally by -Sa * lam * z_G * d
 (finding F1). lam is free because the horizontal thrust of a funicular is
 statically free. Gaps are measured vertically at the plan points of the
 mid-surface and turned into a thickness normal to the mid-surface by the
-cosine of its slope (first order in the gap) [J]; outside a thrust
-surface's plan the nearest value is used [J].
+cosine of its slope (first order in the gap) (judgement); outside a thrust
+surface's plan the nearest value is used (judgement).
 """
 
 import numpy as np
@@ -92,7 +92,7 @@ def seismic_mid_surface(gravity_xyz, sa_g, rise_m, iterations=20):
 
     At each plan point the mid-surface lies halfway between the highest and
     the lowest of T(+x), T(-x), T(+y), T(-y): the centre of the band that
-    must hold all four, like the middle of Michiels' double layer [J].
+    must hold all four, like the middle of Michiels' double layer (judgement).
 
     lam is set so the mean surface has the target rise (fixed-point
     iteration). At sa_g = 0 this returns the gravity form exactly.

@@ -38,9 +38,9 @@ from matplotlib.colors import LinearSegmentedColormap  # noqa: E402
 from shellform import style  # noqa: E402
 from shellform.pipeline import ROOT  # noqa: E402
 
-GALLERY_RISE = 0.15          # middle pre-registered rise ratio [J]
-GALLERY_SA = (0.3, 0.6)      # pre-registered S4 Sa and the largest Sa level [J]
-SECTION_EXAGGERATION = 3.0   # vertical scale of the section panel [J], stated in its label
+GALLERY_RISE = 0.15          # middle pre-registered rise ratio (judgement)
+GALLERY_SA = (0.3, 0.6)      # pre-registered S4 Sa and the largest Sa level (judgement)
+SECTION_EXAGGERATION = 3.0   # vertical scale of the section panel (judgement), stated in its label
 
 
 def _case(span, supports, strategy, sa):

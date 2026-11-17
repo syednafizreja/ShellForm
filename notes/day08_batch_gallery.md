@@ -11,7 +11,7 @@ Plan line (setup guide, Thu 5 Nov): "Batch runner (every row names the ShellBenc
 - `src/shellform/gallery.py`: `python -m shellform.gallery` draws `figures/gallery_10m.png` and `figures/gallery_20m.png`, with the plotted numbers in `figures/gallery_<span>m.json`.
 - `tests/test_batch.py`: 4 tests (selection, record check passes on the record and catches a change, one design end to end against the record).
 
-## Decisions [J]
+## Decisions (judgement)
 
 - D8-1: preset `smoke8` = rise/span 0.15, Sa 0.3 g, every span, support case and strategy (8 designs). It touches every branch of the code at the middle rise and the S4 Sa.
 - D8-2: record check tolerance. Text columns (`feasible`, `governing_check`, `steel_governing_case`) and the thickness must match exactly; other numbers to 1e-3 relative. Day 4's CalculiX 2.21 against 2.23 difference was at most 2.3e-4 (deflection), so 1e-3 allows the version difference and still catches a model change.
@@ -45,7 +45,7 @@ Rise/span 0.15. Row per support case: gravity form; plan map of z_seismic − z_
 | 20 m edges | 0 to 29.2 | 0 to 125.2 | 22.4 → 22.5 |
 
 - The seismic-aware mid-surface does not move in plan (largest horizontal shift 0.0 mm). It rises near the middle of each edge and stays near the gravity form at the crown and the corners. This follows from strategy 2: the midpoint of the four leaned forms cancels the shear and keeps a height change that grows with Sa (pre-registration P1).
-- Largest Δz is 0.72 % of span at 0.6 g, on both spans. That is small next to the rise (15 % of span), which agrees with F2 (Day 2) and with the "no meaningful difference" verdicts of Days 5 and 6 [J].
+- Largest Δz is 0.72 % of span at 0.6 g, on both spans. That is small next to the rise (15 % of span), which agrees with F2 (Day 2) and with the "no meaningful difference" verdicts of Days 5 and 6 (judgement).
 
 ## Still open
 

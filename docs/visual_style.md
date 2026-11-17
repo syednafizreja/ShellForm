@@ -40,7 +40,7 @@ Palette checks (CVD simulation and ΔE, 9 Nov 2026; the script was not kept in t
 
 - Strategy pair, light: all checks pass (CVD ΔE 24.7, normal ΔE 33.6). Dark: all pass (CVD 26.8, normal 31.8).
 - Checks, light, all pairs: pass; CVD ΔE 6.1 (magenta-aqua, deutan) is in the 6-8 band, legal because every check has its own marker and label; three steps are below 3:1 contrast, so they always carry a marker and text.
-- Checks, dark, all pairs: the reference dark magenta `#d55181` **fails** CVD against aqua (ΔE 1.6, deutan), so the dark theme keeps the light magenta `#e87ba4` (CVD 8.3, normal ≥ 17.2; its lightness 0.716 is just above the dark band, accepted [J]).
+- Checks, dark, all pairs: the reference dark magenta `#d55181` **fails** CVD against aqua (ΔE 1.6, deutan), so the dark theme keeps the light magenta `#e87ba4` (CVD 8.3, normal ≥ 17.2; its lightness 0.716 is just above the dark band, accepted (judgement)).
 
 ## 3. Type
 

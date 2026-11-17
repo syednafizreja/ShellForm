@@ -11,11 +11,11 @@ Load cases (factors from shellbench.combinations):
 - ULS seismic, +x only: gamma_EG G_E vertical + gamma_EH Sa G_E horizontal,
   G_E = dead + psi_E live. Both strategies' forms are symmetric under the
   mirror and 90 degree rotations of the square plan, so +x stands for all
-  four directions [J] (checked by test).
+  four directions (judgement) (checked by test).
 - SLS: characteristic self-weight + SDL + live, for the deflection limit.
   The pre-registration names the quasi-permanent combination; its live
   factor is not in ShellBench yet, so the characteristic value (live factor
-  1, an upper bound) is used [J].
+  1, an upper bound) is used (judgement).
 """
 
 from dataclasses import asdict, dataclass
@@ -30,12 +30,12 @@ LAMBDA_MIN = 5.0             # pre-registration section 5 (lambda_LBA)
 #: Buckling factors requested from CalculiX in every sizing run. With 1 (Days
 #: 4-9) the eigensolver returned the lowest factor up to 0.26 % high at
 #: lambda 5 and up to 3.6 % high at lambda 8; with 2 or more it is converged
-#: (7 Nov 2026, results/buckling_modes_check.csv). 4 leaves a margin [J].
+#: (7 Nov 2026, results/buckling_modes_check.csv). 4 leaves a margin (judgement).
 #: Pre-registration amendment of 7 Nov 2026 (D10-1).
 N_BUCKLE_SIZING = 4
 DEFLECTION_SPAN_RATIO = 300  # pre-registration section 5 (L/300)
 INFEASIBLE_SPAN_RATIO = 50   # pre-registration section 5 (span/50)
-ZONE_RADIUS_SPAN_RATIO = 0.20  # decision D4-2 [J]: corner support zone radius / span
+ZONE_RADIUS_SPAN_RATIO = 0.20  # decision D4-2 (judgement): corner support zone radius / span
 
 
 def load_cases(inp, sa_g):
@@ -120,7 +120,7 @@ def size_design(xyz, n, fixed, span_m, inp, sa_g, workdir=None, lambda_min=LAMBD
     """Return the sized thickness of one design and the checks tried.
 
     The checks get easier as the thickness grows (buckling factor and stress
-    margin rise), so the grid is searched by bisection [J]; the step below
+    margin rise), so the grid is searched by bisection (judgement); the step below
     the answer is always checked and fails. lambda_min as in check_thickness.
 
     Returns:

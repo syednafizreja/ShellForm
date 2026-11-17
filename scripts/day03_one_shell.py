@@ -7,10 +7,10 @@ linear buckling analysis on each. Writes results/day03_one_shell.json.
 Inputs and where they come from:
 - E: ShellBench v0.0.1, shellbench.anchor_frame.E_KN_M2 (C40, spec X4).
 - Poisson ratio and density: NOT in ShellBench v0.0.1. Placeholders marked
-  [?] until a ShellBench tag provides them; results are a pipeline check,
+  (unverified) until a ShellBench tag provides them; results are a pipeline check,
   not design values.
 - Corner shells: boundary force density set so the free edge insets by
-  0.10 x span at mid-edge (decision D3-1 [J]).
+  0.10 x span at mid-edge (decision D3-1 (judgement)).
 - Thickness 0.08 m: a trial value for the solver check, not a sized design.
 """
 
@@ -25,9 +25,9 @@ from shellform.pin import SHELLBENCH_TAG, check_pin
 
 ROOT = Path(__file__).resolve().parents[1]
 SPAN_M, RISE_RATIO, N_GRID, THICKNESS_M = 10.0, 0.15, 21, 0.08
-NU_PLACEHOLDER = 0.2          # [?] not from ShellBench v0.0.1
-DENSITY_PLACEHOLDER = 2500.0  # [?] kg/m^3, not from ShellBench v0.0.1
-CORNER_EDGE_INSET_RATIO = 0.10  # [J] free-edge mid inset / span, decision D3-1
+NU_PLACEHOLDER = 0.2          # (unverified) not from ShellBench v0.0.1
+DENSITY_PLACEHOLDER = 2500.0  # (unverified) kg/m^3, not from ShellBench v0.0.1
+CORNER_EDGE_INSET_RATIO = 0.10  # (judgement) free-edge mid inset / span, decision D3-1
 
 
 def main() -> None:
@@ -39,7 +39,7 @@ def main() -> None:
                       "thickness_m": THICKNESS_M, "e_pa": e_pa,
                       "e_source": f"ShellBench {SHELLBENCH_TAG} anchor_frame.E_KN_M2",
                       "nu": NU_PLACEHOLDER, "density_kg_m3": DENSITY_PLACEHOLDER,
-                      "nu_density_status": "[?] placeholders, not from ShellBench"},
+                      "nu_density_status": "(unverified) placeholders, not from ShellBench"},
            "cases": {}}
     for supports in ("edges", "corners"):
         if supports == "edges":

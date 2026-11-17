@@ -29,7 +29,7 @@ SOURCE = ROOT / "results" / "batch_all.csv"
 FREEZE_META = ROOT / "results" / "freeze_meta.json"
 OUT = ROOT / "explorer" / "explorer_data.js"
 
-#: Every k-th grid line of the 41 x 41 network is drawn: 41 -> 21 lines [J] (picture only).
+#: Every k-th grid line of the 41 x 41 network is drawn: 41 -> 21 lines (judgement) (picture only).
 EXPLORER_STRIDE = 2
 #: Node coordinates rounded to this step [m] (picture only).
 EXPLORER_ROUND_M = 0.001

@@ -1,6 +1,6 @@
 # Day 11: paper figures and pin move to ShellBench v0.3.0 (8 Nov 2026)
 
-Done on the spare day (Day 11 pulled forward). Day 11 was locked on main first (7372bc3). [J] marks a judgement call.
+Done on the spare day (Day 11 pulled forward). Day 11 was locked on main first (7372bc3). (judgement) marks a judgement call.
 
 ## Done-when
 
@@ -19,10 +19,10 @@ What it shows (record at v0.2.0):
 ## The other figures
 
 - Fig. 3: the section 7 rule per cell, with the 5 % band and the range over the four factor-band corners (the bars are mostly hidden by the markers, because the band moves both strategies almost equally).
-- Fig. 4: what moves carbon, on one axis. Sa: 0-0.4 % (gravity form); strategy: -5.7 to +1.4 %; λ 3: 0.73-0.83 of baseline (corners); λ 8: 1.22-1.30; 61 x 61: up to +6.0 % (10 m corners); band ±25 % by construction. Edge shells move only with the band. [J] This is the clearest single picture of the mechanism: the buckling threshold, a judgement, outweighs the seismic level by about an order of magnitude.
+- Fig. 4: what moves carbon, on one axis. Sa: 0-0.4 % (gravity form); strategy: -5.7 to +1.4 %; λ 3: 0.73-0.83 of baseline (corners); λ 8: 1.22-1.30; 61 x 61: up to +6.0 % (10 m corners); band ±25 % by construction. Edge shells move only with the band. (judgement) This is the clearest single picture of the mechanism: the buckling threshold, a judgement, outweighs the seismic level by about an order of magnitude.
 - Fig. 5: test S5, T1 of every design on ShellBench's spectrum shape; 0 failures.
 
-## Decisions [J]
+## Decisions (judgement)
 
 - **D11-1, pin moved to ShellBench v0.3.0 before the freeze.** v0.3.0 was tagged on 8 Nov (03:50 UTC). Between v0.2.0 and v0.3.0 the only changes in what ShellForm reads are the source notes of `data/carbon_factors.csv` (official-copy check closed, 6 Nov; no value changed) and two docstrings in `shellbench/carbon.py`. v0.3.0 still reports `__version__` 0.2.0, so `pin.py` keeps that string and checks the tag. Evidence: all 168 designs rerun at v0.3.0, compared with the record: see "Record check" below. The record files (`batch_all.*`, `sens_*`, day04-day06 files) were not overwritten: they stay at v0.2.0 until the freeze run on 10 Nov, which reruns everything at the pinned tag.
 - **D11-2, figures name the record's tag, not the pin.** Each figure reads `shellbench_tag` from the record rows and refuses mixed tags (`figures.record_tag`, `gallery.record_tag`). So today's figures say v0.2.0 (their record), and after the freeze they will say v0.3.0.

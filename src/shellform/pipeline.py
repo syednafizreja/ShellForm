@@ -63,7 +63,7 @@ def size_one(case):
         _, sls = load_cases(inp, sa)
         modal = run_case(mid, n, net.fixed, best.thickness_m, inp.e_pa, inp.nu,
                          inp.density_kg_m3, sls[0], sls[1], n_modes=1)
-        # FREQUENCY uses the concrete mass only; scale T1 for the SDL mass of G_E [J].
+        # FREQUENCY uses the concrete mass only; scale T1 for the SDL mass of G_E (judgement).
         m_self = inp.density_kg_m3 * best.thickness_m * area
         # SDL and live load act per plan area (D4-5), so their mass uses the plan
         # area of the shell, not span ** 2 (amendment of 3 Nov 2026).

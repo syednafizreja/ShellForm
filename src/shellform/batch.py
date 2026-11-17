@@ -47,7 +47,7 @@ from shellform.fe import find_ccx
 from shellform.pin import SHELLBENCH_TAG, check_pin
 from shellform.pipeline import ROOT, SIZING_COLUMNS, size_one, takeoff_one, write_csv
 
-#: Preset selections. "smoke8" [J]: one design per (span, supports, strategy)
+#: Preset selections. "smoke8" (judgement): one design per (span, supports, strategy)
 #: at the middle rise (0.15) and the Sa of the pre-registered S4 case
 #: (0.3 g), so every span, support case and strategy is touched.
 PRESETS = {
@@ -62,7 +62,7 @@ RECORD_TAKEOFF_COLUMNS = ("concrete_m3", "steel_kg", "steel_governing_case",
                           "carbon_gbt51366_kgco2e_m2")
 #: Columns that must match the record exactly (text, or the sized thickness).
 RECORD_EXACT = ("feasible", "thickness_m", "governing_check", "steel_governing_case")
-#: Relative tolerance on the other numbers [J]. The record was written with
+#: Relative tolerance on the other numbers (judgement). The record was written with
 #: CalculiX 2.23 on the laptop; the cloud has 2.21. On Day 4 the two versions
 #: differed by at most 2.3e-4 (deflection), so 1e-3 leaves room for that and
 #: still catches any change of model.

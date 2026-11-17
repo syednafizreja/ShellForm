@@ -148,7 +148,7 @@ def zoelly_benchmark(e_pa, nu, radius_m=5.0, thickness_m=0.1, m=16, workdir=None
             record runs R/t = 50 and 100. The sized shells have R/t of about
             78 to 520 by the circular-arc estimate R = ((L/2)^2 + f^2) / (2 f),
             so 100 lies inside that range and 50 is a thicker, harder case for
-            the thin-shell formula [J].
+            the thin-shell formula (judgement).
         m: Elements per cube-face edge (6 m^2 elements in all).
         workdir, ccx: As for shellform.fe.analyse.
 
@@ -305,12 +305,12 @@ def element_areas(xyz, n):
 
 
 def energy_split(face_stress_pa, areas_m2, thickness_m, e_pa, nu):
-    """Return (membrane energy, bending energy) [J] from face stresses.
+    """Return (membrane energy, bending energy) (judgement) from face stresses.
 
     With stress linear through the thickness, s(z) = s_m + (2 z / t) s_b, the
     energy per unit area is t u(s_m) + (t / 3) u(s_b): the cross term
     integrates to zero. s_m is the mean of the two faces and s_b half their
-    difference. Transverse shear energy is left out (thin shell) [J].
+    difference. Transverse shear energy is left out (thin shell) (judgement).
 
     Args:
         face_stress_pa: Shape (n_el, 2, 6), as CaseResult.face_stress_pa [Pa].
@@ -332,7 +332,7 @@ def energy_row(case, thickness_m, inp):
 
     Returns:
         Dict with the case keys, the thickness and, per ULS case, the
-        membrane share Um / (Um + Ub) [-] and the total energy [J].
+        membrane share Um / (Um + Ub) [-] and the total energy (judgement).
     """
     from shellform.designs import form, grid_n
 

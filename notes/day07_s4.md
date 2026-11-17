@@ -32,7 +32,7 @@ Pre-registered case, rise-to-span 1/4 at 0.3 g: crown lean 0.75 m at 10 m and 1.
 
 **S4 passes at the pre-registered tolerance on both spans.**
 
-## What S4 does and does not show [J]
+## What S4 does and does not show (judgement)
 
 - It shows that the lateral-load code (loads, solver, rise scaling, reactions) agrees with statics to round-off, for arches and for every design shell family.
 - It does not show that ShellForm reproduces Michiels & Adriaenssens. Their C&S method is thrust-line plus limit analysis, and their shells use dynamic relaxation (`notes/michiels2017.md`). The paper must say that S4 is the fallback of section 8.

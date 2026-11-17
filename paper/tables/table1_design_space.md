@@ -13,6 +13,6 @@ Methods 2.2. Pre-registration section 3; coded in `src/shellform/design_space.py
 | Designs | 168 |
 
 - Each design is sized separately; uniform thickness per shell (pre-registration section 5).
-- Corner-supported free edges are drawn in by 0.10 × span (decision D3-1) [J].
+- Corner-supported free edges are drawn in by 0.10 × span (decision D3-1) (judgement).
 
 Built by `python scripts/day14_paper_tables.py` from the freeze record (freeze-2026-11-09); ShellBench v0.3.0. Do not edit by hand; rerun the script.

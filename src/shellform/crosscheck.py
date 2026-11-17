@@ -10,7 +10,7 @@ than 2 %." ShellBench v0.2.0 (pinned 7 Nov 2026) carries that wrapper as
 ``shellbench.shellfe`` (ShellBench playbook Day 24: Scordelis-Lo roof and
 pinched hemisphere within 2 %). The tag is named v0.2.0, not floor-r2.
 
-What is compared [J]: the gravity form of each span and support case at rise
+What is compared (judgement): the gravity form of each span and support case at rise
 0.15 (the smoke8 rise, D8-1), at its sized thickness from
 ``results/batch_all.csv``. Both programs get the same nodes, the same S8R
 elements, the same pinned nodes (translations fixed), the same E, nu and
@@ -56,11 +56,11 @@ TOLERANCE = 0.02
 #: Buckling factors requested in both programs (fe.analyse asks for 2).
 COMPARE_BUCKLING_MODES = 2
 #: Buckling factors requested in the --modes check; corner shells are
-#: converged at 2 (7 Nov 2026), so 4 leaves a margin [J].
+#: converged at 2 (7 Nov 2026), so 4 leaves a margin (judgement).
 CONVERGED_BUCKLING_MODES = 4
 #: Designs whose recorded factor is below threshold x (1 + this) are rechecked.
 MODES_MARGIN = 0.03
-#: Rise of the compared shells (smoke8 rise, D8-1) [J].
+#: Rise of the compared shells (smoke8 rise, D8-1) (judgement).
 CHECK_RISE = 0.15
 #: Sa level of the compared rows; the gravity form does not depend on it.
 CHECK_SA_G = 0.3

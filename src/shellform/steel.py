@@ -10,7 +10,7 @@ case into a steel mass, and adds the concrete of the thickened corner
 support zones (decision D4-2). The rules are decisions D5-1 to D5-5 in
 docs/preregistration.md.
 
-* Bar directions (D5-1) [J]: two orthogonal bar directions in every element,
+* Bar directions (D5-1) (judgement): two orthogonal bar directions in every element,
   along the two grid lines of the force density network (in plan, x and y).
 * Tension demand (D5-2): at each depth z through the thickness, the bar
   stress demand in direction 1 is sigma_11 + |tau_12| (tension positive),
@@ -23,25 +23,25 @@ docs/preregistration.md.
   of the positive part of that demand over the thickness; A_s = T / f_y.
   Where sigma_Edx > |tau_Edxy| (compression positive), Annex F gives
   f'_tdx = 0 and f'_tdy = tau^2 / sigma_Edx - sigma_Edy, which is lower than
-  the demand used here. That relief is not taken (conservative) [J].
+  the demand used here. That relief is not taken (conservative) (judgement).
 * Minimum steel (D5-3): in both directions, everywhere, A_s >= rho_min t
   per unit width. rho_min = max(p, k f_t / f_y), with p and k read in place
   from ShellBench docs/floor_concept.md (GB 50010 Table 8.5.1 note 2, the
-  slab rule applied to the shell, pre-registration section 5 [J]).
-* Four seismic directions (D5-4) [J]: the seismic case is run in +x only
+  slab rule applied to the shell, pre-registration section 5 (judgement)).
+* Four seismic directions (D5-4) (judgement): the seismic case is run in +x only
   (D4-1). The forms and the mesh are symmetric under the eight symmetries of
   the square, so the steel field of the -x, +y and -y cases is the +x field
   mapped by those symmetries, with the two bar directions swapped where the
   map swaps x and y. The design field is the largest over all images and all
   load cases.
-* Support zones (D5-5) [J]: inside the corner zones left out of the
+* Support zones (D5-5) (judgement): inside the corner zones left out of the
   compression check, an element whose face compression exceeds f_c is taken
   as thickened to t sigma_c / f_c (stress taken inversely proportional to
   thickness, which is exact for membrane action and conservative for
   bending). The extra concrete is counted. Its steel is the steel of the
   unthickened element.
 
-No laps, anchorage or waste allowance is added to the steel [J]; the take-off
+No laps, anchorage or waste allowance is added to the steel (judgement); the take-off
 is net, for both strategies alike.
 
 Units: SI (m, Pa, kg). Steel areas per unit width in m2/m.
@@ -55,7 +55,7 @@ import numpy as np
 from shellform.fe import corner_zone, s8r_elements
 
 #: Through-thickness points for the tension integral (D5-2). The demand is
-#: piecewise linear in z, so 41 points give T to well under 0.1 % [J].
+#: piecewise linear in z, so 41 points give T to well under 0.1 % (judgement).
 N_DEPTH_POINTS = 41
 
 

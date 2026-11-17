@@ -25,8 +25,8 @@ Written 11 Nov 2026. **Author to open both copies and confirm the page numbers b
 
 ## 3. What this means for λ ≥ 5
 
-- Neither opened source states the number 5. The threshold stays **our judgement [J]**, now with a stated derivation.
-- Read with Dulácska & Kollár, a linear buckling factor λ on the factored load must cover γ / (product of the reduction factors). [J] The three thresholds then have a plain meaning:
+- Neither opened source states the number 5. The threshold stays **our judgement (judgement)**, now with a stated derivation.
+- Read with Dulácska & Kollár, a linear buckling factor λ on the factored load must cover γ / (product of the reduction factors). (judgement) The three thresholds then have a plain meaning:
   - λ ≥ 3: γ = 3.0 (the buckling-governed upper value of Table 3) with no reduction at all. This is a lower bound: every reduction factor is at most 1.
   - λ ≥ 5: γ = 3.0 with combined reductions of 0.6 (3.0 / 5).
   - λ ≥ 8: γ = 3.0 with combined reductions of 0.375 (3.0 / 8).
@@ -35,7 +35,7 @@ Written 11 Nov 2026. **Author to open both copies and confirm the page numbers b
 ## 4. Changes made on 11 Nov
 
 - Methods section 2.5 of the paper: citations replaced; IASS (1979) cited only through ACI 318.2R-14; the bracket in section 3 written as one sentence.
-- `docs/preregistration.md`: dated amendment (no threshold changes; the [check] on the source is resolved as above).
+- `docs/preregistration.md`: dated amendment (no threshold changes; the (to check) on the source is resolved as above).
 
 ## 5. Still open (author)
 

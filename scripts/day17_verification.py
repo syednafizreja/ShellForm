@@ -54,7 +54,7 @@ V1_MESHES = (8, 12, 16, 20, 24)
 V1_RADIUS_M = 5.0
 V1_THICKNESS_M = (0.10, 0.05)  # R/t = 50 and 100
 #: V2 designs: both spans and supports, middle rise, gravity form at Sa = 0
-#: and seismic-aware form at the largest Sa [J].
+#: and seismic-aware form at the largest Sa (judgement).
 V2_RISE = 0.15
 
 

@@ -15,7 +15,7 @@
 
 ShellForm **never copies a ShellBench value into its own files**. It imports ShellBench (pinned to a tag) or reads ShellBench's data files. If a value changes in ShellBench, ShellForm picks it up and the change is visible in both logs. Every ShellForm result names the ShellBench tag it used.
 
-The same rules as ShellBench's project rules apply: no carbon factor or code value is supplied from memory; each is read from its source. Unconfirmed values stay marked [?].
+The same rules as ShellBench's project rules apply: no carbon factor or code value is supplied from memory; each is read from its source. Unconfirmed values stay marked (unverified).
 
 ---
 
@@ -34,13 +34,13 @@ The same rules as ShellBench's project rules apply: no carbon factor or code val
 
 ### Values already settled in ShellBench that ShellForm inherits
 - **Site:** Panzhihua, intensity 7, 0.10 g, Group 1, **site class II, Tg = 0.35 s** (decision B5, your reading of GB 50011 Table 5.1.4-2).
-- **Frequent-earthquake αmax = 0.08** (confirmed by you in Table 5.1.4-1, 25 Oct). The design-earthquake and rare-earthquake αmax are **not yet confirmed** in ShellBench: read them in Table 5.1.4-1 before they are used as plot markers [?].
+- **Frequent-earthquake αmax = 0.08** (confirmed by you in Table 5.1.4-1, 25 Oct). The design-earthquake and rare-earthquake αmax are **not yet confirmed** in ShellBench: read them in Table 5.1.4-1 before they are used as plot markers (unverified).
 - **Spectrum:** `shellbench.seismic.alpha_spectrum()`, already coded with its clauses. ShellForm calls it; it does not write its own.
 - **Concrete C40:** fc 19.1, ft 1.71, Ec 3.25 × 10⁴ N/mm², ν 0.2; **HRB400:** fy 360, Es 2.0 × 10⁵ N/mm² (GB 50010, checked against the Chinese 2015 edition, `notes/gb50010_design_values.md`).
 - **Minimum steel ratio (non-seismic flexural member):** max(0.20%, 45 ft/fy) = 0.214% (Table 8.5.1).
 - **Seismic combination for new designs:** 1.3 G_E + 1.4 E_h (GB 55002-2021 cl. 4.3.2, flag D21). Thesis factors 1.2/1.3 stay for thesis validation only.
-- **Cover:** your reading of GB 50010 Table 8.2.1, environment class I, gives 15 mm minimum for slabs (decision B14). Check whether shells share that row in your copy [?].
-- **Roof loads:** non-accessible roof live load 0.5 kN/m² (spec L11); roof finishes from the thesis roof build-up (spec L2: total 4.224 kN/m² including the 120 mm slab at 3.00). Superimposed roof dead load is therefore about 1.0 kN/m² [J]. Confirm against spec L2 before use.
+- **Cover:** your reading of GB 50010 Table 8.2.1, environment class I, gives 15 mm minimum for slabs (decision B14). Check whether shells share that row in your copy (unverified).
+- **Roof loads:** non-accessible roof live load 0.5 kN/m² (spec L11); roof finishes from the thesis roof build-up (spec L2: total 4.224 kN/m² including the 120 mm slab at 3.00). Superimposed roof dead load is therefore about 1.0 kN/m² (judgement). Confirm against spec L2 before use.
 
 ---
 
@@ -53,8 +53,8 @@ The same rules as ShellBench's project rules apply: no carbon factor or code val
 | Spans | 10 m and 20 m | Fixed |
 | Rise-to-span | 0.10, 0.15 (baseline), 0.20 | Fixed |
 | Strategies | (1) gravity-only form + size to pass; (2) seismic-aware form (lateral load cases added to ShellBench's force density method, after Michiels & Adriaenssens) + size to pass | Fixed |
-| Seismic axis | Plateau spectral acceleration **Sa = 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 g**. Shells have short periods, so they sit on every code's plateau. Check this for every design and report any exception [J] | Fixed |
-| Site markers on plots | Panzhihua frequent 0.08 g (confirmed). Panzhihua design and rare levels, and a Eurocode 8 example site, **only after you read the values in GB 50011 Table 5.1.4-1 and EN 1998-1** [?] | Pending your reading |
+| Seismic axis | Plateau spectral acceleration **Sa = 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 g**. Shells have short periods, so they sit on every code's plateau. Check this for every design and report any exception (judgement) | Fixed |
+| Site markers on plots | Panzhihua frequent 0.08 g (confirmed). Panzhihua design and rare levels, and a Eurocode 8 example site, **only after you read the values in GB 50011 Table 5.1.4-1 and EN 1998-1** (unverified) | Pending your reading |
 | Checks | Concrete stress ≤ fc; tension zones reinforced (As = T/fy, ≥ minimum ratio); linear buckling factor ≥ a threshold you justify from literature (sensitivity at two other values); deflection limit with a source; minimum constructible thickness with a source | Thresholds pending literature |
 | Carbon | A1–A3 from `data/carbon_factors.csv`; results with both GB/T 51366 and ICE sets; conclusion must hold under both | Fixed |
 | Runs | 2 spans × 2 supports × 3 rises × 2 strategies × 7 Sa levels = **168 sized designs** | Fixed |
@@ -70,7 +70,7 @@ ShellBench validates the force density method under gravity (1%) and the Calculi
 | **S1. Zero lateral load** | Seismic-aware form-finding with Sa = 0 returns exactly the floor-r1 gravity form | Identical to machine precision |
 | **S2. Nodal equilibrium** | Every free node is in equilibrium under the combined gravity + lateral load set | Residual < 1 × 10⁻⁹ of the load |
 | **S3. Rotation test** | The force density equations are linear, so rotating every load and every support by the same angle must rotate the form by that angle exactly. This checks the lateral-load code independently | Error < 1 × 10⁻⁹ |
-| **S4. Published case** | Reproduce one published Michiels & Adriaenssens example (arch or shell form under lateral load) from the paper's stated inputs | Within the tolerance you can read from their figures; state it before running [J] |
+| **S4. Published case** | Reproduce one published Michiels & Adriaenssens example (arch or shell form under lateral load) from the paper's stated inputs | Within the tolerance you can read from their figures; state it before running (judgement) |
 | **S5. Plateau check** | First-mode period of every sized design below Tg, from the floor-r2 modal analysis | Report any design that fails, with its real spectral value |
 
 ---

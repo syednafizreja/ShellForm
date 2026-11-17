@@ -251,7 +251,7 @@ def corner_zone(xyz, n, radius_m):
     singular in a linear-elastic model and grow with mesh refinement. The
     sizing check leaves out elements whose plan centroid lies within radius_m
     of a plan corner node, and reports their stress separately (decision D4-2
-    [J]); in practice these zones are thickened locally. The four corner
+    (judgement)); in practice these zones are thickened locally. The four corner
     elements are always in the zone.
 
     Args:

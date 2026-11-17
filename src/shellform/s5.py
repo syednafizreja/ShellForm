@@ -22,7 +22,7 @@ The input files are the baseline and the three sensitivity variants of Day 9
 (``sens_lam3``, ``sens_lam8``, ``sens_mesh61``), because their thicknesses, and
 so their periods, differ from the baseline.
 
-Rising branch [J]: below 0.1 s the spectrum rises from 0.45 alpha_max at T = 0
+Rising branch (judgement): below 0.1 s the spectrum rises from 0.45 alpha_max at T = 0
 (Fig. 5.1.5). The pre-registered load uses the plateau value for every design,
 so for a design on the rising branch the applied lateral load is larger than
 the spectrum gives, by the factor 1 / (alpha(T1) / alpha_max), at most

@@ -17,7 +17,7 @@ The 31 Oct amendment promised this when ShellBench's shell wrapper was tagged. `
 - Largest displacement: identical to all printed digits in all four.
 - First buckling factor, both programs asking for 2 factors: within 0.26 % (edges, 10 m: 348.88 against 347.98); corners identical.
 
-Inside the 2 % limit, so `fe.py` stays the analysis code. [J] The comparison is for self-weight only, because that is the one load both programs apply the same way; it does not test the plan-area nodal loads.
+Inside the 2 % limit, so `fe.py` stays the analysis code. (judgement) The comparison is for self-weight only, because that is the one load both programs apply the same way; it does not test the plan-area nodal loads.
 
 ## 3. A solver set-up error found by the cross-check (D10-1)
 
@@ -25,7 +25,7 @@ When the two programs were first compared, ShellBench's wrapper was asked for on
 
 Measured on the sizing: every design within 3 % of its threshold (149 designs, baseline and the three Day 9 variants) was rechecked at its sized thickness with 4 factors requested (`results/buckling_modes_check.csv`). Reading too high by up to 0.26 % at λ 5, 0.08 % at λ 3, 0.17 % on 61 x 61 and 3.6 % at λ 8. Seven sized designs would fail with the converged value: one baseline design and six at λ 8.
 
-Correction: `sizing.N_BUCKLE_SIZING = 4`. Baseline and the three variants rerun. The corrected record is `results/batch_all.csv` and `results/sens_*.csv`. [J] The error made the factor too high, so the Day 4-9 designs sat slightly below the threshold they were sized to: at most 0.013 % at λ 5 (L10-corners-r0.15-seismic-sa0.6: 4.9994 at 85 mm) and at most 1.4 % at λ 8 (L20-corners-r0.10-seismic-sa0.5: 7.886 at 325 mm).
+Correction: `sizing.N_BUCKLE_SIZING = 4`. Baseline and the three variants rerun. The corrected record is `results/batch_all.csv` and `results/sens_*.csv`. (judgement) The error made the factor too high, so the Day 4-9 designs sat slightly below the threshold they were sized to: at most 0.013 % at λ 5 (L10-corners-r0.15-seismic-sa0.6: 4.9994 at 85 mm) and at most 1.4 % at λ 8 (L20-corners-r0.10-seismic-sa0.5: 7.886 at 325 mm).
 
 ### What changed in the baseline
 
@@ -52,7 +52,7 @@ Headline: 0 of 10 cells per span in every variant, as before. The narrative does
 - **0 failures** in the baseline and in every variant (672 design-runs).
 - Baseline: 10 m corners T1 0.159-0.184 s (at most 0.53 Tg); 10 m edges 0.029-0.045 s; 20 m corners 0.253-0.308 s (at most 0.88 Tg); 20 m edges 0.069-0.111 s.
 - Closest to the limit: λ 3, 20 m corners, T1 0.341 s (0.97 Tg). 61 x 61: at most 0.318 s.
-- **Rising branch [J]:** all 42 10 m edge designs and 28 of 42 20 m edge designs have T1 < 0.1 s, on the rising branch of the spectrum (0.45 alpha_max at T = 0, reaching alpha_max at 0.1 s; GB 50011-2010 Fig. 5.1.5). The pre-registered load uses the plateau value for every design, so for these shells the applied lateral load is larger than the spectrum gives, by up to 1 / 0.45 = 2.2 times at T → 0. The check "on the plateau" therefore holds as "at or below Tg" and is conservative for the seismic case on edge shells. It is reported, not changed: section 3 fixes the load. The paper should say this in the S5 row.
+- **Rising branch (judgement):** all 42 10 m edge designs and 28 of 42 20 m edge designs have T1 < 0.1 s, on the rising branch of the spectrum (0.45 alpha_max at T = 0, reaching alpha_max at 0.1 s; GB 50011-2010 Fig. 5.1.5). The pre-registered load uses the plateau value for every design, so for these shells the applied lateral load is larger than the spectrum gives, by up to 1 / 0.45 = 2.2 times at T → 0. The check "on the plateau" therefore holds as "at or below Tg" and is conservative for the seismic case on edge shells. It is reported, not changed: section 3 fixes the load. The paper should say this in the S5 row.
 
 ## 5. Other changes
 

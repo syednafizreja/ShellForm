@@ -24,7 +24,7 @@ def test_chain_under_uniform_nodal_load_is_an_exact_parabola():
 def test_edge_supported_square_matches_membrane_centre_value():
     """Uniform q on an edge-supported square is a discrete membrane:
     z_centre -> 0.0737 p a^2 / T, with T = |q| (edge force |q| h per spacing h) as the mesh is refined (Timoshenko,
-    Theory of Plates and Shells, membrane analogy [check])."""
+    Theory of Plates and Shells, membrane analogy (to check))."""
     a, n = 10.0, 61
     net = square_network(a, n, "edges", q=-1.0)
     h = a / (n - 1)

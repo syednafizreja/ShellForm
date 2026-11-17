@@ -1,21 +1,21 @@
 # Reading notes: Michiels & Adriaenssens, seismic form-finding
 
-Written 29 Oct 2026 from what is openly readable: the abstract and highlights of the C&S paper (ScienceDirect abstract page) and the abstract of the J. IASS paper (academia.edu). **The full texts have not been read.** Everything marked [check] must be confirmed against the full text before it enters `docs/preregistration.md`.
+Written 29 Oct 2026 from what is openly readable: the abstract and highlights of the C&S paper (ScienceDirect abstract page) and the abstract of the J. IASS paper (academia.edu). **The full texts have not been read.** Everything marked (to check) must be confirmed against the full text before it enters `docs/preregistration.md`.
 
 ## 1. Citations
 
 - **C&S:** Michiels T., Adriaenssens S. Form-finding algorithm for masonry arches subjected to in-plane earthquake loading. *Computers & Structures* 195 (2018) 85-98, online 12 Oct 2017. doi:10.1016/j.compstruc.2017.10.001.
 - **J. IASS:** Michiels T., Adriaenssens S., Jorquera-Lucerga J.J. Parametric study of masonry shells form-found for seismic loading. *J. IASS* 58(4) (2017) 267-275. doi:10.20898/j.iass.2017.194.892. Open submitted version (CC BY-NC-ND): http://hdl.handle.net/10317/25326.
 - **Eng. Struct. 2017:** Michiels T., Adriaenssens S. Identification of key design parameters for earthquake resistance of reinforced concrete shell structures. *Engineering Structures* 153 (2017) 411-420. doi:10.1016/j.engstruct.2017.10.043. Paywalled. Thesis Ch. 2.
-- **Eng. Struct. 2019:** Michiels T., Adriaenssens S., DeJong M. Form finding of corrugated shell structures for seismic design and validation using non-linear pushover analysis. *Engineering Structures* (2019; volume and pages [check]). doi:10.1016/j.engstruct.2018.12.043. Paywalled; ResearchGate entry 329609054 lists a PDF (log in to see). Thesis Ch. 4.
+- **Eng. Struct. 2019:** Michiels T., Adriaenssens S., DeJong M. Form finding of corrugated shell structures for seismic design and validation using non-linear pushover analysis. *Engineering Structures* (2019; volume and pages (to check)). doi:10.1016/j.engstruct.2018.12.043. Paywalled; ResearchGate entry 329609054 lists a PDF (log in to see). Thesis Ch. 4.
 - Metadata of all four checked on 7 Nov 2026 in Semantic Scholar: the three Elsevier papers are marked closed access; only the J. IASS paper has an open copy.
 
 ## 2. How the lateral load is applied
 
 - **C&S (arches, 2D):** "Horizontal acceleration is used as a first-order approximation of seismic action" (highlights). Self-weight plus an in-plane horizontal acceleration. Forms for **0.15, 0.3 and 0.45 g** and rise-to-span **1/2, 1/4, 1/8** (abstract).
 - **J. IASS (shells, 3D):** an "inversed hanging chain model subjected to lateral loading in a dynamic relaxation solver" (abstract). The academia.edu summary says 0.3 g represents moderate-to-high seismicity [check: machine-generated summary, not the paper].
-- Distribution over the mass: horizontal force = acceleration x nodal mass, presumably [check].
-- Sign cases (load reversal): not in the abstracts [check]. The IASS paper produces **double-layer** shells. The likely reason is that one layer carries the thrust surface for each direction of shaking [check]. This matters for ShellForm; see F1.
+- Distribution over the mass: horizontal force = acceleration x nodal mass, presumably (to check).
+- Sign cases (load reversal): not in the abstracts (to check). The IASS paper produces **double-layer** shells. The likely reason is that one layer carries the thrust surface for each direction of shaking (to check). This matters for ShellForm; see F1.
 
 ## 3. Form-finding method
 
@@ -36,10 +36,10 @@ x_seismic = x_gravity - a z_gravity, with y and z unchanged.
 
 Reason: the force density equations solve each coordinate separately, D x = p_x - D_f x_fixed, and p_x = -a p_z. So the "seismic-aware" form is the gravity form leaning into the load. `tests/test_checks.py::test_uniform_lateral_acceleration_shears_the_gravity_form` confirms it to 1e-12.
 
-Consequences for the pre-registration [J]:
+Consequences for the pre-registration (judgement):
 
 1. A single sheared form suits shaking in one direction only. Earthquakes reverse, and a square plan has two axes, so strategy 2 must consider +x, -x, +y and -y.
-2. Options: (a) the shell must contain the thrust surfaces of all four cases within its thickness (closest to Michiels' double layer [check]); (b) an envelope or average form, sized for all four cases; (c) change the force densities, not only the loads, so the form is not just a shear.
+2. Options: (a) the shell must contain the thrust surfaces of all four cases within its thickness (closest to Michiels' double layer (to check)); (b) an envelope or average form, sized for all four cases; (c) change the force densities, not only the loads, so the form is not just a shear.
 3. With (a) the extra thickness comes directly from the shear a z. Rise-to-span then trades off directly against seismic demand, which is a clean and testable result for the paper.
 4. Self-weight that updates with geometry, as in dynamic relaxation, breaks the exact shear slightly. ShellForm must say which it uses.
 

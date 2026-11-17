@@ -45,7 +45,7 @@ The checksums verify the record as cloned. `python -m shellform.batch` (with or 
 3. Install ShellForm: `pip install -e . --no-deps`, then `python -m pytest`.
 4. Check against the record: `python -m shellform.batch --compare-record` (8 designs, minutes) or `python scripts/day12_freeze.py` (all of it, about 2 h on 4 workers).
 
-The comparison checks feasibility, thickness, governing check and steel case exactly, and the buckling factor, period, stresses, deflection, volumes and carbon within a stated relative tolerance (`src/shellform/batch.py`). Quantities that are computed live and sit at round-off level (for example the residuals of tests S2 and S3 in `paper/tables/table3_validation.md`, of order 1e-11 and 1e-16) can differ in their last digits between machines and library builds; every such test passes by many orders of magnitude, and no verdict depends on them [J].
+The comparison checks feasibility, thickness, governing check and steel case exactly, and the buckling factor, period, stresses, deflection, volumes and carbon within a stated relative tolerance (`src/shellform/batch.py`). Quantities that are computed live and sit at round-off level (for example the residuals of tests S2 and S3 in `paper/tables/table3_validation.md`, of order 1e-11 and 1e-16) can differ in their last digits between machines and library builds; every such test passes by many orders of magnitude, and no verdict depends on them (judgement).
 
 ## 5. When something no longer installs
 

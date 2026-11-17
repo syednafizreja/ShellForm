@@ -10,7 +10,7 @@ ShellBench tag: v0.1.0 (tagged 1 Nov; the pin moved from v0.0.1). Script: `scrip
 |---|---|---|
 | E | 3.25e10 Pa | `anchor_frame.E_KN_M2` (spec X4) |
 | Unit weight | 25 kN/m³ | `docs/baseline_spec.md` X7 |
-| Roof SDL | 1.224 kPa | L2 (4.224) less the 0.12 m slab in it (X7 x `carbon.SLAB_T_M`) [J] |
+| Roof SDL | 1.224 kPa | L2 (4.224) less the 0.12 m slab in it (X7 x `carbon.SLAB_T_M`) (judgement) |
 | Roof live | 0.5 kPa | L11 |
 | f_c | 19.1 MPa | `checks.FC_N_MM2` |
 | Factors | 1.3 G + 1.5 Q; 1.3 G_E + 1.4 E_h | `combinations.GAMMA_G`, `GAMMA_Q`, `GAMMA_EG_CODE`, `GAMMA_EH_CODE` |
@@ -51,7 +51,7 @@ ShellBench tag: v0.1.0 (tagged 1 Nov; the pin moved from v0.0.1). Script: `scrip
 - S5 holds: the longest T1 is 0.194 s, below Tg = 0.35 s. (3 Nov: after the plan-area fix of the T1 mass, 0.184 s; `notes/day06_20m.md`.)
 - In the support zones of corner shells, compression reaches about 24-26 MPa, above f_c = 19.1 MPa. These zones need local thickening, and its concrete has to be counted.
 
-## What this means [J]
+## What this means (judgement)
 
 - Thickness does not respond to Sa at all. The seismic combination (1.3 G_E vertical) is lighter than ULS gravity (1.3 G + 1.5 Q) for buckling, and the horizontal part adds little. So the sized thickness cannot separate the strategies.
 - The one difference (85 against 90 mm at rise 0.15) comes from λ sitting just at the limit: 4.99 against 5.02 at 85 mm. That is a grid-step effect. It also depends on the load basis: with SDL and live load per surface area instead of plan area, the seismic form fails at 85 mm too (λ 4.947 at Sa 0.3 g) and takes 90 mm like the gravity form. It is not evidence of a strategy effect (amendment D4-5).

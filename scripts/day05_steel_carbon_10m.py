@@ -61,7 +61,7 @@ def main():
     inp = load_inputs()
     meta = {"shellbench_tag": SHELLBENCH_TAG, "grid_n": N_GRID, "inputs": inp.as_dict(),
             "rho_min": rho_min(inp, (shellbench_root() / "docs" / "floor_concept.md").read_text(encoding="utf-8")),
-            "rho_min_source": "ShellBench docs/floor_concept.md, GB 50010 Table 8.5.1 note 2 (slab rule applied to the shell [J])",
+            "rho_min_source": "ShellBench docs/floor_concept.md, GB 50010 Table 8.5.1 note 2 (slab rule applied to the shell (judgement))",
             "factors": fac.__dict__, "factor_file": "ShellBench data/carbon_factors.csv at " + SHELLBENCH_TAG,
             "factor_band": FACTOR_BAND,
             "status": factor_status()}

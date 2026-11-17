@@ -8,7 +8,7 @@ metadata of every PNG and PDF name the ShellBench tag that the record files
 carry. Look and sizes: shellform.style and docs/visual_style.md (9 Nov 2026
 restyle; plotted numbers unchanged).
 
-Figures (numbering is the planned paper order [J]; the form gallery of Day 8,
+Figures (numbering is the planned paper order (judgement); the form gallery of Day 8,
 ``shellform.gallery``, is Fig. 1):
 
 - Fig. 2, ``fig02_mechanism``: the mechanism figure (what sets the

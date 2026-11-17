@@ -78,7 +78,7 @@ def write_md(stem, title, intro, header, rows, notes, tag):
         title: Table title (draft caption; the author rewrites it).
         intro: One line saying what the table is for.
         header, rows: Table content.
-        notes: Footnote lines (sources, clauses, [J] marks).
+        notes: Footnote lines (sources, clauses, (judgement) marks).
         tag: ShellBench tag of the record the table reads.
     """
     text = [f"# {title}", "", intro, "", md_table(header, rows), ""]
@@ -288,7 +288,7 @@ def main(argv=None):
              "Methods 2.2. Pre-registration section 3; coded in `src/shellform/design_space.py`.",
              ["Variable", "Levels"], rows,
              ["Each design is sized separately; uniform thickness per shell (pre-registration section 5).",
-              "Corner-supported free edges are drawn in by 0.10 × span (decision D3-1) [J]."], SHELLBENCH_TAG)
+              "Corner-supported free edges are drawn in by 0.10 × span (decision D3-1) (judgement)."], SHELLBENCH_TAG)
     summary["table1"] = d
 
     try:
@@ -299,7 +299,7 @@ def main(argv=None):
                  ["Quantity", "Value", "ShellBench source"], rows,
                  ["Code clauses named in the source column are as ShellBench records them; confirm each in your copy of "
                   "the code (GB 50010-2010 (2015), GB 55002-2021, GB 50011-2010, GB/T 51366-2019).",
-                  "Superimposed dead load = roof dead load less the 0.12 m slab it includes [J] (inputs.py)."],
+                  "Superimposed dead load = roof dead load less the 0.12 m slab it includes (judgement) (inputs.py)."],
                  SHELLBENCH_TAG)
         summary["table2"] = d
     except ImportError as exc:  # ShellBench not installed: keep the other tables

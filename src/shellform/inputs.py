@@ -21,7 +21,7 @@ class DesignInputs:
         unit_weight_n_m3: Reinforced concrete unit weight [N/m3] (spec X7).
         g_m_s2: Gravitational acceleration [m/s2] (shellbench.seismic).
         sdl_pa: Roof superimposed dead load per plan area [Pa]: spec L2 roof
-            dead load less the 0.12 m slab it includes (X7 x G10) [J].
+            dead load less the 0.12 m slab it includes (X7 x G10) (judgement).
         live_pa: Non-accessible roof live load per plan area [Pa] (spec L11).
         f_c_pa, f_t_pa, f_y_pa: Design strengths [Pa] (shellbench.checks).
         gamma_g, gamma_q: Gravity partial factors [-] (shellbench.combinations).
@@ -127,7 +127,7 @@ def load_inputs():
         psi_e_roof=sb_seis.LIVE_COMBINATION_COEFF_ROOF, tg_s=sb_seis.TG_ANCHOR_S,
         sources={"e_pa": "anchor_frame.E_KN_M2 (spec X4)", "nu": "notes/gb50010_design_values.md row ν_c (cl. 4.1.5)",
                  "unit_weight_n_m3": "baseline_spec.md X7", "g_m_s2": "seismic.G_ACCEL_M_S2",
-                 "sdl_pa": "baseline_spec.md L2 - X7 x carbon.SLAB_T_M (G10) [J]",
+                 "sdl_pa": "baseline_spec.md L2 - X7 x carbon.SLAB_T_M (G10) (judgement)",
                  "live_pa": "baseline_spec.md L11", "f_c_pa": "checks.FC_N_MM2 (X2)",
                  "f_t_pa": "checks.FT_N_MM2 (X3)", "f_y_pa": "checks.FY_N_MM2 (X5)",
                  "gamma_g": "combinations.GAMMA_G", "gamma_q": "combinations.GAMMA_Q",

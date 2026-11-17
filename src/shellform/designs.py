@@ -8,7 +8,7 @@ from shellform.formfind import corner_network_for_inset, form_to_rise, square_ne
 from shellform.strategies import seismic_mid_surface
 
 N_GRID = 41                     # pre-registration section 3 (41 x 41 network)
-CORNER_EDGE_INSET_RATIO = 0.10  # decision D3-1 [J]
+CORNER_EDGE_INSET_RATIO = 0.10  # decision D3-1 (judgement)
 
 
 def grid_n(case):

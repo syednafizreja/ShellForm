@@ -49,7 +49,7 @@ def square_network(span_m, n, supports, q=-1.0, q_boundary_factor=1.0):
             corner nodes pinned; the boundary acts as an edge arch).
         q: Force density of interior edges [N/m]; negative = compression.
         q_boundary_factor: Multiplier on q for boundary edges. With corner
-            supports the free edges need a larger value to stay up [J].
+            supports the free edges need a larger value to stay up (judgement).
 
     Returns:
         A Network with z = 0 everywhere.

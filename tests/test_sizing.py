@@ -39,7 +39,7 @@ def test_inputs_come_from_shellbench():
     assert inp.f_c_pa == pytest.approx(sb_checks.FC_N_MM2 * 1e6)
     assert inp.gamma_eh == sb_comb.GAMMA_EH_CODE
     assert inp.sdl_pa > 0.0
-    assert "[?]" not in inp.sources["nu"]
+    assert "(unverified)" not in inp.sources["nu"]
 
 
 def test_thickness_grid_runs_from_tmin_to_span_over_50():

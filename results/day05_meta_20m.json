@@ -22,7 +22,7 @@
    "nu": "notes/gb50010_design_values.md row \u03bd_c (cl. 4.1.5)",
    "unit_weight_n_m3": "baseline_spec.md X7",
    "g_m_s2": "seismic.G_ACCEL_M_S2",
-   "sdl_pa": "baseline_spec.md L2 - X7 x carbon.SLAB_T_M (G10) [J]",
+   "sdl_pa": "baseline_spec.md L2 - X7 x carbon.SLAB_T_M (G10) (judgement)",
    "live_pa": "baseline_spec.md L11",
    "f_c_pa": "checks.FC_N_MM2 (X2)",
    "f_t_pa": "checks.FT_N_MM2 (X3)",
@@ -37,7 +37,7 @@
   "density_kg_m3": 2549.2905324448207
  },
  "rho_min": 0.0021375,
- "rho_min_source": "ShellBench docs/floor_concept.md, GB 50010 Table 8.5.1 note 2 (slab rule applied to the shell [J])",
+ "rho_min_source": "ShellBench docs/floor_concept.md, GB 50010 Table 8.5.1 note 2 (slab rule applied to the shell (judgement))",
  "factors": {
   "set_name": "GBT51366",
   "concrete_material": "C40",
